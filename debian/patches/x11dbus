@@ -1,6 +1,6 @@
 From: NexusSfan <nexussfan@duck.com>
 Date: Feb, 22 2026 20:18:49 -0800
-Subject: [PATCH] Remove kwin/wayland specific dependency
+Subject: [PATCH] Remove kwin/wayland specific dependency, backported from 6.6.0.2
 
 --- sonic-workspace-6.5.4.orig/CMakeLists.txt
 +++ sonic-workspace-6.5.4/CMakeLists.txt
