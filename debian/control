@@ -118,11 +118,13 @@ Homepage: https://github.com/Sonic-DE/sonic-workspace
 Vcs-Browser: https://github.com/sonicde-debian/sonic-workspace
 Vcs-Git: https://github.com/sonicde-debian/sonic-workspace.git
 
-Package: libbatterycontrol6
+Package: sonic-libbatterycontrol6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libbatterycontrol6
+Provides: libbatterycontrol6 (= ${binary:Version})
 Description: Plasma Workspace battery control library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -130,11 +132,13 @@ Description: Plasma Workspace battery control library
  .
  This package contains the battery control library files.
 
-Package: libklipper6
+Package: sonic-libklipper6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libklipper6
+Provides: libklipper6 (= ${binary:Version})
 Recommends: plasma-workspace-doc (>= ${source:Version}),
 Description: Plasma Workspaces Klipper library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -147,11 +151,13 @@ Description: Plasma Workspaces Klipper library
  .
  This package contains the Klipper library files.
 
-Package: libklookandfeel6
+Package: sonic-libklookandfeel6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libklookandfeel6
+Provides: libklookandfeel6 (= ${binary:Version})
 Description: Plasma Workspace look and feel helper library
  This tiny library provides shared helpers for determining whether a global
  theme is light or dark. It is used by the look and feel and landing page
@@ -162,11 +168,13 @@ Description: Plasma Workspace look and feel helper library
  .
  This package contains Plasma Workspace libklookandfeel library files.
 
-Package: libkmpris6
+Package: sonic-libkmpris6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libkmpris6
+Provides: libkmpris6 (= ${binary:Version})
 Description: Plasma Workspace MPRIS library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -177,11 +185,13 @@ Description: Plasma Workspace MPRIS library
  .
  This package contains Plasma Workspace MPRIS library files.
 
-Package: libkfontinst6
+Package: sonic-libkfontinst6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libkfontinst6
+Provides: libkfontinst6 (= ${binary:Version})
 Description: Plasma Workspace fonts installation library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -189,11 +199,13 @@ Description: Plasma Workspace fonts installation library
  .
  This package contains the fonts installation library files.
 
-Package: libkfontinstui6
+Package: sonic-libkfontinstui6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libkfontinstui6
+Provides: libkfontinstui6 (= ${binary:Version})
 Description: Plasma Workspace UI components for fonts installation
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -205,11 +217,13 @@ Description: Plasma Workspace UI components for fonts installation
  This package contains the library files for the fonts installation
  UI components.
 
-Package: libkworkspace6-6
+Package: sonic-libkworkspace6-6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libkworkspace6-6
+Provides: libkworkspace6-6 (= ${binary:Version})
 Description: Plasma Workspace library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -220,11 +234,13 @@ Description: Plasma Workspace library
  .
  This package contains the main Plasma Workspace library files.
 
-Package: libnotificationmanager1
+Package: sonic-libnotificationmanager1
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libnotificationmanager1
+Provides: libnotificationmanager1 (= ${binary:Version})
 Description: Plasma Workspace notification manager library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -235,11 +251,13 @@ Description: Plasma Workspace notification manager library
  .
  This package contains the notification manager library files.
 
-Package: libtaskmanager6
+Package: sonic-libtaskmanager6
 Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+Breaks: libtaskmanager6
+Provides: libtaskmanager6 (= ${binary:Version})
 Description: Plasma Workspace task manager library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
