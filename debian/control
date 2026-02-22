@@ -113,6 +113,7 @@ Build-Depends: debhelper-compat (= 13),
                qt6-wayland-private-dev (>= 6.6.0~),
                systemd-dev,
                zlib1g-dev,
+               quilt,
 Standards-Version: 4.7.2
 Homepage: https://github.com/Sonic-DE/sonic-workspace
 Vcs-Browser: https://github.com/sonicde-debian/sonic-workspace
