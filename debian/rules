@@ -13,4 +13,4 @@ override_dh_auto_test:
 	:
 
 execute_after_dh_fixperms-arch:
-	chmod -x $(CURDIR)/debian/plasma-workspace/usr/share/kglobalaccel/org.kde.krunner.desktop
+	chmod -x $(CURDIR)/debian/sonic-workspace/usr/share/kglobalaccel/org.kde.krunner.desktop
