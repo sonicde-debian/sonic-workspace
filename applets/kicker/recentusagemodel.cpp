@@ -27,6 +27,7 @@
 #include <KIO/OpenUrlJob>
 #include <KLocalizedString>
 #include <KNotificationJobUiDelegate>
+#include <KRecentDocument>
 #include <KService>
 #include <PlasmaActivities/ResourceInstance>
 
@@ -47,9 +48,7 @@ GroupSortProxy::GroupSortProxy(AbstractModel *parentModel, QAbstractItemModel *s
     sort(0);
 }
 
-GroupSortProxy::~GroupSortProxy()
-{
-}
+GroupSortProxy::~GroupSortProxy() = default;
 
 InvalidAppsFilterProxy::InvalidAppsFilterProxy(AbstractModel *parentModel, QAbstractItemModel *sourceModel)
     : QSortFilterProxyModel(parentModel)
@@ -62,13 +61,11 @@ InvalidAppsFilterProxy::InvalidAppsFilterProxy(AbstractModel *parentModel, QAbst
     setSourceModel(sourceModel);
 }
 
-InvalidAppsFilterProxy::~InvalidAppsFilterProxy()
-{
-}
+InvalidAppsFilterProxy::~InvalidAppsFilterProxy() = default;
 
 void InvalidAppsFilterProxy::connectNewFavoritesModel()
 {
-    KAStatsFavoritesModel *favoritesModel = static_cast<KAStatsFavoritesModel *>(m_parentModel->favoritesModel());
+    auto *favoritesModel = static_cast<KAStatsFavoritesModel *>(m_parentModel->favoritesModel());
     if (favoritesModel) {
         connect(favoritesModel, &KAStatsFavoritesModel::favoritesChanged, this, &QSortFilterProxyModel::invalidate);
     }
@@ -83,11 +80,7 @@ bool InvalidAppsFilterProxy::filterAcceptsRow(int source_row, const QModelIndex 
     const QString resource = sourceModel()->index(source_row, 0).data(ResultModel::ResourceRole).toString();
 
     if (resource.startsWith(QLatin1String("applications:"))) {
-        KService::Ptr service = KService::serviceByStorageId(resource.section(QLatin1Char(':'), 1));
-
-        KAStatsFavoritesModel *favoritesModel = m_parentModel ? static_cast<KAStatsFavoritesModel *>(m_parentModel->favoritesModel()) : nullptr;
-
-        return (service && (!favoritesModel || !favoritesModel->isFavorite(service->storageId())));
+        return KService::serviceByStorageId(resource.section(QLatin1Char(':'), 1));
     }
 
     return true;
@@ -135,9 +128,7 @@ RecentUsageModel::RecentUsageModel(QObject *parent, IncludeUsage usage, int orde
     refresh();
 }
 
-RecentUsageModel::~RecentUsageModel()
-{
-}
+RecentUsageModel::~RecentUsageModel() = default;
 
 void RecentUsageModel::setShownItems(IncludeUsage usage)
 {
@@ -176,7 +167,7 @@ QString RecentUsageModel::resourceAt(int row) const
 
 QVariant RecentUsageModel::rowValueAt(int row, ResultModel::Roles role) const
 {
-    QSortFilterProxyModel *sourceProxy = qobject_cast<QSortFilterProxyModel *>(sourceModel());
+    auto *sourceProxy = qobject_cast<QSortFilterProxyModel *>(sourceModel());
 
     if (sourceProxy) {
         return sourceProxy->sourceModel()->data(sourceProxy->mapToSource(sourceProxy->index(row, 0)), role).toString();
@@ -188,7 +179,7 @@ QVariant RecentUsageModel::rowValueAt(int row, ResultModel::Roles role) const
 QVariant RecentUsageModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     const QString &resource = resourceAt(index.row());
@@ -209,11 +200,11 @@ QVariant RecentUsageModel::appData(const QString &resource, int role) const
     QStringList allowedTypes({QLatin1String("Service"), QLatin1String("Application")});
 
     if (!service || !allowedTypes.contains(service->property<QString>(QLatin1String("Type"))) || service->exec().isEmpty()) {
-        return QVariant();
+        return {};
     }
 
     if (role == Qt::DisplayRole) {
-        AppsModel *parentModel = qobject_cast<AppsModel *>(QObject::parent());
+        auto *parentModel = qobject_cast<AppsModel *>(QObject::parent());
 
         if (parentModel) {
             return AppEntry::nameFromService(service, (AppEntry::NameFormat)qobject_cast<AppsModel *>(QObject::parent())->appNameFormat());
@@ -223,7 +214,13 @@ QVariant RecentUsageModel::appData(const QString &resource, int role) const
     } else if (role == Qt::DecorationRole) {
         return service->icon();
     } else if (role == Kicker::DescriptionRole) {
-        return service->comment();
+        QString description = service->comment();
+
+        if (description.isEmpty()) {
+            description = service->genericName();
+        }
+
+        return description;
     } else if (role == Kicker::GroupRole) {
         return i18n("Applications");
     } else if (role == Kicker::FavoriteIdRole) {
@@ -260,7 +257,7 @@ QVariant RecentUsageModel::appData(const QString &resource, int role) const
         return actionList;
     }
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex RecentUsageModel::findPlaceForKFileItem(const KFileItem &fileItem) const
@@ -272,7 +269,7 @@ QModelIndex RecentUsageModel::findPlaceForKFileItem(const KFileItem &fileItem) c
             return index;
         }
     }
-    return QModelIndex();
+    return {};
 }
 
 QVariant RecentUsageModel::docData(const QString &resource, int role, const QString &mimeType) const
@@ -295,7 +292,7 @@ QVariant RecentUsageModel::docData(const QString &resource, int role, const QStr
     };
 
     if (!url.isValid()) {
-        return QVariant();
+        return {};
     }
 
     if (role == Qt::DisplayRole) {
@@ -369,7 +366,7 @@ QVariant RecentUsageModel::docData(const QString &resource, int role, const QStr
         return actionList;
     }
 
-    return QVariant();
+    return {};
 }
 
 bool RecentUsageModel::trigger(int row, const QString &actionId, const QVariant &argument)
@@ -422,9 +419,17 @@ bool RecentUsageModel::trigger(int row, const QString &actionId, const QVariant 
 
         return true;
     } else if (actionId == QLatin1String("forget") && withinBounds) {
+        const QString &resource = resourceAt(row);
+
+        if (!resource.startsWith(QLatin1String("applications:"))) {
+            const QString &mimeType = rowValueAt(row, ResultModel::MimeType).toString();
+            const QUrl resourceUrl = docData(resource, Kicker::UrlRole, mimeType).toUrl();
+            KRecentDocument::removeFile(resourceUrl);
+        }
+
         if (m_activitiesModel) {
             QModelIndex idx = sourceModel()->index(row, 0);
-            QSortFilterProxyModel *sourceProxy = qobject_cast<QSortFilterProxyModel *>(sourceModel());
+            auto *sourceProxy = qobject_cast<QSortFilterProxyModel *>(sourceModel());
 
             while (sourceProxy) {
                 idx = sourceProxy->mapToSource(idx);
@@ -433,19 +438,20 @@ bool RecentUsageModel::trigger(int row, const QString &actionId, const QVariant 
 
             static_cast<ResultModel *>(m_activitiesModel.data())->forgetResource(idx.row());
         }
-
         return false;
     } else if (actionId == QLatin1String("openParentFolder") && withinBounds) {
         const auto url = QUrl::fromUserInput(resourceAt(row));
         KIO::highlightInFileManager({url});
     } else if (actionId == QLatin1String("forgetAll")) {
+        KRecentDocument::clear();
+
         if (m_activitiesModel) {
             static_cast<ResultModel *>(m_activitiesModel.data())->forgetAllResources();
         }
 
         return false;
     } else if (actionId == QLatin1String("_kicker_jumpListAction")) {
-        KIO::ApplicationLauncherJob *job = new KIO::ApplicationLauncherJob(argument.value<KServiceAction>());
+        auto *job = new KIO::ApplicationLauncherJob(argument.value<KServiceAction>());
         job->setUiDelegate(new KNotificationJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled));
         job->start();
         return true;

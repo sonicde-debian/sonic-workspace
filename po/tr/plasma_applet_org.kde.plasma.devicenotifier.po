@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_devicenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2025-07-17 23:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -24,44 +24,38 @@ msgstr ""
 "X-Generator: Lokalize 25.04.2\n"
 "X-POOTLE-MTIME: 1413130721.000000\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "Hatalar için Denetle"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Doğrulamadan Bağla"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Bağla"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Dosya Yöneticisinde Aç"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Onarmaya Çalış"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Bağla ve Aç"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Çıkar"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Güvenli Kaldır"
@@ -168,7 +162,7 @@ msgstr "Bu aygıt kaldırılamadı."
 msgid "Could not repair this device: %1"
 msgstr "Bu aygıt onarılamadı: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -176,7 +170,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Denetleniyor…"
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -184,13 +178,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Onarılıyor…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1/%2 boş"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -198,7 +192,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Erişiliyor…"
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -206,27 +200,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Kaldırılıyor…"
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "Henüz çıkarmayın! Dosyalar hâlâ aktarılıyor…"
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Tümünü Kaldır"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Tüm aygıtları güvenle kaldırmak için tıklayın"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Takılı çıkarılabilir aygıt yok"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Kullanılabilir disk yok"
@@ -241,31 +235,35 @@ msgstr "Son Takılan Aygıt"
 msgid "No Devices Available"
 msgstr "Kullanılabilir Aygıt Yok"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Çıkarılabilir Aygıtları Yapılandır…"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Çıkarılabilir Aygıtlar"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Çıkarılabilir Olmayan Aygıtlar"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Tüm Aygıtlar"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Yeni Aygıt Takıldığında Açılır Pencere Göster"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Doğrulamadan Bağla"
 
 #~ msgid "Filesystem is not responding"
 #~ msgstr "Dosya sistemi yanıt vermiyor"

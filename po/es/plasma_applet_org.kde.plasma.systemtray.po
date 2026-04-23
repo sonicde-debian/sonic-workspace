@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.systemtray\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-06-04 19:39+0100\n"
+"POT-Creation-Date: 2026-02-19 02:48+0000\n"
+"PO-Revision-Date: 2025-12-04 11:37+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -16,64 +16,63 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 
-#: package/contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "General"
 msgstr "General"
 
-#: package/contents/config/config.qml:18
+#: qml/ConfigGeneral.qml:43
 #, kde-format
-msgid "Entries"
-msgstr "Entradas"
-
-#: package/contents/ui/ConfigEntries.qml:39
-#, kde-format
-msgid "Shown when relevant"
+msgctxt "@item:inlistbox Show this System Tray item when relevant"
+msgid "Show when relevant"
 msgstr "Mostrar cuando sea importante"
 
-#: package/contents/ui/ConfigEntries.qml:43
+#: qml/ConfigGeneral.qml:47
 #, kde-format
-msgid "Always shown"
+msgctxt "@item:inlistbox Always show this System Tray item"
+msgid "Always show"
 msgstr "Mostrar siempre"
 
-#: package/contents/ui/ConfigEntries.qml:47
+#: qml/ConfigGeneral.qml:51
 #, kde-format
-msgid "Always hidden"
-msgstr "Ocultar siempre"
+msgctxt "@item:inlistbox Show this System Tray item only in the expanded popup"
+msgid "Show only in popup"
+msgstr "Mostrar solo en ventana emergente"
 
-#: package/contents/ui/ConfigEntries.qml:51
+#: qml/ConfigGeneral.qml:55
 #, kde-format
-msgid "Disabled"
-msgstr "Desactivado"
+msgctxt "@item:inlistbox Never show this System Tray item; disable it"
+msgid "Never show (disabled)"
+msgstr "No mostrar nunca (desactivado)"
 
-#: package/contents/ui/ConfigEntries.qml:122
+#: qml/ConfigGeneral.qml:126
 #, kde-format
 msgid "Application Status"
 msgstr "Estado de las aplicaciones"
 
-#: package/contents/ui/ConfigEntries.qml:124
+#: qml/ConfigGeneral.qml:128
 #, kde-format
 msgid "Communications"
 msgstr "Comunicaciones"
 
-#: package/contents/ui/ConfigEntries.qml:126
+#: qml/ConfigGeneral.qml:130
 #, kde-format
 msgid "System Services"
 msgstr "Servicios del sistema"
 
-#: package/contents/ui/ConfigEntries.qml:128
+#: qml/ConfigGeneral.qml:132
 #, kde-format
 msgid "Hardware Control"
 msgstr "Control del hardware"
 
-#: package/contents/ui/ConfigEntries.qml:131
+#: qml/ConfigGeneral.qml:135
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Varios"
 
-#: package/contents/ui/ConfigEntries.qml:174
+#: qml/ConfigGeneral.qml:172
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
@@ -91,148 +90,155 @@ msgstr ""
 "preferencia bajo su propio riesgo y no informe de problemas a KDE ni al "
 "autor de la aplicación."
 
-#: package/contents/ui/ConfigEntries.qml:177
+#: qml/ConfigGeneral.qml:175
 #, kde-format
 msgctxt "@action:button"
 msgid "I understand the risks"
 msgstr "Entiendo los riesgos"
 
-#: package/contents/ui/ConfigEntries.qml:189
+#: qml/ConfigGeneral.qml:187
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
 "Disabling the clipboard is not recommended, as it will cause copied data to "
-"be lost when the application it was copied from is closed.<nl/><nl/>Instead "
-"consider configuring the clipboard to disable its history, or only remember "
-"one item at a time."
+"be lost when the application it was copied from is closed.<nl/><nl/>Only do "
+"this if you’ve manually added a standalone Clipboard widget somewhere else, "
+"or are using a 3rd-party clipboard manager. Also, instead consider "
+"configuring the clipboard to not save history, or to only remember one item "
+"at a time."
 msgstr ""
 "No se recomienda desactivar el portapapeles, ya que provocará que los datos "
 "que haya copiado se pierdan cuando se cierre la aplicación desde la que se "
-"copiaron.<nl/><nl/>En su lugar, considere configurar el portapapeles para "
-"desactivar su historial o para que solo recuerde un elemento a la vez."
+"copiaron.<nl/><nl/>Haga esto solo si ha añadido manualmente un <i>widget</i> "
+"de portapapeles independiente en otro lugar o si usa un gestor de "
+"portapapeles externo. También puede configurar el portapapeles para que no "
+"guarde el historial o para que solo recuerde un elemento a la vez."
 
-#: package/contents/ui/ConfigEntries.qml:217
-#, kde-format
-msgctxt "Name of the system tray entry"
-msgid "Entry"
-msgstr "Entrada"
+#: qml/ConfigGeneral.qml:196
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"Disabling the Notifications widget is not recommended, as notifications sent "
+"by apps will no longer be shown.<nl/><nl/>Only do this if you’ve manually "
+"added a standalone Notifications widget somewhere else, or are intentionally "
+"using a 3rd-party notification manager to handle notifications."
+msgstr ""
+"No se recomienda desactivar el <i>widget</i> de notificaciones, ya que las "
+"notificaciones enviadas por las aplicaciones dejarán de mostrarse.<nl/><nl/"
+">Haga esto solo si ha añadido manualmente un <i>widget</i> de notificaciones "
+"independiente en otro lugar o si está usando intencionalmente un gestor de "
+"notificaciones de terceros para manejar las notificaciones."
 
-#: package/contents/ui/ConfigEntries.qml:224
+#: qml/ConfigGeneral.qml:208
 #, kde-format
-msgid "Visibility"
-msgstr "Visibilidad"
-
-#: package/contents/ui/ConfigEntries.qml:231
-#, kde-format
-msgid "Keyboard Shortcut"
-msgstr "Atajo de teclado"
-
-#: package/contents/ui/ConfigEntries.qml:263
-#, kde-format
-msgid "Always show all entries"
-msgstr "Mostrar siempre todas las entradas"
-
-#: package/contents/ui/ConfigGeneral.qml:23
-#, kde-format
-msgctxt "The arrangement of system tray icons in the Panel"
-msgid "Panel icon size:"
-msgstr "Tamaño de los iconos del panel:"
-
-#: package/contents/ui/ConfigGeneral.qml:25
-#, kde-format
-msgid "Small"
-msgstr "Pequeño"
-
-#: package/contents/ui/ConfigGeneral.qml:32
-#, kde-format
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel height"
 msgstr "Escalar a la altura del panel"
 
-#: package/contents/ui/ConfigGeneral.qml:33
+#: qml/ConfigGeneral.qml:209
 #, kde-format
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel width"
 msgstr "Escalar a la anchura del panel"
 
-#: package/contents/ui/ConfigGeneral.qml:39
+#: qml/ConfigGeneral.qml:211
+#, kde-format
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
+msgid "Panel icon size:"
+msgstr "Tamaño de los iconos del panel:"
+
+#: qml/ConfigGeneral.qml:215 qml/ConfigGeneral.qml:256
+#, kde-format
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Small"
+msgstr "Pequeño"
+
+#: qml/ConfigGeneral.qml:244
 #, kde-format
 msgid "Automatically enabled when in Touch Mode"
 msgstr "Activado automáticamente en el modo táctil"
 
-#: package/contents/ui/ConfigGeneral.qml:49
+#: qml/ConfigGeneral.qml:252
 #, kde-format
 msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon spacing:"
 msgstr "Espacio entre los iconos del panel:"
 
-#: package/contents/ui/ConfigGeneral.qml:52
-#, kde-format
-msgctxt "@item:inlistbox Icon spacing"
-msgid "Small"
-msgstr "Pequeño"
-
-#: package/contents/ui/ConfigGeneral.qml:56
+#: qml/ConfigGeneral.qml:260
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Normal"
 msgstr "Normal"
 
-#: package/contents/ui/ConfigGeneral.qml:60
+#: qml/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Large"
 msgstr "Grande"
 
-#: package/contents/ui/ConfigGeneral.qml:85
+#: qml/ConfigGeneral.qml:289
 #, kde-format
 msgctxt "@info:usagetip under a combobox when Touch Mode is on"
 msgid "Automatically set to Large when in Touch Mode"
 msgstr "Grande de forma automática para el modo táctil"
 
-#: package/contents/ui/ExpandedRepresentation.qml:59
+#: qml/ConfigGeneral.qml:315
+#, kde-format
+msgctxt "@title:column"
+msgid "Entries"
+msgstr "Entradas"
+
+#: qml/ConfigGeneral.qml:319
+#, kde-format
+msgctxt "@option:check, This is referring to system tray entries"
+msgid "Always show all"
+msgstr "Mostrar siempre todo"
+
+#: qml/ExpandedRepresentation.qml:60
 #, kde-format
 msgctxt "@action:button"
 msgid "Go Back"
 msgstr "Volver"
 
-#: package/contents/ui/ExpandedRepresentation.qml:71
+#: qml/ExpandedRepresentation.qml:72
 #, kde-format
 msgid "Status and Notifications"
 msgstr "Estado y notificaciones"
 
-#: package/contents/ui/ExpandedRepresentation.qml:140
+#: qml/ExpandedRepresentation.qml:169
 #, kde-format
 msgid "More actions"
 msgstr "Más acciones"
 
-#: package/contents/ui/ExpandedRepresentation.qml:240
+#: qml/ExpandedRepresentation.qml:255
 #, kde-format
 msgid "Keep Open"
 msgstr "Mantener abierto"
 
-#: package/contents/ui/ExpanderArrow.qml:26
+#: qml/ExpanderArrow.qml:25
 #, kde-format
 msgid "Show all the items in the system tray in a popup"
 msgstr ""
 "Mostrar todos los elementos de la bandeja del sistema en una ventana "
 "emergente"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Close popup"
 msgstr "Cerrar ventana emergente"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Show hidden icons"
 msgstr "Mostrar los iconos ocultos"
 
-#: package/contents/ui/HiddenItemsView.qml:42
+#: qml/HiddenItemsView.qml:37
 #, kde-format
 msgctxt "@info:whatsthis accessible description for popup grid"
 msgid "Grid with %1 items in %2 columns"
 msgstr "Cuadrícula con %1 elementos en %2 columnas"
 
-#: package/contents/ui/HiddenItemsView.qml:46
+#: qml/HiddenItemsView.qml:41
 #, kde-format
 msgctxt "Some letters with tall characters, ascenders, descenders, etc"
 msgid "AILlmyjgGJP"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-17 02:42+0000\n"
 "PO-Revision-Date: 2024-10-01 21:17-0500\n"
 "Last-Translator: A S Alam <aman@punlinux.org>\n"
 "Language-Team: pa\n"
@@ -27,13 +27,13 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "alam.yellow@gmail.com"
 
-#: batterycontrol/batteriesnamesmonitor_p.cpp:46
+#: batterycontrol/batteriesnamesmonitor_p.cpp:45
 #, kde-format
 msgctxt "Placeholder is the battery number"
 msgid "Battery %1"
 msgstr "ਬੈਟਰੀ %1"
 
-#: batterycontrol/batteriesnamesmonitor_p.cpp:48
+#: batterycontrol/batteriesnamesmonitor_p.cpp:47
 #, kde-format
 msgid "Battery"
 msgstr "ਬੈਟਰੀ"
@@ -85,63 +85,65 @@ msgstr "%1 %2"
 msgid "Days"
 msgstr "ਦਿਨ"
 
-#: calendar/qml/MonthViewHeader.qml:137
+#: calendar/qml/MonthViewHeader.qml:139
 #, kde-format
 msgid "Months"
 msgstr "ਮਹੀਨੇ"
 
-#: calendar/qml/MonthViewHeader.qml:143
+#: calendar/qml/MonthViewHeader.qml:147
 #, kde-format
 msgid "Years"
 msgstr "ਸਾਲ"
 
-#: calendar/qml/MonthViewHeader.qml:181
+#: calendar/qml/MonthViewHeader.qml:184
 #, kde-format
 msgid "Previous Month"
 msgstr "ਪਿਛਲਾ ਮਹੀਨਾ"
 
-#: calendar/qml/MonthViewHeader.qml:183
+#: calendar/qml/MonthViewHeader.qml:186
 #, kde-format
 msgid "Previous Year"
 msgstr "ਪਿਛਲਾ ਸਾਲ"
 
-#: calendar/qml/MonthViewHeader.qml:185
+#: calendar/qml/MonthViewHeader.qml:188
 #, kde-format
 msgid "Previous Decade"
 msgstr "ਪਿਛਲਾ ਦਹਾਕਾ"
 
-#: calendar/qml/MonthViewHeader.qml:202
+#: calendar/qml/MonthViewHeader.qml:206
 #, kde-format
 msgctxt "Reset calendar to today"
 msgid "Today"
 msgstr "ਅੱਜ"
 
-#: calendar/qml/MonthViewHeader.qml:203
+#: calendar/qml/MonthViewHeader.qml:207
 #, kde-format
 msgid "Reset calendar to today"
 msgstr "ਕੈਲੰਡਰ ਨੂੰ ਅੱਜ ਲਈ ਮੁੜ-ਸੈੱਟ ਕਰੋ"
 
-#: calendar/qml/MonthViewHeader.qml:214
+#: calendar/qml/MonthViewHeader.qml:220
 #, kde-format
 msgid "Next Month"
 msgstr "ਅਗਲੇ ਮਹੀਨੇ"
 
-#: calendar/qml/MonthViewHeader.qml:216
+#: calendar/qml/MonthViewHeader.qml:222
 #, kde-format
 msgid "Next Year"
 msgstr "ਅਗਲਾ ਸਾਲ"
 
-#: calendar/qml/MonthViewHeader.qml:218
+#: calendar/qml/MonthViewHeader.qml:224
 #, kde-format
 msgid "Next Decade"
 msgstr "ਅਗਲਾ ਦਹਾਕਾ"
 
-#: calendar/qml/MonthViewHeader.qml:272
-#, kde-format
+#: calendar/qml/MonthViewHeader.qml:283
+#, fuzzy, kde-format
+#| msgid "Keep Open"
+msgctxt "@info:tooltip"
 msgid "Keep Open"
 msgstr "ਖੁੱਲਾ ਰੱਖੋ"
 
-#: containmentlayoutmanager/qml/BasicAppletContainer.qml:285
+#: containmentlayoutmanager/qml/BasicAppletContainer.qml:286
 #, kde-format
 msgid "Configure…"
 msgstr "…ਸੰਰਚਨਾ"
@@ -170,17 +172,17 @@ msgstr "ਸਕਰੀਨ ਸੇਵਰ ਟਾਈਮ-ਆਉਟ"
 msgid "Sets the minutes after which the screen is locked."
 msgstr "ਮਿੰਟ ਸੈੱਟ ਕਰੋ, ਜਿਸ ਦੇ ਬਾਅਦ ਸਕਰੀਨ ਨੂੰ ਲਾਕ ਕਰਨਾ ਹੈ।"
 
-#: sessionsprivate/sessionsmodel.cpp:235 sessionsprivate/sessionsmodel.cpp:239
+#: sessionsprivate/sessionsmodel.cpp:255 sessionsprivate/sessionsmodel.cpp:259
 #, kde-format
 msgid "New Session"
 msgstr "ਨਵਾਂ ਸ਼ੈਸ਼ਨ"
 
-#: shellprivate/kcategorizeditemsviewmodels.cpp:65
+#: shellprivate/kcategorizeditemsviewmodels.cpp:66
 #, kde-format
 msgid "Filters"
 msgstr "ਫਿਲਟਰ"
 
-#: shellprivate/plasmaappletitemmodel.cpp:198
+#: shellprivate/plasmaappletitemmodel.cpp:199
 #, kde-format
 msgid ""
 "This Widget was written for an unknown older version of Plasma and is not "
@@ -188,108 +190,108 @@ msgid ""
 "version."
 msgstr ""
 
-#: shellprivate/plasmaappletitemmodel.cpp:202
+#: shellprivate/plasmaappletitemmodel.cpp:203
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please contact the widget's author for an updated version."
 msgstr ""
 
-#: shellprivate/plasmaappletitemmodel.cpp:206
+#: shellprivate/plasmaappletitemmodel.cpp:207
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please update Plasma in order to use the widget."
 msgstr ""
 
-#: shellprivate/plasmaappletitemmodel.cpp:211
+#: shellprivate/plasmaappletitemmodel.cpp:212
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with the latest "
 "version of Plasma. Please update Plasma in order to use the widget."
 msgstr ""
 
-#: shellprivate/widgetexplorer.cpp:109
+#: shellprivate/widgetexplorer.cpp:110
 msgctxt "applet category"
 msgid "Accessibility"
 msgstr "ਸੁਲੱਭਤਾ"
 
-#: shellprivate/widgetexplorer.cpp:110
+#: shellprivate/widgetexplorer.cpp:111
 msgctxt "applet category"
 msgid "Application Launchers"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਲਾਂਚਰ"
 
-#: shellprivate/widgetexplorer.cpp:111
+#: shellprivate/widgetexplorer.cpp:112
 msgctxt "applet category"
 msgid "Astronomy"
 msgstr "ਤਾਰਾ ਵਿਗਿਆਨ"
 
-#: shellprivate/widgetexplorer.cpp:112
+#: shellprivate/widgetexplorer.cpp:113
 msgctxt "applet category"
 msgid "Date and Time"
 msgstr "ਤਾਰੀਖ ਅਤੇ ਸਮਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:113
+#: shellprivate/widgetexplorer.cpp:114
 msgctxt "applet category"
 msgid "Development Tools"
 msgstr "ਡਿਵੈਲਪਮੈਂਟ ਟੂਲ"
 
-#: shellprivate/widgetexplorer.cpp:114
+#: shellprivate/widgetexplorer.cpp:115
 msgctxt "applet category"
 msgid "Education"
 msgstr "ਸਿੱਖਿਆ"
 
-#: shellprivate/widgetexplorer.cpp:115
+#: shellprivate/widgetexplorer.cpp:116
 msgctxt "applet category"
 msgid "Environment and Weather"
 msgstr "ਵਾਤਾਵਰਨ ਅਤੇ ਮੌਸਮ"
 
-#: shellprivate/widgetexplorer.cpp:116
+#: shellprivate/widgetexplorer.cpp:117
 msgctxt "applet category"
 msgid "Examples"
 msgstr "ਮਿਸਾਲਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:117
+#: shellprivate/widgetexplorer.cpp:118
 msgctxt "applet category"
 msgid "File System"
 msgstr "ਫਾਇਲ ਸਿਸਟਮ"
 
-#: shellprivate/widgetexplorer.cpp:118
+#: shellprivate/widgetexplorer.cpp:119
 msgctxt "applet category"
 msgid "Fun and Games"
 msgstr "ਮੌਜਾਂ ਤੇ ਖੇਡਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:119
+#: shellprivate/widgetexplorer.cpp:120
 msgctxt "applet category"
 msgid "Graphics"
 msgstr "ਗਰਾਫਿਕਸ"
 
-#: shellprivate/widgetexplorer.cpp:120
+#: shellprivate/widgetexplorer.cpp:121
 msgctxt "applet category"
 msgid "Language"
 msgstr "ਭਾਸ਼ਾ"
 
-#: shellprivate/widgetexplorer.cpp:121
+#: shellprivate/widgetexplorer.cpp:122
 msgctxt "applet category"
 msgid "Mapping"
 msgstr "ਨਕਸ਼ੇ"
 
-#: shellprivate/widgetexplorer.cpp:122
+#: shellprivate/widgetexplorer.cpp:123
 msgctxt "applet category"
 msgid "Miscellaneous"
 msgstr "ਫੁਟਕਲ"
 
-#: shellprivate/widgetexplorer.cpp:123
+#: shellprivate/widgetexplorer.cpp:124
 msgctxt "applet category"
 msgid "Multimedia"
 msgstr "ਮਲਟੀਮੀਡਿਆ"
 
-#: shellprivate/widgetexplorer.cpp:124
+#: shellprivate/widgetexplorer.cpp:125
 msgctxt "applet category"
 msgid "Online Services"
 msgstr "ਆਨਲਾਈਨ ਸਰਵਿਸਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:125
+#: shellprivate/widgetexplorer.cpp:126
 #, fuzzy
 #| msgctxt "applet category"
 #| msgid "System Information"
@@ -297,47 +299,47 @@ msgctxt "applet category"
 msgid "Personal Information"
 msgstr "ਸਿਸਟਮ ਜਾਣਕਾਰੀ"
 
-#: shellprivate/widgetexplorer.cpp:126
+#: shellprivate/widgetexplorer.cpp:127
 msgctxt "applet category"
 msgid "Productivity"
 msgstr "ਪਰੋਡਕਟਵਿਟੀ"
 
-#: shellprivate/widgetexplorer.cpp:127
+#: shellprivate/widgetexplorer.cpp:128
 msgctxt "applet category"
 msgid "System Information"
 msgstr "ਸਿਸਟਮ ਜਾਣਕਾਰੀ"
 
-#: shellprivate/widgetexplorer.cpp:128
+#: shellprivate/widgetexplorer.cpp:129
 msgctxt "applet category"
 msgid "Utilities"
 msgstr "ਸਹੂਲਤਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:129
+#: shellprivate/widgetexplorer.cpp:130
 msgctxt "applet category"
 msgid "Windows and Tasks"
 msgstr "ਵਿੰਡੋਜ਼ ਅਤੇ ਟਾਸਕਾਂ"
 
-#: shellprivate/widgetexplorer.cpp:130
+#: shellprivate/widgetexplorer.cpp:131
 msgctxt "applet category"
 msgid "Clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ"
 
-#: shellprivate/widgetexplorer.cpp:131
+#: shellprivate/widgetexplorer.cpp:132
 msgctxt "applet category"
 msgid "Tasks"
 msgstr "ਟਾਸਕ"
 
-#: shellprivate/widgetexplorer.cpp:147
+#: shellprivate/widgetexplorer.cpp:148
 #, kde-format
 msgid "All Widgets"
 msgstr "ਸਭ ਵਿਦਜੈਟ"
 
-#: shellprivate/widgetexplorer.cpp:151
+#: shellprivate/widgetexplorer.cpp:152
 #, kde-format
 msgid "Running"
 msgstr "ਚੱਲ ਰਹੇ"
 
-#: shellprivate/widgetexplorer.cpp:157
+#: shellprivate/widgetexplorer.cpp:158
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "@item:inmenu used in the widget filter. Filter widgets that can be un-"
@@ -351,7 +353,7 @@ msgctxt ""
 msgid "User-installed"
 msgstr "ਹਟਾਉਣਯੋਗ"
 
-#: shellprivate/widgetexplorer.cpp:161
+#: shellprivate/widgetexplorer.cpp:162
 #, kde-format
 msgctxt ""
 "@item:inmenu used in the widget filter. Filter widgets that can were "
@@ -359,44 +361,44 @@ msgctxt ""
 msgid "Recently installed"
 msgstr "ਸੱਜਰੇ ਇੰਸਟਾਲ ਕੀਤੇ"
 
-#: shellprivate/widgetexplorer.cpp:165
+#: shellprivate/widgetexplorer.cpp:166
 #, kde-format
 msgid "Categories:"
 msgstr "ਕੈਟਾਗਰੀਆਂ:"
 
-#: shellprivate/widgetexplorer.cpp:235
+#: shellprivate/widgetexplorer.cpp:236
 #, kde-format
 msgid "Download New Plasma Widgets"
 msgstr "ਨਵੇਂ ਪਲਾਜ਼ਮਾ ਵਿਦਜੈਟ ਡਾਊਨਲੋਡ ਕਰੋ"
 
-#: shellprivate/widgetexplorer.cpp:244
+#: shellprivate/widgetexplorer.cpp:245
 #, kde-format
 msgid "Install Widget From Local File…"
 msgstr "…ਲੋਕਲ ਫਾਇਲ ਤੋਂ ਵਿਜੈਟ ਇੰਸਟਾਲ ਕਰੋ"
 
-#: shellprivate/widgetexplorer.cpp:483
+#: shellprivate/widgetexplorer.cpp:484
 #, kde-format
 msgctxt "@title:window"
 msgid "Get New Widgets"
 msgstr "ਨਵੇਂ ਵਿਜੈਟ ਲਵੋ"
 
-#: shellprivate/widgetexplorer.cpp:502
+#: shellprivate/widgetexplorer.cpp:503
 #, kde-format
 msgid "Select Plasmoid File"
 msgstr "ਪਲਾਜ਼ਮੋਡ ਫ਼ਾਇਲ ਚੁਣੋ"
 
-#: shellprivate/widgetexplorer.cpp:518
+#: shellprivate/widgetexplorer.cpp:519
 #, kde-format
 msgctxt "%1 is the name of an applet, %2 is an error message"
 msgid "Installing the package %1 failed: %2."
 msgstr "ਪੈਕੇਜ %1 ਨੂੰ ਇੰਸਟਾਲ ਕਰਨਾ ਫ਼ੇਲ੍ਹ ਹੈ: %2।"
 
-#: shellprivate/widgetexplorer.cpp:519
+#: shellprivate/widgetexplorer.cpp:520
 #, kde-format
 msgid "Installation Failure"
 msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਅਸਫ਼ਲ"
 
-#: timezoneselector/TimezoneSelector.qml:106
+#: timezoneselector/TimezoneSelector.qml:104
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -404,42 +406,42 @@ msgid ""
 "map"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:196
+#: timezoneselector/TimezoneSelector.qml:194
 #, kde-format
 msgctxt "@action:button"
 msgid "Zoom in"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:212
+#: timezoneselector/TimezoneSelector.qml:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Zoom out"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:241
+#: timezoneselector/TimezoneSelector.qml:239
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Region:"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:248
+#: timezoneselector/TimezoneSelector.qml:246
 #, kde-format
 msgctxt "Placeholder for empty time zone combobox selector"
 msgid "Choose…"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:252
+#: timezoneselector/TimezoneSelector.qml:250
 #, kde-format
 msgid "Timezone region selector"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:273
+#: timezoneselector/TimezoneSelector.qml:271
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Time zone:"
 msgstr ""
 
-#: timezoneselector/TimezoneSelector.qml:283
+#: timezoneselector/TimezoneSelector.qml:281
 #, kde-format
 msgid "Timezone location selector"
 msgstr ""

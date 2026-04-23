@@ -24,6 +24,7 @@
 #include <private/qtx11extras_p.h>
 
 #include <KLocalizedString>
+#include <algorithm>
 
 #include <fontconfig/fontconfig.h>
 
@@ -121,7 +122,7 @@ static QString getEntry(QDomElement element, const char *type, unsigned int numA
         }
     }
 
-    return QString();
+    return {};
 }
 
 static KXftConfig::SubPixel::Type strToType(QStringView str)
@@ -162,9 +163,7 @@ KXftConfig::KXftConfig(const QString &path)
     reset();
 }
 
-KXftConfig::~KXftConfig()
-{
-}
+KXftConfig::~KXftConfig() = default;
 
 //
 // Obtain location of config file to use.
@@ -225,7 +224,7 @@ bool KXftConfig::reset()
     m_hintHasLocalConfig = false;
 
     bool ok = false;
-    std::for_each(m_globalFiles.cbegin(), m_globalFiles.cend(), [this, &ok](const QString &file) {
+    std::ranges::for_each(m_globalFiles, [this, &ok](const QString &file) {
         ok |= parseConfigFile(file);
     });
 
@@ -471,7 +470,7 @@ QString KXftConfig::toStr(SubPixel::Type t)
     switch (t) {
     default:
     case SubPixel::NotSet:
-        return QString();
+        return {};
     case SubPixel::None:
         return u"none"_s;
     case SubPixel::Rgb:
@@ -507,7 +506,7 @@ QString KXftConfig::toStr(Hint::Style s)
     switch (s) {
     default:
     case Hint::NotSet:
-        return QString();
+        return {};
     case Hint::Medium:
         return u"hintmedium"_s;
     case Hint::None:
@@ -547,7 +546,7 @@ bool KXftConfig::parseConfigFile(const QString &filename)
         // Check exclude range values - i.e. size and pixel size...
         // If "size" range is set, ensure "pixelsize" matches...
         if (!equal(0, m_excludeRange.from) || !equal(0, m_excludeRange.to)) {
-            double pFrom = (double)point2Pixel(m_excludeRange.from), pTo = (double)point2Pixel(m_excludeRange.to);
+            auto pFrom = (double)point2Pixel(m_excludeRange.from), pTo = (double)point2Pixel(m_excludeRange.to);
 
             if (!equal(pFrom, m_excludePixelRange.from) || !equal(pTo, m_excludePixelRange.to)) {
                 m_excludePixelRange.from = pFrom;

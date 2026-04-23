@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "勿扰模式开关"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "其他应用"
@@ -90,14 +90,14 @@ msgstr "选择声音文件"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "系统通知"
+msgid "Configure for System…"
+msgstr "配置系统通知…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "应用程序设置"
+msgid "Configure for Applications…"
+msgstr "配置应用程序通知…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -205,8 +205,8 @@ msgstr "在通知图标附近"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "自定义…"
+msgid "Choose…"
+msgstr "选择…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -222,33 +222,40 @@ msgstr "经过此时长后隐藏："
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "显示超时指示器"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "额外反馈"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "在通知中显示"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "应用程序执行进度："
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "在任务执行过程中保持弹窗打开"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "通知计数："
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "在任务管理器中显示"
@@ -260,8 +267,10 @@ msgstr "弹出位置"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "应用程序设置"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "应用程序通知"
 
 #: ui/SourcesPage.qml:104
 #, kde-format

@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# SPDX-FileCopyrightText: 2014, 2015, 2019, 2020, 2021, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2014, 2015, 2019, 2020, 2021, 2023, 2024, 2025 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-06-25 12:11+0200\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2025-11-28 12:33+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,61 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #: config.qml:13
 #, kde-format
 msgid "General"
 msgstr "Algemeen"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Acties tonen:"
+msgid "Unavailable"
+msgstr "Niet beschikbaar"
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Afmelden"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Afmeldscherm tonen"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Afsluiten"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Herstarten"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Vergrendelen"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Gebruiker wisselen"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Slaapstand naar schijf"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Slapen"
 
 #: data.js:6
 #, kde-format
@@ -78,8 +39,8 @@ msgstr "Het scherm vergrendelen"
 
 #: data.js:12
 #, kde-format
-msgid "Switch user"
-msgstr "Gebruiker wisselen"
+msgid "Switch user…"
+msgstr "Gebruiker wisselen…"
 
 #: data.js:13
 #, kde-format
@@ -88,8 +49,8 @@ msgstr "Start een parallelle sessie onder een andere gebruikersnaam"
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
-msgstr "Afsluiten…"
+msgid "Shut down"
+msgstr "Afsluiten"
 
 #: data.js:20
 #, kde-format
@@ -98,8 +59,8 @@ msgstr "De computer uitzetten"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Herstarten…"
+msgid "Restart"
+msgstr "Herstarten"
 
 #: data.js:27
 #, kde-format
@@ -108,8 +69,8 @@ msgstr "De computer opnieuw opstarten"
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
-msgstr "Afmelden…"
+msgid "Log out"
+msgstr "Afmelden"
 
 #: data.js:34
 #, kde-format
@@ -127,15 +88,58 @@ msgstr "Afmeldscherm tonen"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Afmelden, de computer uitzetten of herstarten"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Slapen"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Slapen (RAM-slaapstand)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Slaapstand naar schijf"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Slaapstand (schijf-slaapstand)"
+
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Acties"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Acties tonen:"
+
+#~ msgid "Log Out"
+#~ msgstr "Afmelden"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Afmeldscherm tonen"
+
+#~ msgid "Shut Down"
+#~ msgstr "Afsluiten"
+
+#~ msgid "Switch User"
+#~ msgstr "Gebruiker wisselen"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Afsluiten…"
+
+#~ msgid "Restart…"
+#~ msgstr "Herstarten…"
+
+#~ msgid "Logout…"
+#~ msgstr "Afmelden…"
 
 #~ msgid "Logout"
 #~ msgstr "Afmelden"
@@ -166,10 +170,6 @@ msgstr "Slaapstand (schijf-slaapstand)"
 
 #~ msgid "Leave..."
 #~ msgstr "Verlaten..."
-
-#~ msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
-#~ msgid "Actions"
-#~ msgstr "Acties"
 
 #~ msgid "Suspend"
 #~ msgstr "Onderbreken"

@@ -22,11 +22,13 @@
 #include <KNotificationJobUiDelegate>
 #include <KPropertiesDialog>
 #include <KProtocolInfo>
+#include <KRecentDocument>
 
 #include <KIO/DesktopExecParser>
 #include <PlasmaActivities/Stats/Cleaning>
 #include <PlasmaActivities/Stats/ResultSet>
 #include <PlasmaActivities/Stats/Terms>
+#include <algorithm>
 
 #include "containmentinterface.h"
 
@@ -110,7 +112,7 @@ QVariantList createActionListForFileItem(const KFileItem &fileItem)
 bool handleFileItemAction(const KFileItem &fileItem, const QString &actionId, const QVariant &argument, bool *close)
 {
     if (actionId == QLatin1String("_kicker_fileItem_properties")) {
-        KPropertiesDialog *dlg = new KPropertiesDialog(fileItem, QApplication::activeWindow());
+        auto *dlg = new KPropertiesDialog(fileItem, QApplication::activeWindow());
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->show();
 
@@ -226,7 +228,8 @@ QVariantList jumpListActions(KService::Ptr service)
             continue;
         }
 
-        QVariantMap item = createActionItem(action.text(), action.icon(), QStringLiteral("_kicker_jumpListAction"), QVariant::fromValue(action));
+        const QString text = action.text().replace(QLatin1Char('&'), QStringLiteral("&&"));
+        QVariantMap item = createActionItem(text, action.icon(), QStringLiteral("_kicker_jumpListAction"), QVariant::fromValue(action));
 
         list << item;
     }
@@ -339,6 +342,8 @@ bool handleRecentDocumentAction(KService::Ptr service, const QString &actionId, 
         if (storageId.isEmpty()) {
             return false;
         }
+
+        KRecentDocument::removeApplication(storageId);
 
         // clang-format off
         auto query = UsedResources
@@ -481,7 +486,7 @@ bool handleAdditionalAppActions(const QString &actionId, const KService::Ptr &se
         return false;
     }
     const auto actions = actionProvider.actions();
-    auto action = std::find_if(actions.begin(), actions.end(), [&actionId](const KServiceAction &action) {
+    auto action = std::ranges::find_if(actions, [&actionId](const KServiceAction &action) {
         return action.name() == actionId;
     });
     if (action == actions.end()) {

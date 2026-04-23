@@ -8,6 +8,7 @@
 #include "sessionrunner.h"
 
 #include <KLocalizedString>
+#include <algorithm>
 
 K_PLUGIN_CLASS_WITH_JSON(SessionRunner, "plasma-runner-sessions.json")
 
@@ -22,8 +23,9 @@ SessionRunner::SessionRunner(QObject *parent, const KPluginMetaData &metaData)
         addSyntax(m_logoutKeywords, i18n("Logs out, exiting the current desktop session"));
     }
 
-    m_shutdownKeywords = i18nc("KRunner keywords (split by semicolons without whitespace) to shut down the computer", "shutdown;shut down;power;power off")
-                             .split(QLatin1Char(';'), Qt::SkipEmptyParts);
+    m_shutdownKeywords =
+        i18nc("KRunner keywords (split by semicolons without whitespace) to shut down the computer", "shutdown;shut down;power;poweroff;power off")
+            .split(QLatin1Char(';'), Qt::SkipEmptyParts);
     if (m_session.canShutdown()) {
         addSyntax(m_shutdownKeywords, i18n("Turns off the computer"));
     }
@@ -55,7 +57,7 @@ SessionRunner::SessionRunner(QObject *parent, const KPluginMetaData &metaData)
 
 static inline bool anyKeywordMatches(const QStringList &keywords, const QString &term)
 {
-    return std::any_of(keywords.cbegin(), keywords.cend(), [&term](const QString &keyword) {
+    return std::ranges::any_of(keywords, [&term](const QString &keyword) {
         return term.compare(keyword, Qt::CaseInsensitive) == 0;
     });
 }

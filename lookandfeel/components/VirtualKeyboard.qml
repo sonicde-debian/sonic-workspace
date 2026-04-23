@@ -4,15 +4,15 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQuick.VirtualKeyboard 2.4
+import QtQuick
+import QtQuick.VirtualKeyboard as QtVK
 
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kirigami as Kirigami
 
-InputPanel {
+QtVK.InputPanel {
     id: inputPanel
     property bool activated: false
-    active: activated && Qt.inputMethod.visible
+    active: activated && InputMethod.visible
     width: parent.width
 
     states: [
@@ -20,20 +20,18 @@ InputPanel {
             name: "visible"
             when: inputPanel.active
             PropertyChanges {
-                target: inputPanel
-                y: inputPanel.parent.height - inputPanel.height
-                opacity: 1
-                visible: true
+                inputPanel.y: inputPanel.parent.height - inputPanel.height
+                inputPanel.opacity: 1
+                inputPanel.visible: true
             }
         },
         State {
             name: "hidden"
             when: !inputPanel.active
             PropertyChanges {
-                target: inputPanel
-                y: inputPanel.parent.height
-                opacity: 0
-                visible:false
+                inputPanel.y: inputPanel.parent.height
+                inputPanel.opacity: 0
+                inputPanel.visible:false
             }
         }
     ]

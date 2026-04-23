@@ -31,7 +31,6 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <KWaylandExtras>
 #include <KWindowSystem>
 
 #include <KIO/DeleteJob>
@@ -149,7 +148,7 @@ QColor KCMColors::accentColor() const
 {
     const QColor color = colorsSettings()->accentColor();
     if (!color.isValid()) {
-        return QColor(Qt::transparent);
+        return {Qt::transparent};
     }
     return color;
 }
@@ -373,56 +372,7 @@ void KCMColors::editScheme(const QString &schemeName, QQuickItem *ctx)
         // However, since we pass the ID to an external process which has no idea of this
         // we need to resolve the actual window we end up showing in.
         if (QWindow *actualWindow = QQuickRenderControl::renderWindowFor(ctx->window())) {
-            if (KWindowSystem::isPlatformX11()) {
                 args << QStringLiteral("--attach") << QString::number(actualWindow->winId());
-            } else if (KWindowSystem::isPlatformWayland()) {
-                m_waitForXdgForeign = true;
-                KWaylandExtras::exportWindow(actualWindow);
-                connect(
-                    KWaylandExtras::self(),
-                    &KWaylandExtras::windowExported,
-                    this,
-                    [this, actualWindow](QWindow *window, const QString &handle) {
-                        if (window != actualWindow) {
-                            return;
-                        }
-
-                        QStringList args = m_editDialogProcess->arguments();
-                        args << QStringLiteral("--attach") << handle;
-                        m_editDialogProcess->setArguments(args);
-                        m_waitForXdgForeign = false;
-
-                        if (!m_waitForXdgActivation) {
-                            m_editDialogProcess->start();
-                        }
-                    },
-                    Qt::SingleShotConnection);
-
-                m_waitForXdgActivation = true;
-                const int lastSerial = KWaylandExtras::lastInputSerial(actualWindow);
-                KWaylandExtras::requestXdgActivationToken(actualWindow, lastSerial, QStringLiteral("org.kde.kcolorschemeeditor"));
-                connect(
-                    KWaylandExtras::self(),
-                    &KWaylandExtras::xdgActivationTokenArrived,
-                    this,
-                    [this, lastSerial](int serial, const QString &token) {
-                        if (serial != lastSerial) {
-                            return;
-                        }
-
-                        if (!token.isEmpty()) {
-                            QProcessEnvironment environment = QProcessEnvironment::systemEnvironment();
-                            environment.insert(QStringLiteral("XDG_ACTIVATION_TOKEN"), token);
-                            m_editDialogProcess->setProcessEnvironment(environment);
-                        }
-
-                        m_waitForXdgActivation = false;
-                        if (!m_waitForXdgForeign) {
-                            m_editDialogProcess->start();
-                        }
-                    },
-                    Qt::SingleShotConnection);
-            }
         }
     }
 
@@ -506,7 +456,7 @@ void KCMColors::applyWallpaperAccentColor()
     QDBusMessage accentColor = QDBusMessage::createMethodCall(u"org.kde.plasmashell"_s, u"/PlasmaShell"_s, u"org.kde.PlasmaShell"_s, u"color"_s);
     auto const connection = QDBusConnection::connectToBus(QDBusConnection::SessionBus, u"accentColorBus"_s);
     QDBusPendingCall async = connection.asyncCall(accentColor);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
+    auto *watcher = new QDBusPendingCallWatcher(async, this);
 
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &KCMColors::wallpaperAccentColorArrivedSlot);
 }

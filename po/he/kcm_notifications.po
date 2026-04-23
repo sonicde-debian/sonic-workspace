@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 #
-# SPDX-FileCopyrightText: 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-24 20:48+0300\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-15 15:08+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "החלפת מצב ‚לא להפריע’"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "יישומים אחרים"
@@ -91,14 +91,14 @@ msgstr "בחירת קובץ צליל"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "התראות מערכת"
+msgid "Configure for System…"
+msgstr "הגדרה למערכת…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "הגדרות יישום"
+msgid "Configure for Applications…"
+msgstr "הגדרה ליישום…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -206,8 +206,8 @@ msgstr "ליד סמל ההתראות"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "התאמה אישית…"
+msgid "Choose…"
+msgstr "בחירה…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -226,33 +226,40 @@ msgstr "להסתיר לאחר:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "הצגת מחוון תום זמן"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "משוב נוסף"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "הצגה בהתראות"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "התקדמות יישום:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "להשאיר את החלונית הקופצת במשך ההתקדמות"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "עיטורי התראות:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "הצגה במנהל המשימות"
@@ -264,8 +271,10 @@ msgstr "מקום חלונית קופצת"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "הגדרות יישום"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "התראות יישומים"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -289,6 +298,18 @@ msgid ""
 "and behavior"
 msgstr "נא לבחור יישום מהרשימה כדי להגדיר את הגדרות ההתראות וההתהגות שלו"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "התראות מערכת"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "הגדרות יישום"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "התאמה אישית…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "התראות רגילות:"
 
@@ -302,16 +323,9 @@ msgstr "נא לבחור יישום מהרשימה כדי להגדיר את הג�
 #~ msgid "Application Settings…"
 #~ msgstr "הגדרות יישום…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "הגדרת תצורת יישום…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "הגדרות תלויות יישום"
-
-#~ msgid "Configure…"
-#~ msgstr "הגדרה…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

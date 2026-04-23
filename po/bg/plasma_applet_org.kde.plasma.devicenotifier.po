@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_devicenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2025-07-28 17:58+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -18,44 +18,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 25.07.70\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "Проверка за грешки"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Монтиране без проверка"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Монтиране"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Отваряне във Файлов мениджър"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Опит за поправяне"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Монтиране и отваряне"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Изваждане"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Безопасно отстраняване"
@@ -166,7 +160,7 @@ msgstr "Неуспех при премахване на устройството
 msgid "Could not repair this device: %1"
 msgstr "Неуспех при поправянето на устройството: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -174,7 +168,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Проверка…"
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -182,13 +176,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Възстановяване…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 свободни от %2"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -196,7 +190,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Осъществяване на достъп…"
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -204,27 +198,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Премахване…"
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "Не отделяйте устройството! Все още се прехвърлят файлове…"
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Премахване на всички"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Щракнете, за да премахнете безопасно всички устройства"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Няма свързани сменяеми устройства"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Няма налични дискове"
@@ -239,28 +233,32 @@ msgstr "Най-ново устройство"
 msgid "No Devices Available"
 msgstr "Няма налични устройства"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Конфигуриране на сменяеми устройства…"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Сменяеми устройства"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Несменяеми устройства"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Всички устройства"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Показване на известие при свързване на ново устройство"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Монтиране без проверка"

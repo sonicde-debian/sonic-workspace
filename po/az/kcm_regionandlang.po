@@ -1,31 +1,35 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Kheyyam <xxmn77@gmail.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Kheyyam <xxmn77@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-06-11 15:08+0400\n"
-"Last-Translator: Kheyyam Godjayev <xxmn77@gmail.com>\n"
+"POT-Creation-Date: 2026-03-08 02:54+0000\n"
+"PO-Revision-Date: 2025-12-14 00:36+0400\n"
+"Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 25.12.0\n"
+
+#, kde-format
+msgid "Inherit Language"
+msgstr "Sistem dilini istifadə etmək"
 
 #: binarydialectmodel.cpp:52
 #, kde-format
-msgctxt "Binary dialect IEC, with sigle in parentheses"
+msgctxt "Binary dialect IEC, with single in parentheses"
 msgid "International Electrotechnical Commission (IEC)"
-msgstr "Beynəlxalq Elektronik Komossiya (IEC)"
+msgstr "Beynəlxalq Elektrotexniki Komossiya (IEC)"
 
 #: binarydialectmodel.cpp:56
 #, kde-format
-msgctxt "Binary dialect JEDEC, with sigle in parentheses"
+msgctxt "Binary dialect JEDEC, with single in parentheses"
 msgid "Joint Electron Device Engineering Council (JEDEC)"
 msgstr "Elektronik cihazları üzrə ixtisaslaşmış mühəndislər cəmiyyəti (JEDEC)"
 
@@ -37,18 +41,21 @@ msgstr "Metr sistemi (SI)"
 
 #: binarydialectmodel.cpp:75
 #, kde-format
+msgctxt "Binary dialect IEC description"
 msgid "Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)"
-msgstr "İkili -  kibibayt (KiB), mebibayt (MiB), qiqibayt (QiB)"
+msgstr "Binar -  Kibibayt (KiB), Mebibayt (MiB), Qiqibayt (GiB)"
 
 #: binarydialectmodel.cpp:77
 #, kde-format
-msgid "Binary - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
-msgstr "İkili - kilobayt (kB), meqabayt (MB), Qiqabayt (QB)"
+msgctxt "Binary dialect JEDEC description"
+msgid "Binary - Kilobytes (KB), Megabytes (MB), Gigabytes (GB)"
+msgstr "İkili - Kilobayt (kB), Meqabayt (MB), Qiqabayt (GB)"
 
 #: binarydialectmodel.cpp:79
 #, kde-format
+msgctxt "Binary dialect Metric description"
 msgid "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
-msgstr "Onluq - kilobayt (kB), meqabayt (MB), qiqabayt (QB)"
+msgstr "Onluq - Kilobayt (kB), Meqabayt (MB), Qiqabayt (GB)"
 
 #: exampleutility.cpp:31
 #, kde-format
@@ -250,7 +257,7 @@ msgctxt ""
 msgid "Could not find an example for this locale"
 msgstr "Bu yer üçün bir nümunə tapılmadı"
 
-#: glibclocaleconstructor.cpp:164
+#: glibclocaleconstructor.cpp:165
 #, kde-kuit-format
 msgctxt "@info this will be shown as an error message"
 msgid ""
@@ -262,13 +269,13 @@ msgstr ""
 "dəstəyini tapmaq mümkün olmadı. <link>https://bugs.kde.org</link> saytında "
 "bu xəta haqqında məlumat verin."
 
-#: languagelistmodel.cpp:95
+#: languagelistmodel.cpp:97
 #, kde-format
 msgctxt "%1 is language name, %2 is language code name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: languagelistmodel.cpp:101
+#: languagelistmodel.cpp:103
 #, kde-format
 msgctxt ""
 "%1 is português in system locale name, Brazil is to distinguish European "
@@ -283,12 +290,10 @@ msgid "Can't locate executable `check-language-support`"
 msgstr "\"check-language-support\" icra faylını tapmaq mümkün olmadı"
 
 #: localegeneratorubuntu.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "the arg is the output of failed check-language-support call"
-#| msgid "check-language-support failed, output: %1"
+#, kde-format
 msgctxt "the arg is the output of failed check-language-support call"
 msgid "check-language-support failed, output: %1 %2"
-msgstr "check-language-support uğursuz oldu, bildiriş: %1"
+msgstr "check-language-support uğursuz oldu, nəticə: %1 %2"
 
 #: localegeneratorubuntu.cpp:88
 #, kde-format
@@ -297,12 +302,10 @@ msgid "Not all missing packages managed to resolve! %1"
 msgstr "Çatışmayan paketlərin hamısını təmin etmək mümkün olmadı! %1"
 
 #: localegeneratorubuntu.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "%1 is a list of package names"
-#| msgid "Failed to install package %1"
+#, kde-format
 msgctxt "%1 is a list of package names, %2 is the error explanation"
 msgid "Failed to install language packages (%1): %2"
-msgstr "%1 paketini quraşdırmaq mümkün olmadı"
+msgstr "(%1) paketini quraşdırmaq mümkün olmadı: %2"
 
 #: localegenhelper/localegenhelper.cpp:45
 #, kde-format
@@ -451,15 +454,6 @@ msgctxt ""
 "as subtitle, remind user that the format used now is inherited from locale %1"
 msgid " (Standard format for %1)"
 msgstr " (%1 üçün standart format)"
-
-#: regionandlangsettingsbase.kcfg:14 regionandlangsettingsbase.kcfg:17
-#: regionandlangsettingsbase.kcfg:20 regionandlangsettingsbase.kcfg:23
-#: regionandlangsettingsbase.kcfg:26 regionandlangsettingsbase.kcfg:29
-#: regionandlangsettingsbase.kcfg:32 regionandlangsettingsbase.kcfg:35
-#: regionandlangsettingsbase.kcfg:38
-#, kde-format
-msgid "Inherit Language"
-msgstr "Dilə görə miras almaq"
 
 #: ui/AdvancedLanguageSelectPage.qml:23
 #, kde-format

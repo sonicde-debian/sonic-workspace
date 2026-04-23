@@ -1,22 +1,22 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2020, 2023, 2024 Vít Pelčák <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2020, 2023, 2024, 2026 Vít Pelčák <vit@pelcak.org>
 # SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-10-17 13:29+0200\n"
-"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"POT-Creation-Date: 2026-03-04 02:42+0000\n"
+"PO-Revision-Date: 2026-03-13 14:24+0100\n"
+"Last-Translator:  Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 "X-Language: cs_CZ\n"
 "X-Source-Language: en_US\n"
 
@@ -30,90 +30,90 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "vit@pelcak.org"
 
-#: currentcontainmentactionsmodel.cpp:203
+#: currentcontainmentactionsmodel.cpp:201
 #, kde-format
 msgid "Configure Mouse Actions Plugin"
 msgstr "Nastavit modul činností myši"
 
-#: desktopview.cpp:222
+#: desktopview.cpp:223
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Dev"
 msgstr "KDE Plasma 6.0 Vývoj"
 
-#: desktopview.cpp:225
+#: desktopview.cpp:226
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Alpha"
 msgstr "KDE Plasma 6.0 Alpha"
 
-#: desktopview.cpp:228
+#: desktopview.cpp:229
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 1"
 msgstr "KDE Plasma 6.0 Beta 1"
 
-#: desktopview.cpp:231
+#: desktopview.cpp:232
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 2"
 msgstr "KDE Plasma 6.0 Beta 2"
 
-#: desktopview.cpp:234
+#: desktopview.cpp:235
 #, kde-format
 msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC1"
 msgstr "KDE Plasma 6.0 RC1"
 
-#: desktopview.cpp:237
+#: desktopview.cpp:238
 #, kde-format
 msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC2"
 msgstr "KDE Plasma 6.0 RC2"
 
-#: desktopview.cpp:263
+#: desktopview.cpp:264
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Dev"
 msgstr "KDE Plasma %1 Vývoj"
 
-#: desktopview.cpp:267
+#: desktopview.cpp:268
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Beta"
 msgstr "KDE Plasma %1 Beta"
 
-#: desktopview.cpp:270
+#: desktopview.cpp:271
 #, kde-format
 msgctxt "@label %1 is the Plasma version, %2 is the beta release number"
 msgid "KDE Plasma %1 Beta %2"
 msgstr "KDE Plasma %1 Beta %2"
 
-#: desktopview.cpp:274
+#: desktopview.cpp:275
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1"
 msgstr "KDE Plasma %1"
 
-#: desktopview.cpp:280
+#: desktopview.cpp:281
 #, kde-format
 msgctxt "@info:usagetip"
 msgid "Visit bugs.kde.org to report issues"
 msgstr "Pro hlášení chyb použijte http://bugs.kde.org"
 
-#: desktopview.cpp:288
+#: desktopview.cpp:289
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy Plasma Version"
 msgstr "Zkopírovat verzi Plasma"
 
-#: desktopview.cpp:294
+#: desktopview.cpp:295
 #, kde-format
 msgctxt "@action:button"
 msgid "Report a Bug…"
 msgstr "Nahlásit chybu…"
 
-#: desktopview.cpp:304
+#: desktopview.cpp:305
 #, kde-format
 msgctxt "@title:menu"
 msgid "Hide Preview Banner"
@@ -140,6 +140,9 @@ msgid ""
 "<icode>ShowDesktopPreviewBanner</icode> in the <filename>kdeglobals</"
 "filename> config file."
 msgstr ""
+"Opravdu chcete trvale skrýt banner náhledu?<nl/><nl/>Tuto akci lze zrušit "
+"pouze odstraněním řádku začínajícího <icode>ShowDesktopPreviewBanner</icode> "
+"v konfiguračním souboru <filename>kdeglobals</filename>."
 
 #: desktopview.cpp:322
 #, kde-format
@@ -147,52 +150,52 @@ msgctxt "@title:window"
 msgid "Hide Preview Banner?"
 msgstr "Skrýt pruh náhledu?"
 
-#: desktopview.cpp:595 desktopview.cpp:611
+#: desktopview.cpp:557 desktopview.cpp:573
 #, kde-format
 msgid "Enter Edit Mode"
 msgstr "Spustit režim úprav"
 
-#: desktopview.cpp:609
+#: desktopview.cpp:571
 #, kde-format
 msgid "Exit Edit Mode"
 msgstr "Ukončit režim úprav"
 
-#: main.cpp:86
+#: main.cpp:108
 #, kde-format
 msgid "Plasma Shell"
 msgstr "Shell Plasma"
 
-#: main.cpp:99
+#: main.cpp:121
 #, kde-format
 msgid "Enable QML Javascript debugger"
 msgstr "Povolit ladicí nástroj QML JavaScript"
 
-#: main.cpp:102
+#: main.cpp:124
 #, kde-format
 msgid "Do not restart plasma-shell automatically after a crash"
 msgstr "Nerestartovat plasma-shell po pádu automaticky"
 
-#: main.cpp:105
+#: main.cpp:127
 #, kde-format
 msgid "Force loading the given shell plugin"
 msgstr "Vynutit načítání daného moduly shellu"
 
-#: main.cpp:109
+#: main.cpp:131
 #, kde-format
 msgid "Replace an existing instance"
 msgstr "Nahradit existující instanci"
 
-#: main.cpp:112
+#: main.cpp:134
 #, kde-format
 msgid "Lists the available options for user feedback"
 msgstr "Seznam dostupných voleb pro uživatelskou zpětnou vazbu"
 
-#: main.cpp:174
+#: main.cpp:190
 #, kde-format
 msgid "Plasma Failed To Start"
 msgstr "Start Plasma selhal"
 
-#: main.cpp:175
+#: main.cpp:191
 #, kde-format
 msgid ""
 "Plasma is unable to start as it could not correctly use OpenGL 2 or software "
@@ -203,79 +206,79 @@ msgstr ""
 "softwarovou zálohu.\n"
 "Prosím, zkontrolujte, že máte správně nastaveny ovladače."
 
-#: osd.cpp:65
+#: osd.cpp:63
 #, kde-format
 msgctxt "Brightness OSD: display name and brightness percentage"
 msgid "%1: %2%"
 msgstr "%1: %2%"
 
-#: osd.cpp:93
+#: osd.cpp:91
 #, kde-format
 msgctxt "OSD informing that the system is muted, keep short"
 msgid "Audio Muted"
 msgstr "Zvuk ztlumen"
 
-#: osd.cpp:116
+#: osd.cpp:114
 #, kde-format
 msgctxt "OSD informing that the microphone is muted, keep short"
 msgid "Microphone Muted"
 msgstr "Mikrofon ztlumen"
 
-#: osd.cpp:132
+#: osd.cpp:130
 #, kde-format
 msgctxt "OSD informing that some media app is muted, eg. Amarok Muted"
 msgid "%1 Muted"
 msgstr "%1 ztlumený"
 
-#: osd.cpp:154
+#: osd.cpp:152
 #, kde-format
 msgctxt "touchpad was enabled, keep short"
 msgid "Touchpad On"
 msgstr "Touchpad zapnut"
 
-#: osd.cpp:156
+#: osd.cpp:154
 #, kde-format
 msgctxt "touchpad was disabled, keep short"
 msgid "Touchpad Off"
 msgstr "Touchpad vypnut"
 
-#: osd.cpp:163
+#: osd.cpp:161
 #, kde-format
 msgctxt "wireless lan was enabled, keep short"
 msgid "Wifi On"
 msgstr "Wifi zapnuta"
 
-#: osd.cpp:165
+#: osd.cpp:163
 #, kde-format
 msgctxt "wireless lan was disabled, keep short"
 msgid "Wifi Off"
 msgstr "Wifi vypnuta"
 
-#: osd.cpp:172
+#: osd.cpp:170
 #, kde-format
 msgctxt "Bluetooth was enabled, keep short"
 msgid "Bluetooth On"
 msgstr "Bluetooth zapnut"
 
-#: osd.cpp:174
+#: osd.cpp:172
 #, kde-format
 msgctxt "Bluetooth was disabled, keep short"
 msgid "Bluetooth Off"
 msgstr "Bluetooth vypnut"
 
-#: osd.cpp:181
+#: osd.cpp:179
 #, kde-format
 msgctxt "mobile internet was enabled, keep short"
 msgid "Mobile Internet On"
 msgstr "Mobilní internet zapnut"
 
-#: osd.cpp:183
+#: osd.cpp:181
 #, kde-format
 msgctxt "mobile internet was disabled, keep short"
 msgid "Mobile Internet Off"
 msgstr "Mobilní internet vypnut"
 
-#: osd.cpp:191
+#: osd.cpp:189
 #, kde-format
 msgctxt ""
 "on screen keyboard was enabled because physical keyboard got unplugged, keep "
@@ -283,7 +286,7 @@ msgctxt ""
 msgid "On-Screen Keyboard Activated"
 msgstr "Zapnuta klávesnice na obrazovce"
 
-#: osd.cpp:194
+#: osd.cpp:192
 #, kde-format
 msgctxt ""
 "on screen keyboard was disabled because physical keyboard was plugged in, "
@@ -291,31 +294,31 @@ msgctxt ""
 msgid "On-Screen Keyboard Deactivated"
 msgstr "Vypnuta klávesnice na obrazovce"
 
-#: osd.cpp:201
+#: osd.cpp:199
 #, kde-format
 msgctxt "power management was inhibited, keep short"
 msgid "Sleep and Screen Locking Blocked"
 msgstr "Uspání a uzamčení obrazovky zakázáno"
 
-#: osd.cpp:203
+#: osd.cpp:201
 #, kde-format
 msgctxt "power management was uninhibited, keep short"
 msgid "Sleep and Screen Locking Unblocked"
 msgstr "Uspání a uzamčení obrazovky povoleno"
 
-#: osd.cpp:213
+#: osd.cpp:211
 #, kde-format
 msgctxt "Power profile was changed to power save mode, keep short"
 msgid "Power Save Mode"
 msgstr "Úsporný režim"
 
-#: osd.cpp:216
+#: osd.cpp:214
 #, kde-format
 msgctxt "Power profile was changed to balanced mode, keep short"
 msgid "Balanced Power Mode"
 msgstr "Vyvážený režim"
 
-#: osd.cpp:219
+#: osd.cpp:217
 #, kde-format
 msgctxt "Power profile was changed to performance mode, keep short"
 msgid "Performance Mode"
@@ -328,14 +331,17 @@ msgid ""
 "known to cause poor window drag and resize performance. Consider using other "
 "settings."
 msgstr ""
+"S grafickým procesorem NVIDIA na X11 je známo, že režim Floating a Adaptive "
+"opacity způsobují špatný výkon při přetahování a změně velikosti oken. "
+"Zvažte použití jiných nastavení."
 
-#: panelview.cpp:1141
+#: panelview.cpp:1144
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide Panel Configuration"
 msgstr "Skrýt nastavení panelu"
 
-#: panelview.cpp:1143
+#: panelview.cpp:1146
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Panel Configuration"
@@ -347,74 +353,74 @@ msgctxt "Percentage value"
 msgid "%1%"
 msgstr "%1%"
 
-#: shellcontainmentconfig.cpp:106
+#: shellcontainmentconfig.cpp:107
 #, kde-format
 msgid "Internal Screen on %1"
 msgstr "Interní obrazovka na %1"
 
-#: shellcontainmentconfig.cpp:110
+#: shellcontainmentconfig.cpp:111
 #, kde-format
 msgctxt "Screen manufacturer and model on connector"
 msgid "%1 %2 on %3"
 msgstr "%1 %2 na %3"
 
-#: shellcontainmentconfig.cpp:133
+#: shellcontainmentconfig.cpp:134
 #, kde-format
 msgid "Disconnected Screen %1"
 msgstr "Odpojená obrazovka %1"
 
-#: shellcorona.cpp:213 shellcorona.cpp:215
+#: shellcorona.cpp:180 shellcorona.cpp:182
 #, kde-format
 msgid "Show Desktop"
 msgstr "Zobrazit plochu"
 
-#: shellcorona.cpp:215
+#: shellcorona.cpp:182
 #, kde-format
 msgid "Hide Desktop"
 msgstr "Skrýt pracovní plochu"
 
-#: shellcorona.cpp:230
+#: shellcorona.cpp:197
 #, kde-format
 msgid "Activate Application Launcher"
 msgstr "Aktivovat spouštěč aplikací"
 
-#: shellcorona.cpp:238
+#: shellcorona.cpp:205
 #, kde-format
 msgid "Show Activity Switcher"
 msgstr "Zobrazit přepínač aktivit"
 
-#: shellcorona.cpp:247
+#: shellcorona.cpp:214
 #, kde-format
 msgid "Switch to Previous Activity"
 msgstr "Přepnout na předchozí aktivitu"
 
-#: shellcorona.cpp:255
+#: shellcorona.cpp:222
 #, kde-format
 msgid "Switch to Next Activity"
 msgstr "Přepnout na následující aktivitu"
 
-#: shellcorona.cpp:270
+#: shellcorona.cpp:237
 #, kde-format
 msgid "Activate Task Manager Entry %1"
 msgstr "Aktivovat záznam Správce úloh %1"
 
-#: shellcorona.cpp:302
+#: shellcorona.cpp:272
 #, kde-format
 msgctxt "@action:button"
 msgid "Manage Desktops and Panels…"
 msgstr "Spravovat plochy a panely..."
 
-#: shellcorona.cpp:324
+#: shellcorona.cpp:294
 #, kde-format
 msgid "Move keyboard focus between panels"
 msgstr "Přesunovat zaměření klávesnice mezi panely"
 
-#: shellcorona.cpp:2221
+#: shellcorona.cpp:2245
 #, kde-format
 msgid "Add Panel"
 msgstr "Přidat panel"
 
-#: shellcorona.cpp:2304
+#: shellcorona.cpp:2328
 #, kde-format
 msgctxt "Creates an empty containment (%1 is the containment name)"
 msgid "Empty %1"
@@ -451,6 +457,3 @@ msgstr "Počet panelů"
 #, kde-format
 msgid "Counts the panels"
 msgstr "Počítá panely"
-
-#~ msgid "Stop Current Activity"
-#~ msgstr "Zastavit současnou aktivitu"

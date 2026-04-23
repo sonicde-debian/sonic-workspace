@@ -1,21 +1,19 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(plasma-workspace)
-set(PROJECT_VERSION "6.5.4")
+set(PROJECT_VERSION "6.6.3")
 string(REPLACE "." ";" VERSION_LIST ${PROJECT_VERSION})
 list(GET VERSION_LIST 0 PROJECT_VERSION_MAJOR)
 list(GET VERSION_LIST 1 PROJECT_VERSION_MINOR)
 list(GET VERSION_LIST 2 PROJECT_VERSION_PATCH)
 
-set(PROJECT_DEP_VERSION "6.5.4")
-set(QT_MIN_VERSION "6.9.0")
-set(KF6_MIN_VERSION "6.18.0")
-option(PLASMA_X11_DEFAULT_SESSION "Use X11 session by default for Plasma" OFF)
-option(INSTALL_SDDM_WAYLAND_SESSION OFF)
-option(WITH_X11 "Build with X11 support. Building without is experimental" ON)
+set(PROJECT_DEP_VERSION "6.6.3")
+set(QT_MIN_VERSION "6.10.0")
+set(KF6_MIN_VERSION "6.22.0")
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(ECM ${KF6_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -52,25 +50,22 @@ endif()
 option(BUILD_CAMERAINDICATOR "Build the camera indicator Plasma applet" ${BUILD_CAMERAINDICATOR_DEFAULT})
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
-                    Concurrent Core5Compat DBus Location Network Positioning Quick QuickWidgets
+                    Concurrent DBus Location Network Positioning Quick QuickWidgets
                     ShaderTools Sql Svg Widgets)
 
 if (Qt6Gui_VERSION VERSION_GREATER_EQUAL "6.10.0")
     find_package(Qt6GuiPrivate ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
-    find_package(Qt6WaylandClientPrivate ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 endif()
 
 find_package(QCoro6 REQUIRED COMPONENTS Core)
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
                     Archive Auth CoreAddons Crash DBusAddons Declarative GlobalAccel GuiAddons
                     Holidays I18n IconThemes IdleTime ItemModels KCMUtils KDED KIO NewStuff
-                    Notifications NotifyConfig Package Parts Prison Runner StatusNotifierItem
+                    Notifications Package Parts Prison Runner StatusNotifierItem
                     Svg TextEditor TextWidgets Wallet ColorScheme
                     OPTIONAL_COMPONENTS DocTools)
-find_package(Plasma5Support ${PROJECT_DEP_VERSION} REQUIRED)
 find_package(Plasma ${PROJECT_DEP_VERSION} REQUIRED)
 find_package(PlasmaQuick ${PROJECT_DEP_VERSION} REQUIRED)
-find_package(KWayland ${PROJECT_DEP_VERSION} REQUIRED)
 find_package(PlasmaActivities ${PROJECT_DEP_VERSION} REQUIRED)
 find_package(PlasmaActivitiesStats ${PROJECT_DEP_VERSION} REQUIRED)
 find_package(KSysGuard ${PROJECT_DEP_VERSION} CONFIG)
@@ -79,12 +74,10 @@ set_package_properties(KSysGuard PROPERTIES
     TYPE REQUIRED
 )
 find_package(KF6Screen ${PROJECT_DEP_VERSION} CONFIG REQUIRED)
-find_package(LayerShellQt ${PROJECT_DEP_VERSION} CONFIG REQUIRED)
 
 if (BUILD_TESTING)
     include(ECMAddTests)
     find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Test QuickTest)
-    find_package(Qt6 REQUIRED CONFIG COMPONENTS WaylandCompositor)
 endif()
 
 find_package(KF6Kirigami ${KF6_MIN_VERSION} CONFIG)
@@ -127,16 +120,11 @@ set_package_properties(QALCULATE PROPERTIES
    TYPE REQUIRED)
 pkg_check_modules(DBus dbus-1 REQUIRED IMPORTED_TARGET)
 
-find_package(KWinDBusInterface CONFIG REQUIRED)
+find_package(KWinX11DBusInterface CONFIG REQUIRED)
 find_package(ScreenSaverDBusInterface CONFIG REQUIRED)
 
 # Used in kcm_autostart
 pkg_check_modules(SYSTEMD "systemd")
-
-find_package(Phonon4Qt6 4.6.60 REQUIRED NO_MODULE)
-set_package_properties(Phonon4Qt6 PROPERTIES
-   DESCRIPTION "Qt-based audio library"
-   TYPE REQUIRED)
 
 find_package(Canberra)
 set_package_properties(Canberra PROPERTIES
@@ -152,6 +140,12 @@ find_package(ZLIB)
 set_package_properties(ZLIB PROPERTIES DESCRIPTION "Support for gzip compressed files and data streams"
                        URL "https://www.zlib.net"
                        TYPE REQUIRED
+                      )
+
+find_package(Freetype)
+set_package_properties(Freetype PROPERTIES DESCRIPTION "Software library to render fonts"
+                       URL "https://freetype.org"
+                       TYPE OPTIONAL
                       )
 
 find_package(Fontconfig)
@@ -171,11 +165,6 @@ option(PACKAGEKIT_OFFLINE_UPDATES "Integrate with PackageKit for offline updates
 add_feature_info(PACKAGEKIT_OFFLINE_UPDATES PackageKitQt6_FOUND "Integrate with PackageKit for offline updates")
 set(PACKAGEKIT_OFFLINE_UPDATES ${PackageKitQt6_FOUND})
 
-if(PLASMA_X11_DEFAULT_SESSION)
-    set(WITH_X11 1)
-endif()
-
-if(WITH_X11)
     find_package(X11)
     set_package_properties(X11 PROPERTIES DESCRIPTION "X11 libraries"
                             URL "https://www.x.org"
@@ -196,7 +185,6 @@ if(WITH_X11)
     check_X11_lib(Xrender)
     check_X11_lib(Xtst)
 
-    set(HAVE_X11 1)
     set(HAVE_XCURSOR 1)
     set(HAVE_XFIXES 1)
 
@@ -204,11 +192,6 @@ if(WITH_X11)
     set_package_properties(XCB PROPERTIES TYPE REQUIRED)
 
     find_package(KScreenLocker ${PROJECT_DEP_VERSION} REQUIRED)
-else()
-    set(HAVE_X11 0)
-    set(HAVE_XCURSOR 0)
-    set(HAVE_XFIXES 0)
-endif()
 
 # FreeBSD systems might have libxcrypt but their shadow equivalent doesn't use it
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
@@ -217,10 +200,6 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
         set(HAVE_CRYPT_GENSALT true)
     endif()
 endif()
-
-find_package(Qt6WaylandClient COMPONENTS Private)
-find_package(PlasmaWaylandProtocols 1.6 REQUIRED)
-find_package(Wayland REQUIRED COMPONENTS Client Server) # Server is used in autotests
 
 if(FONTCONFIG_FOUND)
   # kfontinst
@@ -390,12 +369,6 @@ configure_file(config-KDECI_BUILD.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-KDE
 add_subdirectory(login-sessions)
 add_subdirectory(lookandfeel)
 
-if (INSTALL_SDDM_WAYLAND_SESSION)
-    install(FILES sddm-wayland-session/plasma-wayland.conf DESTINATION /etc/sddm.conf.d)
-else()
-    message(STATUS "INSTALL_SDDM_WAYLAND_SESSION is disabled. As soon as it's installed, SDDM will default to use Wayland and KWin for its greeter session (BETA, do not deploy to final users yet).")
-endif()
-
 install(FILES portal-configuration/kde-portals.conf DESTINATION ${KDE_INSTALL_DATADIR}/xdg-desktop-portal)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
@@ -413,6 +386,7 @@ add_subdirectory(libdbusmenuqt)
 add_subdirectory(appmenu)
 add_subdirectory(oom-notifier)
 
+add_subdirectory(libclock)
 add_subdirectory(libtaskmanager)
 add_subdirectory(libkmpris)
 add_subdirectory(libnotificationmanager)
@@ -423,9 +397,7 @@ add_subdirectory(shell)
 add_subdirectory(freespacenotifier)
 add_subdirectory(klipper)
 add_subdirectory(krunner)
-if(WITH_X11)
-    add_subdirectory(ksmserver)
-endif()
+add_subdirectory(ksmserver)
 add_subdirectory(logout-greeter)
 add_subdirectory(ksplash)
 add_subdirectory(statusnotifierwatcher)
@@ -437,7 +409,6 @@ add_subdirectory(kcms)
 add_subdirectory(containmentactions)
 add_subdirectory(runners)
 add_subdirectory(applets)
-add_subdirectory(dataengines)
 add_subdirectory(wallpapers)
 
 add_subdirectory(kioworkers)
@@ -446,7 +417,6 @@ if(TARGET KF6::NetworkManagerQt)
     add_subdirectory(geotimezoned)
 endif()
 add_subdirectory(menu)
-add_subdirectory(phonon)
 add_subdirectory(donationmessage)
 
 add_subdirectory(interactiveconsole)
@@ -459,11 +429,7 @@ add_subdirectory(solidautoeject)
 endif()
 
 ecm_optional_add_subdirectory(xembed-sni-proxy)
-
-if (WITH_X11)
-    #TODO port away from X11
-    ecm_optional_add_subdirectory(gmenu-dbusmenu-proxy)
-endif()
+ecm_optional_add_subdirectory(gmenu-dbusmenu-proxy)
 
 add_subdirectory(soliduiserver)
 
@@ -472,6 +438,8 @@ add_subdirectory(plasmacalendarintegration)
 add_subdirectory(appiumtests)
 
 add_subdirectory(devicenotifications)
+
+add_subdirectory(ksecretprompter)
 
 ki18n_install(po)
 
@@ -488,5 +456,6 @@ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+list(FILTER ALL_CLANG_FORMAT_SOURCE_FILES EXCLUDE REGEX ".*\\.ccls-cache/.*")
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)

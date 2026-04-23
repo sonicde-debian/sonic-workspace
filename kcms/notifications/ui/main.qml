@@ -44,13 +44,13 @@ KCM.SimpleKCM {
 
     actions: [
         Kirigami.Action {
-            text: i18nc("@action:button Plasma-specific notifications", "System Notifications")
-            icon.name: "notifications-symbolic"
+            text: i18nc("@action:button Plasma-specific notifications", "Configure for System…")
+            icon.name: "plasma-symbolic"
             enabled: root.notificationsAvailable
             onTriggered: root.openSystemNotificationSettings()
         },
         Kirigami.Action {
-            text: i18nc("@action:button Application-specific notifications", "Application Settings")
+            text: i18nc("@action:button Application-specific notifications", "Configure for Applications…")
             icon.name: "applications-all-symbolic"
             enabled: root.notificationsAvailable
             onTriggered: root.openSourcesSettings()
@@ -145,7 +145,7 @@ KCM.SimpleKCM {
             checked: kcm.dndSettings.whenScreenSharing
             onClicked: kcm.dndSettings.whenScreenSharing = checked
             // Only applicable to Wayland where we can control who can cast the screen
-            visible: Qt.platform.pluginName.includes("wayland")
+            visible: false
 
             KCM.SettingStateBinding {
                 configObject: kcm.dndSettings
@@ -266,7 +266,7 @@ KCM.SimpleKCM {
             }
             QtControls.Button {
                 id: positionCustomButton
-                text: i18nc("@action:button choose custom notification position", "Custom…")
+                text: i18nc("@action:button choose custom notification position", "Choose…")
                 icon.name: "preferences-desktop-display"
                 onClicked: popupPositionDialog.open()
             }
@@ -298,6 +298,18 @@ KCM.SimpleKCM {
             KCM.SettingStateBinding {
                 configObject: kcm.notificationSettings
                 settingName: "PopupTimeout"
+                extraEnabledConditions: root.notificationsAvailable
+            }
+        }
+
+        QtControls.CheckBox {
+            text: i18nc("@option:check Show progress bar on notifications indicating when it will hide","Show timeout indicator")
+            checked: kcm.notificationSettings.showPopupTimeout
+            onClicked: kcm.notificationSettings.showPopupTimeout = checked
+
+            KCM.SettingStateBinding {
+                configObject: kcm.notificationSettings
+                settingName: "ShowPopupTimeout"
                 extraEnabledConditions: root.notificationsAvailable
             }
         }

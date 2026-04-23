@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-03-04 02:42+0000\n"
 "PO-Revision-Date: 2014-08-21 16:24+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -27,13 +27,13 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "s_dibbern@web.de"
 
-#: currentcontainmentactionsmodel.cpp:203
+#: currentcontainmentactionsmodel.cpp:201
 #, fuzzy, kde-format
 #| msgid "Configure Plugin"
 msgid "Configure Mouse Actions Plugin"
 msgstr "Moduul instellen"
 
-#: desktopview.cpp:222
+#: desktopview.cpp:223
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -41,7 +41,7 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Dev"
 msgstr "Plasma"
 
-#: desktopview.cpp:225
+#: desktopview.cpp:226
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -49,7 +49,7 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Alpha"
 msgstr "Plasma"
 
-#: desktopview.cpp:228
+#: desktopview.cpp:229
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -57,7 +57,7 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 1"
 msgstr "Plasma"
 
-#: desktopview.cpp:231
+#: desktopview.cpp:232
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -65,7 +65,7 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 2"
 msgstr "Plasma"
 
-#: desktopview.cpp:234
+#: desktopview.cpp:235
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -73,7 +73,7 @@ msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC1"
 msgstr "Plasma"
 
-#: desktopview.cpp:237
+#: desktopview.cpp:238
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -81,7 +81,7 @@ msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC2"
 msgstr "Plasma"
 
-#: desktopview.cpp:263
+#: desktopview.cpp:264
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -89,7 +89,7 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Dev"
 msgstr "Plasma"
 
-#: desktopview.cpp:267
+#: desktopview.cpp:268
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -97,13 +97,13 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Beta"
 msgstr "Plasma"
 
-#: desktopview.cpp:270
+#: desktopview.cpp:271
 #, kde-format
 msgctxt "@label %1 is the Plasma version, %2 is the beta release number"
 msgid "KDE Plasma %1 Beta %2"
 msgstr ""
 
-#: desktopview.cpp:274
+#: desktopview.cpp:275
 #, fuzzy, kde-format
 #| msgctxt "Toolbar Button to switch to Plasma Scripting Mode"
 #| msgid "Plasma"
@@ -111,25 +111,25 @@ msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1"
 msgstr "Plasma"
 
-#: desktopview.cpp:280
+#: desktopview.cpp:281
 #, kde-format
 msgctxt "@info:usagetip"
 msgid "Visit bugs.kde.org to report issues"
 msgstr ""
 
-#: desktopview.cpp:288
+#: desktopview.cpp:289
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy Plasma Version"
 msgstr ""
 
-#: desktopview.cpp:294
+#: desktopview.cpp:295
 #, kde-format
 msgctxt "@action:button"
 msgid "Report a Bug…"
 msgstr ""
 
-#: desktopview.cpp:304
+#: desktopview.cpp:305
 #, kde-format
 msgctxt "@title:menu"
 msgid "Hide Preview Banner"
@@ -163,53 +163,53 @@ msgctxt "@title:window"
 msgid "Hide Preview Banner?"
 msgstr ""
 
-#: desktopview.cpp:595 desktopview.cpp:611
+#: desktopview.cpp:557 desktopview.cpp:573
 #, kde-format
 msgid "Enter Edit Mode"
 msgstr ""
 
-#: desktopview.cpp:609
+#: desktopview.cpp:571
 #, kde-format
 msgid "Exit Edit Mode"
 msgstr ""
 
-#: main.cpp:86
+#: main.cpp:108
 #, fuzzy, kde-format
 #| msgid "Plasma"
 msgid "Plasma Shell"
 msgstr "Plasma"
 
-#: main.cpp:99
+#: main.cpp:121
 #, kde-format
 msgid "Enable QML Javascript debugger"
 msgstr "QML-Javascript-Fehlersöker bruken"
 
-#: main.cpp:102
+#: main.cpp:124
 #, kde-format
 msgid "Do not restart plasma-shell automatically after a crash"
 msgstr "De Plasma-Konsool na en Afstört nich automaatsch nieg starten"
 
-#: main.cpp:105
+#: main.cpp:127
 #, kde-format
 msgid "Force loading the given shell plugin"
 msgstr "Laden vun't angeven Konsoolmoduul verdwingen"
 
-#: main.cpp:109
+#: main.cpp:131
 #, kde-format
 msgid "Replace an existing instance"
 msgstr ""
 
-#: main.cpp:112
+#: main.cpp:134
 #, kde-format
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: main.cpp:174
+#: main.cpp:190
 #, kde-format
 msgid "Plasma Failed To Start"
 msgstr ""
 
-#: main.cpp:175
+#: main.cpp:191
 #, kde-format
 msgid ""
 "Plasma is unable to start as it could not correctly use OpenGL 2 or software "
@@ -217,80 +217,80 @@ msgid ""
 "Please check that your graphic drivers are set up correctly."
 msgstr ""
 
-#: osd.cpp:65
+#: osd.cpp:63
 #, kde-format
 msgctxt "Brightness OSD: display name and brightness percentage"
 msgid "%1: %2%"
 msgstr ""
 
-#: osd.cpp:93
+#: osd.cpp:91
 #, fuzzy, kde-format
 #| msgid "Audio Muted"
 msgctxt "OSD informing that the system is muted, keep short"
 msgid "Audio Muted"
 msgstr "Kläng stumm maakt"
 
-#: osd.cpp:116
+#: osd.cpp:114
 #, kde-format
 msgctxt "OSD informing that the microphone is muted, keep short"
 msgid "Microphone Muted"
 msgstr ""
 
-#: osd.cpp:132
+#: osd.cpp:130
 #, kde-format
 msgctxt "OSD informing that some media app is muted, eg. Amarok Muted"
 msgid "%1 Muted"
 msgstr "%1 stumm maakt"
 
-#: osd.cpp:154
+#: osd.cpp:152
 #, kde-format
 msgctxt "touchpad was enabled, keep short"
 msgid "Touchpad On"
 msgstr ""
 
-#: osd.cpp:156
+#: osd.cpp:154
 #, kde-format
 msgctxt "touchpad was disabled, keep short"
 msgid "Touchpad Off"
 msgstr ""
 
-#: osd.cpp:163
+#: osd.cpp:161
 #, kde-format
 msgctxt "wireless lan was enabled, keep short"
 msgid "Wifi On"
 msgstr ""
 
-#: osd.cpp:165
+#: osd.cpp:163
 #, kde-format
 msgctxt "wireless lan was disabled, keep short"
 msgid "Wifi Off"
 msgstr ""
 
-#: osd.cpp:172
+#: osd.cpp:170
 #, kde-format
 msgctxt "Bluetooth was enabled, keep short"
 msgid "Bluetooth On"
 msgstr ""
 
-#: osd.cpp:174
+#: osd.cpp:172
 #, kde-format
 msgctxt "Bluetooth was disabled, keep short"
 msgid "Bluetooth Off"
 msgstr ""
 
-#: osd.cpp:181
+#: osd.cpp:179
 #, kde-format
 msgctxt "mobile internet was enabled, keep short"
 msgid "Mobile Internet On"
 msgstr ""
 
-#: osd.cpp:183
+#: osd.cpp:181
 #, kde-format
 msgctxt "mobile internet was disabled, keep short"
 msgid "Mobile Internet Off"
 msgstr ""
 
-#: osd.cpp:191
+#: osd.cpp:189
 #, kde-format
 msgctxt ""
 "on screen keyboard was enabled because physical keyboard got unplugged, keep "
@@ -298,7 +298,7 @@ msgctxt ""
 msgid "On-Screen Keyboard Activated"
 msgstr ""
 
-#: osd.cpp:194
+#: osd.cpp:192
 #, kde-format
 msgctxt ""
 "on screen keyboard was disabled because physical keyboard was plugged in, "
@@ -306,31 +306,31 @@ msgctxt ""
 msgid "On-Screen Keyboard Deactivated"
 msgstr ""
 
-#: osd.cpp:201
+#: osd.cpp:199
 #, kde-format
 msgctxt "power management was inhibited, keep short"
 msgid "Sleep and Screen Locking Blocked"
 msgstr ""
 
-#: osd.cpp:203
+#: osd.cpp:201
 #, kde-format
 msgctxt "power management was uninhibited, keep short"
 msgid "Sleep and Screen Locking Unblocked"
 msgstr ""
 
-#: osd.cpp:213
+#: osd.cpp:211
 #, kde-format
 msgctxt "Power profile was changed to power save mode, keep short"
 msgid "Power Save Mode"
 msgstr ""
 
-#: osd.cpp:216
+#: osd.cpp:214
 #, kde-format
 msgctxt "Power profile was changed to balanced mode, keep short"
 msgid "Balanced Power Mode"
 msgstr ""
 
-#: osd.cpp:219
+#: osd.cpp:217
 #, kde-format
 msgctxt "Power profile was changed to performance mode, keep short"
 msgid "Performance Mode"
@@ -344,13 +344,13 @@ msgid ""
 "settings."
 msgstr ""
 
-#: panelview.cpp:1141
+#: panelview.cpp:1144
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide Panel Configuration"
 msgstr ""
 
-#: panelview.cpp:1143
+#: panelview.cpp:1146
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Panel Configuration"
@@ -362,76 +362,76 @@ msgctxt "Percentage value"
 msgid "%1%"
 msgstr ""
 
-#: shellcontainmentconfig.cpp:106
+#: shellcontainmentconfig.cpp:107
 #, kde-format
 msgid "Internal Screen on %1"
 msgstr ""
 
-#: shellcontainmentconfig.cpp:110
+#: shellcontainmentconfig.cpp:111
 #, kde-format
 msgctxt "Screen manufacturer and model on connector"
 msgid "%1 %2 on %3"
 msgstr ""
 
-#: shellcontainmentconfig.cpp:133
+#: shellcontainmentconfig.cpp:134
 #, kde-format
 msgid "Disconnected Screen %1"
 msgstr ""
 
-#: shellcorona.cpp:213 shellcorona.cpp:215
+#: shellcorona.cpp:180 shellcorona.cpp:182
 #, fuzzy, kde-format
 #| msgid "Desktop"
 msgid "Show Desktop"
 msgstr "Schriefdisch"
 
-#: shellcorona.cpp:215
+#: shellcorona.cpp:182
 #, fuzzy, kde-format
 #| msgid "Desktop"
 msgid "Hide Desktop"
 msgstr "Schriefdisch"
 
-#: shellcorona.cpp:230
+#: shellcorona.cpp:197
 #, kde-format
 msgid "Activate Application Launcher"
 msgstr ""
 
-#: shellcorona.cpp:238
+#: shellcorona.cpp:205
 #, kde-format
 msgid "Show Activity Switcher"
 msgstr ""
 
-#: shellcorona.cpp:247
+#: shellcorona.cpp:214
 #, kde-format
 msgid "Switch to Previous Activity"
 msgstr ""
 
-#: shellcorona.cpp:255
+#: shellcorona.cpp:222
 #, kde-format
 msgid "Switch to Next Activity"
 msgstr ""
 
-#: shellcorona.cpp:270
+#: shellcorona.cpp:237
 #, kde-format
 msgid "Activate Task Manager Entry %1"
 msgstr ""
 
-#: shellcorona.cpp:302
+#: shellcorona.cpp:272
 #, kde-format
 msgctxt "@action:button"
 msgid "Manage Desktops and Panels…"
 msgstr ""
 
-#: shellcorona.cpp:324
+#: shellcorona.cpp:294
 #, kde-format
 msgid "Move keyboard focus between panels"
 msgstr ""
 
-#: shellcorona.cpp:2221
+#: shellcorona.cpp:2245
 #, kde-format
 msgid "Add Panel"
 msgstr "Paneel tofögen"
 
-#: shellcorona.cpp:2304
+#: shellcorona.cpp:2328
 #, fuzzy, kde-format
 #| msgid "Empty %1"
 msgctxt "Creates an empty containment (%1 is the containment name)"

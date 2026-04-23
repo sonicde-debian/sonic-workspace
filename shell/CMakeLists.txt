@@ -82,15 +82,18 @@ ecm_target_qml_sources(plasmashell_osd SOURCES
 )
 ecm_finalize_qml_module(plasmashell_osd)
 
+target_sources(plasmashell_osd PRIVATE
+    osdwindow.cpp
+    osdwindow.h
+)
+
+target_link_libraries(plasmashell_osd PRIVATE
+    Plasma::PlasmaQuick
+)
+
 if (Qt6_VERSION VERSION_GREATER_EQUAL "6.8.0")
     set(private_code_option  "PRIVATE_CODE")
 endif()
-qt6_generate_wayland_protocol_client_sources(plasmashell
-    ${private_code_option}
-    FILES
-        ${PLASMA_WAYLAND_PROTOCOLS_DIR}/kde-screen-edge-v1.xml
-        ${PLASMA_WAYLAND_PROTOCOLS_DIR}/plasma-shell.xml
-)
 
 target_sources(plasmashell PRIVATE ${plasma_shell_SRCS})
 
@@ -113,17 +116,13 @@ target_link_libraries(plasmashell PRIVATE
  KF6::WidgetsAddons
  KF6::WindowSystem
  KF6::XmlGui
- LayerShellQt::Interface
  Plasma::Activities
- Plasma::KWaylandClient
  Plasma::Plasma
  Plasma::PlasmaQuick
  PW::KWorkspace
  Qt::GuiPrivate # qpa/qplatformwindow_p.h
  Qt::Quick
  Qt::DBus
- Qt::WaylandClient
- Wayland::Client
 )
 target_link_libraries(plasmashell PRIVATE KF6::ConfigQml)
 if (TARGET KF6::UserFeedbackCore)
@@ -134,9 +133,7 @@ endif()
 target_include_directories(plasmashell PRIVATE "${CMAKE_BINARY_DIR}")
 target_compile_definitions(plasmashell PRIVATE -DPROJECT_VERSION="${PROJECT_VERSION}")
 
-if(HAVE_X11)
-  target_link_libraries(plasmashell PRIVATE XCB::XCB XCB::RANDR)
-endif()
+target_link_libraries(plasmashell PRIVATE XCB::XCB XCB::RANDR)
 
 if(PROJECT_VERSION_PATCH GREATER_EQUAL 80 OR PROJECT_VERSION_MINOR GREATER_EQUAL 80)
     target_link_libraries(plasmashell PRIVATE KF6::KIOGui)

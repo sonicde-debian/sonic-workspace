@@ -7,16 +7,13 @@
 #include "devicenotifications.h"
 
 #include <QGuiApplication>
-#include <QSocketNotifier>
 
 #include <KLocalizedString>
-#include <KNotification>
 #include <KPluginFactory>
 
 #include <chrono>
 
 #include <knotification.h>
-#include <wayland-client.h>
 
 K_PLUGIN_CLASS_WITH_JSON(KdedDeviceNotifications, "devicenotifications.json")
 
@@ -68,7 +65,7 @@ UdevDevice::UdevDevice(struct udev_device *device, bool ref)
 
 UdevDevice UdevDevice::fromDevice(struct udev_device *device)
 {
-    return UdevDevice(device, false /*ref*/);
+    return {device, false /*ref*/};
 }
 
 UdevDevice::~UdevDevice()
@@ -153,7 +150,7 @@ QString UdevDevice::getDeviceString(const char *(*getter)(udev_device *)) const
     if (m_device) {
         return QString::fromUtf8((*getter)(m_device));
     }
-    return QString();
+    return {};
 }
 
 QString UdevDevice::model() const
@@ -265,24 +262,6 @@ void Udev::onSocketActivated()
     }
 }
 
-Output::Output(uint32_t id)
-    : QObject()
-    , kde_output_device_v2()
-    , m_id(id)
-{
-}
-
-Output::~Output()
-{
-    kde_output_device_v2_destroy(object());
-}
-
-void Output::kde_output_device_v2_uuid(const QString &uuid)
-{
-    m_uuid = uuid;
-    Q_EMIT uuidAdded();
-}
-
 KdedDeviceNotifications::KdedDeviceNotifications(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)
 {
@@ -295,80 +274,10 @@ KdedDeviceNotifications::KdedDeviceNotifications(QObject *parent, const QList<QV
 
     connect(&m_udev, &Udev::deviceAdded, this, &KdedDeviceNotifications::onDeviceAdded);
     connect(&m_udev, &Udev::deviceRemoved, this, &KdedDeviceNotifications::onDeviceRemoved);
-
-    setupWaylandOutputListener();
 }
 
 KdedDeviceNotifications::~KdedDeviceNotifications()
 {
-    if (m_registry) {
-        wl_registry_destroy(m_registry);
-    }
-}
-
-void KdedDeviceNotifications::setupWaylandOutputListener()
-{
-    auto waylandApp = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>();
-    if (!waylandApp) {
-        return;
-    }
-
-    wl_display *display = waylandApp->display();
-
-    m_registry = wl_display_get_registry(display);
-
-    auto globalAdded = [](void *data, wl_registry *registry, uint32_t name, const char *interface, uint32_t version) {
-        auto *self = static_cast<KdedDeviceNotifications *>(data);
-        if (qstrcmp(interface, "kde_output_device_v2") == 0) {
-            const bool initialOutputsReceived = self->m_initialOutputsReceived;
-            auto &out = self->m_outputs.emplace_back(std::make_unique<Output>(name));
-            // Notify after the UUID's are resolved, and add it to our timed list
-            connect(out.get(), &Output::uuidAdded, self, [&out, self, initialOutputsReceived]() {
-                if (initialOutputsReceived) {
-                    const QString uuid = out->uuid();
-                    // If we recently just removed this output, it wasn't actually physically disconnected
-                    if (!self->m_recentlyRemovedOutputs.removeOne(uuid)) {
-                        self->notifyOutputAdded();
-                    }
-                }
-            });
-            out->init(registry, name, version);
-        }
-    };
-    auto globalRemoved = [](void *data, wl_registry *registry, uint32_t name) {
-        Q_UNUSED(registry)
-        auto *self = static_cast<KdedDeviceNotifications *>(data);
-        auto result = std::ranges::find_if(self->m_outputs.begin(), self->m_outputs.end(), [name](std::unique_ptr<Output> &out) {
-            return out.get()->id() == name;
-        });
-        if (result != self->m_outputs.end()) {
-            auto out = result.base()->get();
-            const QString uuid = out->uuid();
-            self->m_recentlyRemovedOutputs.append(uuid);
-            // 2000ms matches the DPMS workaround time in KWin
-            QTimer::singleShot(2000ms, self, [self, uuid]() {
-                // Only notify if the output hasn't been added again in the mean time
-                if (self->m_recentlyRemovedOutputs.removeOne(uuid)) {
-                    self->notifyOutputRemoved();
-                }
-            });
-            self->m_outputs.erase(result);
-        }
-    };
-
-    static const wl_registry_listener registryListener{globalAdded, globalRemoved};
-    wl_registry_add_listener(m_registry, &registryListener, this);
-
-    // Suppress notifications until the inital list of outputs has been received.
-    auto syncDone = [](void *data, struct wl_callback *wl_callback, uint32_t callback_data) {
-        Q_UNUSED(wl_callback);
-        Q_UNUSED(callback_data);
-        auto *self = static_cast<KdedDeviceNotifications *>(data);
-        self->m_initialOutputsReceived = true;
-    };
-    auto syncCallback = wl_display_sync(display);
-    static const wl_callback_listener syncCallbackListener{syncDone};
-    wl_callback_add_listener(syncCallback, &syncCallbackListener, this);
 }
 
 void KdedDeviceNotifications::dismissUsbDeviceAdded()
@@ -509,7 +418,7 @@ void KdedDeviceNotifications::onDeviceRemoved(const UdevDevice &device)
     m_usbDeviceRemovedNotification = new KNotification(QStringLiteral("deviceRemoved"));
     m_usbDeviceRemovedNotification->setFlags(KNotification::DefaultEvent);
     m_usbDeviceRemovedNotification->setIconName(QStringLiteral("drive-removable-media-usb"));
-    m_usbDeviceRemovedNotification->setTitle(i18nc("@title:notifications", "USB Device Went Away"));
+    m_usbDeviceRemovedNotification->setTitle(i18nc("@title:notifications", "USB Device Removed"));
     m_usbDeviceRemovedNotification->setText(text);
     m_usbDeviceRemovedNotification->sendEvent();
 

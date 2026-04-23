@@ -21,10 +21,10 @@ FontInstInterface::FontInstInterface()
 {
     FontInst::registerTypes();
 
-    QDBusServiceWatcher *watcher = new QDBusServiceWatcher(QLatin1String(OrgKdeFontinstInterface::staticInterfaceName()),
-                                                           QDBusConnection::sessionBus(),
-                                                           QDBusServiceWatcher::WatchForOwnerChange,
-                                                           this);
+    auto *watcher = new QDBusServiceWatcher(QLatin1String(OrgKdeFontinstInterface::staticInterfaceName()),
+                                            QDBusConnection::sessionBus(),
+                                            QDBusServiceWatcher::WatchForOwnerChange,
+                                            this);
 
     connect(watcher, &QDBusServiceWatcher::serviceOwnerChanged, this, &FontInstInterface::dbusServiceOwnerChanged);
     connect(m_interface, &OrgKdeFontinstInterface::status, this, &FontInstInterface::status);
@@ -36,9 +36,7 @@ FontInstInterface::FontInstInterface()
     }
 }
 
-FontInstInterface::~FontInstInterface()
-{
-}
+FontInstInterface::~FontInstInterface() = default;
 
 int FontInstInterface::install(const QString &file, bool toSystem)
 {
@@ -83,7 +81,7 @@ Family FontInstInterface::statFont(const QString &file, bool system)
 QString FontInstInterface::folderName(bool sys)
 {
     if (!m_interface) {
-        return QString();
+        return {};
     }
 
     QDBusPendingReply<QString> reply = m_interface->folderName(sys);

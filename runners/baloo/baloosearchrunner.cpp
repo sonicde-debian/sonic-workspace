@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     QApplication::setQuitOnLastWindowClosed(false);
     QApplication app(argc, argv); // KRun needs widgets for error message boxes
 
-    KAboutData about(QStringLiteral("baloorunner"), QString(), QStringLiteral(WORKSPACE_VERSION_STRING));
+    KAboutData about(QStringLiteral("baloorunner"), i18n("File Search"), QStringLiteral(WORKSPACE_VERSION_STRING));
     KAboutData::setApplicationData(about);
 
     KCrash::initialize();
@@ -54,19 +54,19 @@ SearchRunner::SearchRunner(QObject *parent)
     new Krunner1Adaptor(this);
     qDBusRegisterMetaType<RemoteMatch>();
     qDBusRegisterMetaType<RemoteMatches>();
-    qDBusRegisterMetaType<RemoteAction>();
-    qDBusRegisterMetaType<RemoteActions>();
+    qDBusRegisterMetaType<KRunner::Action>();
+    qDBusRegisterMetaType<KRunner::Actions>();
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/runner"), this);
     QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.runners.baloo"));
 }
 
-RemoteActions SearchRunner::Actions()
+KRunner::Actions SearchRunner::Actions()
 {
     Baloo::IndexerConfig config;
     if (!config.fileIndexingEnabled()) {
         sendErrorReply(QDBusError::ErrorType::NotSupported);
     }
-    return RemoteActions({RemoteAction{s_openParentDirId, i18n("Open Containing Folder"), QStringLiteral("document-open-folder")}});
+    return KRunner::Actions({KRunner::Action{s_openParentDirId, QStringLiteral("document-open-folder"), i18n("Open Containing Folder")}});
 }
 
 RemoteMatches SearchRunner::Match(const QString &searchTerm)
@@ -81,7 +81,7 @@ RemoteMatches SearchRunner::Match(const QString &searchTerm)
     // this should trigger the calculator, but the AdvancedQueryParser::parse method
     // in baloo interpreted it as an operator, BUG 345134
     if (searchTerm.startsWith(QLatin1Char('='))) {
-        return RemoteMatches();
+        return {};
     }
 
     // Filter out duplicates
@@ -184,6 +184,15 @@ void SearchRunner::Run(const QString &id, const QString &actionId)
 void SearchRunner::SetActivationToken(const QString &token)
 {
     m_activationToken = token;
+}
+
+QVariantMap SearchRunner::Config()
+{
+    return {};
+}
+
+void SearchRunner::Teardown()
+{
 }
 
 #include "moc_baloosearchrunner.cpp"

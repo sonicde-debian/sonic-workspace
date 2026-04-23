@@ -1,7 +1,7 @@
 # translation of kcmcolors.po to Polish
 # translation of kcmcolors.po to
-# Version: $Revision: 1723120 $
-# SPDX-FileCopyrightText: 2011, 2012, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# Version: $Revision: 1730402 $
+# SPDX-FileCopyrightText: 2011, 2012, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Norbert Popiołek <norbert@kde.com.pl>\n"
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2002, 2003, 2004, 2005, 2007, 2008, 2009, 2010.
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-08-31 06:29+0200\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2026-02-21 08:47+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -859,7 +859,7 @@ msgstr "Użyj innych barw dla nie&aktywnych zaznaczeń"
 #: editor/scmeditoroptions.ui:31
 #, kde-format
 msgid "Shade sorted column &in lists"
-msgstr "Wy&cieniuj sortowaną kolumnę w listach"
+msgstr "Wyc&ieniuj sortowaną kolumnę w listach"
 
 #. i18n: ectx: property (text), widget (QCheckBox, accentTitlebar)
 #: editor/scmeditoroptions.ui:38
@@ -882,29 +882,33 @@ msgstr "Siła zabarwienia:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Cieniowanie obramowań i efekty świetlne (3D)"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Kontrast ramek, oddzielaczy i obrysów"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Cieniowanie"
+msgid "Frames and Outlines"
+msgstr "Ramki i obrysow"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Największe"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Wartości kontrastu poniżej 15% mogą powodować wizualnie dziwne efekty w "
+"niektórych aplikacjach i zestawach wyglądu. Uznaj to za ostrzeżenie."
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Najmniejsze"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Kontrast"
@@ -1370,6 +1374,18 @@ msgstr "Otwórz zestaw kolorów"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Pliki zestawu kolorów (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Cieniowanie obramowań i efekty świetlne (3D)"
+
+#~ msgid "Shading"
+#~ msgstr "Cieniowanie"
+
+#~ msgid "Maximum"
+#~ msgstr "Największe"
+
+#~ msgid "Minimum"
+#~ msgstr "Najmniejsze"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Wybierz własny kolor akcentu"

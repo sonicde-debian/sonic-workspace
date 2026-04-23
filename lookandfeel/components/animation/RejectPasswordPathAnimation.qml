@@ -4,10 +4,10 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQml 2.15
+import QtQuick
+import QtQml
 
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kirigami as Kirigami
 
 PathAnimation {
     id: root
@@ -22,7 +22,7 @@ PathAnimation {
      * By default it is opposite to the application's layout direction, to
      * make an animation feel more "disturbing".
      */
-    property int initialDirection: Qt.application.layoutDirection === Qt.RightToLeft ? Qt.LeftToRight : Qt.RightToLeft
+    property int initialDirection: Application.layoutDirection === Qt.RightToLeft ? Qt.LeftToRight : Qt.RightToLeft
 
     alwaysRunToEnd: true
 

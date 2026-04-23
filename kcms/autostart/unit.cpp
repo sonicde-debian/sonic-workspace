@@ -36,9 +36,7 @@ Unit::Unit(QObject *parent, bool invalid)
     m_invalid = invalid;
 }
 
-Unit::~Unit()
-{
-}
+Unit::~Unit() = default;
 
 void Unit::setId(const QString &id)
 {
@@ -52,7 +50,7 @@ void Unit::loadAllProperties()
     auto message = QDBusMessage::createMethodCall(m_connSystemd, m_pathSysdMgr, m_ifaceMgr, u"GetUnit"_s);
     message.setArguments(QList<QVariant>{m_id});
     QDBusPendingCall async = m_sessionBus.asyncCall(message);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
+    auto *watcher = new QDBusPendingCallWatcher(async, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &Unit::callFinishedSlot);
 }
 
@@ -72,7 +70,7 @@ void Unit::callFinishedSlot(QDBusPendingCallWatcher *call)
 
     message << m_ifaceUnit;
     QDBusPendingCall newCall = m_sessionBus.asyncCall(message);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(newCall, this);
+    auto *watcher = new QDBusPendingCallWatcher(newCall, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &Unit::getAllCallback);
 }
 

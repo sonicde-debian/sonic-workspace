@@ -4,9 +4,9 @@
     SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
 */
 
-import QtQuick 2.15
+import QtQuick
 
-import org.kde.plasma.workspace.keyboardlayout 1.0 as Keyboards
+import org.kde.plasma.workspace.keyboardlayout as Keyboards
 
 Item {
     id: inputPanel
@@ -14,10 +14,10 @@ Item {
     property bool activated: false
     visible: Keyboards.KWinVirtualKeyboard.visible
 
-    x: Qt.inputMethod.keyboardRectangle.x
-    y: Qt.inputMethod.keyboardRectangle.y
-    height: Qt.inputMethod.keyboardRectangle.height
-    width: Qt.inputMethod.keyboardRectangle.width
+    x: InputMethod.keyboardRectangle.x
+    y: InputMethod.keyboardRectangle.y
+    height: InputMethod.keyboardRectangle.height
+    width: InputMethod.keyboardRectangle.width
 
     onActivatedChanged: if (activated) {
         Keyboards.KWinVirtualKeyboard.enabled = true

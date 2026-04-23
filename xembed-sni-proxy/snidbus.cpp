@@ -13,9 +13,7 @@
 
 // mostly copied from KStatusNotiferItemDbus.cpps from knotification
 
-KDbusImageStruct::KDbusImageStruct()
-{
-}
+KDbusImageStruct::KDbusImageStruct() = default;
 
 KDbusImageStruct::KDbusImageStruct(const QImage &image)
 {
@@ -30,7 +28,7 @@ KDbusImageStruct::KDbusImageStruct(const QImage &image)
 
     // swap to network byte order if we are little endian
     if (QSysInfo::ByteOrder == QSysInfo::LittleEndian) {
-        quint32 *uintBuf = (quint32 *)data.data();
+        auto *uintBuf = (quint32 *)data.data();
         for (uint i = 0; i < data.size() / sizeof(quint32); ++i) {
             *uintBuf = qToBigEndian(*uintBuf);
             ++uintBuf;

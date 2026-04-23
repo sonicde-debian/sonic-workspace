@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 #
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025, 2026 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-08-29 10:17+0200\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2026-01-31 12:26+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Freek de Kruijf - 2020-2024"
+msgstr "Freek de Kruijf - 2020-2026"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -878,29 +878,33 @@ msgstr "Kleuringsterkte:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Arceren van frames en oplichten van \"3D\"-effecten"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Contrast van de frames, scheidingstekens en omlijningen"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Oprollen"
+msgid "Frames and Outlines"
+msgstr "Frames en omlijningen"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Maximum"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Contrastwaarden onder 15% kunnen visueel vervelende effecten met sommige "
+"toepassingen en kleurenschema's produceren. Beschouw uzelf gewaarschuwd!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Minimum"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Contrast"
@@ -1361,6 +1365,18 @@ msgstr "Kleurenschema openen"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Kleurenschemabestanden (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Arceren van frames en oplichten van \"3D\"-effecten"
+
+#~ msgid "Shading"
+#~ msgstr "Oprollen"
+
+#~ msgid "Maximum"
+#~ msgstr "Maximum"
+
+#~ msgid "Minimum"
+#~ msgstr "Minimum"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Aangepaste accentuatiekleur kiezen"

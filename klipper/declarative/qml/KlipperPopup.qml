@@ -9,8 +9,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls as QQC
 
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.private.clipboard 0.1 as Private
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.private.clipboard as Private
 import org.kde.kirigami as Kirigami
 
 PlasmaExtras.Representation {
@@ -34,6 +34,15 @@ PlasmaExtras.Representation {
         }
         (clipboardMenu.view as ListView).currentIndex = index;
         ((clipboardMenu.view as ListView).currentItem as ClipboardItemDelegate).edit();
+    }
+
+    function showBarcode(index: int): void {
+        if (stack.currentItem instanceof BarcodePage || index < 0 || index >= clipboardMenu.view.count) {
+            return;
+        }
+        const view = clipboardMenu.view as ListView;
+        view.currentIndex = index;
+        (view.currentItem as ClipboardItemDelegate).barcode();
     }
 
     function updateContentSize(screenSize: size): void {

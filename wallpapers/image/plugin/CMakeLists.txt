@@ -14,14 +14,13 @@ set(image_SRCS
     model/packagelistmodel.cpp model/packagelistmodel.h
     model/imagelistmodel.cpp model/imagelistmodel.h
     model/imageproxymodel.cpp model/imageproxymodel.h
-    provider/packageimageprovider.cpp
     provider/providertype.h
     provider/wallpaperpreviewimageprovider.cpp provider/wallpaperpreviewimageprovider.h
     utils/backgroundtype.h
     utils/dynamicmode.h
     utils/maximizedwindowmonitor.cpp utils/maximizedwindowmonitor.h
     utils/mediaproxy.cpp utils/mediaproxy.h
-    utils/wallpaperurl.cpp utils/wallpaperurl.h
+    transientimage.cpp transientimage.h
 )
 
 ecm_qt_declare_logging_category(image_SRCS HEADER debug.h
@@ -37,9 +36,11 @@ add_library(plasma_wallpaper_imageplugin_static STATIC ${image_SRCS})
 set_property(TARGET plasma_wallpaper_imageplugin_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(plasma_wallpaper_imageplugin_static
+    Qt::Concurrent
     Qt::Core
     Qt::Quick
     Qt::Qml
+    Qt::Svg
     Plasma::Plasma
     KF6::GlobalAccel
     KF6::I18n
@@ -48,7 +49,6 @@ target_link_libraries(plasma_wallpaper_imageplugin_static
     KF6::KIOGui
     KF6::Notifications
     KF6::Package
-    KF6::Svg
     PW::LibTaskManager
     PW::KWorkspace
     KNightTime
@@ -59,7 +59,11 @@ if(HAVE_KExiv2)
 endif()
 configure_file(config-KExiv2.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-KExiv2.h)
 
-ecm_add_qml_module(plasma_wallpaper_image URI "org.kde.plasma.wallpapers.image" VERSION 2.0 CLASS_NAME ImagePlugin)
+ecm_add_qml_module(plasma_wallpaper_image URI "org.kde.plasma.wallpapers.image" VERSION 2.0 CLASS_NAME ImagePlugin DEPENDENCIES org.kde.taskmanager org.kde.plasma.core)
+
+qt_generate_foreign_qml_types(plasma_wallpaper_imageplugin_static plasma_wallpaper_image)
+
+target_include_directories(plasma_wallpaper_image PRIVATE  utils provider)
 
 target_sources(plasma_wallpaper_image PRIVATE imageplugin.cpp imageplugin.h)
 

@@ -12,6 +12,7 @@
 
 #include <canberra.h>
 
+#include <algorithm>
 #include <ranges>
 
 #include <QDir>
@@ -25,6 +26,7 @@
 
 #include <KConfig>
 #include <KConfigGroup>
+#include <KDarkLightSchedule>
 #include <KNotifyConfig>
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
@@ -41,6 +43,7 @@
 #include "../config-workspace.h"
 #include "debug.h"
 #include "klookandfeelmanager.h"
+#include "lookandfeelsettings.h"
 
 using namespace Qt::StringLiterals;
 
@@ -65,7 +68,7 @@ QStringList allServices(const QLatin1String &prefix)
     const QStringList services = QDBusConnection::sessionBus().interface()->registeredServiceNames();
     QStringList names;
 
-    std::copy_if(services.cbegin(), services.cend(), std::back_inserter(names), [&prefix](const QString &serviceName) {
+    std::ranges::copy_if(services, std::back_inserter(names), [&prefix](const QString &serviceName) {
         return serviceName.startsWith(prefix);
     });
 
@@ -124,7 +127,6 @@ inline bool isSessionVariable(QStringView name)
 {
     // Check is variable is specific to session.
     return name == "DISPLAY"_L1 || name == "XAUTHORITY"_L1 || //
-        name == "WAYLAND_DISPLAY"_L1 || name == "WAYLAND_SOCKET"_L1 || //
         name.startsWith("XDG_"_L1);
 }
 
@@ -139,7 +141,7 @@ void setEnvironmentVariable(const char *name, QByteArrayView value)
 void sourceFiles(const QStringList &files)
 {
     QStringList filteredFiles;
-    std::copy_if(files.begin(), files.end(), std::back_inserter(filteredFiles), [](const QString &i) {
+    std::ranges::copy_if(files, std::back_inserter(filteredFiles), [](const QString &i) {
         return QFileInfo(i).isReadable();
     });
 
@@ -216,7 +218,7 @@ void runStartupConfig()
     }
 }
 
-void setupCursor(bool wayland)
+void setupCursor(void)
 {
 #ifdef XCURSOR_PATH
     QByteArray path(XCURSOR_PATH);
@@ -225,7 +227,7 @@ void setupCursor(bool wayland)
 #endif
 
     // TODO: consider linking directly
-    if (!wayland) {
+    {
         const KConfig cfg(QStringLiteral("kcminputrc"));
         const KConfigGroup inputCfg = cfg.group(QStringLiteral("Mouse"));
 
@@ -350,6 +352,51 @@ void runEnvironmentScripts()
 // Since KDE4 there is also KDE_SESSION_VERSION, containing the major version number.
 //
 
+static std::optional<std::pair<QString, KLookAndFeelManager::Contents>> dayNightLookAndFeel(const LookAndFeelSettings &settings)
+{
+    const KConfig lookandfeelautoswitcherstaterc(QStringLiteral("lookandfeelautoswitcherstaterc"), KConfig::SimpleConfig, QStandardPaths::GenericStateLocation);
+    const KConfigGroup darkNightCycleGroup(&lookandfeelautoswitcherstaterc, QStringLiteral("DarkLightCycle"));
+    if (!darkNightCycleGroup.isValid()) {
+        return std::nullopt;
+    }
+
+    const std::optional<KDarkLightSchedule> darkLightSchedule =
+        KDarkLightSchedule::fromState(darkNightCycleGroup.readEntry(QStringLiteral("SerializedSchedule")));
+    if (!darkLightSchedule) {
+        return std::nullopt;
+    }
+
+    const QDateTime now = QDateTime::currentDateTime();
+    const auto previousTransition = darkLightSchedule->previousTransition(now);
+
+    bool wantsDarkTheme = false;
+    switch (previousTransition->test(now)) {
+    case KDarkLightTransition::Upcoming:
+    case KDarkLightTransition::InProgress:
+        wantsDarkTheme = previousTransition->type() == KDarkLightTransition::Morning;
+        break;
+    case KDarkLightTransition::Passed:
+        wantsDarkTheme = previousTransition->type() != KDarkLightTransition::Morning;
+        break;
+    }
+
+    const QString lookAndFeelName = wantsDarkTheme ? settings.defaultDarkLookAndFeel() : settings.defaultLightLookAndFeel();
+    return std::make_pair(lookAndFeelName, KLookAndFeelManager::AppearanceSettings);
+}
+
+static std::pair<QString, KLookAndFeelManager::Contents> determineLookAndFeel()
+{
+    const LookAndFeelSettings settings;
+
+    if (settings.automaticLookAndFeel()) {
+        if (const auto lookAndFeel = dayNightLookAndFeel(settings)) {
+            return *lookAndFeel;
+        }
+    }
+
+    return std::make_pair(settings.lookAndFeelPackage(), KLookAndFeelManager::AllSettings);
+}
+
 void setupPlasmaEnvironment()
 {
     qputenv("KDE_FULL_SESSION", "true");
@@ -370,15 +417,14 @@ void setupPlasmaEnvironment()
     QDir().mkpath(extraConfigDir);
     qputenv("XDG_CONFIG_DIRS", QByteArray(QFile::encodeName(extraConfigDir) + ':' + currentConfigDirs));
 
-    const KConfig globals;
-    const QString currentLnf = KConfigGroup(&globals, QStringLiteral("KDE")).readEntry("LookAndFeelPackage", QStringLiteral("org.kde.breeze.desktop"));
+    const auto &[lookAndFeelName, lookAndFeelContents] = determineLookAndFeel();
     QFile activeLnf(extraConfigDir + QLatin1String("/package"));
     activeLnf.open(QIODevice::ReadOnly);
-    if (activeLnf.readLine() != currentLnf.toUtf8()) {
-        KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"), currentLnf);
+    if (activeLnf.readLine() != lookAndFeelName.toUtf8()) {
+        KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"), lookAndFeelName);
         KLookAndFeelManager lnfManager;
         lnfManager.setMode(KLookAndFeelManager::Mode::Defaults);
-        lnfManager.save(package);
+        lnfManager.save(package, lookAndFeelContents);
     }
     // check if colors changed, if so apply them and discard plasma cache
     {
@@ -639,7 +685,7 @@ static void migrateUserScriptsAutostart()
     QDBusConnection::sessionBus().call(message);
 }
 
-bool startPlasmaSession(bool wayland)
+bool startPlasmaSession(void)
 {
     resetSystemdFailedUnits();
     reloadSystemd();
@@ -666,11 +712,7 @@ bool startPlasmaSession(bool wayland)
 
     // We want to exit when both ksmserver and plasma-session-shutdown have finished
     // This also closes if ksmserver crashes unexpectedly, as in those cases plasma-shutdown is not running
-    if (wayland) {
-        serviceWatcher.addWatchedService(QStringLiteral("org.kde.KWinWrapper"));
-    } else {
-        serviceWatcher.addWatchedService(QStringLiteral("org.kde.ksmserver"));
-    }
+    serviceWatcher.addWatchedService(QStringLiteral("org.kde.ksmserver"));
     serviceWatcher.addWatchedService(QStringLiteral("org.kde.Shutdown"));
     serviceWatcher.setWatchMode(QDBusServiceWatcher::WatchForUnregistration);
 
@@ -693,12 +735,8 @@ bool startPlasmaSession(bool wayland)
         qCDebug(PLASMA_STARTUP) << "Using classic boot";
 
         QStringList plasmaSessionOptions;
-        if (wayland) {
-            plasmaSessionOptions << QStringLiteral("--no-lockscreen");
-        } else {
-            if (desktopLockedAtStart) {
-                plasmaSessionOptions << QStringLiteral("--lockscreen");
-            }
+        if (desktopLockedAtStart) {
+            plasmaSessionOptions << QStringLiteral("--lockscreen");
         }
 
         startPlasmaSession->setProcessChannelMode(QProcess::ForwardedChannels);
@@ -713,7 +751,7 @@ bool startPlasmaSession(bool wayland)
         startPlasmaSession->start(QStringLiteral(CMAKE_INSTALL_FULL_BINDIR "/plasma_session"), plasmaSessionOptions);
     } else {
         qCDebug(PLASMA_STARTUP) << "Using systemd boot";
-        const QString platform = wayland ? QStringLiteral("wayland") : QStringLiteral("x11");
+        const QString platform = QStringLiteral("x11");
 
         auto msg = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.systemd1"),
                                                   QStringLiteral("/org/freedesktop/systemd1"),
@@ -727,9 +765,6 @@ bool startPlasmaSession(bool wayland)
             rc = false;
         } else {
             playStartupSound();
-        }
-        if (wayland) {
-            startKSplashViaSystemd();
         }
     }
     if (rc) {

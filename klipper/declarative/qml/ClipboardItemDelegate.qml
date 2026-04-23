@@ -9,14 +9,14 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls as QQC
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import org.kde.plasma.components 3.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.extras as PlasmaExtras
 
-import org.kde.kirigami 2.20 as Kirigami
-import org.kde.ksvg 1.0 as KSvg
+import org.kde.kirigami as Kirigami
+import org.kde.ksvg as KSvg
 
 PlasmaComponents.ItemDelegate {
     id: menuItem
@@ -35,7 +35,6 @@ PlasmaComponents.ItemDelegate {
     readonly property alias dragHandler: dragHandler
     property alias mainItem: label.contentItem
 
-    property int maximumNumberOfPreviews: Math.floor(width / (Kirigami.Units.gridUnit * 4 + Kirigami.Units.smallSpacing))
     readonly property real gradientThreshold: (label.width - toolButtonsLoader.width) / label.width
     // Consider tall to be > about 1.5x the default height for purposes of top-aligning
     // the buttons to preserve Fitts' Law when deleting multiple items in a row,
@@ -51,7 +50,7 @@ PlasmaComponents.ItemDelegate {
     signal triggerAction()
 
     // the 1.6 comes from ToolButton's default height
-    height: Math.max(label.height, Math.round(Kirigami.Units.gridUnit * 1.6)) + 2 * Kirigami.Units.smallSpacing + (!!expandButtonLoader.item?.checked ? toolButtonsLoader.implicitHeight : 0)
+    height: Math.max(label.height, Math.round(Kirigami.Units.gridUnit * 1.6)) + 2 * Kirigami.Units.smallSpacing + (!!(expandButtonLoader.item as PlasmaComponents.ToolButton)?.checked ? toolButtonsLoader.implicitHeight : 0)
     Behavior on height {
         enabled: menuItem.shouldUseOverflowButton
         SmoothedAnimation { // to match the highlight
@@ -76,7 +75,7 @@ PlasmaComponents.ItemDelegate {
     Keys.onEnterPressed: event => Keys.returnPressed(event)
     Keys.onReturnPressed: menuItem.clicked()
     Keys.onDeletePressed: menuItem.remove()
-    KeyNavigation.right: toolButtonsLoader.active ? toolButtonsLoader.item.defaultButton : toolButtonsLoader
+    KeyNavigation.right: toolButtonsLoader.active ? (toolButtonsLoader.item as DelegateToolButtons).defaultButton : toolButtonsLoader
     KeyNavigation.left: null
 
     ListView.onIsCurrentItemChanged: {
@@ -88,7 +87,7 @@ PlasmaComponents.ItemDelegate {
         expandButtonLoader.item.checked = false;
     }
 
-    onHoveredChanged: if (hovered) menuListView.currentIndex = index
+    onHoveredChanged: if (hovered) ListView.view.currentIndex = index
 
     // The highlight at a listview level is disabled as by default Listview then scrolls to keep that index in view
     // see https://bugs.kde.org/show_bug.cgi?id=387797
@@ -100,7 +99,7 @@ PlasmaComponents.ItemDelegate {
 
     DragHandler {
         id: dragHandler
-        enabled: !toolButtonsLoader.item?.hovered
+        enabled: !(toolButtonsLoader.item as DelegateToolButtons)?.hovered
         target: null
     }
 
@@ -133,7 +132,7 @@ PlasmaComponents.ItemDelegate {
         visible: !!source && menuItem.ListView.isCurrentItem
 
         TapHandler {
-            enabled: !toolButtonsLoader.item?.hovered // https://bugreports.qt.io/browse/QTBUG-108821
+            enabled: !(toolButtonsLoader.item as DelegateToolButtons)?.hovered // https://bugreports.qt.io/browse/QTBUG-108821
             onTapped: {
                 menuItem.clicked() // https://bugreports.qt.io/browse/QTBUG-63395
             }
@@ -239,8 +238,9 @@ PlasmaComponents.ItemDelegate {
             menuItem: menuItem
             shouldUseOverflowButton: menuItem.shouldUseOverflowButton
         }
-        active: (menuItem.ListView.isCurrentItem && !menuItem.shouldUseOverflowButton) || (menuItem.shouldUseOverflowButton && (!!expandButtonLoader.item?.checked || opacity > 0))
-        opacity: !expandButtonLoader.active || expandButtonLoader.item.checked ? 1 : 0
+        active: (menuItem.ListView.isCurrentItem && !menuItem.shouldUseOverflowButton)
+            || (menuItem.shouldUseOverflowButton && (!!(expandButtonLoader.item as PlasmaComponents.ToolButton)?.checked || opacity > 0))
+        opacity: !expandButtonLoader.active || (expandButtonLoader.item as PlasmaComponents.ToolButton).checked ? 1 : 0
 
         // It's not recommended to change anchors via conditional bindings, use AnchorChanges instead.
         // See https://doc.qt.io/qt-5/qtquick-positioning-anchors.html#changing-anchors

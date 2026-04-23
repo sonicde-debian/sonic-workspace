@@ -6,13 +6,13 @@
 
 import QtQuick
 import QtQuick.Controls as QQC2
-import QtQuick.Layouts
 import QtQuick.Templates as T
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.lookandfeel
 
 /**
  * Component to create CSD dialogs that come from the system.
+ * \deprecated [6.6] Use QtQuick Dialog or similar component instead.
  */
 Kirigami.AbstractApplicationWindow {
     id: root
@@ -95,14 +95,14 @@ Kirigami.AbstractApplicationWindow {
         if (!visible && !accepted) {
             root.reject()
         }
-        width = Qt.binding(() => contentDialog.implicitWidth)
-        height = Qt.binding(() => contentDialog.implicitHeight)
+        width = Qt.binding(() => contentDialog.implicitWidth > 0 ? contentDialog.implicitWidth : width)
+        height = Qt.binding(() => contentDialog.implicitHeight > 0 ? contentDialog.implicitHeight : height)
     }
 
     Binding {
-        target: dialogButtonBox?.standardButton(QQC2.DialogButtonBox.Ok) ?? null
+        target: root.dialogButtonBox?.standardButton(QQC2.DialogButtonBox.Ok) ?? null
         property: "enabled"
-        when: dialogButtonBox?.standardButtons & QQC2.DialogButtonBox.Ok
+        when: root.dialogButtonBox?.standardButtons & QQC2.DialogButtonBox.Ok
         value: root.acceptable
     }
 
@@ -134,7 +134,7 @@ Kirigami.AbstractApplicationWindow {
         focus: true
 
         function accept() {
-            const button = dialogButtonBox.standardButton(QQC2.DialogButtonBox.Ok);
+            const button = root.dialogButtonBox.standardButton(QQC2.DialogButtonBox.Ok);
             if (button?.enabled) {
                 root.accept()
             }

@@ -31,6 +31,7 @@
 
 #include <KPackage/Package>
 #include <KPackage/PackageJob>
+#include <algorithm>
 
 #include "config-workspace.h"
 #include "kcategorizeditemsviewmodels_p.h"
@@ -130,7 +131,7 @@ QString readTranslatedCategory(const QString &category, const QString &plugin)
         kli18nc("applet category", "Clipboard"),
         kli18nc("applet category", "Tasks"),
     };
-    const auto it = std::find_if(possibleTranslatslations.begin(), possibleTranslatslations.end(), [&category](const KLazyLocalizedString &str) {
+    const auto it = std::ranges::find_if(possibleTranslatslations, [&category](const KLazyLocalizedString &str) {
         return category == QLatin1String(str.untranslatedText());
     });
     if (it == possibleTranslatslations.cend()) {
@@ -172,14 +173,14 @@ void WidgetExplorerPrivate::initFilters()
     std::vector<CategoryInfo> categories;
     categories.reserve(itemModel.rowCount());
     for (int i = 0; i < itemModel.rowCount(); ++i) {
-        if (PlasmaAppletItem *p = dynamic_cast<PlasmaAppletItem *>(itemModel.item(i))) {
+        if (auto *p = dynamic_cast<PlasmaAppletItem *>(itemModel.item(i))) {
             const QString translated = readTranslatedCategory(p->category(), p->pluginName());
             if (!translated.isEmpty()) {
                 categories.push_back({p->category(), translated});
             }
         }
     }
-    std::sort(categories.begin(), categories.end(), [](const CategoryInfo &left, const CategoryInfo &right) {
+    std::ranges::sort(categories, [](const CategoryInfo &left, const CategoryInfo &right) {
         return QString::localeAwareCompare(left.translated, right.translated) < 0;
     });
     auto end = std::unique(categories.begin(), categories.end(), [](const CategoryInfo left, const CategoryInfo right) {
@@ -334,7 +335,7 @@ void WidgetExplorerPrivate::removeContainment(Plasma::Containment *containment)
     const QList<Applet *> applets = containment->applets();
     for (auto applet : applets) {
         if (applet->pluginMetaData().isValid()) {
-            Containment *childContainment = applet->property("containment").value<Containment *>();
+            auto *childContainment = applet->property("containment").value<Containment *>();
             if (childContainment) {
                 removeContainment(childContainment);
             }
@@ -491,7 +492,7 @@ void WidgetExplorer::downloadWidgets()
 
 void WidgetExplorer::openWidgetFile()
 {
-    QFileDialog *dialog = new QFileDialog;
+    auto *dialog = new QFileDialog;
     dialog->setMimeTypeFilters({u"application/x-plasma"_s,
                                 u"application/zip"_s,
                                 u"application/x-xz"_s,
@@ -569,6 +570,9 @@ void WidgetExplorer::removeAllInstances(const QString &pluginName)
                 }
             }
         }
+
+        d->runningApplets.remove(pluginName);
+        d->itemModel.setRunningApplets(d->runningApplets);
     }
 }
 

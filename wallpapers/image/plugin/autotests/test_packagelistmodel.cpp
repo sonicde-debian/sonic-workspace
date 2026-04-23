@@ -54,9 +54,9 @@ void PackageListModelTest::initTestCase()
     QVERIFY(!m_dataDir.isEmpty());
     QVERIFY(!m_alternateDir.isEmpty());
 
-    m_packagePaths << QUrl::fromLocalFile(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName1));
-    m_packagePaths << QUrl::fromLocalFile(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName2));
-    m_dummyPackagePath = QUrl::fromLocalFile(m_alternateDir.absoluteFilePath(ImageBackendTestData::alternatePackageFolderName1));
+    m_packagePaths << QUrl::fromLocalFile(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName1) + u'/');
+    m_packagePaths << QUrl::fromLocalFile(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName2) + u'/');
+    m_dummyPackagePath = QUrl::fromLocalFile(m_alternateDir.absoluteFilePath(ImageBackendTestData::alternatePackageFolderName1) + u'/');
 
     m_targetSize = QSize(1920, 1080);
 
@@ -65,7 +65,7 @@ void PackageListModelTest::initTestCase()
 
 void PackageListModelTest::init()
 {
-    m_model = new PackageListModel(QBindable<QSize>(&m_targetSize), QBindable<bool>(&m_usedInConfig), this);
+    m_model = new PackageListModel(QBindable<bool>(&m_usedInConfig), this);
     m_countSpy = new QSignalSpy(m_model, &PackageListModel::countChanged);
     m_dataSpy = new QSignalSpy(m_model, &PackageListModel::dataChanged);
 
@@ -97,13 +97,8 @@ void PackageListModelTest::testPackageListModelData()
     QVERIFY(idx.isValid());
 
     QCOMPARE(idx.data(Qt::DisplayRole).toString(), QStringLiteral("Honeywave (For test purpose, don't translate!)"));
-
     QCOMPARE(idx.data(ImageRoles::AuthorRole).toString(), QStringLiteral("Ken Vermette"));
-
-    QCOMPARE(idx.data(ImageRoles::PathRole).toUrl().toLocalFile(),
-             m_packagePaths.at(1).toLocalFile() + QDir::separator() + u"contents" + QDir::separator() + u"images" + QDir::separator() + u"1920x1080.jpg");
-    QCOMPARE(idx.data(ImageRoles::PackageNameRole).toString(), m_packagePaths.at(1).toLocalFile() + QDir::separator());
-
+    QCOMPARE(idx.data(ImageRoles::SourceRole).toUrl(), m_packagePaths.at(1));
     QCOMPARE(idx.data(ImageRoles::RemovableRole).toBool(), false);
     QCOMPARE(idx.data(ImageRoles::PendingDeletionRole).toBool(), false);
 }
@@ -132,7 +127,7 @@ void PackageListModelTest::testPackageListModelAddBackground()
     QCOMPARE(m_countSpy->size(), 1);
     m_countSpy->clear();
     QCOMPARE(results.size(), 1);
-    QCOMPARE(results.at(0), m_dummyPackagePath.toLocalFile() + QDir::separator());
+    QCOMPARE(results.at(0), m_dummyPackagePath.toLocalFile());
     QCOMPARE(m_model->rowCount(), ImageBackendTestData::defaultPackageCount + 1);
 
     QPersistentModelIndex idx = m_model->index(0, 0); // This is the newly added item.
@@ -189,7 +184,7 @@ void PackageListModelTest::testPackageListModelRemoveBackground()
     m_model->addBackground(m_dummyPackagePath);
     m_countSpy->clear();
     QCOMPARE(m_model->m_removableWallpapers.size(), 1);
-    QCOMPARE(m_model->m_removableWallpapers.at(0), m_dummyPackagePath.toLocalFile() + QDir::separator());
+    QCOMPARE(m_model->m_removableWallpapers.at(0), m_dummyPackagePath.toLocalFile());
 
     QStringList results;
 
@@ -211,7 +206,7 @@ void PackageListModelTest::testPackageListModelRemoveBackground()
     m_countSpy->clear();
     QCOMPARE(m_model->rowCount(), ImageBackendTestData::defaultPackageCount);
     QCOMPARE(results.size(), 1);
-    QCOMPARE(results.at(0), m_dummyPackagePath.toLocalFile() + QDir::separator());
+    QCOMPARE(results.at(0), m_dummyPackagePath.toLocalFile());
     QCOMPARE(m_model->m_removableWallpapers.size(), 0);
 }
 

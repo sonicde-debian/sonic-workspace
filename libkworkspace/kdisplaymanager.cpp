@@ -19,10 +19,8 @@
 #include <QGuiApplication>
 
 #include "config-X11.h"
-#if HAVE_X11
 #include <X11/Xauth.h>
 #include <X11/Xlib.h>
-#endif // HAVE_X11
 
 #include <errno.h>
 #include <fcntl.h>
@@ -134,11 +132,10 @@ public:
 
         QVariantList args = reply.arguments();
         if (!args.isEmpty()) {
-            QList<NamedDBusObjectPath> namedPathList =
-                qdbus_cast<QList<NamedDBusObjectPath>>(args.at(0).value<QDBusVariant>().variant().value<QDBusArgument>());
+            auto namedPathList = qdbus_cast<QList<NamedDBusObjectPath>>(args.at(0).value<QDBusVariant>().variant().value<QDBusArgument>());
             return namedPathList;
         }
-        return QList<NamedDBusObjectPath>();
+        return {};
     }
 };
 
@@ -162,7 +159,7 @@ public:
             args.at(0).value<QDBusVariant>().variant().value<QDBusArgument>() >> namedPath;
             return namedPath;
         }
-        return NamedDBusObjectPath();
+        return {};
     }
     NumberedDBusObjectPath getUser()
     {
@@ -176,7 +173,7 @@ public:
             args.at(0).value<QDBusVariant>().variant().value<QDBusArgument>() >> numberedPath;
             return numberedPath;
         }
-        return NumberedDBusObjectPath();
+        return {};
     }
     void getSessionLocation(SessEnt &se)
     {
@@ -481,7 +478,7 @@ static QList<QDBusObjectPath> getSessionsForSeat(const QDBusObjectPath &path)
             }
         }
     }
-    return QList<QDBusObjectPath>();
+    return {};
 }
 
 #ifndef KDM_NO_SHUTDOWN
@@ -845,7 +842,6 @@ void KDisplayManager::lockSwitchVT(int vt)
 
 void KDisplayManager::GDMAuthenticate()
 {
-#if HAVE_X11
     FILE *fp;
     const char *dpy = nullptr, *dnum, *dne;
     int dnl;
@@ -886,5 +882,4 @@ void KDisplayManager::GDMAuthenticate()
     }
 
     fclose(fp);
-#endif // HAVE_X11
 }

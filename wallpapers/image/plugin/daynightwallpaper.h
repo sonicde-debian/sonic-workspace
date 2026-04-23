@@ -14,6 +14,7 @@
 #include <QQmlParserStatus>
 #include <QTimer>
 #include <QUrl>
+#include <qqmlintegration.h>
 
 /**
  * The DayNightPhase type specifies a period of time in a day, e.g. sunrise or sunset, etc.
@@ -51,6 +52,7 @@ private:
 class DayNightSnapshot
 {
     Q_GADGET
+    QML_VALUE_TYPE(dayNightSnapshot)
     Q_PROPERTY(QUrl bottom MEMBER m_bottom CONSTANT)
     Q_PROPERTY(QUrl top MEMBER m_top CONSTANT)
     Q_PROPERTY(qreal blendFactor MEMBER m_blendFactor CONSTANT)
@@ -93,6 +95,7 @@ class DayNightWallpaper : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
     Q_INTERFACES(QQmlParserStatus)
+    QML_ELEMENT
 
     Q_PROPERTY(QUrl source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(DayNightSnapshot snapshot READ snapshot NOTIFY snapshotChanged)

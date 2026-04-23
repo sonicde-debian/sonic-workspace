@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-28 02:34+0000\n"
+"POT-Creation-Date: 2026-01-16 03:02+0000\n"
 "PO-Revision-Date: 2025-08-05 16:54+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,59 +19,63 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: devicenotifications.cpp:396
+#: devicenotifications.cpp:399
 #, kde-format
 msgctxt "@title:notifications"
 msgid "Display Detected"
 msgstr "Aptiktas ekranas"
 
-#: devicenotifications.cpp:397
+#: devicenotifications.cpp:400
 #, kde-format
 msgid "A display has been connected."
 msgstr "Prijungtas ekranas."
 
-#: devicenotifications.cpp:417
+#: devicenotifications.cpp:420
 #, kde-format
 msgctxt "@title:notifications"
 msgid "Display Removed"
 msgstr "Ekranas pašalintas"
 
-#: devicenotifications.cpp:418
+#: devicenotifications.cpp:421
 #, kde-format
 msgid "A display has been disconnected."
 msgstr "Ekranas atjungtas."
 
-#: devicenotifications.cpp:464
+#: devicenotifications.cpp:467
 #, kde-format
 msgid "%1 has been connected."
 msgstr "Prijungtas %1."
 
-#: devicenotifications.cpp:464
+#: devicenotifications.cpp:467
 #, kde-format
 msgid "A USB device has been connected."
 msgstr "Prijungtas USB įrenginys."
 
-#: devicenotifications.cpp:469
+#: devicenotifications.cpp:472
 #, kde-format
 msgctxt "@title:notifications"
 msgid "USB Device Detected"
 msgstr "Aptiktas USB įrenginys"
 
-#: devicenotifications.cpp:507
+#: devicenotifications.cpp:510
 #, kde-format
 msgid "%1 has been disconnected."
 msgstr "%1 atjungtas."
 
-#: devicenotifications.cpp:507
+#: devicenotifications.cpp:510
 #, kde-format
 msgid "A USB device has been disconnected."
 msgstr "USB įrenginys atjungtas."
 
-#: devicenotifications.cpp:512
+#: devicenotifications.cpp:515
 #, kde-format
 msgctxt "@title:notifications"
-msgid "USB Device Went Away"
-msgstr "USB įrenginys pradingo"
+msgid "USB Device Removed"
+msgstr "USB įrenginys pašalintas"
+
+#~ msgctxt "@title:notifications"
+#~ msgid "USB Device Went Away"
+#~ msgstr "USB įrenginys pradingo"
 
 #~ msgid "A display has been plugged in."
 #~ msgstr "Prijungtas ekranas."
@@ -81,7 +85,3 @@ msgstr "USB įrenginys pradingo"
 
 #~ msgid "A USB device has been plugged in."
 #~ msgstr "Įkištas USB įrenginys."
-
-#~ msgctxt "@title:notifications"
-#~ msgid "USB Device Removed"
-#~ msgstr "USB įrenginys pašalintas"

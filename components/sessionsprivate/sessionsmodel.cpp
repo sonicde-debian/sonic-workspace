@@ -71,6 +71,22 @@ void SessionsModel::setIncludeUnusedSessions(bool includeUnusedSessions)
     }
 }
 
+bool SessionsModel::includeOwnSession() const
+{
+    return m_includeOwnSession;
+}
+
+void SessionsModel::setIncludeOwnSession(bool includeOwnSession)
+{
+    if (m_includeOwnSession != includeOwnSession) {
+        m_includeOwnSession = includeOwnSession;
+
+        reload();
+
+        Q_EMIT includeOwnSessionChanged();
+    }
+}
+
 void SessionsModel::switchUser(int vt, bool shouldLock)
 {
     if (vt < 0) {
@@ -151,7 +167,11 @@ void SessionsModel::reload()
     m_data.reserve(sessions.count());
 
     for (const SessEnt &session : std::as_const(sessions)) {
-        if (!session.vt || session.self) {
+        if (!session.vt) {
+            continue;
+        }
+
+        if (!m_includeOwnSession && session.self) {
             continue;
         }
 
@@ -190,7 +210,7 @@ void SessionsModel::reload()
 void SessionsModel::checkScreenLocked(std::function<void(bool)> &&cb)
 {
     auto reply = m_screensaverInterface->GetActive();
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
+    auto *watcher = new QDBusPendingCallWatcher(reply, this);
     QObject::connect(watcher, &QDBusPendingCallWatcher::finished, this, [cb = std::move(cb)](QDBusPendingCallWatcher *watcher) {
         QDBusPendingReply<bool> reply = *watcher;
         if (!reply.isError()) {
@@ -226,7 +246,7 @@ void SessionsModel::setShowNewSessionEntry(bool showNewSessionEntry)
 QVariant SessionsModel::data(const QModelIndex &index, int role) const
 {
     if (index.row() < 0 || index.row() > rowCount(QModelIndex())) {
-        return QVariant();
+        return {};
     }
 
     if (index.row() == m_data.count()) {
@@ -246,7 +266,7 @@ QVariant SessionsModel::data(const QModelIndex &index, int role) const
         case IsTtyRole:
             return false; // NA
         default:
-            return QVariant();
+            return {};
         }
     }
 
@@ -268,7 +288,7 @@ QVariant SessionsModel::data(const QModelIndex &index, int role) const
     case IsTtyRole:
         return item.isTty;
     default:
-        return QVariant();
+        return {};
     }
 }
 

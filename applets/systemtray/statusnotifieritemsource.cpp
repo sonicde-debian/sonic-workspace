@@ -6,7 +6,6 @@
 */
 
 #include "statusnotifieritemsource.h"
-#include "statusnotifieritemservice.h"
 #include "systemtraytypes.h"
 
 #include "debug.h"
@@ -14,6 +13,7 @@
 #include <KIconColors>
 #include <KIconEngine>
 #include <KIconLoader>
+#include <KWindowSystem>
 #include <Plasma/Theme>
 
 #include <QApplication>
@@ -37,9 +37,10 @@ Q_GLOBAL_STATIC(Plasma::Theme, s_theme)
 class PlasmaDBusMenuImporter : public DBusMenuImporter
 {
 public:
-    PlasmaDBusMenuImporter(const QString &service, const QString &path, KIconLoader *iconLoader, QObject *parent)
-        : DBusMenuImporter(service, path, parent)
+    PlasmaDBusMenuImporter(const QString &service, const QString &path, KIconLoader *iconLoader, StatusNotifierItemSource *source)
+        : DBusMenuImporter(service, path, nullptr)
         , m_iconLoader(iconLoader)
+        , m_source(source)
     {
     }
 
@@ -49,14 +50,19 @@ protected:
         return QIcon(new KIconEngine(name, m_iconLoader));
     }
 
+    void actionActivated(int id) override
+    {
+        sendClickedEvent(id);
+    }
+
 private:
     KIconLoader *m_iconLoader;
+    StatusNotifierItemSource *const m_source;
 };
 
 StatusNotifierItemSource::StatusNotifierItemSource(const QString &notifierItemId, QObject *parent)
     : QObject(parent)
     , m_customIconLoader(nullptr)
-    , m_menuImporter(nullptr)
     , m_refreshing(false)
     , m_needsReRefreshing(false)
 {
@@ -71,13 +77,12 @@ StatusNotifierItemSource::StatusNotifierItemSource(const QString &notifierItemId
     if (slash == -1) {
         qCWarning(SYSTEM_TRAY) << "Invalid notifierItemId:" << notifierItemId;
         m_valid = false;
-        m_statusNotifierItemInterface = nullptr;
         return;
     }
     QString service = notifierItemId.left(slash);
     QString path = notifierItemId.mid(slash);
 
-    m_statusNotifierItemInterface = new org::kde::StatusNotifierItem(service, path, QDBusConnection::sessionBus(), this);
+    m_statusNotifierItemInterface = std::make_unique<org::kde::StatusNotifierItem>(service, path, QDBusConnection::sessionBus(), this);
 
     m_refreshTimer.setSingleShot(true);
     m_refreshTimer.setInterval(10);
@@ -85,13 +90,13 @@ StatusNotifierItemSource::StatusNotifierItemSource(const QString &notifierItemId
 
     m_valid = !service.isEmpty() && m_statusNotifierItemInterface->isValid();
     if (m_valid) {
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewTitle, this, &StatusNotifierItemSource::refresh);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewIcon, this, &StatusNotifierItemSource::refresh);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewAttentionIcon, this, &StatusNotifierItemSource::refresh);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewOverlayIcon, this, &StatusNotifierItemSource::refresh);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewToolTip, this, &StatusNotifierItemSource::refresh);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewStatus, this, &StatusNotifierItemSource::syncStatus);
-        connect(m_statusNotifierItemInterface, &OrgKdeStatusNotifierItem::NewMenu, this, &StatusNotifierItemSource::refreshMenu);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewTitle, this, &StatusNotifierItemSource::refresh);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewIcon, this, &StatusNotifierItemSource::refresh);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewAttentionIcon, this, &StatusNotifierItemSource::refresh);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewOverlayIcon, this, &StatusNotifierItemSource::refresh);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewToolTip, this, &StatusNotifierItemSource::refresh);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewStatus, this, &StatusNotifierItemSource::syncStatus);
+        connect(m_statusNotifierItemInterface.get(), &OrgKdeStatusNotifierItem::NewMenu, this, &StatusNotifierItemSource::refreshMenu);
         refresh();
     }
 
@@ -100,7 +105,6 @@ StatusNotifierItemSource::StatusNotifierItemSource(const QString &notifierItemId
 
 StatusNotifierItemSource::~StatusNotifierItemSource()
 {
-    delete m_statusNotifierItemInterface;
 }
 
 KIconLoader *StatusNotifierItemSource::iconLoader() const
@@ -183,11 +187,6 @@ QString StatusNotifierItemSource::windowId() const
     return m_windowId;
 }
 
-Plasma5Support::Service *StatusNotifierItemSource::createService()
-{
-    return new StatusNotifierItemService(this);
-}
-
 void StatusNotifierItemSource::syncStatus(const QString &status)
 {
     m_status = status;
@@ -196,10 +195,7 @@ void StatusNotifierItemSource::syncStatus(const QString &status)
 
 void StatusNotifierItemSource::refreshMenu()
 {
-    if (m_menuImporter) {
-        delete m_menuImporter;
-        m_menuImporter = nullptr;
-    }
+    m_menuImporter.reset();
     refresh();
 }
 
@@ -225,7 +221,7 @@ void StatusNotifierItemSource::performRefresh()
 
     message << m_statusNotifierItemInterface->interface();
     QDBusPendingCall call = m_statusNotifierItemInterface->connection().asyncCall(message);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(call, this);
+    auto *watcher = new QDBusPendingCallWatcher(call, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, &StatusNotifierItemSource::refreshCallback);
 }
 
@@ -371,10 +367,10 @@ void StatusNotifierItemSource::refreshCallback(QDBusPendingCallWatcher *call)
                     // KStatusNotifierItem::setContextMenu().
                     qCWarning(SYSTEM_TRAY) << "DBusMenu disabled for this application";
                 } else {
-                    m_menuImporter = new PlasmaDBusMenuImporter(m_statusNotifierItemInterface->service(), menuObjectPath, iconLoader(), this);
-                    connect(m_menuImporter, &PlasmaDBusMenuImporter::menuUpdated, this, [this](QMenu *menu) {
+                    m_menuImporter = std::make_unique<PlasmaDBusMenuImporter>(m_statusNotifierItemInterface->service(), menuObjectPath, iconLoader(), this);
+                    connect(m_menuImporter.get(), &PlasmaDBusMenuImporter::menuUpdated, this, [this](QMenu *menu) {
                         if (menu == m_menuImporter->menu()) {
-                            contextMenuReady();
+                            Q_EMIT contextMenuReady(m_menuImporter->menu());
                         }
                     });
                 }
@@ -399,11 +395,6 @@ void StatusNotifierItemSource::reloadIcon()
     Q_EMIT dataUpdated();
 }
 
-void StatusNotifierItemSource::contextMenuReady()
-{
-    Q_EMIT contextMenuReady(m_menuImporter->menu());
-}
-
 QPixmap StatusNotifierItemSource::KDbusImageStructToPixmap(const KDbusImageStruct &image) const
 {
     // swap from network byte order if we are little endian
@@ -415,7 +406,7 @@ QPixmap StatusNotifierItemSource::KDbusImageStructToPixmap(const KDbusImageStruc
         }
     }
     if (image.width == 0 || image.height == 0) {
-        return QPixmap();
+        return {};
     }
 
     // avoid a deep copy of the image data
@@ -504,7 +495,7 @@ void StatusNotifierItemSource::activate(int x, int y)
 
         message << x << y;
         QDBusPendingCall call = m_statusNotifierItemInterface->connection().asyncCall(message);
-        QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(call, this);
+        auto *watcher = new QDBusPendingCallWatcher(call, this);
         connect(watcher, &QDBusPendingCallWatcher::finished, this, &StatusNotifierItemSource::activateCallback);
     }
 }
@@ -539,13 +530,6 @@ void StatusNotifierItemSource::contextMenu(int x, int y)
         if (m_statusNotifierItemInterface && m_statusNotifierItemInterface->isValid()) {
             m_statusNotifierItemInterface->call(QDBus::NoBlock, QStringLiteral("ContextMenu"), x, y);
         }
-    }
-}
-
-void StatusNotifierItemSource::provideXdgActivationToken(const QString &token)
-{
-    if (m_statusNotifierItemInterface && m_statusNotifierItemInterface->isValid()) {
-        m_statusNotifierItemInterface->ProvideXdgActivationToken(token);
     }
 }
 

@@ -14,7 +14,6 @@
 
 #include <math.h>
 
-#include <QAction>
 #include <QDateTime>
 #include <QDir>
 #include <QFileInfo>
@@ -26,11 +25,14 @@
 
 #include <KGlobalAccel>
 #include <KLocalizedString>
+#include <algorithm>
 
 #include "finder/suffixcheck.h"
 #include "model/imageproxymodel.h"
 #include "slidefiltermodel.h"
 #include "slidemodel.h"
+
+using namespace Qt::StringLiterals;
 
 ImageBackend::ImageBackend(QObject *parent)
     : QObject(parent)
@@ -50,9 +52,7 @@ ImageBackend::ImageBackend(QObject *parent)
     connect(&m_timer, &QTimer::timeout, this, &ImageBackend::nextSlide);
 }
 
-ImageBackend::~ImageBackend()
-{
-}
+ImageBackend::~ImageBackend() = default;
 
 void ImageBackend::classBegin()
 {
@@ -84,6 +84,32 @@ void ImageBackend::setImage(const QString &url)
 
     m_image = QUrl::fromUserInput(url);
     Q_EMIT imageChanged();
+}
+
+DynamicMode::Mode ImageBackend::dynamicMode() const
+{
+    return m_dynamicMode;
+}
+
+void ImageBackend::setDynamicMode(DynamicMode::Mode dynamicMode)
+{
+    if (dynamicMode == m_dynamicMode) {
+        return;
+    }
+
+    m_dynamicMode = dynamicMode;
+    Q_EMIT dynamicModeChanged();
+
+    if (m_mode == SingleImage || m_usedInConfig || !m_ready) {
+        return;
+    }
+
+    const QStringList selectors = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::SelectorsRole).toStringList();
+    const QUrl newImage = makeWallpaperUrl(m_image, selectors);
+    if (newImage != m_image) {
+        m_image = newImage;
+        Q_EMIT imageChanged();
+    }
 }
 
 ImageBackend::RenderingMode ImageBackend::renderingMode() const
@@ -185,7 +211,8 @@ void ImageBackend::ensureSlideshowModel()
     m_slideshowModel->setUncheckedSlides(m_uncheckedSlides);
     m_loading.setBinding(m_slideshowModel->loading().makeBinding());
 
-    m_slideFilterModel = new SlideFilterModel(QBindable<bool>(&m_usedInConfig), //
+    m_slideFilterModel = new SlideFilterModel(QBindable<QSize>(&m_targetSize), //
+                                              QBindable<bool>(&m_usedInConfig), //
                                               QBindable<SortingMode::Mode>(&m_slideshowMode), //
                                               QBindable<bool>(&m_slideshowFoldersFirst), //
                                               this);
@@ -389,12 +416,36 @@ QString ImageBackend::addUsersWallpaper(const QUrl &url)
     }
 
     if (results.empty()) {
-        return QString();
+        return {};
     }
 
     Q_EMIT settingsChanged();
 
     return results.at(0);
+}
+
+QUrl ImageBackend::makeWallpaperUrl(const QUrl &url, const QStringList &selectors) const
+{
+    QString selector;
+    if (m_dynamicMode == DynamicMode::Mode::DayNight && selectors.contains(u"day-night")) {
+        selector = u"day-night"_s;
+    } else if (m_dynamicMode != DynamicMode::Mode::Automatic && selectors.contains(u"dark-light")) {
+        if (m_dynamicMode == DynamicMode::Mode::AlwaysDark) {
+            selector = u"dark"_s;
+        } else if (m_dynamicMode == DynamicMode::Mode::AlwaysLight) {
+            selector = u"light"_s;
+        }
+    }
+    QUrl ret = url;
+    if (!selector.isEmpty()) {
+        ret.setFragment(selector);
+    }
+    return ret;
+}
+
+QUrl ImageBackend::makeWallpaperUrl(const QString &url, const QStringList &selectors) const
+{
+    return makeWallpaperUrl(QUrl::fromUserInput(url), selectors);
 }
 
 void ImageBackend::nextSlide()
@@ -405,9 +456,9 @@ void ImageBackend::nextSlide()
         return;
     }
     int previousSlide = m_currentSlide;
-    QString previousPath;
+    QUrl previousUrl;
     if (previousSlide >= 0) {
-        previousPath = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::PackageNameRole).toString();
+        previousUrl = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::SourceRole).toUrl();
     }
     if (m_currentSlide >= rowCount - 1 /* ">" in case the last wallpaper is deleted before */ || m_currentSlide < 0) {
         m_currentSlide = 0;
@@ -418,16 +469,18 @@ void ImageBackend::nextSlide()
     if (m_slideshowMode == SortingMode::Random && m_currentSlide == 0) {
         m_slideFilterModel->invalidate();
     }
-    QString next = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::PackageNameRole).toString();
+    QUrl next = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::SourceRole).toUrl();
     // And  avoid showing the same picture twice
-    if (previousSlide == rowCount - 1 && previousPath == next && rowCount > 1) {
-        m_currentSlide += 1;
-        next = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::PackageNameRole).toString();
+    if (previousSlide == rowCount - 1 && previousUrl == next && rowCount > 1) {
+        m_slideFilterModel->swapFirstWithRandom();
+        next = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::SourceRole).toUrl();
     }
     if (next.isEmpty()) {
-        m_image = QUrl::fromLocalFile(previousPath);
+        const QStringList selectors = m_slideFilterModel->index(previousSlide, 0).data(ImageRoles::SelectorsRole).toStringList();
+        m_image = makeWallpaperUrl(previousUrl, selectors);
     } else {
-        m_image = QUrl::fromLocalFile(next);
+        const QStringList selectors = m_slideFilterModel->index(m_currentSlide, 0).data(ImageRoles::SelectorsRole).toStringList();
+        m_image = makeWallpaperUrl(next, selectors);
         Q_EMIT imageChanged();
     }
 
@@ -464,9 +517,9 @@ void ImageBackend::slotSlideModelDataChanged(const QModelIndex &topLeft, const Q
 
     if (roles.contains(ImageRoles::ToggleRole)) {
         if (topLeft.data(ImageRoles::ToggleRole).toBool()) {
-            m_uncheckedSlides.removeOne(topLeft.data(ImageRoles::PackageNameRole).toString());
+            m_uncheckedSlides.removeOne(topLeft.data(ImageRoles::SourceRole).toUrl().toLocalFile());
         } else {
-            m_uncheckedSlides.append(topLeft.data(ImageRoles::PackageNameRole).toString());
+            m_uncheckedSlides.append(topLeft.data(ImageRoles::SourceRole).toUrl().toLocalFile());
         }
 
         Q_EMIT uncheckedSlidesChanged();

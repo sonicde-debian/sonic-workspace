@@ -8,7 +8,6 @@
 #include "appsmodel.h"
 #include "actionlist.h"
 #include "rootmodel.h"
-#include "sectionsmodel.h"
 
 #include <QCollator>
 #include <QDebug>
@@ -19,6 +18,7 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KSycoca>
+#include <algorithm>
 #include <chrono>
 
 using namespace std::chrono_literals;
@@ -81,11 +81,11 @@ AppsModel::AppsModel(const QList<AbstractEntry *> &entryList, bool deleteEntries
 {
     for (AbstractEntry *suggestedEntry : entryList) {
         const auto sameStorageId = [=](const AbstractEntry *entry) {
-            return entry->type() == AbstractEntry::RunnableType
+            return entry->type() == AbstractEntry::ApplicationType && suggestedEntry->type() == AbstractEntry::ApplicationType
                 && static_cast<const AppEntry *>(entry)->service()->storageId() == static_cast<const AppEntry *>(suggestedEntry)->service()->storageId();
         };
 
-        const bool found = std::find_if(m_entryList.cbegin(), m_entryList.cend(), sameStorageId) != m_entryList.cend();
+        const bool found = std::ranges::find_if(m_entryList, sameStorageId) != m_entryList.cend();
 
         if (!found) {
             m_entryList << suggestedEntry;
@@ -134,7 +134,7 @@ void AppsModel::setDescription(const QString &text)
 QVariant AppsModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_entryList.count()) {
-        return QVariant();
+        return {};
     }
 
     const AbstractEntry *entry = m_entryList.at(index.row());
@@ -147,9 +147,11 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
         return entry->compactName();
     } else if (role == Kicker::DescriptionRole) {
         return entry->description();
-    } else if (role == Kicker::FavoriteIdRole && entry->type() == AbstractEntry::RunnableType) {
+    } else if (role == Kicker::FavoriteIdRole && (entry->type() == AbstractEntry::ApplicationType || entry->type() == AbstractEntry::RunnableType)) {
         return entry->id();
-    } else if (role == Kicker::UrlRole && entry->type() == AbstractEntry::RunnableType) {
+    } else if (role == Kicker::FavoriteIdRole && (entry->type() != AbstractEntry::ApplicationType || entry->type() != AbstractEntry::RunnableType)) {
+        return QString();
+    } else if (role == Kicker::UrlRole && (entry->type() == AbstractEntry::ApplicationType || entry->type() == AbstractEntry::RunnableType)) {
         return entry->url();
     } else if (role == Kicker::IsParentRole) {
         return (entry->type() == AbstractEntry::GroupType);
@@ -158,7 +160,7 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
     } else if (role == Kicker::HasChildrenRole) {
         return entry->hasChildren();
     } else if (role == Kicker::HasActionListRole) {
-        const AppsModel *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
+        const auto *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
 
         return entry->hasActions() || (appsModel && !appsModel->hiddenEntries().isEmpty());
     } else if (role == Kicker::ActionListRole) {
@@ -172,7 +174,7 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
             actionList << unhideSiblingApplicationsAction;
         }
 
-        const AppsModel *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
+        const auto *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
 
         if (appsModel && !appsModel->hiddenEntries().isEmpty()) {
             QVariantMap unhideChildApplicationsAction = Kicker::createActionItem(i18n("Unhide Applications in '%1'", entry->name()),
@@ -188,7 +190,7 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
         return entry->isNewlyInstalled();
     }
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex AppsModel::index(int row, int column, const QModelIndex &parent) const
@@ -210,8 +212,8 @@ bool AppsModel::trigger(int row, const QString &actionId, const QVariant &argume
     AbstractEntry *entry = m_entryList.at(row);
     const QString hiddenConfigEntryName = QStringLiteral("hiddenApplications");
 
-    if (actionId == QLatin1String("hideApplication") && entry->type() == AbstractEntry::RunnableType) {
-        QObject *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
+    if (actionId == QLatin1String("hideApplication") && entry->type() == AbstractEntry::ApplicationType) {
+        auto *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
         QQmlPropertyMap *appletConfig = nullptr;
         if (appletInterface) {
             appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
@@ -240,7 +242,7 @@ bool AppsModel::trigger(int row, const QString &actionId, const QVariant &argume
 
         return false;
     } else if (actionId == QLatin1String("unhideSiblingApplications")) {
-        QObject *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
+        auto *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
         QQmlPropertyMap *appletConfig = nullptr;
         if (appletInterface) {
             appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
@@ -265,14 +267,14 @@ bool AppsModel::trigger(int row, const QString &actionId, const QVariant &argume
 
         return false;
     } else if (actionId == QLatin1String("unhideChildApplications")) {
-        QObject *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
+        auto *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
         QQmlPropertyMap *appletConfig = nullptr;
         if (appletInterface) {
             appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
         }
 
         if (entry->type() == AbstractEntry::GroupType && appletConfig && appletConfig->contains(hiddenConfigEntryName)) {
-            const AppsModel *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
+            const auto *appsModel = qobject_cast<const AppsModel *>(entry->childModel());
 
             if (!appsModel) {
                 return false;
@@ -498,8 +500,8 @@ void AppsModel::refresh()
 
 static bool containsSameStorageId(const QList<AbstractEntry *> &entryList, const KService::Ptr &service)
 {
-    return std::any_of(entryList.cbegin(), entryList.cend(), [=](const AbstractEntry *entry) {
-        return entry->type() == AbstractEntry::RunnableType && static_cast<const AppEntry *>(entry)->service()->storageId() == service->storageId();
+    return std::ranges::any_of(entryList, [=](const AbstractEntry *entry) {
+        return entry->type() == AbstractEntry::ApplicationType && static_cast<const AppEntry *>(entry)->service()->storageId() == service->storageId();
     });
 }
 
@@ -536,7 +538,7 @@ void AppsModel::refreshInternal()
                 KServiceGroup::Ptr subGroup(static_cast<KServiceGroup *>(p.data()));
 
                 if (!subGroup->noDisplay() && subGroup->childCount() > 0) {
-                    AppGroupEntry *groupEntry = new AppGroupEntry(this, subGroup, m_paginate, m_pageSize, m_flat, m_sorted, m_showSeparators, m_appNameFormat);
+                    auto *groupEntry = new AppGroupEntry(this, subGroup, m_paginate, m_pageSize, m_flat, m_sorted, m_showSeparators, m_appNameFormat);
                     m_entryList << groupEntry;
                 }
             } else if (p->isType(KST_KService) && m_showTopLevelItems) {
@@ -599,7 +601,7 @@ void AppsModel::refreshInternal()
 
                 if (at == (m_pageSize - 1)) {
                     at = 0;
-                    AppsModel *model = new AppsModel(page, true, this);
+                    auto *model = new AppsModel(page, true, this);
                     groups.append(new GroupEntry(this, QString(), QString(), model));
                     page.clear();
                 } else {
@@ -608,7 +610,7 @@ void AppsModel::refreshInternal()
             }
 
             if (page.count()) {
-                AppsModel *model = new AppsModel(page, true, this);
+                auto *model = new AppsModel(page, true, this);
                 groups.append(new GroupEntry(this, QString(), QString(), model));
             }
 
@@ -683,7 +685,7 @@ void AppsModel::processServiceGroup(KServiceGroup::Ptr group)
 
     QStringList hiddenApps;
 
-    QObject *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
+    auto *appletInterface = rootModel()->property("appletInterface").value<QObject *>();
     QQmlPropertyMap *appletConfig = nullptr;
     if (appletInterface) {
         appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
@@ -734,7 +736,7 @@ void AppsModel::processServiceGroup(KServiceGroup::Ptr group)
                 const KServiceGroup::Ptr serviceGroup(static_cast<KServiceGroup *>(p.data()));
                 processServiceGroup(serviceGroup);
             } else {
-                AppGroupEntry *groupEntry = new AppGroupEntry(this, subGroup, m_paginate, m_pageSize, m_flat, m_sorted, m_showSeparators, m_appNameFormat);
+                auto *groupEntry = new AppGroupEntry(this, subGroup, m_paginate, m_pageSize, m_flat, m_sorted, m_showSeparators, m_appNameFormat);
                 m_entryList << groupEntry;
             }
         }
@@ -745,7 +747,7 @@ void AppsModel::sortEntries(QList<AbstractEntry *> &entryList)
 {
     QCollator c;
 
-    std::sort(entryList.begin(), entryList.end(), [&c](AbstractEntry *a, AbstractEntry *b) {
+    std::ranges::sort(entryList, [&c](AbstractEntry *a, AbstractEntry *b) {
         if (a->type() != b->type()) {
             return a->type() > b->type();
         } else {

@@ -18,6 +18,7 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KPluginFactory>
+#include <algorithm>
 
 using namespace Qt::StringLiterals;
 
@@ -100,7 +101,7 @@ void KCMSoundTheme::loadThemes()
             }
             themeIds << dirName;
 
-            ThemeInfo *theme = new ThemeInfo(dirName, this);
+            auto *theme = new ThemeInfo(dirName, this);
             if (!theme->isValid || theme->isHidden) {
                 delete theme;
                 continue;
@@ -117,7 +118,7 @@ void KCMSoundTheme::loadThemes()
 
     QCollator collator;
     // Sort by theme name, but leave "freedesktop" default at the last position
-    std::sort(m_themes.begin(), m_themes.end(), [&collator](auto *a, auto *b) {
+    std::ranges::sort(m_themes, [&collator](auto *a, auto *b) {
         if (a->id == FALLBACK_THEME) {
             return false;
         }

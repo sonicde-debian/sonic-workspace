@@ -21,9 +21,7 @@ SwitchDesktop::SwitchDesktop(QObject *parent, const QVariantList &args)
 {
 }
 
-SwitchDesktop::~SwitchDesktop()
-{
-}
+SwitchDesktop::~SwitchDesktop() = default;
 
 QList<QAction *> SwitchDesktop::contextualActions()
 {
@@ -37,7 +35,7 @@ QList<QAction *> SwitchDesktop::contextualActions()
 
     if (m_actions.count() < numDesktops) {
         for (int i = m_actions.count(); i < numDesktops; ++i) {
-            QAction *action = new QAction(this);
+            auto *action = new QAction(this);
             connect(action, &QAction::triggered, this, &SwitchDesktop::switchTo);
             m_actions[i] = action;
         }

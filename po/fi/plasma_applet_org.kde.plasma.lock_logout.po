@@ -1,6 +1,6 @@
 # Copyright © 2010, 2011 This_file_is_part_of_KDE
 # This file is distributed under the same license as the kde-workspace package.
-# SPDX-FileCopyrightText: 2010, 2019, 2020, 2021, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2010, 2019, 2020, 2021, 2023, 2024, 2025, 2026 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2011, 2013, 2014, 2015.
 #
 # KDE Finnish translation sprint participants:
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_lockout\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-01-12 17:13+0200\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2026-01-10 20:57+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -19,62 +19,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: config.qml:13
 #, kde-format
 msgid "General"
 msgstr "Yleiset"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Näytä toiminnot:"
+msgid "Unavailable"
+msgstr "Ei käytettävissä"
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Kirjaudu ulos"
-
-# OLI: ”uloskirjautumisnäyttö” – paitsi pitkä myös sekava. Tämä on minusta tolkullisempi.
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Näytä sammutusvalinnat"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Sammuta"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Käynnistä uudelleen"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Lukitse"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Vaihda käyttäjää"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Lepotila"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Siirry valmiustilaan"
 
 #: data.js:6
 #, kde-format
@@ -83,8 +43,8 @@ msgstr "Lukitse näyttö"
 
 #: data.js:12
 #, kde-format
-msgid "Switch user"
-msgstr "Vaihda käyttäjää"
+msgid "Switch user…"
+msgstr "Vaihda käyttäjää…"
 
 #: data.js:13
 #, kde-format
@@ -93,8 +53,8 @@ msgstr "Aloita rinnakkaisistunto toisena käyttäjänä"
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
-msgstr "Sammuta…"
+msgid "Shut down"
+msgstr "Sammuta"
 
 #: data.js:20
 #, kde-format
@@ -103,8 +63,8 @@ msgstr "Sammuta tietokone"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Käynnistä uudelleen…"
+msgid "Restart"
+msgstr "Käynnistä uudelleen"
 
 #: data.js:27
 #, kde-format
@@ -113,8 +73,8 @@ msgstr "Käynnistä tietokone uudelleen"
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
-msgstr "Kirjaudu ulos…"
+msgid "Log out"
+msgstr "Kirjaudu ulos"
 
 #: data.js:34
 #, kde-format
@@ -133,15 +93,62 @@ msgstr "Näytä sammutusvalinnat"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Kirjaudu ulos, sammuta tai käynnistä tietokone uudelleen"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Siirry valmiustilaan"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Valmiustila (keskeytä muistiin)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Lepotila"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Lepotila (keskeytä levylle)"
+
+#, fuzzy
+#~| msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
+#~| msgid "Actions"
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Toiminnot"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Näytä toiminnot:"
+
+#~ msgid "Log Out"
+#~ msgstr "Kirjaudu ulos"
+
+# OLI: ”uloskirjautumisnäyttö” – paitsi pitkä myös sekava. Tämä on minusta tolkullisempi.
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Näytä sammutusvalinnat"
+
+#~ msgid "Shut Down"
+#~ msgstr "Sammuta"
+
+#~ msgid "Switch User"
+#~ msgstr "Vaihda käyttäjää"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Sammuta…"
+
+#~ msgid "Restart…"
+#~ msgstr "Käynnistä uudelleen…"
+
+#~ msgid "Logout…"
+#~ msgstr "Kirjaudu ulos…"
 
 #~ msgid "Logout"
 #~ msgstr "Kirjaudu ulos"
@@ -172,10 +179,6 @@ msgstr "Lepotila (keskeytä levylle)"
 
 #~ msgid "Leave..."
 #~ msgstr "Poistu…"
-
-#~ msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
-#~ msgid "Actions"
-#~ msgstr "Toiminnot"
 
 #~ msgid "Suspend"
 #~ msgstr "Valmiustila"

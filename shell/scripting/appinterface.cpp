@@ -22,10 +22,8 @@
 #include <windows.h>
 #endif
 
-#if HAVE_X11
 #include <X11/Xlib.h>
 #include <fixx11h.h>
-#endif
 
 #include "debug.h"
 #include "scriptengine.h"
@@ -91,7 +89,7 @@ QString AppInterface::applicationVersion() const
 
 QString AppInterface::platformVersion() const
 {
-    return QString(); // KDE::versionString();
+    return {}; // KDE::versionString();
 }
 
 int AppInterface::scriptingVersion() const
@@ -161,7 +159,7 @@ bool AppInterface::hasBattery() const
     QList<Solid::Device> batteryDevices = Solid::Device::listFromType(Solid::DeviceInterface::Battery);
 
     for (auto device : batteryDevices) {
-        Solid::Battery *battery = device.as<Solid::Battery>();
+        auto *battery = device.as<Solid::Battery>();
         // check for _both_ primary and power supply status
         // apparently some devices misreport as "primary", and we don't
         // want to trigger on just having UPC connected to a desktop box

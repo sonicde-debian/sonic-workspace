@@ -1,16 +1,16 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Alexander Yavorsky <kekcuha@gmail.com>
+# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Alexander Yavorsky <kekcuha@gmail.com>
 # Alexander Potashev <aspotashev@gmail.com>, 2014, 2015, 2016, 2017, 2018, 2019.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-26 13:26+0200\n"
-"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
+"POT-Creation-Date: 2026-01-05 00:45+0000\n"
+"PO-Revision-Date: 2026-01-16 17:41+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -29,6 +29,12 @@ msgstr "Александр Поташев,Александр Яворский,О
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "aspotashev@gmail.com,KekcuHa@gmail.com,gammaray@basealt.ru"
+
+#: filedialognamefilters.cpp:28
+#, kde-format
+msgctxt "Name filter for file dialogs: File type (file extension wildcards)"
+msgid "Image Files (%1)"
+msgstr "Файлы изображений (%1)"
 
 #. i18n: ectx: label, entry (lookAndFeelPackage), group (KDE)
 #: lookandfeelsettings.kcfg:9
@@ -234,6 +240,66 @@ msgctxt "@info:tooltip"
 msgid "Cannot delete system-installed themes"
 msgstr "Оформления, встроенные в систему, не могут быть удалены"
 
+#: ui/LookAndFeelSnapshot.qml:16
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Current Theme"
+msgstr "Сохранение текущего оформления"
+
+#: ui/LookAndFeelSnapshot.qml:25
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Plasma’s current appearance and theme settings will be saved in a new global "
+"theme."
+msgstr ""
+"Текущее оформление рабочей среды и его настроенные параметры будут сохранены "
+"как новое оформление."
+
+#: ui/LookAndFeelSnapshot.qml:69
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "Add a preview image…"
+msgstr "Добавить изображение с миниатюрой…"
+
+#: ui/LookAndFeelSnapshot.qml:79
+#, kde-format
+msgctxt "@action:button Configure day-night cycle times"
+msgid "Take a screenshot…"
+msgstr "Создать снимок экрана…"
+
+#: ui/LookAndFeelSnapshot.qml:86
+#, kde-format
+msgctxt "@label:textbox Name of new global theme that will be created"
+msgid "Name:"
+msgstr "Название:"
+
+#: ui/LookAndFeelSnapshot.qml:92
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "Type in name…"
+msgstr "Введите название…"
+
+#: ui/LookAndFeelSnapshot.qml:101
+#, kde-format
+msgctxt ""
+"@action:button Confirm creating new global theme from the user's current "
+"appearance settings"
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: ui/LookAndFeelSnapshot.qml:113
+#, kde-format
+msgctxt "@info"
+msgid "A global theme with this name or id already exists."
+msgstr "Оформление с таким названием уже существует."
+
+#: ui/LookAndFeelSnapshot.qml:127
+#, kde-format
+msgctxt "@title:title"
+msgid "Choose a Preview Image"
+msgstr "Выбор миниатюры"
+
 #: ui/main.qml:22
 #, kde-format
 msgctxt "@option:check"
@@ -241,6 +307,12 @@ msgid "Switch to Dark Mode at Night"
 msgstr "Использовать тёмное оформление ночью"
 
 #: ui/main.qml:40
+#, kde-format
+msgctxt "@action:button"
+msgid "Save Current Theme…"
+msgstr "Сохранить текущее оформление…"
+
+#: ui/main.qml:45
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Get New…"

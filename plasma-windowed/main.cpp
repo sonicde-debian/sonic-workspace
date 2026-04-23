@@ -8,10 +8,10 @@
 #include <csignal>
 
 #include <QApplication>
+#include <QCommandLineOption>
+#include <QCommandLineParser>
 #include <QQmlDebuggingEnabler>
 #include <QSurfaceFormat>
-#include <qcommandlineoption.h>
-#include <qcommandlineparser.h>
 
 #include <KDBusService>
 #include <KLocalizedString>
@@ -44,6 +44,7 @@ int main(int argc, char **argv)
     qunsetenv("QT_WAYLAND_DISABLE_FIXED_POSITIONS");
     app.setApplicationVersion(QLatin1String(version));
     app.setOrganizationDomain(QStringLiteral("kde.org"));
+    app.setDesktopFileName(QStringLiteral("org.kde.plasmawindowed"));
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("plasmawindowed"));
 
     KDBusService service(KDBusService::Unique);
@@ -70,7 +71,7 @@ int main(int argc, char **argv)
         parser.showHelp(1);
     }
 
-    PlasmaWindowedCorona *corona = new PlasmaWindowedCorona(parser.value(shellPluginOption));
+    auto *corona = new PlasmaWindowedCorona(parser.value(shellPluginOption));
 
     const QStringList arguments = parser.positionalArguments();
     QVariantList args;

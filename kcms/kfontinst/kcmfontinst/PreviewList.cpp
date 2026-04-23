@@ -28,10 +28,10 @@ CPreviewList::CPreviewList(QObject *parent)
 QVariant CPreviewList::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
-    CPreviewListItem *item = static_cast<CPreviewListItem *>(index.internalPointer());
+    auto *item = static_cast<CPreviewListItem *>(index.internalPointer());
 
     if (item) {
         switch (role) {
@@ -41,7 +41,7 @@ QVariant CPreviewList::data(const QModelIndex &index, int role) const
             break;
         }
     }
-    return QVariant();
+    return {};
 }
 
 Qt::ItemFlags CPreviewList::flags(const QModelIndex &) const
@@ -59,12 +59,12 @@ QModelIndex CPreviewList::index(int row, int column, const QModelIndex &parent) 
         }
     }
 
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex CPreviewList::parent(const QModelIndex &) const
 {
-    return QModelIndex();
+    return {};
 }
 
 void CPreviewList::clear()
@@ -80,7 +80,7 @@ void CPreviewList::showFonts(const QModelIndexList &fonts)
     clear();
     Q_EMIT layoutAboutToBeChanged();
     for (const QModelIndex &index : fonts) {
-        CFontModelItem *mi = static_cast<CFontModelItem *>(index.internalPointer());
+        auto *mi = static_cast<CFontModelItem *>(index.internalPointer());
         CFontItem *font = mi->parent() ? static_cast<CFontItem *>(mi) : (static_cast<CFamilyItem *>(mi))->regularFont();
 
         if (font) {
@@ -99,13 +99,11 @@ public:
         , m_previewSize(previewSize)
     {
     }
-    ~CPreviewListViewDelegate() override
-    {
-    }
+    ~CPreviewListViewDelegate() override = default;
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &idx) const override
     {
-        CPreviewListItem *item = static_cast<CPreviewListItem *>(idx.internalPointer());
+        auto *item = static_cast<CPreviewListItem *>(idx.internalPointer());
         QStyleOptionViewItem opt(option);
 
         opt.rect.adjust(1, constBorder - 3, 0, -(1 + m_previewSize));
@@ -128,7 +126,7 @@ public:
         // int   pWidth(getPixmap(static_cast<CPreviewListItem *>(idx.internalPointer())).width());
         int pWidth(1536);
 
-        return QSize((constBorder * 2) + pWidth, sz.height() + 1 + constBorder + m_previewSize);
+        return {(constBorder * 2) + pWidth, sz.height() + 1 + constBorder + m_previewSize};
     }
 
     QPixmap getPixmap(CPreviewListItem *item) const

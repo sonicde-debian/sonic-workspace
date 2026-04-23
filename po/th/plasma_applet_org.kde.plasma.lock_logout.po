@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
 "PO-Revision-Date: 2010-12-17 16:12+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -21,58 +21,15 @@ msgstr ""
 msgid "General"
 msgstr "ทั่วไป"
 
-#: ConfigGeneral.qml:36
-#, fuzzy, kde-format
-#| msgid "Show lock button"
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "แสดงปุ่มล็อค"
-
-#: ConfigGeneral.qml:37
+#: ConfigGeneral.qml:119
 #, kde-format
-msgid "Log Out"
+msgid "Unavailable"
 msgstr ""
 
-#: ConfigGeneral.qml:44
-#, fuzzy, kde-format
-#| msgid "Show logout button"
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "แสดงปุ่มออกจากระบ"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr ""
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr ""
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "ล็อค"
-
-#: ConfigGeneral.qml:68
-#, fuzzy, kde-format
-#| msgid "Switch user"
-msgid "Switch User"
-msgstr "สลับผู้ใช้งาน"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "จำศีล"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, fuzzy, kde-format
-#| msgid "Sleep"
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "พักเครื่อง"
 
 #: data.js:6
 #, kde-format
@@ -80,8 +37,9 @@ msgid "Lock the screen"
 msgstr "ล็อคหน้าจอ"
 
 #: data.js:12
-#, kde-format
-msgid "Switch user"
+#, fuzzy, kde-format
+#| msgid "Switch user"
+msgid "Switch user…"
 msgstr "สลับผู้ใช้งาน"
 
 #: data.js:13
@@ -91,7 +49,7 @@ msgstr "เริ่มวาระงานคู่ขนานโดยเข
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
+msgid "Shut down"
 msgstr ""
 
 #: data.js:20
@@ -102,7 +60,7 @@ msgstr "ออกจากระบบ, ปิดเครื่อง หรื
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
+msgid "Restart"
 msgstr ""
 
 #: data.js:27
@@ -112,7 +70,7 @@ msgstr ""
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
+msgid "Log out"
 msgstr ""
 
 #: data.js:34
@@ -133,15 +91,46 @@ msgstr "แสดงปุ่มออกจากระบ"
 msgid "Log out, turn off, or restart the computer"
 msgstr "ออกจากระบบ, ปิดเครื่อง หรือเริ่มระบบคอมพิวเตอร์ใหม่"
 
+#: data.js:47
+#, fuzzy, kde-format
+#| msgid "Sleep"
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "พักเครื่อง"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "พักเครื่อง (เก็บสถานะไว้ในหน่วยความจำ)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "จำศีล"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "จำศีล (เก็บสถานะไว้ในดิสก์)"
+
+#, fuzzy
+#~| msgid "Show lock button"
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "แสดงปุ่มล็อค"
+
+#, fuzzy
+#~| msgid "Show logout button"
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "แสดงปุ่มออกจากระบ"
+
+#, fuzzy
+#~| msgid "Switch user"
+#~ msgid "Switch User"
+#~ msgstr "สลับผู้ใช้งาน"
 
 #~ msgid "Do you want to suspend to disk (hibernate)?"
 #~ msgstr "คุณต้องการจะปิดพักเครื่องโดยเก็บสถานะไว้ในดิสก์ (สถานะจำศีล) หรือไม่ ?"

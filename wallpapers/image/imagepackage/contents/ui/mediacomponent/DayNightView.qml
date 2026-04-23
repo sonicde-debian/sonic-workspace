@@ -3,6 +3,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls
@@ -14,7 +15,6 @@ StackView {
 
     property var snapshot
     property int fillMode
-    property size sourceSize
 
     property var nextItem: null
     readonly property int status: nextItem ? nextItem.status : Image.Null
@@ -26,15 +26,12 @@ StackView {
     onFillModeChanged: if (complete) {
         reset();
     }
-    onSourceSizeChanged: if (complete) {
-        reset();
-    }
 
     Component {
         id: baseImage
 
         DayNightImage {
-            layer.enabled: replaceEnter.running
+            layer.enabled: root.replaceEnter.running
             StackView.onRemoved: destroy()
         }
     }
@@ -82,7 +79,9 @@ StackView {
             topUrl: snapshot.top,
             blendFactor: snapshot.blendFactor,
             fillMode: fillMode,
-            sourceSize: sourceSize
+            implicitWidth: root.width,
+            implicitHeight: root.height,
+            visible: false,
         });
         if (!nextItem) {
             console.warn("Failed to instantiate DayNightImage:", baseImage.errorString());

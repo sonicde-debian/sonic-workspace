@@ -12,9 +12,7 @@ AbstractModel::AbstractModel(QObject *parent)
 {
 }
 
-AbstractModel::~AbstractModel()
-{
-}
+AbstractModel::~AbstractModel() = default;
 
 QHash<int, QByteArray> AbstractModel::staticRoleNames()
 {
@@ -93,7 +91,7 @@ bool AbstractModel::hasActions() const
 
 QVariantList AbstractModel::actions() const
 {
-    return QVariantList();
+    return {};
 }
 
 AbstractModel *AbstractModel::favoritesModel()

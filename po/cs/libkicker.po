@@ -1,166 +1,166 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2024 Vít Pelčák <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2024, 2026 Vít Pelčák <vit@pelcak.org>
 # Vit Pelcak <vit@pelcak.org>, 2015, 2019, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-05 02:34+0000\n"
-"PO-Revision-Date: 2024-09-19 08:01+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2026-03-13 14:16+0100\n"
+"Last-Translator:  Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 "X-Language: cs_CZ\n"
 "X-Source-Language: en_US\n"
 
-#: actionlist.cpp:91
+#: actionlist.cpp:93
 #, kde-format
 msgid "Open with:"
 msgstr "Otevřít pomocí:"
 
-#: actionlist.cpp:104
+#: actionlist.cpp:106
 #, kde-format
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: actionlist.cpp:151
+#: actionlist.cpp:153
 #, kde-format
 msgid "Add to Desktop"
 msgstr "Přidat na plochu"
 
-#: actionlist.cpp:158
+#: actionlist.cpp:160
 #, kde-format
 msgid "Pin to Task Manager"
 msgstr "Připnout do Správce úloh"
 
-#: actionlist.cpp:162
+#: actionlist.cpp:164
 #, kde-format
 msgid "Add to Panel (Widget)"
 msgstr "Přidat do panelu (Widget)"
 
-#: actionlist.cpp:313 rootmodel.cpp:540
+#: actionlist.cpp:316 rootmodel.cpp:538
 #, kde-format
 msgid "Recent Files"
 msgstr "Nedávné soubory"
 
-#: actionlist.cpp:323
+#: actionlist.cpp:326
 #, kde-format
 msgid "Forget Recent Files"
 msgstr "Zapomenout nedávné soubory"
 
-#: actionlist.cpp:388
+#: actionlist.cpp:393
 #, kde-format
 msgid "Edit Application…"
 msgstr "Upravit aplikaci…"
 
-#: actionlist.cpp:420
+#: actionlist.cpp:425
 #, kde-format
 msgctxt "@action opens a software center with the application"
 msgid "Uninstall or Manage Add-Ons…"
 msgstr "Odinstalujte nebo spravujte doplňky…"
 
-#: appentry.cpp:360
+#: appentry.cpp:361
 #, kde-format
 msgid "Hide Application"
 msgstr "Skrýt aplikaci"
 
-#: appentry.cpp:422
+#: appentry.cpp:423
 #, kde-format
 msgctxt "App name (Comment or Generic name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appentry.cpp:424
+#: appentry.cpp:425
 #, kde-format
 msgctxt "Generic name (App name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:97 computermodel.cpp:225
-#: recentusagemodel.cpp:165 recentusagemodel.cpp:228
+#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:219
+#: recentusagemodel.cpp:156 recentusagemodel.cpp:225
 #, kde-format
 msgid "Applications"
 msgstr "Aplikace"
 
-#: appsmodel.cpp:169
+#: appsmodel.cpp:171
 #, kde-format
 msgid "Unhide Applications in this Submenu"
 msgstr "Zobrazit skryté aplikace v této podnabídce"
 
-#: appsmodel.cpp:178
+#: appsmodel.cpp:180
 #, kde-format
 msgid "Unhide Applications in '%1'"
 msgstr "Zobrazit skryté aplikace v '%1'"
 
-#: computermodel.cpp:91
+#: computermodel.cpp:87
 #, kde-format
 msgid "Show KRunner"
 msgstr "Zobrazit KRunner"
 
-#: computermodel.cpp:95
+#: computermodel.cpp:91
 #, kde-format
 msgid "Search, calculate, or run a command"
 msgstr "Hledejte, počítejte nebo spusťte příkaz"
 
-#: computermodel.cpp:148
+#: computermodel.cpp:142
 #, kde-format
 msgid "Computer"
 msgstr "Počítač"
 
 #. i18n.
-#: kastatsfavoritesmodel.cpp:557 rootmodel.cpp:533 simplefavoritesmodel.cpp:33
+#: kastatsfavoritesmodel.cpp:548 rootmodel.cpp:531 simplefavoritesmodel.cpp:33
 #, kde-format
 msgid "Favorites"
 msgstr "Oblíbené"
 
-#: recentusagemodel.cpp:163
+#: recentusagemodel.cpp:154
 #, kde-format
 msgid "Recently Used"
 msgstr "Nedávno použité"
 
-#: recentusagemodel.cpp:168 recentusagemodel.cpp:321
+#: recentusagemodel.cpp:159 recentusagemodel.cpp:318
 #, kde-format
 msgid "Files"
 msgstr "Soubory"
 
-#: recentusagemodel.cpp:254
+#: recentusagemodel.cpp:251
 #, kde-format
 msgid "Forget Application"
 msgstr "Zapomenout aplikaci"
 
-#: recentusagemodel.cpp:319
+#: recentusagemodel.cpp:316
 #, kde-format
 msgid "Folders"
 msgstr "Složky"
 
-#: recentusagemodel.cpp:360
+#: recentusagemodel.cpp:357
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "Otevřít odpovídající složku"
 
-#: recentusagemodel.cpp:363
+#: recentusagemodel.cpp:360
 #, kde-format
 msgid "Forget File"
 msgstr "Zapomenout soubor"
 
-#: recentusagemodel.cpp:498
+#: recentusagemodel.cpp:504
 #, kde-format
 msgid "Forget All"
 msgstr "Zapomenout všechny"
 
-#: recentusagemodel.cpp:500
+#: recentusagemodel.cpp:506
 #, kde-format
 msgid "Forget All Applications"
 msgstr "Zapomenout všechny aplikace"
 
-#: recentusagemodel.cpp:503
+#: recentusagemodel.cpp:509
 #, kde-format
 msgid "Forget All Files"
 msgstr "Zapomenout všechny soubory"
@@ -170,123 +170,123 @@ msgstr "Zapomenout všechny soubory"
 msgid "All Applications"
 msgstr "Všechny aplikace"
 
-#: rootmodel.cpp:133
+#: rootmodel.cpp:131
 #, kde-format
 msgid "Hide %1"
 msgstr "Skrýt %1"
 
-#: rootmodel.cpp:527
+#: rootmodel.cpp:525
 #, kde-format
 msgid "This shouldn't be visible! Use KICKER_FAVORITES_MODEL"
-msgstr ""
+msgstr "Toto by nemělo být viditelné! Použijte KICKER_FAVORITES_MODEL"
 
-#: rootmodel.cpp:540
+#: rootmodel.cpp:538
 #, kde-format
 msgid "Often Used Files"
 msgstr "Často používané soubory"
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Recent Applications"
 msgstr "Nedávné aplikace"
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Often Used Applications"
 msgstr "Často používané aplikace"
 
-#: rootmodel.cpp:564
+#: rootmodel.cpp:562
 #, kde-format
 msgid "Power / Session"
 msgstr "Napájení / sezení"
 
-#: runnermodel.cpp:222
+#: runnermodel.cpp:226
 #, kde-format
 msgid "Search results"
 msgstr "Výsledky hledání"
 
-#: systementry.cpp:194
+#: systementry.cpp:193
 #, kde-format
 msgid "Lock"
 msgstr "Uzamknout"
 
-#: systementry.cpp:197
+#: systementry.cpp:196
 #, kde-format
 msgid "Log Out"
 msgstr "Odhlásit se"
 
-#: systementry.cpp:200 systementry.cpp:254
+#: systementry.cpp:199 systementry.cpp:253
 #, kde-format
 msgid "Save Session"
 msgstr "Uložit sezení"
 
-#: systementry.cpp:203
+#: systementry.cpp:202
 #, kde-format
 msgid "Switch User"
 msgstr "Přepnout uživatele"
 
-#: systementry.cpp:206
+#: systementry.cpp:205
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Sleep"
 msgstr "Uspat"
 
-#: systementry.cpp:209
+#: systementry.cpp:208
 #, kde-format
 msgid "Hibernate"
 msgstr "Hibernovat"
 
-#: systementry.cpp:212
+#: systementry.cpp:211
 #, kde-format
 msgid "Restart"
 msgstr "Restartovat"
 
-#: systementry.cpp:215
+#: systementry.cpp:214
 #, kde-format
 msgid "Shut Down"
 msgstr "Vypnout"
 
-#: systementry.cpp:231
+#: systementry.cpp:230
 #, kde-format
 msgid "Session"
 msgstr "Sezení"
 
-#: systementry.cpp:236
+#: systementry.cpp:235
 #, kde-format
 msgid "System"
 msgstr "Systém"
 
-#: systementry.cpp:248
+#: systementry.cpp:247
 #, kde-format
 msgid "Lock screen"
 msgstr "Zamknout obrazovku"
 
-#: systementry.cpp:251
+#: systementry.cpp:250
 #, kde-format
 msgid "End session"
 msgstr "Ukončit sezení"
 
-#: systementry.cpp:257
+#: systementry.cpp:256
 #, kde-format
 msgid "Start a parallel session as a different user"
 msgstr "Spustit souběžné sezení jako jiný uživatel"
 
-#: systementry.cpp:260
+#: systementry.cpp:259
 #, kde-format
 msgid "Suspend to RAM"
 msgstr "Uspat do paměti"
 
-#: systementry.cpp:263
+#: systementry.cpp:262
 #, kde-format
 msgid "Suspend to disk"
 msgstr "Uspat na disk"
 
-#: systementry.cpp:266
+#: systementry.cpp:265
 #, kde-format
 msgid "Restart computer"
 msgstr "Restartovat počítač"
 
-#: systementry.cpp:269
+#: systementry.cpp:268
 #, kde-format
 msgid "Turn off computer"
 msgstr "Vypnout počítač"

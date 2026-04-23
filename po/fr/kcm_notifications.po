@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020, 2021, 2023, 2024, 2025 Xavier Besnard <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2020, 2021, 2023, 2024, 2025, 2026 Xavier Besnard <xavier.besnard@kde.org>
 # Yoann Laissus <yoann.laissus@gmail.com>, 2019.
 # Simon Depiets <sdepiets@gmail.com>, 2019, 2020.
 # Xavier Besnard <xavier.besnard@kde.org>, 2022.
@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-30 15:05+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-14 08:14+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: French <French <kde-francophone@kde.org>>\n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Accelerator-Marker: &\n"
 "X-Environment: kde\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.12.1\n"
 "X-Text-Markup: kde4\n"
 
 #: kcm.cpp:62
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Basculer « Ne pas déranger »"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Autres applications"
@@ -95,14 +95,14 @@ msgstr "Sélectionner un fichier de son"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Notifications du système"
+msgid "Configure for System…"
+msgstr "Configurer pour le système..."
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Configuration des applications"
+msgid "Configure for Applications…"
+msgstr "Configurer pour les applications..."
 
 #: ui/main.qml:96
 #, kde-format
@@ -157,7 +157,7 @@ msgctxt ""
 "Automatically enable Do Not Disturb mode while a fullscreen application is "
 "focused"
 msgid "While a fullscreen application is focused"
-msgstr "Lorsque qu’une application en mode « Plein écran » possède le focus"
+msgstr "Lorsque qu'une application en mode « Plein écran » possède le focus"
 
 #: ui/main.qml:170
 #, kde-format
@@ -212,8 +212,8 @@ msgstr "A côté de l'icône de notification"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Personnaliser..."
+msgid "Choose…"
+msgstr "Sélectionner…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -230,33 +230,40 @@ msgstr "Cacher après :"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Afficher l'indicateur de dépassement de durée"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Retour additionnel d'utilisation"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Afficher dans les notifications"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Progression d'une tâche dans une application :"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Conserver les infobulles ouvertes pendant la progression"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Badges de notifications :"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Afficher dans le gestionnaire des tâches"
@@ -268,8 +275,10 @@ msgstr "Position des infobulles"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Configuration des applications"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Notifications des applications"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -295,6 +304,18 @@ msgstr ""
 "Sélectionner une application dans la liste pour définir sa configuration "
 "pour ses notifications et son comportement"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Notifications du système"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Configuration des applications"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Personnaliser..."
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Notifications normales :"
 
@@ -308,16 +329,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Configuration des applications..."
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Configuration des paramètres de l'application..."
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Configuration spécifique à une application"
-
-#~ msgid "Configure…"
-#~ msgstr "Configurer..."
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

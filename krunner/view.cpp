@@ -25,7 +25,7 @@
 #include <KWindowSystem>
 #include <KX11Extras>
 
-#include <LayerShellQt/Window>
+#include <algorithm>
 #include <qnamespace.h>
 
 #include "appadaptor.h"
@@ -39,11 +39,8 @@ View::View(PlasmaQuick::SharedQmlEngine *engine, QWindow *)
     , m_floating(false)
 {
     KCrash::initialize();
-    qmlRegisterUncreatableType<View>("org.kde.krunner.private.view", 1, 0, "HistoryBehavior", u"Only for enums"_s);
 
-    if (KWindowSystem::isPlatformX11()) {
-        m_x11Positioner = new X11WindowScreenRelativePositioner(this);
-    }
+    m_x11Positioner = new X11WindowScreenRelativePositioner(this);
 
     // used only by screen readers
     setTitle(i18n("KRunner"));
@@ -71,9 +68,10 @@ View::View(PlasmaQuick::SharedQmlEngine *engine, QWindow *)
     QDBusConnection::sessionBus().registerObject(u"/App"_s, this);
 
     connect(m_engine, &PlasmaQuick::SharedQmlEngine::finished, this, &View::objectIncubated);
-    m_engine->engine()->rootContext()->setContextProperty(u"runnerWindow"_s, this);
-    m_engine->setSource(QUrl(u"qrc:/krunner/RunCommand.qml"_s));
-    m_engine->completeInitialization();
+    m_engine->setSourceFromModule("org.kde.krunner.private.view", "RunCommand");
+    m_engine->completeInitialization({
+        {u"runnerWindow"_s, QVariant::fromValue(this)},
+    });
 
     auto screenRemoved = [this](QScreen *screen) {
         if (screen == this->screen()) {
@@ -86,9 +84,7 @@ View::View(PlasmaQuick::SharedQmlEngine *engine, QWindow *)
     connect(qGuiApp, &QGuiApplication::focusWindowChanged, this, &View::slotFocusWindowChanged);
 }
 
-View::~View()
-{
-}
+View::~View() = default;
 
 QMargins View::margins()
 {
@@ -96,7 +92,7 @@ QMargins View::margins()
         const QRect r = screen()->availableGeometry();
         return QMargins({0, r.height() / 3, 0, 0});
     } else {
-        return QMargins(); // Zeros
+        return {}; // Zeros
     }
 }
 
@@ -154,47 +150,25 @@ void View::loadConfig()
 
 void View::showEvent(QShowEvent *event)
 {
-    if (KWindowSystem::isPlatformX11()) {
-        KX11Extras::setOnAllDesktops(winId(), true);
-    }
+    KX11Extras::setOnAllDesktops(winId(), true);
     QQuickWindow::showEvent(event);
     requestActivate();
-    if (KWindowSystem::isPlatformX11()) {
-        KX11Extras::forceActiveWindow(winId());
-    }
+    KX11Extras::forceActiveWindow(winId());
 }
 
 void View::positionOnScreen()
 {
     const auto screens = QGuiApplication::screens();
     auto screenIt = screens.cend();
-    if (KWindowSystem::isPlatformWayland() && m_floating) {
-        auto message = QDBusMessage::createMethodCall(u"org.kde.KWin"_s, u"/KWin"_s, u"org.kde.KWin"_s, u"activeOutputName"_s);
-        QDBusReply<QString> reply = QDBusConnection::sessionBus().call(message);
-        if (reply.isValid()) {
-            const QString activeOutputName = reply.value();
-            screenIt = std::find_if(screens.cbegin(), screens.cend(), [&activeOutputName](QScreen *screen) {
-                return screen->name() == activeOutputName;
-            });
-        }
-    } else if (KWindowSystem::isPlatformX11()) {
-        screenIt = std::find_if(screens.cbegin(), screens.cend(), [](QScreen *screen) {
-            return screen->geometry().contains(QCursor::pos(screen));
-        });
-    }
+
+    screenIt = std::ranges::find_if(screens, [](QScreen *screen) {
+        return screen->geometry().contains(QCursor::pos(screen));
+    });
 
     QScreen *const shownOnScreen = screenIt != screens.cend() ? *screenIt : QGuiApplication::primaryScreen();
     setScreen(shownOnScreen);
 
-    if (KWindowSystem::isPlatformWayland()) {
-        auto layerWindow = LayerShellQt::Window::get(this);
-        layerWindow->setAnchors(LayerShellQt::Window::AnchorTop);
-        layerWindow->setLayer(LayerShellQt::Window::LayerTop);
-        layerWindow->setScope(u"krunner"_s);
-        layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-        layerWindow->setMargins(margins());
-        layerWindow->setScreenConfiguration(m_floating ? LayerShellQt::Window::ScreenFromQWindow : LayerShellQt::Window::ScreenFromCompositor);
-    } else if (KWindowSystem::isPlatformX11()) {
+    {
         m_x11Positioner->setAnchors(Qt::TopEdge);
         m_x11Positioner->setMargins(margins());
         if (m_floating) {
@@ -208,7 +182,7 @@ void View::positionOnScreen()
 
 void View::toggleDisplay()
 {
-    if (isVisible() && !QGuiApplication::focusWindow() && KWindowSystem::isPlatformX11()) {
+    if (isVisible() && !QGuiApplication::focusWindow()) {
         KX11Extras::forceActiveWindow(winId());
         return;
     }

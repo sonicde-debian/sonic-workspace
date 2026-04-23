@@ -23,14 +23,13 @@ public:
     ~SplashApp() override;
 
 public Q_SLOTS:
-    Q_SCRIPTABLE void setStage(const QString &messgae);
+    Q_SCRIPTABLE void setStage(const QString &message);
 
 protected:
     void timerEvent(QTimerEvent *event) override;
     void setStage(int stage);
 
 private:
-    void setupWaylandIntegration();
     int m_stage;
     QList<SplashWindow *> m_windows;
     bool m_testing;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_devicenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2025-09-17 13:02+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -21,44 +21,38 @@ msgstr ""
 "\n"
 "X-Generator: Lokalize 25.04.3\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "Leita að villum"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Tengja án staðfestingar"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Tengja í skráakerfið"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Opna í skráastjóra"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Reyna að lagfæra"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Tengja og opna"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Henda út"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Fjarlæga á öruggan máta"
@@ -166,7 +160,7 @@ msgstr "Gat ekki fjarlægt þetta tæki."
 msgid "Could not repair this device: %1"
 msgstr "Gat ekki lagfært þetta tæki: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -174,7 +168,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Athuga..."
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -182,13 +176,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Lagfæri..."
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 laust af %2"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -196,7 +190,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Fæ aðgang…"
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -204,27 +198,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Fjarlægi..."
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "Ekki taka strax úr sambandi! Það er enn verið að flytja skrár..."
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Fjarlægja allt"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Smelltu til að fjarlæga öll tæki á öruggan máta"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Engin útskiptanleg tæki tengd"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Engir diskar tiltækir"
@@ -239,31 +233,35 @@ msgstr "Nýlegasta tæki"
 msgid "No Devices Available"
 msgstr "Engin tæki tiltæk"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Grunnstilla útskiptanleg tæki…"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Útskiptanleg tæki"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Óútskiptanleg tæki"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Öll tæki"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Birta sprettiglugga þegar ný tæki eru tengd"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Tengja án staðfestingar"
 
 #~ msgid "Filesystem is not responding"
 #~ msgstr "Skráakerfi svarar ekki"

@@ -11,30 +11,15 @@
 #include "klipper.h"
 
 #include "klipper_debug.h"
-#include <QApplication>
-#include <QBoxLayout>
 #include <QDBusConnection>
-#include <QDialog>
-#include <QDir>
-#include <QLabel>
 #include <QMenu>
-#include <QMessageBox>
 #include <QMimeData>
-#include <QPushButton>
-#include <QResizeEvent>
 
-#include <KAboutData>
 #include <KActionCollection>
 #include <KGlobalAccel>
-#include <KHelpMenu>
 #include <KLocalizedString>
-#include <KMessageBox>
 #include <KNotification>
 #include <KToggleAction>
-#include <KWayland/Client/connection_thread.h>
-#include <KWayland/Client/plasmashell.h>
-#include <KWayland/Client/registry.h>
-#include <KWayland/Client/surface.h>
 #include <KWindowSystem>
 
 #include "configdialog.h"
@@ -45,14 +30,9 @@
 #include "klippersettings.h"
 #include "systemclipboard.h"
 
-#include <Prison/Barcode>
-
 #include <config-X11.h>
-#include <wayland-client-core.h>
-#if HAVE_X11
 #include <xcb/xcb.h>
 #include <xcb/xcb_aux.h>
-#endif
 
 std::shared_ptr<Klipper> Klipper::self()
 {
@@ -71,7 +51,6 @@ Klipper::Klipper(QObject *parent)
     , m_clip(SystemClipboard::self())
     , m_historyCycler(new HistoryCycler(this))
     , m_quitAction(nullptr)
-    , m_plasmashell(nullptr)
 {
     QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.klipper"));
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/klipper"),
@@ -128,9 +107,7 @@ Klipper::Klipper(QObject *parent)
     m_showBarcodeAction->setText(i18nc("@action:inmenu", "&Show Barcode…"));
     m_showBarcodeAction->setIcon(QIcon::fromTheme(QStringLiteral("view-barcode-qr")));
     KGlobalAccel::setGlobalShortcut(m_showBarcodeAction, QKeySequence());
-    connect(m_showBarcodeAction, &QAction::triggered, this, [this]() {
-        showBarcode(m_historyModel->first());
-    });
+    connect(m_showBarcodeAction, &QAction::triggered, m_popup.get(), &KlipperPopup::showCurrentBarcode);
 
     // Cycle through history
     m_cycleNextAction = m_collection->addAction(QStringLiteral("cycleNextAction"));
@@ -161,22 +138,6 @@ Klipper::Klipper(QObject *parent)
             m_notification->setHint(QStringLiteral("desktop-entry"), QStringLiteral("org.kde.klipper"));
         }
     });
-
-    if (KWindowSystem::isPlatformWayland()) {
-        auto registry = new KWayland::Client::Registry(this);
-        auto connection = KWayland::Client::ConnectionThread::fromApplication(qGuiApp);
-        connect(registry, &KWayland::Client::Registry::plasmaShellAnnounced, this, [registry, this](quint32 name, quint32 version) {
-            if (!m_plasmashell) {
-                m_plasmashell = registry->createPlasmaShell(name, version);
-                m_popup->setPlasmaShell(m_plasmashell);
-            }
-        });
-        connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, registry, [registry] {
-            delete registry; // Avoid freeing resource when gui is deleted
-        });
-        registry->create(connection);
-        registry->setup();
-    }
 }
 
 Klipper::~Klipper()
@@ -271,14 +232,8 @@ void Klipper::saveSettings() const
 void Klipper::showPopupMenu(QMenu *menu)
 {
     Q_ASSERT(menu != nullptr);
-    if (m_plasmashell) {
-        menu->hide();
-    }
     menu->popup(QCursor::pos());
     QWindow *menuWindow = menu->windowHandle();
-    if (m_plasmashell) {
-        menuWindow->installEventFilter(this);
-    }
     if (!menu->windowFlags().testFlag(Qt::Popup)) {
         connect(menuWindow, &QWindow::activeChanged, menu, [menu] {
             if (!menu->windowHandle()->isActive()) {
@@ -293,12 +248,6 @@ bool Klipper::eventFilter(QObject *filtered, QEvent *event)
     const bool ret = QObject::eventFilter(filtered, event);
     auto menuWindow = qobject_cast<QWindow *>(filtered);
     if (menuWindow && event->type() == QEvent::Expose && menuWindow->isVisible()) {
-        auto surface = KWayland::Client::Surface::fromWindow(menuWindow);
-        auto plasmaSurface = m_plasmashell->createSurface(surface, menuWindow);
-        plasmaSurface->openUnderCursor();
-        plasmaSurface->setSkipTaskbar(true);
-        plasmaSurface->setSkipSwitcher(true);
-        plasmaSurface->setRole(KWayland::Client::PlasmaShellSurface::Role::AppletPopup);
         menuWindow->removeEventFilter(this);
     }
     return ret;
@@ -317,7 +266,7 @@ void Klipper::slotConfigure()
         return;
     }
 
-    ConfigDialog *dlg = new ConfigDialog(nullptr, KlipperSettings::self(), this, m_collection);
+    auto *dlg = new ConfigDialog(nullptr, KlipperSettings::self(), this, m_collection);
     QMetaObject::invokeMethod(dlg, "setHelp", Qt::DirectConnection, Q_ARG(QString, QString::fromLatin1("preferences")));
     // This is necessary to ensure that the dialog is recreated
     // and therefore the controls are initialised from the current
@@ -402,74 +351,9 @@ QString Klipper::getClipboardHistoryItem(int i)
 
 void Klipper::updateTimestamp()
 {
-#if HAVE_X11
     if (auto interface = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
         xcb_aux_sync(interface->connection());
     }
-#endif
-}
-
-class BarcodeLabel : public QLabel
-{
-public:
-    BarcodeLabel(Prison::Barcode &&barcode, QWidget *parent = nullptr)
-        : QLabel(parent)
-        , m_barcode(std::move(barcode))
-    {
-        setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-        setPixmap(QPixmap::fromImage(m_barcode.toImage(size())));
-    }
-
-protected:
-    void resizeEvent(QResizeEvent *event) override
-    {
-        QLabel::resizeEvent(event);
-        setPixmap(QPixmap::fromImage(m_barcode.toImage(event->size())));
-    }
-
-private:
-    Prison::Barcode m_barcode;
-};
-
-void Klipper::showBarcode(std::shared_ptr<const HistoryItem> item)
-{
-    QPointer<QDialog> dlg(new QDialog());
-    dlg->setWindowTitle(i18n("Mobile Barcode"));
-    QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok, dlg);
-    buttons->button(QDialogButtonBox::Ok)->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttons, &QDialogButtonBox::accepted, dlg.data(), &QDialog::accept);
-    connect(dlg.data(), &QDialog::finished, dlg.data(), &QDialog::deleteLater);
-
-    QWidget *mw = new QWidget(dlg);
-    QHBoxLayout *layout = new QHBoxLayout(mw);
-
-    {
-        auto qrCode = Prison::Barcode::create(Prison::QRCode);
-        if (qrCode) {
-            if (item) {
-                qrCode->setData(item->text());
-            }
-            BarcodeLabel *qrCodeLabel = new BarcodeLabel(std::move(*qrCode), mw);
-            layout->addWidget(qrCodeLabel);
-        }
-    }
-    {
-        auto dataMatrix = Prison::Barcode::create(Prison::DataMatrix);
-        if (dataMatrix) {
-            if (item) {
-                dataMatrix->setData(item->text());
-            }
-            BarcodeLabel *dataMatrixLabel = new BarcodeLabel(std::move(*dataMatrix), mw);
-            layout->addWidget(dataMatrixLabel);
-        }
-    }
-
-    mw->setFocus();
-    QVBoxLayout *vBox = new QVBoxLayout(dlg);
-    vBox->addWidget(mw);
-    vBox->addWidget(buttons);
-    dlg->adjustSize();
-    dlg->open();
 }
 
 void Klipper::slotCycleNext()

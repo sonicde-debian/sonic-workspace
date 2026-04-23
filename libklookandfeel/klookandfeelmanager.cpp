@@ -25,9 +25,9 @@
 #include <QGuiApplication>
 #include <QStyle>
 #include <QStyleFactory>
+#include <algorithm>
 
 #include "config-X11.h"
-#if HAVE_X11
 #include <X11/Xlib.h>
 #include <private/qtx11extras_p.h>
 
@@ -41,7 +41,6 @@
 #endif
 
 #include <fixx11h.h>
-#endif
 
 using namespace Qt::StringLiterals;
 
@@ -63,7 +62,7 @@ QString configValue(KSharedConfigPtr config, const QString &groupPath, const QSt
 
 bool configProvides(KSharedConfigPtr config, const QString &groupPath, const QStringList &entries)
 {
-    return std::any_of(entries.cbegin(), entries.cend(), [config, groupPath](const QString &entry) {
+    return std::ranges::any_of(entries, [config, groupPath](const QString &entry) {
         return !configValue(config, groupPath, entry).isEmpty();
     });
 }
@@ -73,7 +72,7 @@ bool configProvides(KSharedConfigPtr config, const QString &groupPath, const QSt
     return !configValue(config, groupPath, entry).isEmpty();
 }
 
-} // Anonymouse namespace
+} // Anonymous namespace
 
 KLookAndFeelManager::KLookAndFeelManager(QObject *parent)
     : QObject(parent)
@@ -90,7 +89,7 @@ KLookAndFeelManager::KLookAndFeelManager(QObject *parent)
     QDBusPendingCall async = QDBusConnection::sessionBus().asyncCall(message);
 
     // Create watcher for the pending call
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
+    auto *watcher = new QDBusPendingCallWatcher(async, this);
 
     // Connect watcher finished signal to our slot
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher *call) {
@@ -171,7 +170,7 @@ void KLookAndFeelManager::setSplashScreen(const QString &theme)
     KConfig configDefault(configDefaults(QStringLiteral("ksplashrc")));
     KConfigGroup defaultGroup(&configDefault, QStringLiteral("KSplash"));
     writeNewDefaults(group, defaultGroup, QStringLiteral("Theme"), theme);
-    // TODO: a way to set none as spash in the l&f
+    // TODO: a way to set none as splash in the l&f
     writeNewDefaults(group, defaultGroup, QStringLiteral("Engine"), QStringLiteral("KSplashQML"));
 }
 
@@ -474,7 +473,7 @@ QString KLookAndFeelManager::colorSchemeFile(const QString &schemeName) const
             }
         }
     }
-    return QString();
+    return {};
 }
 
 void KLookAndFeelManager::save(const KPackage::Package &package, Contents applyMask)

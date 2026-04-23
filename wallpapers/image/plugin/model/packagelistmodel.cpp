@@ -12,17 +12,18 @@
 #include <QPalette>
 #include <QPixmap>
 #include <QStandardPaths>
-#include <QThreadPool>
 #include <QUrlQuery>
+#include <QtConcurrent>
 
 #include <KAboutData>
 #include <KPackage/PackageLoader>
+#include <algorithm>
 
 #include "../finder/packagefinder.h"
 #include "../finder/suffixcheck.h"
 
-PackageListModel::PackageListModel(const QBindable<QSize> &bindableTargetSize, const QBindable<bool> &bindableUsedInConfig, QObject *parent)
-    : AbstractImageListModel(bindableTargetSize, bindableUsedInConfig, parent)
+PackageListModel::PackageListModel(const QBindable<bool> &bindableUsedInConfig, QObject *parent)
+    : AbstractImageListModel(bindableUsedInConfig, parent)
 {
     qRegisterMetaType<QList<KPackage::Package>>();
 }
@@ -35,7 +36,7 @@ int PackageListModel::rowCount(const QModelIndex &parent) const
 QVariant PackageListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     const WallpaperPackage &b = m_packages.at(index.row());
@@ -46,7 +47,7 @@ QVariant PackageListModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Qt::DisplayRole:
-        return b.displayName();
+        return b.package().metadata().name();
 
     case PreviewRole: {
         QString previewUri;
@@ -63,19 +64,8 @@ QVariant PackageListModel::data(const QModelIndex &index, int role) const
         return QString();
     }
 
-    case PathRole: {
-        if (qGray(qGuiApp->palette().window().color().rgb()) < 192) {
-            const QString darkPath = b.package().filePath(QByteArrayLiteral("preferredDark"));
-            if (!darkPath.isEmpty()) {
-                return QUrl::fromLocalFile(darkPath);
-            }
-        }
-
-        return QUrl::fromLocalFile(b.package().filePath("preferred"));
-    }
-
-    case PackageNameRole:
-        return b.package().path();
+    case SourceRole:
+        return QUrl::fromLocalFile(b.package().path());
 
     case RemovableRole: {
         const QString path = b.package().path();
@@ -110,6 +100,25 @@ bool PackageListModel::setData(const QModelIndex &index, const QVariant &value, 
     return false;
 }
 
+QUrl PackageListModel::effectiveSource(const QModelIndex &index, const QSize &targetSize) const
+{
+    if (!index.isValid()) {
+        return {};
+    }
+
+    KPackage::Package package = m_packages.at(index.row()).package();
+    WallpaperPackage::findPreferredImageInPackage(package, targetSize);
+
+    if (qGray(qGuiApp->palette().window().color().rgb()) < 192) {
+        const QString darkPath = package.filePath(QByteArrayLiteral("preferredDark"));
+        if (!darkPath.isEmpty()) {
+            return QUrl::fromLocalFile(darkPath);
+        }
+    }
+
+    return QUrl::fromLocalFile(package.filePath("preferred"));
+}
+
 static QString normalizeDirName(const QString &filePath)
 {
     return filePath.endsWith(QDir::separator()) ? filePath : filePath + QDir::separator();
@@ -118,7 +127,7 @@ static QString normalizeDirName(const QString &filePath)
 int PackageListModel::indexOf(const QUrl &url) const
 {
     const QString path = normalizeDirName(url.toLocalFile());
-    const auto it = std::find_if(m_packages.cbegin(), m_packages.cend(), [&path](const WallpaperPackage &p) {
+    const auto it = std::ranges::find_if(m_packages, [&path](const WallpaperPackage &p) {
         return path == p.package().path();
     });
 
@@ -137,9 +146,14 @@ void PackageListModel::load(const QStringList &customPaths)
 
     AbstractImageListModel::load(customPaths);
 
-    PackageFinder *finder = new PackageFinder(m_customPaths, m_targetSize);
-    connect(finder, &PackageFinder::packageFound, this, &PackageListModel::slotHandlePackageFound);
-    QThreadPool::globalInstance()->start(finder);
+    QtConcurrent::run(WallpaperPackage::findAll, m_customPaths).then(this, [this](const QList<WallpaperPackage> &packages) {
+        beginResetModel();
+        m_packages = packages;
+        endResetModel();
+
+        m_loading = false;
+        Q_EMIT loaded(this);
+    });
 }
 
 QStringList PackageListModel::addBackground(const QUrl &url)
@@ -148,30 +162,18 @@ QStringList PackageListModel::addBackground(const QUrl &url)
         return {};
     }
 
-    KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Wallpaper/Images"));
-    package.setPath(url.toLocalFile());
-
-    if (!package.isValid() || !package.metadata().isValid()) {
+    const auto wallpaper = WallpaperPackage::from(url.toLocalFile());
+    if (!wallpaper) {
         return {};
     }
 
-    // Check if there are any available images.
-    QDir imageDir(package.filePath("images"));
-    imageDir.setFilter(QDir::Files | QDir::Readable);
-    imageDir.setNameFilters(suffixes());
-
-    if (imageDir.entryInfoList().empty()) {
-        // This is an empty package. Skip it.
-        return {};
-    }
-
-    PackageFinder::findPreferredImageInPackage(package, m_targetSize);
+    const QString packageFilePath = wallpaper->package().path();
 
     if (m_usedInConfig) {
         beginInsertRows(QModelIndex(), 0, 0);
 
-        m_removableWallpapers.prepend(package.path());
-        m_packages.prepend(package);
+        m_removableWallpapers.prepend(packageFilePath);
+        m_packages.prepend(*wallpaper);
 
         endInsertRows();
     } else {
@@ -179,13 +181,13 @@ QStringList PackageListModel::addBackground(const QUrl &url)
         const int count = rowCount();
         beginInsertRows(QModelIndex(), count, count);
 
-        m_removableWallpapers.append(package.path());
-        m_packages.append(package);
+        m_removableWallpapers.append(packageFilePath);
+        m_packages.append(*wallpaper);
 
         endInsertRows();
     }
 
-    return {package.path()};
+    return {packageFilePath};
 }
 
 QStringList PackageListModel::removeBackground(const QUrl &url)
@@ -220,16 +222,4 @@ QStringList PackageListModel::removeBackground(const QUrl &url)
     endRemoveRows();
 
     return results;
-}
-
-void PackageListModel::slotHandlePackageFound(const QList<WallpaperPackage> &packages)
-{
-    beginResetModel();
-
-    m_packages = packages;
-
-    endResetModel();
-
-    m_loading = false;
-    Q_EMIT loaded(this);
 }

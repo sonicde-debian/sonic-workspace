@@ -20,10 +20,9 @@
 #define CHECK_SCREEN_INVARIANTS
 #endif
 
-#if HAVE_X11
 #include <X11/Xlib.h>
-#endif
 
+#include <algorithm>
 #include <chrono>
 
 using namespace std::chrono_literals;
@@ -60,9 +59,7 @@ ScreenPool::ScreenPool(QObject *parent)
     reconsiderOutputOrder();
 }
 
-ScreenPool::~ScreenPool()
-{
-}
+ScreenPool::~ScreenPool() = default;
 
 int ScreenPool::idForName(const QString &connector) const
 {
@@ -120,7 +117,6 @@ bool ScreenPool::isOutputFake(QScreen *screen) const
     // On X11 the output named :0.0 is fake (the geometry is usually valid and whatever the geometry
     // of the last connected screen was), on wayland the fake output has no name and no geometry
     bool screenHasDefaultName = false;
-#if HAVE_X11
     if (auto interface = qGuiApp->nativeInterface<QNativeInterface::QX11Application>()) {
         static QString defaultName; // QXcbScreen::defaultName
         if (defaultName.isEmpty()) {
@@ -133,7 +129,6 @@ bool ScreenPool::isOutputFake(QScreen *screen) const
         }
         screenHasDefaultName = screen->name() == defaultName;
     }
-#endif
     const bool fake = screenHasDefaultName || screen->geometry().isEmpty() || screen->name().isEmpty();
     // If there is a fake output we can only have one screen left (the fake one)
     //    Q_ASSERT(!fake || fake == (qGuiApp->screens().count() == 1));
@@ -196,7 +191,7 @@ void ScreenPool::insertSortedScreen(QScreen *screen)
         // This should happen only when a fake screen isn't anymore
         return;
     }
-    auto before = std::find_if(m_sizeSortedScreens.begin(), m_sizeSortedScreens.end(), [this, screen](QScreen *otherScreen) {
+    auto before = std::ranges::find_if(m_sizeSortedScreens, [this, screen](QScreen *otherScreen) {
         return (screen->geometry().width() > otherScreen->geometry().width() && screen->geometry().height() > otherScreen->geometry().height())
             || idForName(screen->name()) < idForName(otherScreen->name());
     });
@@ -258,12 +253,6 @@ void ScreenPool::handleScreenRemoved(QScreen *screen)
         m_fakeScreens.remove(screen);
     } else if (isOutputFake(screen)) {
         // Fake but not in m_fakeScreens can only happen on X11, where the last output quietly renames itself to ":0.0" without signals
-#if HAVE_X11
-        Q_ASSERT(KWindowSystem::isPlatformX11());
-#else
-        qCCritical(SCREENPOOL, "Something wrong happened on Wayland.");
-        Q_UNREACHABLE();
-#endif
         Q_ASSERT(!m_redundantScreens.contains(screen));
         Q_ASSERT(!m_fakeScreens.contains(screen));
         m_availableScreens.removeAll(screen);
@@ -379,7 +368,7 @@ void ScreenPool::screenInvariants()
     // Is the primary screen available? TODO: it can be redundant
     // Q_ASSERT(m_availableScreens.contains(primaryScreen()));
 
-    // QScreen bookeeping integrity
+    // QScreen bookkeeping integrity
     auto allScreens = qGuiApp->screens();
     // Do we actually track every screen?
     // (m_availableScreens.count() + m_redundantScreens.count() must be less or equal

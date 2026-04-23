@@ -37,7 +37,7 @@ int StylesModel::rowCount(const QModelIndex &parent) const
 QVariant StylesModel::data(const QModelIndex &index, int role) const
 {
     if (!checkIndex(index)) {
-        return QVariant();
+        return {};
     }
 
     const auto &item = m_data.at(index.row());
@@ -56,7 +56,7 @@ QVariant StylesModel::data(const QModelIndex &index, int role) const
         return !item.configPage.isEmpty();
     }
 
-    return QVariant();
+    return {};
 }
 
 QHash<int, QByteArray> StylesModel::roleNames() const
@@ -91,7 +91,7 @@ void StylesModel::setSelectedStyle(const QString &style)
 
 int StylesModel::indexOfStyle(const QString &style) const
 {
-    auto it = std::find_if(m_data.begin(), m_data.end(), [&style](const StylesModelData &item) {
+    auto it = std::ranges::find_if(m_data, [&style](const StylesModelData &item) {
         return item.styleName == style;
     });
 
@@ -111,7 +111,7 @@ QString StylesModel::styleConfigPage(const QString &style) const
 {
     const int idx = indexOfStyle(style);
     if (idx == -1) {
-        return QString();
+        return {};
     }
 
     return m_data.at(idx).configPage;
@@ -148,7 +148,7 @@ void StylesModel::load()
         }
     }
 
-    std::transform(themeFiles.begin(), themeFiles.end(), themeFiles.begin(), [](const QString &item) {
+    std::ranges::transform(themeFiles, themeFiles.begin(), [](const QString &item) {
         return QStandardPaths::locate(QStandardPaths::GenericDataLocation, item);
     });
 
@@ -191,7 +191,7 @@ void StylesModel::load()
     // Sort case-insensitively
     QCollator collator;
     collator.setCaseSensitivity(Qt::CaseInsensitive);
-    std::sort(m_data.begin(), m_data.end(), [&collator](const StylesModelData &a, const StylesModelData &b) {
+    std::ranges::sort(m_data, [&collator](const StylesModelData &a, const StylesModelData &b) {
         const QString aDisplay = !a.display.isEmpty() ? a.display : a.styleName;
         const QString bDisplay = !b.display.isEmpty() ? b.display : b.styleName;
         return collator.compare(aDisplay, bDisplay) < 0;

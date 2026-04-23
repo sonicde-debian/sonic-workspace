@@ -44,10 +44,6 @@
 #include <PlasmaActivities/Consumer>
 #include <PlasmaActivities/Controller>
 
-#include <KWayland/Client/connection_thread.h>
-#include <KWayland/Client/plasmashell.h>
-#include <KWayland/Client/plasmawindowmanagement.h>
-#include <KWayland/Client/registry.h>
 #include <qassert.h>
 
 #include "alternativeshelper.h"
@@ -68,7 +64,9 @@
 #include "scripting/scriptengine.h"
 #endif
 
+#include <algorithm>
 #include <chrono>
+#include <ranges>
 
 #ifndef NDEBUG
 #define CHECK_SCREEN_INVARIANTS screenInvariants();
@@ -112,43 +110,9 @@ ShellCorona::ShellCorona(QObject *parent)
     , m_strutManager(new StrutManager(this))
     , m_shellContainmentConfig(nullptr)
 {
-    setupWaylandIntegration();
-
     qDBusRegisterMetaType<QColor>();
 
-    KConfigGroup cg(KSharedConfig::openConfig(u"kdeglobals"_s), u"KDE"_s);
-    const QString packageName = cg.readEntry("LookAndFeelPackage", QString());
-    m_lookAndFeelPackage = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"), packageName);
-
-    // Accent color setting
-    KSharedConfigPtr globalConfig = KSharedConfig::openConfig();
-    KConfigGroup accentColorConfigGroup(globalConfig, u"General"_s);
-    m_accentColorFromWallpaperEnabled = accentColorConfigGroup.readEntry("accentColorFromWallpaper", false);
-
-    m_kdeGlobalsConfigWatcher = KConfigWatcher::create(globalConfig);
-    connect(m_kdeGlobalsConfigWatcher.data(), &KConfigWatcher::configChanged, this, [this](const KConfigGroup &group, const QByteArrayList &names) {
-        if (names.contains(QByteArrayLiteral("accentColorFromWallpaper"))) {
-            const bool result = group.readEntry("accentColorFromWallpaper", false);
-            if (m_accentColorFromWallpaperEnabled != result) {
-                m_accentColorFromWallpaperEnabled = result;
-                Q_EMIT accentColorFromWallpaperEnabledChanged();
-            }
-        }
-        if (names.contains(QByteArrayLiteral("LookAndFeelPackage"))) {
-            const QString packageName = group.readEntry("LookAndFeelPackage", QString());
-            KPackage::Package newPack = m_lookAndFeelPackage;
-            newPack.setPath(packageName);
-            if (newPack.isValid()) {
-                m_lookAndFeelPackage.setPath(packageName);
-            }
-        }
-    });
-
-    connect(this, &Corona::containmentAdded, this, [this](Plasma::Containment *cont) {
-        if (cont->containmentType() == Plasma::Containment::Panel || cont->containmentType() == Plasma::Containment::CustomPanel) {
-            connect(cont, &QObject::destroyed, this, &ShellCorona::panelContainmentDestroyed);
-        }
-    });
+    setupLookAndFeel();
 }
 
 void ShellCorona::init()
@@ -160,13 +124,6 @@ void ShellCorona::init()
 #endif
 
     connect(this, &Plasma::Corona::availableScreenRectChanged, this, &Plasma::Corona::availableScreenRegionChanged);
-    connect(this, &Plasma::Corona::editModeChanged, this, [this]() {
-        QMapIterator<const Plasma::Containment *, PanelView *> i(m_panelViews);
-        while (i.hasNext()) {
-            i.next();
-            Q_EMIT availableScreenRectChanged(i.key()->screen());
-        }
-    });
 
     m_appConfigSyncTimer.setSingleShot(true);
     m_appConfigSyncTimer.setInterval(s_configSyncDelay);
@@ -179,7 +136,11 @@ void ShellCorona::init()
     m_waitingPanelsTimer.setInterval(250ms);
     connect(&m_waitingPanelsTimer, &QTimer::timeout, this, &ShellCorona::createWaitingPanels);
 
-    connect(this, &ShellCorona::editModeChanged, this, &ShellCorona::availableScreenRegionChanged);
+    connect(this, &Corona::containmentAdded, this, [this](Plasma::Containment *cont) {
+        if (cont->containmentType() == Plasma::Containment::Panel || cont->containmentType() == Plasma::Containment::CustomPanel) {
+            connect(cont, &QObject::destroyed, this, &ShellCorona::panelContainmentDestroyed);
+        }
+    });
 
 #ifndef NDEBUG
     m_invariantsTimer.setSingleShot(true);
@@ -207,7 +168,7 @@ void ShellCorona::init()
 
     connect(this, &ShellCorona::containmentAdded, this, &ShellCorona::handleContainmentAdded);
 
-    QAction *dashboardAction = new QAction(this);
+    auto *dashboardAction = new QAction(this);
     setAction(QStringLiteral("show dashboard"), dashboardAction);
     QObject::connect(dashboardAction, &QAction::triggered, this, &ShellCorona::setDashboardShown);
     dashboardAction->setText(i18n("Show Desktop"));
@@ -224,7 +185,7 @@ void ShellCorona::init()
     checkAddPanelAction();
     connect(KSycoca::self(), &KSycoca::databaseChanged, this, &ShellCorona::checkAddPanelAction);
 
-    QAction *activateLauncherAction = new QAction(this);
+    auto *activateLauncherAction = new QAction(this);
     setAction(QStringLiteral("activate application launcher"), activateLauncherAction);
     connect(activateLauncherAction, &QAction::triggered, this, qOverload<>(&ShellCorona::activateLauncherMenu));
     activateLauncherAction->setText(i18n("Activate Application Launcher"));
@@ -232,7 +193,7 @@ void ShellCorona::init()
                                             QList<QKeySequence>() << QKeySequence(Qt::Key_Meta) << QKeySequence(Qt::AltModifier | Qt::Key_F1));
 
     // Activity stuff
-    QAction *activityAction = new QAction(this);
+    auto *activityAction = new QAction(this);
     setAction(QStringLiteral("manage activities"), activityAction);
     connect(activityAction, &QAction::triggered, this, &ShellCorona::toggleActivityManager);
     activityAction->setText(i18n("Show Activity Switcher"));
@@ -241,7 +202,7 @@ void ShellCorona::init()
 
     KGlobalAccel::self()->setGlobalShortcut(activityAction, Qt::META | Qt::Key_Q);
 
-    QAction *previousActivityAction = new QAction(this);
+    auto *previousActivityAction = new QAction(this);
     setAction(QStringLiteral("switch to previous activity"), previousActivityAction);
     connect(previousActivityAction, &QAction::triggered, this, &ShellCorona::previousActivity);
     previousActivityAction->setText(i18n("Switch to Previous Activity"));
@@ -249,7 +210,7 @@ void ShellCorona::init()
 
     KGlobalAccel::self()->setGlobalShortcut(previousActivityAction, QKeySequence());
 
-    QAction *nextActivityAction = new QAction(this);
+    auto *nextActivityAction = new QAction(this);
     setAction(QStringLiteral("switch to next activity"), nextActivityAction);
     connect(nextActivityAction, &QAction::triggered, this, &ShellCorona::nextActivity);
     nextActivityAction->setText(i18n("Switch to Next Activity"));
@@ -261,10 +222,10 @@ void ShellCorona::init()
     connect(m_activityController, &KActivities::Controller::activityAdded, this, &ShellCorona::activityAdded);
     connect(m_activityController, &KActivities::Controller::activityRemoved, this, &ShellCorona::activityRemoved);
 
-    KActionCollection *taskbarActions = new KActionCollection(this);
+    auto *taskbarActions = new KActionCollection(this);
     for (int i = 0; i < 10; ++i) {
         const int entryNumber = i + 1;
-        const Qt::Key key = static_cast<Qt::Key>(Qt::Key_0 + (entryNumber % 10));
+        const auto key = static_cast<Qt::Key>(Qt::Key_0 + (entryNumber % 10));
 
         QAction *action = taskbarActions->addAction(QStringLiteral("activate task manager entry %1").arg(QString::number(entryNumber)));
         action->setText(i18n("Activate Task Manager Entry %1", entryNumber));
@@ -287,7 +248,10 @@ void ShellCorona::init()
             setEditMode(false);
         }
     });
-    connect(this, &ShellCorona::editModeChanged, this, [this](bool edit) {
+    connect(this, &Plasma::Corona::editModeChanged, this, [this](bool edit) {
+        for (auto it = m_desktopViewForScreen.keyBegin(); it != m_desktopViewForScreen.keyEnd(); it = std::next(it)) {
+            Q_EMIT availableScreenRectChanged(*it);
+        }
         setDashboardShown(edit);
     });
     connect(KWindowSystem::self(), &KWindowSystem::showingDesktopChanged, [this](bool showingDesktop) {
@@ -296,7 +260,7 @@ void ShellCorona::init()
         }
     });
 
-    QAction *manageContainmentsAction = new QAction(this);
+    auto *manageContainmentsAction = new QAction(this);
     setAction(QStringLiteral("manage-containments"), manageContainmentsAction);
     manageContainmentsAction->setIcon(QIcon::fromTheme(QStringLiteral("preferences-system-windows-effect-fadedesktop")));
     manageContainmentsAction->setText(i18nc("@action:button", "Manage Desktops and Panels…"));
@@ -319,7 +283,7 @@ void ShellCorona::init()
     connect(this, &ShellCorona::screenRemoved, this, updateManageContainmentsVisiblility);
     updateManageContainmentsVisiblility();
 
-    QAction *cyclePanelFocusAction = new QAction(this);
+    auto *cyclePanelFocusAction = new QAction(this);
     setAction(QStringLiteral("cycle-panels"), cyclePanelFocusAction);
     cyclePanelFocusAction->setText(i18n("Move keyboard focus between panels"));
     KGlobalAccel::self()->setGlobalShortcut(cyclePanelFocusAction, Qt::META | Qt::ALT | Qt::Key_P);
@@ -390,7 +354,7 @@ void ShellCorona::setShell(const QString &shell)
     }
 
     if (!themeName.isEmpty()) {
-        Plasma::Theme *t = new Plasma::Theme(this);
+        auto *t = new Plasma::Theme(this);
         t->setThemeName(themeName);
     }
 
@@ -817,6 +781,8 @@ void ShellCorona::load()
 
     checkActivities();
 
+    cleanupOldPanelConfig();
+
     if (containments().isEmpty()) {
         // Seems like we never really get to this point since loadLayout already
         // (virtually) calls loadDefaultLayout if it does not load anything
@@ -945,7 +911,7 @@ void ShellCorona::showAlternativesForApplet(Plasma::Applet *applet)
     qmlObj->setInitializationDelayed(true);
     qmlObj->setSource(alternativesQML);
 
-    AlternativesHelper *helper = new AlternativesHelper(applet, qmlObj);
+    auto *helper = new AlternativesHelper(applet, qmlObj);
 
     qmlObj->completeInitialization({{u"alternativesHelper"_s, QVariant::fromValue(helper)}});
 
@@ -1030,7 +996,7 @@ void ShellCorona::slotCyclePanelFocus()
         return;
     }
 
-    PanelView *activePanel = qobject_cast<PanelView *>(qGuiApp->focusWindow());
+    auto *activePanel = qobject_cast<PanelView *>(qGuiApp->focusWindow());
     if (!activePanel) {
         // Activate the first panel and save the previous window
         activePanel = m_panelViews.begin().value();
@@ -1050,7 +1016,7 @@ void ShellCorona::slotCyclePanelFocus()
         // More than one panel and the current panel is not the last panel,
         // move focus to next panel.
         if (activePanel != m_panelViews.last()) {
-            auto viewIt = std::find_if(m_panelViews.cbegin(), m_panelViews.cend(), [activePanel](const PanelView *panel) {
+            auto viewIt = std::ranges::find_if(m_panelViews, [activePanel](const PanelView *panel) {
                 return activePanel == panel;
             });
 
@@ -1312,7 +1278,7 @@ void ShellCorona::removeDesktop(DesktopView *desktopView)
 {
     const int screenId = desktopView->containment()->lastScreen();
 
-    auto result = std::find_if(m_desktopViewForScreen.begin(), m_desktopViewForScreen.end(), [desktopView](DesktopView *v) {
+    auto result = std::ranges::find_if(m_desktopViewForScreen, [desktopView](DesktopView *v) {
         return v == desktopView;
     });
 
@@ -1351,14 +1317,7 @@ PanelView *ShellCorona::panelView(Plasma::Containment *containment) const
 
 void ShellCorona::savePreviousWindow()
 {
-#if HAVE_X11
-    if (KWindowSystem::isPlatformX11() && m_previousWId == 0) {
-        m_previousWId = KX11Extras::activeWindow();
-    }
-#endif
-    if (m_waylandWindowManagement && !m_previousPlasmaWindow) {
-        m_previousPlasmaWindow = m_waylandWindowManagement->activeWindow();
-    }
+    m_previousWId = KX11Extras::activeWindow();
 }
 
 void ShellCorona::restorePreviousWindow()
@@ -1367,24 +1326,14 @@ void ShellCorona::restorePreviousWindow()
         return;
     }
 
-#if HAVE_X11
-    if (KWindowSystem::isPlatformX11() && m_previousWId) {
-        KX11Extras::forceActiveWindow(m_previousWId);
-    }
-#endif
-    if (m_previousPlasmaWindow) {
-        m_previousPlasmaWindow->requestActivate();
-    }
+    KX11Extras::forceActiveWindow(m_previousWId);
 
     clearPreviousWindow();
 }
 
 void ShellCorona::clearPreviousWindow()
 {
-#if HAVE_X11
     m_previousWId = 0;
-#endif
-    m_previousPlasmaWindow = nullptr;
 }
 
 ///// SLOTS
@@ -1487,7 +1436,7 @@ void ShellCorona::addOutput(QScreen *screen)
     int insertPosition = m_screenPool->idForScreen(screen);
     Q_ASSERT(insertPosition >= 0);
 
-    DesktopView *view = new DesktopView(this, screen);
+    auto *view = new DesktopView(this, screen);
 
     if (view->rendererInterface()->graphicsApi() != QSGRendererInterface::Software) {
         connect(view, &QQuickWindow::sceneGraphError, this, &ShellCorona::glInitializationFailed);
@@ -1541,12 +1490,13 @@ void ShellCorona::checkAllDesktopsUiReady()
 
     qCDebug(PLASMASHELL) << "Plasma Shell startup completed";
     QDBusMessage ksplashProgressMessage = QDBusMessage::createMethodCall(QStringLiteral("org.kde.KSplash"),
-                                                                            QStringLiteral("/KSplash"),
-                                                                            QStringLiteral("org.kde.KSplash"),
-                                                                            QStringLiteral("setStage"));
+                                                                         QStringLiteral("/KSplash"),
+                                                                         QStringLiteral("org.kde.KSplash"),
+                                                                         QStringLiteral("setStage"));
     ksplashProgressMessage.setArguments(QList<QVariant>() << QStringLiteral("desktop"));
     QDBusConnection::sessionBus().asyncCall(ksplashProgressMessage);
 
+    m_waitingPanels.removeAll(nullptr);
     if (!m_waitingPanels.isEmpty()) {
         m_waitingPanelsTimer.start();
     }
@@ -1604,7 +1554,9 @@ Plasma::Containment *ShellCorona::createContainmentForActivity(const QString &ac
 
 void ShellCorona::createWaitingPanels()
 {
-    QList<Plasma::Containment *> stillWaitingPanels;
+    m_waitingPanels.removeAll(nullptr);
+
+    QList<QPointer<Plasma::Containment>> stillWaitingPanels;
 
     for (Plasma::Containment *cont : std::as_const(m_waitingPanels)) {
         // ignore non existing (yet?) screens
@@ -1622,7 +1574,7 @@ void ShellCorona::createWaitingPanels()
 
         // TODO: does a similar check make sense?
         // Q_ASSERT(qBound(0, requestedScreen, m_screenPool->count() - 1) == requestedScreen);
-        PanelView *panel = new PanelView(this, screen);
+        auto *panel = new PanelView(this, screen);
         if (panel->rendererInterface()->graphicsApi() != QSGRendererInterface::Software) {
             connect(panel, &QQuickWindow::sceneGraphError, this, &ShellCorona::glInitializationFailed);
         }
@@ -1639,8 +1591,6 @@ void ShellCorona::createWaitingPanels()
         Q_EMIT cont->screenGeometryChanged(cont->screenGeometry());
 
         rectNotify();
-
-        connect(cont, &QObject::destroyed, this, &ShellCorona::panelContainmentDestroyed);
 
         connect(panel, &QWindow::visibleChanged, this, rectNotify);
         connect(panel, &QWindow::screenChanged, this, rectNotify);
@@ -1674,9 +1624,7 @@ void ShellCorona::panelContainmentDestroyed(QObject *obj)
 {
     auto *cont = static_cast<Plasma::Containment *>(obj);
 
-    // The destroyed panel containment was still in the m_waitingPanels list
-    if (m_waitingPanels.contains(cont)) {
-        m_waitingPanels.removeAll(cont);
+    if (!m_panelViews.contains(cont)) {
         return;
     }
 
@@ -1810,6 +1758,37 @@ void ShellCorona::toggleDashboard()
     setDashboardShown(!KWindowSystem::showingDesktop());
 }
 
+void ShellCorona::setupLookAndFeel()
+{
+    KSharedConfigPtr globalConfig = KSharedConfig::openConfig();
+    KConfigGroup cg(globalConfig, u"KDE"_s);
+    const QString packageName = cg.readEntry("LookAndFeelPackage", QString());
+    m_lookAndFeelPackage = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"), packageName);
+
+    // Accent color setting
+    KConfigGroup accentColorConfigGroup(globalConfig, u"General"_s);
+    m_accentColorFromWallpaperEnabled = accentColorConfigGroup.readEntry("accentColorFromWallpaper", false);
+
+    m_kdeGlobalsConfigWatcher = KConfigWatcher::create(globalConfig);
+    connect(m_kdeGlobalsConfigWatcher.data(), &KConfigWatcher::configChanged, this, [this](const KConfigGroup &group, const QByteArrayList &names) {
+        if (names.contains(QByteArrayLiteral("accentColorFromWallpaper"))) {
+            const bool result = group.readEntry("accentColorFromWallpaper", false);
+            if (m_accentColorFromWallpaperEnabled != result) {
+                m_accentColorFromWallpaperEnabled = result;
+                Q_EMIT accentColorFromWallpaperEnabledChanged();
+            }
+        }
+        if (names.contains(QByteArrayLiteral("LookAndFeelPackage"))) {
+            const QString packageName = group.readEntry("LookAndFeelPackage", QString());
+            KPackage::Package newPack = m_lookAndFeelPackage;
+            newPack.setPath(packageName);
+            if (newPack.isValid()) {
+                m_lookAndFeelPackage.setPath(packageName);
+            }
+        }
+    });
+}
+
 void ShellCorona::handleColorRequestedFromDBus(const QDBusMessage &msg)
 {
     Q_ASSERT(!m_accentColorFromWallpaperEnabled);
@@ -1835,7 +1814,7 @@ QRgb ShellCorona::color() const
 {
     // Colors from wallpaper are not generated when they are turned off in the settings.
     // To return a color we need to fake that the setting is on, and then take the color,
-    // turn off the setting again(or the color engine will keep runnig) and return the color.
+    // turn off the setting again(or the color engine will keep running) and return the color.
 
     // Note that whenever a color is generated, it is also set as accent color. When we fake the
     // setting, we should not apply the generated color. The color applying kded module take care
@@ -1864,7 +1843,7 @@ QVariantMap ShellCorona::wallpaper(uint screenNum)
 {
     if (!m_desktopViewForScreen.contains(screenNum)) {
         qCWarning(PLASMASHELL) << "wallpaper: unknown screen" << screenNum;
-        return QVariantMap();
+        return {};
     }
 
     auto currentActivity = m_activityController->currentActivity();
@@ -1873,14 +1852,14 @@ QVariantMap ShellCorona::wallpaper(uint screenNum)
     Plasma::Containment *containment = containmentForScreen(screenNum, currentActivity, QString());
     if (!containment) {
         qCWarning(PLASMASHELL) << "wallpaper: containment not found for screen" << screenNum << currentActivity;
-        return QVariantMap();
+        return {};
     }
 
     QVariantMap parameters;
     // add wallpaperPlugin
     parameters.insert(QStringLiteral("wallpaperPlugin"), containment->wallpaperPlugin());
 
-    QObject *wallpaperGraphicsObject = containment->property("wallpaperGraphicsObject").value<QObject *>();
+    auto *wallpaperGraphicsObject = containment->property("wallpaperGraphicsObject").value<QObject *>();
     // If the wallpaper plugin is broken, there is no wallpaperGraphicsObject
     if (!wallpaperGraphicsObject) {
         return parameters;
@@ -1920,7 +1899,7 @@ void ShellCorona::setWallpaper(const QString &wallpaperPlugin, const QVariantMap
         config = new KConfigPropertyMap(new KConfigLoader(cfg, &file, this), this);
     } else {
         // update current wallpaper to allow animations
-        QObject *wallpaperGraphicsObject = containment->property("wallpaperGraphicsObject").value<QObject *>();
+        auto *wallpaperGraphicsObject = containment->property("wallpaperGraphicsObject").value<QObject *>();
         // If the wallpaper plugin is broken, there is no wallpaperGraphicsObject
         if (wallpaperGraphicsObject) {
             config = wallpaperGraphicsObject->property("configuration").value<KConfigPropertyMap *>();
@@ -1935,7 +1914,7 @@ void ShellCorona::setWallpaper(const QString &wallpaperPlugin, const QVariantMap
                 // for some reason QColor is not properly unmarshalled despite my efforts
                 qCDebug(PLASMASHELL) << "setWallpaper: setting" << itemName << it.value() << screenNum;
                 if (it.value().metaType() == QMetaType::fromType<QDBusArgument>()) {
-                    const QDBusArgument &dbusArg = get<QDBusArgument>(it.value());
+                    const auto &dbusArg = get<QDBusArgument>(it.value());
                     if (dbusArg.currentSignature() == QLatin1String("(u)")) {
                         QColor color;
                         dbusArg >> color;
@@ -1960,10 +1939,10 @@ QString ShellCorona::evaluateScript(const QString &script)
     if (calledFromDBus()) {
         if (immutability() == Plasma::Types::SystemImmutable) {
             sendErrorReply(QDBusError::Failed, QStringLiteral("Widgets are locked"));
-            return QString();
+            return {};
         } else if (!KAuthorized::authorize(QStringLiteral("plasma-desktop/scripting_console"))) {
             sendErrorReply(QDBusError::Failed, QStringLiteral("Administrative policies prevent script execution"));
-            return QString();
+            return {};
         }
     }
 
@@ -1986,7 +1965,7 @@ QString ShellCorona::evaluateScript(const QString &script)
 
     if (calledFromDBus() && !scriptEngine.errorString().isEmpty()) {
         sendErrorReply(QDBusError::Failed, scriptEngine.errorString());
-        return QString();
+        return {};
     }
 
     return buffer;
@@ -1994,6 +1973,28 @@ QString ShellCorona::evaluateScript(const QString &script)
     Q_UNUSED(script)
     return QString();
 #endif
+}
+
+void ShellCorona::cleanupOldPanelConfig()
+{
+    const QStringList groups = applicationConfig()->group(u"PlasmaViews"_s).groupList();
+    for (const QString &groupName : groups) {
+        static const QRegularExpression reg(u"Panel (\\d+)"_s);
+
+        if (auto match = reg.match(groupName); match.hasMatch()) {
+            const uint id = match.captured(1).toInt();
+
+            const auto conts = containments();
+            const bool exists = std::any_of(conts.begin(), conts.end(), [id](Plasma::Containment *c) {
+                return c->id() == id;
+            });
+
+            if (!exists) {
+                qCDebug(PLASMASHELL) << "Cleaning up config for no longer exisiting panel" << id;
+                applicationConfig()->group(u"PlasmaViews"_s).deleteGroup(groupName);
+            }
+        }
+    }
 }
 
 void ShellCorona::checkActivities()
@@ -2103,7 +2104,7 @@ Plasma::Containment *ShellCorona::setContainmentTypeForScreen(int screen, const 
         return oldContainment;
     }
 
-    auto viewIt = std::find_if(m_desktopViewForScreen.cbegin(), m_desktopViewForScreen.cend(), [oldContainment](const DesktopView *v) {
+    auto viewIt = std::ranges::find_if(m_desktopViewForScreen, [oldContainment](const DesktopView *v) {
         return v->containment() == oldContainment;
     });
 
@@ -2257,8 +2258,8 @@ bool ShellCorona::isScreenUiReady(int screen)
         return false;
     }
 
-    for (Plasma::Containment *cont : std::as_const(m_waitingPanels)) {
-        if (cont->lastScreen() == screen) {
+    for (const QPointer<Plasma::Containment> &cont : std::as_const(m_waitingPanels)) {
+        if (cont && cont->lastScreen() == screen) {
             return false;
         }
     }
@@ -2385,8 +2386,8 @@ void ShellCorona::clonePanelTo(PanelView *oldPanelView, Plasma::Types::Location 
         KConfigGroup oldAppletConfig = targetAppletsConfig.group(QString::number(applet->id()));
         KConfigGroup newAppletConfig = targetAppletsConfig.group(QString::number(newApplet->id()));
 
-        Plasma::Containment *oldTrayContainment = qobject_cast<Plasma::Containment *>(applet);
-        Plasma::Containment *newTrayContainment = qobject_cast<Plasma::Containment *>(newApplet);
+        auto *oldTrayContainment = qobject_cast<Plasma::Containment *>(applet);
+        auto *newTrayContainment = qobject_cast<Plasma::Containment *>(newApplet);
         if (oldTrayContainment && newTrayContainment && newTrayContainment->pluginName() == u"org.kde.plasma.systemtray") {
             auto newTrayConfig = newTrayContainment->config();
             auto oldTrayConfig = oldTrayContainment->config();
@@ -2489,7 +2490,7 @@ Plasma::Containment *ShellCorona::addPanel(const QString &plugin)
         const auto screens = QGuiApplication::screens();
         auto screenIt = screens.cend();
         const QString activeOutputName = reply.value();
-        screenIt = std::find_if(screens.cbegin(), screens.cend(), [&activeOutputName](QScreen *screen) {
+        screenIt = std::ranges::find_if(screens, [&activeOutputName](QScreen *screen) {
             return screen->name() == activeOutputName;
         });
         if (screenIt != screens.cend()) {
@@ -2662,14 +2663,14 @@ void ShellCorona::setScreenForContainment(Plasma::Containment *containment, int 
 
 int ShellCorona::screenForContainment(const Plasma::Containment *containment) const
 {
-    // TODO: when we can depend on a new framework, use a p-f method to actuall set lastScreen instead of this?
+    // TODO: when we can depend on a new framework, use a p-f method to actually set lastScreen instead of this?
     // m_pendingScreenChanges controls an explicit user-determined screen change
     if (!m_pendingScreenChanges.isEmpty() && m_pendingScreenChanges.contains(containment)) {
         return m_pendingScreenChanges.value(containment);
     }
 
     // case in which this containment is child of an applet, hello systray :)
-    if (Plasma::Applet *parentApplet = qobject_cast<Plasma::Applet *>(containment->parent())) {
+    if (auto *parentApplet = qobject_cast<Plasma::Applet *>(containment->parent())) {
         if (Plasma::Containment *cont = parentApplet->containment()) {
             return screenForContainment(cont);
         } else {
@@ -2741,7 +2742,7 @@ QString ShellCorona::containmentPreviewPath(Plasma::Containment *containment) co
     if (QFile::exists(path)) {
         return path;
     } else {
-        return QString();
+        return {};
     }
 }
 
@@ -2842,7 +2843,7 @@ bool DismissPopupEventFilter::eventFilter(QObject *watched, QEvent *event)
     } else if (event->type() == QEvent::MouseButtonRelease) {
         if (m_filterMouseEvents) {
             // Eat events until all mouse buttons are released.
-            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+            auto *mouseEvent = static_cast<QMouseEvent *>(event);
             if (mouseEvent->buttons() == Qt::NoButton) {
                 m_filterMouseEvents = false;
             }
@@ -2851,26 +2852,6 @@ bool DismissPopupEventFilter::eventFilter(QObject *watched, QEvent *event)
     }
 
     return false;
-}
-
-void ShellCorona::setupWaylandIntegration()
-{
-    if (!KWindowSystem::isPlatformWayland()) {
-        return;
-    }
-    using namespace KWayland::Client;
-    ConnectionThread *connection = ConnectionThread::fromApplication(this);
-    if (!connection) {
-        return;
-    }
-    Registry *registry = new Registry(this);
-    registry->create(connection);
-    connect(registry, &KWayland::Client::Registry::plasmaWindowManagementAnnounced, this, [this, registry](quint32 name, quint32 version) {
-        m_waylandWindowManagement = registry->createPlasmaWindowManagement(name, version, this);
-    });
-    registry->setup();
-    connection->roundtrip();
-    qApp->installEventFilter(new DismissPopupEventFilter(this));
 }
 
 ScreenPool *ShellCorona::screenPool() const

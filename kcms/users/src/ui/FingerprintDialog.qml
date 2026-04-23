@@ -5,10 +5,10 @@
 */
 pragma ComponentBehavior: Bound
 
-import QtQuick 2.12
-import QtQuick.Layouts 1.3
-import QtQuick.Shapes 1.12
-import QtQuick.Controls 2.5 as QQC2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Shapes
+import QtQuick.Controls as QQC2
 
 import org.kde.kirigami as Kirigami
 
@@ -29,6 +29,7 @@ Kirigami.Dialog {
 
     visible: true
 
+    onRejected: root.fingerprintModel.stopEnrolling()
 
     standardButtons: QQC2.Dialog.NoButton
 

@@ -3,9 +3,9 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Controls
 import org.kde.plasma.wallpapers.image
 
 BaseMediaComponent {
@@ -18,7 +18,6 @@ BaseMediaComponent {
         id: dayNightView
         anchors.fill: parent
         fillMode: dayNightComponent.fillMode
-        sourceSize: dayNightComponent.sourceSize
         snapshot: dayNightWallpaper.snapshot
     }
 
@@ -38,7 +37,7 @@ BaseMediaComponent {
     Loader {
         id: blurLoader
         anchors.fill: parent
-        active: blurEnabled
+        active: dayNightComponent.blurEnabled
         sourceComponent: Image {
             asynchronous: true
             cache: false

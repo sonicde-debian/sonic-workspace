@@ -3,13 +3,13 @@
 # Copyright (C) 2008 This_file_is_part_of_KDE
 # This file is distributed under the same license as the plasma_applet_devicenotifier package.
 # Laurenţiu Buzdugan <lbuz@rolix.org>, 2008".
-# SPDX-FileCopyrightText: 2008, 2009, 2011, 2012, 2020, 2021, 2022, 2024, 2025 Sergiu Bivol <sergiu@cip.md>
+# SPDX-FileCopyrightText: 2008, 2009, 2011, 2012, 2020, 2021, 2022, 2024, 2025, 2026 Sergiu Bivol <sergiu@cip.md>
 # Cristian Oneț <onet.cristian@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_devicenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2025-10-05 00:24+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -19,46 +19,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "Verifică pentru erori"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Montează fără a verifica"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Montează"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Deschide cu gestionar de fișiere"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Încearcă să repari"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Montează și deschide"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Scoate suportul"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Scoate în siguranță"
@@ -174,7 +168,7 @@ msgstr "Nu s-a putut elimina acest dispozitiv."
 msgid "Could not repair this device: %1"
 msgstr "Nu s-a putut repara acest dispozitiv: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -182,7 +176,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Se verifică…"
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -190,13 +184,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Se repară…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 liber din %2"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -204,7 +198,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Se accesează…"
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -212,27 +206,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Se elimină…"
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "Încă nu deconectați! Fișierele sunt în curs de transferare…"
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Elimină toate"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Apăsați pentru a elimina în siguranță toate dispozitivele"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Niciun dispozitiv amovibil atașat"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Niciun disc disponibil"
@@ -247,31 +241,35 @@ msgstr "Cel mai recent dispozitiv"
 msgid "No Devices Available"
 msgstr "Niciun dispozitiv disponibil"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Configurează dispozitive amovibile…"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Dispozitive amovibile"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Dispozitive ne-amovibile"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Toate dispozitivele"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Arată meniul contextual la atașarea unui dispozitiv nou"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Montează fără a verifica"
 
 #~ msgid "Show:"
 #~ msgstr "Arată:"

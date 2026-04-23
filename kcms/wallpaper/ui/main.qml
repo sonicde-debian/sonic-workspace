@@ -18,7 +18,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 
 import org.kde.plasma.kcm.wallpaper
-import org.kde.plasma.configuration 2.0
+import org.kde.plasma.configuration
 
 // Not using AbstractKCM because we're not using any of it features, not even one
 Kirigami.ScrollablePage {
@@ -71,7 +71,6 @@ Kirigami.ScrollablePage {
             visible: !kcm.allScreens && kcm.screens.length > 1
 
             Layout.fillWidth: true
-            Layout.bottomMargin: Kirigami.Units.smallSpacing
             implicitHeight: Kirigami.Units.gridUnit * 10
 
             outputs: kcm.screens
@@ -83,6 +82,7 @@ Kirigami.ScrollablePage {
         Kirigami.FormLayout {
             id: parentLayout // needed for twinFormLayouts to work in wallpaper plugins
             Layout.fillWidth: true
+            Layout.topMargin: Kirigami.Units.largeSpacing
 
             RowLayout {
                 Layout.fillWidth: true

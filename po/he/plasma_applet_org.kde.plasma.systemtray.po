@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-05-16 13:42+0300\n"
+"POT-Creation-Date: 2026-02-19 02:48+0000\n"
+"PO-Revision-Date: 2025-12-04 09:24+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,64 +16,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 
-#: package/contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "General"
 msgstr "כללי"
 
-#: package/contents/config/config.qml:18
+#: qml/ConfigGeneral.qml:43
 #, kde-format
-msgid "Entries"
-msgstr "רשומות"
+msgctxt "@item:inlistbox Show this System Tray item when relevant"
+msgid "Show when relevant"
+msgstr "להציג כשצריך"
 
-#: package/contents/ui/ConfigEntries.qml:39
+#: qml/ConfigGeneral.qml:47
 #, kde-format
-msgid "Shown when relevant"
-msgstr "מופיע כשצריך"
+msgctxt "@item:inlistbox Always show this System Tray item"
+msgid "Always show"
+msgstr "להציג תמיד"
 
-#: package/contents/ui/ConfigEntries.qml:43
+#: qml/ConfigGeneral.qml:51
 #, kde-format
-msgid "Always shown"
-msgstr "מופיע תמיד"
+msgctxt "@item:inlistbox Show this System Tray item only in the expanded popup"
+msgid "Show only in popup"
+msgstr "להציג בחלונית צצה בלבד"
 
-#: package/contents/ui/ConfigEntries.qml:47
+#: qml/ConfigGeneral.qml:55
 #, kde-format
-msgid "Always hidden"
-msgstr "מוסתר תמיד"
+msgctxt "@item:inlistbox Never show this System Tray item; disable it"
+msgid "Never show (disabled)"
+msgstr "לא להציג לעולם (מושבת)"
 
-#: package/contents/ui/ConfigEntries.qml:51
-#, kde-format
-msgid "Disabled"
-msgstr "מושבת"
-
-#: package/contents/ui/ConfigEntries.qml:122
+#: qml/ConfigGeneral.qml:126
 #, kde-format
 msgid "Application Status"
 msgstr "מצב יישום"
 
-#: package/contents/ui/ConfigEntries.qml:124
+#: qml/ConfigGeneral.qml:128
 #, kde-format
 msgid "Communications"
 msgstr "צורות תקשורת"
 
-#: package/contents/ui/ConfigEntries.qml:126
+#: qml/ConfigGeneral.qml:130
 #, kde-format
 msgid "System Services"
 msgstr "שירותי מערכת"
 
-#: package/contents/ui/ConfigEntries.qml:128
+#: qml/ConfigGeneral.qml:132
 #, kde-format
 msgid "Hardware Control"
 msgstr "בקרת חומרה"
 
-#: package/contents/ui/ConfigEntries.qml:131
+#: qml/ConfigGeneral.qml:135
 #, kde-format
 msgid "Miscellaneous"
 msgstr "שונות"
 
-#: package/contents/ui/ConfigEntries.qml:174
+#: qml/ConfigGeneral.qml:172
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
@@ -89,146 +88,173 @@ msgstr ""
 ">השימוש בהגדרה הזאת הוא על אחריותך ואין לדווח על תקלות ל־KDE או ליוצרי "
 "היישום."
 
-#: package/contents/ui/ConfigEntries.qml:177
+#: qml/ConfigGeneral.qml:175
 #, kde-format
 msgctxt "@action:button"
 msgid "I understand the risks"
 msgstr "הסכנות ברורות לי"
 
-#: package/contents/ui/ConfigEntries.qml:189
+#: qml/ConfigGeneral.qml:187
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
 "Disabling the clipboard is not recommended, as it will cause copied data to "
-"be lost when the application it was copied from is closed.<nl/><nl/>Instead "
-"consider configuring the clipboard to disable its history, or only remember "
-"one item at a time."
+"be lost when the application it was copied from is closed.<nl/><nl/>Only do "
+"this if you’ve manually added a standalone Clipboard widget somewhere else, "
+"or are using a 3rd-party clipboard manager. Also, instead consider "
+"configuring the clipboard to not save history, or to only remember one item "
+"at a time."
 msgstr ""
 "השבתת לוח הגזירים אינה מומלצת כיוון שתגרום לאיבוד הנתונים שהועתקו כאשר "
-"היישום שההעתקה בוצעה ממנו נסגר.<nl/><nl/>במקום, כדאי לשקול להגדיר להשבת את "
-"היסטוריית לוח הגזירים או רק לזכור פריט אחד בכל עת."
+"היישום שההעתקה בוצעה ממנו נסגר.<nl/><nl/>יש לעשות זאת רק עם הגדרת ידנית "
+"וידג׳ט לוח כזירים במקום אחר או שיש לך מנהל לוח גזירים מגורם צד־שלישי. במקום, "
+"כדאי לשקול להגדיר את לוח הגזירים כך שלא ישמור היסטוריה או שיזכור רק פריט אחד "
+"כל פעם."
 
-#: package/contents/ui/ConfigEntries.qml:217
-#, kde-format
-msgctxt "Name of the system tray entry"
-msgid "Entry"
-msgstr "רשומה"
+#: qml/ConfigGeneral.qml:196
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"Disabling the Notifications widget is not recommended, as notifications sent "
+"by apps will no longer be shown.<nl/><nl/>Only do this if you’ve manually "
+"added a standalone Notifications widget somewhere else, or are intentionally "
+"using a 3rd-party notification manager to handle notifications."
+msgstr ""
+"השבתת וידג׳ט ההתראות לא מומלצת, כיוון שהתראות שנשלחות על ידי יישומים לא "
+"תופענה עוד.<nl/><nl/>עדיף לא לעשות את זה אלא אם הגדרת וידג׳ט התראות עצמאי "
+"במקום אחר כלשהו, או שבחרת להשתמש במנהל התראות מגורם צד־שלישי לטיפול בהתראות."
 
-#: package/contents/ui/ConfigEntries.qml:224
+#: qml/ConfigGeneral.qml:208
 #, kde-format
-msgid "Visibility"
-msgstr "חשיפה"
-
-#: package/contents/ui/ConfigEntries.qml:231
-#, kde-format
-msgid "Keyboard Shortcut"
-msgstr "קיצור מקשים במקלדת"
-
-#: package/contents/ui/ConfigEntries.qml:263
-#, kde-format
-msgid "Always show all entries"
-msgstr "תמיד להציג את כל הרשומות"
-
-#: package/contents/ui/ConfigGeneral.qml:23
-#, kde-format
-msgctxt "The arrangement of system tray icons in the Panel"
-msgid "Panel icon size:"
-msgstr "גודל סמלים בלוח:"
-
-#: package/contents/ui/ConfigGeneral.qml:25
-#, kde-format
-msgid "Small"
-msgstr "קטן"
-
-#: package/contents/ui/ConfigGeneral.qml:32
-#, kde-format
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel height"
 msgstr "מסתגל לגובה הלוח"
 
-#: package/contents/ui/ConfigGeneral.qml:33
+#: qml/ConfigGeneral.qml:209
 #, kde-format
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel width"
 msgstr "מסתגל לרוחב הלוח"
 
-#: package/contents/ui/ConfigGeneral.qml:39
+#: qml/ConfigGeneral.qml:211
+#, kde-format
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
+msgid "Panel icon size:"
+msgstr "גודל סמלים בלוח:"
+
+#: qml/ConfigGeneral.qml:215 qml/ConfigGeneral.qml:256
+#, kde-format
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Small"
+msgstr "קטן"
+
+#: qml/ConfigGeneral.qml:244
 #, kde-format
 msgid "Automatically enabled when in Touch Mode"
 msgstr "מופעל אוטומטית במצב מגע"
 
-#: package/contents/ui/ConfigGeneral.qml:49
+#: qml/ConfigGeneral.qml:252
 #, kde-format
 msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon spacing:"
 msgstr "ריווח סמלי לוח:"
 
-#: package/contents/ui/ConfigGeneral.qml:52
-#, kde-format
-msgctxt "@item:inlistbox Icon spacing"
-msgid "Small"
-msgstr "קטן"
-
-#: package/contents/ui/ConfigGeneral.qml:56
+#: qml/ConfigGeneral.qml:260
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Normal"
 msgstr "רגיל"
 
-#: package/contents/ui/ConfigGeneral.qml:60
+#: qml/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Large"
 msgstr "גדול"
 
-#: package/contents/ui/ConfigGeneral.qml:85
+#: qml/ConfigGeneral.qml:289
 #, kde-format
 msgctxt "@info:usagetip under a combobox when Touch Mode is on"
 msgid "Automatically set to Large when in Touch Mode"
 msgstr "להגדיר לגדול אוטומטית במצב מגע"
 
-#: package/contents/ui/ExpandedRepresentation.qml:59
+#: qml/ConfigGeneral.qml:315
+#, kde-format
+msgctxt "@title:column"
+msgid "Entries"
+msgstr "רשומות"
+
+#: qml/ConfigGeneral.qml:319
+#, kde-format
+msgctxt "@option:check, This is referring to system tray entries"
+msgid "Always show all"
+msgstr "תמיד להציג הכול"
+
+#: qml/ExpandedRepresentation.qml:60
 #, kde-format
 msgctxt "@action:button"
 msgid "Go Back"
 msgstr "חזרה"
 
-#: package/contents/ui/ExpandedRepresentation.qml:71
+#: qml/ExpandedRepresentation.qml:72
 #, kde-format
 msgid "Status and Notifications"
 msgstr "מצב והתראות"
 
-#: package/contents/ui/ExpandedRepresentation.qml:140
+#: qml/ExpandedRepresentation.qml:169
 #, kde-format
 msgid "More actions"
 msgstr "פעולות נוספות"
 
-#: package/contents/ui/ExpandedRepresentation.qml:240
+#: qml/ExpandedRepresentation.qml:255
 #, kde-format
 msgid "Keep Open"
 msgstr "להשאיר פתוח"
 
-#: package/contents/ui/ExpanderArrow.qml:26
+#: qml/ExpanderArrow.qml:25
 #, kde-format
 msgid "Show all the items in the system tray in a popup"
 msgstr "להציג את כל הפריטים במגש המערכת בחלונית קופצת"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Close popup"
 msgstr "סגירת חלונית קופצת"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Show hidden icons"
 msgstr "הצגת סמלים מוסתרים"
 
-#: package/contents/ui/HiddenItemsView.qml:42
+#: qml/HiddenItemsView.qml:37
 #, kde-format
 msgctxt "@info:whatsthis accessible description for popup grid"
 msgid "Grid with %1 items in %2 columns"
 msgstr "רשת עם %1 פריטים ב־%2 עמודות"
 
-#: package/contents/ui/HiddenItemsView.qml:46
+#: qml/HiddenItemsView.qml:41
 #, kde-format
 msgctxt "Some letters with tall characters, ascenders, descenders, etc"
 msgid "AILlmyjgGJP"
 msgstr "לקץןךףאגם"
+
+#~ msgid "Always hidden"
+#~ msgstr "מוסתר תמיד"
+
+#~ msgid "Disabled"
+#~ msgstr "מושבת"
+
+#~ msgid "Small"
+#~ msgstr "קטן"
+
+#~ msgctxt "Name of the system tray entry"
+#~ msgid "Entry"
+#~ msgstr "רשומה"
+
+#~ msgid "Visibility"
+#~ msgstr "חשיפה"
+
+#~ msgid "Keyboard Shortcut"
+#~ msgstr "קיצור מקשים במקלדת"
+
+#~ msgid "Always show all entries"
+#~ msgstr "תמיד להציג את כל הרשומות"

@@ -1,14 +1,14 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
 #
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Giovanni Sora <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025, 2026 Giovanni Sora <g.sora@tiscali.it>
 # giovanni <g.sora@tiscali.it>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-05-12 17:04+0200\n"
+"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"PO-Revision-Date: 2026-02-05 17:01+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,39 +16,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 
-#: src/fingerprintmodel.cpp:145 src/fingerprintmodel.cpp:229
+#: src/fingerprintmodel.cpp:144 src/fingerprintmodel.cpp:228
 #, kde-format
 msgid "No fingerprint device found."
 msgstr "Nulle dispositivo de impression digital trovate."
 
-#: src/fingerprintmodel.cpp:302
+#: src/fingerprintmodel.cpp:301
 #, kde-format
 msgid "Retry scanning your finger."
 msgstr "Reessaya scander tu digito."
 
-#: src/fingerprintmodel.cpp:304
+#: src/fingerprintmodel.cpp:303
 #, kde-format
 msgid "Swipe too short. Try again."
 msgstr "Glissar troppo breve. Essaya de novo."
 
-#: src/fingerprintmodel.cpp:306
+#: src/fingerprintmodel.cpp:305
 #, kde-format
 msgid "Finger not centered on the reader. Try again."
 msgstr "Digito non centrate sur lector. Essaya de novo."
 
-#: src/fingerprintmodel.cpp:308
+#: src/fingerprintmodel.cpp:307
 #, kde-format
 msgid "Remove your finger from the reader, and try again."
 msgstr "Remove tu digito ab le lector, e essaya de novo."
 
-#: src/fingerprintmodel.cpp:316
+#: src/fingerprintmodel.cpp:315
 #, kde-format
 msgid "Fingerprint enrollment has failed."
 msgstr "Inrolmento de impression digital ha fallite."
 
-#: src/fingerprintmodel.cpp:319
+#: src/fingerprintmodel.cpp:318
 #, kde-format
 msgid ""
 "There is no space left for this device, delete other fingerprints to "
@@ -57,17 +57,17 @@ msgstr ""
 "Il non ha spatio lassate per iste dispositivo, dele altere impressiones "
 "digital a continuar."
 
-#: src/fingerprintmodel.cpp:322
+#: src/fingerprintmodel.cpp:321
 #, kde-format
 msgid "The device was disconnected."
 msgstr "Le dispositivo esseva disconnectite."
 
-#: src/fingerprintmodel.cpp:327
+#: src/fingerprintmodel.cpp:326
 #, kde-format
 msgid "An unknown error has occurred."
 msgstr "Il occurreva un error incognite"
 
-#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:215
+#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:228
 #, kde-format
 msgid "Change Password"
 msgstr "Modifica contrasigno"
@@ -148,22 +148,22 @@ msgstr "Crea usator"
 msgid "Name:"
 msgstr "Nomine:"
 
-#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:173
+#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:171
 #, kde-format
 msgid "Username:"
 msgstr "Nomine de usator:"
 
-#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:190
+#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:203
 #, kde-format
 msgid "Standard"
 msgstr "Standard"
 
-#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:191
+#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:204
 #, kde-format
 msgid "Administrator"
 msgstr "Administrator"
 
-#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:180
+#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:193
 #, kde-format
 msgid "Account type:"
 msgstr "Typo de conto:"
@@ -179,15 +179,13 @@ msgid "Confirm password:"
 msgstr "Confirma contrasigno"
 
 #: src/ui/CreateUser.qml:88
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button Create a new user"
 msgid "Create"
 msgstr "Crea"
 
-#: src/ui/CreateUser.qml:109
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#: src/ui/CreateUser.qml:111
+#, kde-format
 msgctxt "@action:button Cancel creating new user"
 msgid "Cancel"
 msgstr "Cancella"
@@ -365,17 +363,17 @@ msgstr ""
 msgid "Configure Fingerprints"
 msgstr "Configura impressiones digital"
 
-#: src/ui/FingerprintDialog.qml:38
+#: src/ui/FingerprintDialog.qml:39
 #, kde-format
 msgid "Add"
 msgstr "Adde"
 
-#: src/ui/FingerprintDialog.qml:50
+#: src/ui/FingerprintDialog.qml:51
 #, kde-format
 msgid "Cancel"
 msgstr "Cancella"
 
-#: src/ui/FingerprintDialog.qml:58
+#: src/ui/FingerprintDialog.qml:59
 #, kde-format
 msgid "Done"
 msgstr "Facite"
@@ -628,7 +626,27 @@ msgstr "Dele %1"
 msgid "Change avatar"
 msgstr "Cambia Avatar"
 
-#: src/ui/UserDetailsPage.qml:201
+#: src/ui/UserDetailsPage.qml:185
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change your own username while logged in; log out and then log in as "
+"another user to change this account’s username."
+msgstr ""
+"Non pote cambiar tu proprie nomine quando tu es accedite; abandona session "
+"eaccede comoaltere ustorper cambiar le nomine de ustor de iste conto."
+
+#: src/ui/UserDetailsPage.qml:186
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change the username of a logged-in user; wait until this user logs "
+"out first."
+msgstr ""
+"Non pote cambiar le nomine de un usator qui es accedente; prime attende "
+"usque iste usator abandona le session. "
+
+#: src/ui/UserDetailsPage.qml:214
 #, kde-format
 msgid ""
 "Cannot change the account type to Standard unless there is at least one "
@@ -640,32 +658,42 @@ msgstr ""
 "deveria impossibile o requirer le uso insecur per contrassigno radice (i.e. "
 "de root)."
 
-#: src/ui/UserDetailsPage.qml:209
+#: src/ui/UserDetailsPage.qml:222
 #, kde-format
 msgid "Email address:"
 msgstr "Adresse de E-Posta:"
 
-#: src/ui/UserDetailsPage.qml:238
+#: src/ui/UserDetailsPage.qml:254
 #, kde-format
 msgid "Delete files"
 msgstr "Dele files"
 
-#: src/ui/UserDetailsPage.qml:245
+#: src/ui/UserDetailsPage.qml:261
 #, kde-format
 msgid "Keep files"
 msgstr "Mantene files"
 
-#: src/ui/UserDetailsPage.qml:252
+#: src/ui/UserDetailsPage.qml:268
 #, kde-format
 msgid "Delete User…"
 msgstr "Dele usator..."
 
-#: src/ui/UserDetailsPage.qml:264
+#: src/ui/UserDetailsPage.qml:274
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot delete yourself! Log out and then log in as another user to delete "
+"this user account."
+msgstr ""
+"Nonpoite deler te mesme!Abandona session e accede como altere ustor per "
+"deler iste conto de usator."
+
+#: src/ui/UserDetailsPage.qml:286
 #, kde-format
 msgid "Configure Fingerprint Authentication…"
 msgstr "Configura Authentication de impressiones digital ..."
 
-#: src/ui/UserDetailsPage.qml:296
+#: src/ui/UserDetailsPage.qml:318
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

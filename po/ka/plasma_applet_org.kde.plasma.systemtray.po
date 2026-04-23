@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-05-15 04:16+0200\n"
+"POT-Creation-Date: 2026-02-19 02:48+0000\n"
+"PO-Revision-Date: 2025-12-04 04:18+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,64 +16,63 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
-#: package/contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "General"
 msgstr "ძირითადი"
 
-#: package/contents/config/config.qml:18
+#: qml/ConfigGeneral.qml:43
 #, kde-format
-msgid "Entries"
-msgstr "ჩანაწერები"
-
-#: package/contents/ui/ConfigEntries.qml:39
-#, kde-format
-msgid "Shown when relevant"
+msgctxt "@item:inlistbox Show this System Tray item when relevant"
+msgid "Show when relevant"
 msgstr "გარემოების მიხედვით ჩვენება"
 
-#: package/contents/ui/ConfigEntries.qml:43
+#: qml/ConfigGeneral.qml:47
 #, kde-format
-msgid "Always shown"
-msgstr "ყოველთვის ნაჩვენები"
+msgctxt "@item:inlistbox Always show this System Tray item"
+msgid "Always show"
+msgstr "ყოველთვის ჩვენება"
 
-#: package/contents/ui/ConfigEntries.qml:47
+#: qml/ConfigGeneral.qml:51
 #, kde-format
-msgid "Always hidden"
-msgstr "ყოველთვის დამალული"
+msgctxt "@item:inlistbox Show this System Tray item only in the expanded popup"
+msgid "Show only in popup"
+msgstr "მხოლოდ მხტუნარაში ჩვენება"
 
-#: package/contents/ui/ConfigEntries.qml:51
+#: qml/ConfigGeneral.qml:55
 #, kde-format
-msgid "Disabled"
-msgstr "გამორთულია"
+msgctxt "@item:inlistbox Never show this System Tray item; disable it"
+msgid "Never show (disabled)"
+msgstr "არასდროს ჩვენება (გამორთვა)"
 
-#: package/contents/ui/ConfigEntries.qml:122
+#: qml/ConfigGeneral.qml:126
 #, kde-format
 msgid "Application Status"
 msgstr "აპლიკაციის სტატუსი"
 
-#: package/contents/ui/ConfigEntries.qml:124
+#: qml/ConfigGeneral.qml:128
 #, kde-format
 msgid "Communications"
 msgstr "კომუნიკაციები"
 
-#: package/contents/ui/ConfigEntries.qml:126
+#: qml/ConfigGeneral.qml:130
 #, kde-format
 msgid "System Services"
 msgstr "სისტემური სერვისები"
 
-#: package/contents/ui/ConfigEntries.qml:128
+#: qml/ConfigGeneral.qml:132
 #, kde-format
 msgid "Hardware Control"
 msgstr "აპარატურის კონტროლი"
 
-#: package/contents/ui/ConfigEntries.qml:131
+#: qml/ConfigGeneral.qml:135
 #, kde-format
 msgid "Miscellaneous"
 msgstr "სხვადასხვა"
 
-#: package/contents/ui/ConfigEntries.qml:174
+#: qml/ConfigGeneral.qml:172
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
@@ -90,150 +89,179 @@ msgstr ""
 "აკეთებთ და თუ პრობლემები შეგექმნათ, ამის შესახებ KDE-ს ან აპის ავტორს ნუ "
 "მისწერთ."
 
-#: package/contents/ui/ConfigEntries.qml:177
+#: qml/ConfigGeneral.qml:175
 #, kde-format
 msgctxt "@action:button"
 msgid "I understand the risks"
 msgstr "მე ვიცი, რას ვაკეთებ"
 
-#: package/contents/ui/ConfigEntries.qml:189
+#: qml/ConfigGeneral.qml:187
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
 "Disabling the clipboard is not recommended, as it will cause copied data to "
-"be lost when the application it was copied from is closed.<nl/><nl/>Instead "
-"consider configuring the clipboard to disable its history, or only remember "
-"one item at a time."
+"be lost when the application it was copied from is closed.<nl/><nl/>Only do "
+"this if you’ve manually added a standalone Clipboard widget somewhere else, "
+"or are using a 3rd-party clipboard manager. Also, instead consider "
+"configuring the clipboard to not save history, or to only remember one item "
+"at a time."
 msgstr ""
 "გაცვლის ბუფერის გამორთვა რეკომენდებული არაა, რადგან ის გამოიწვევს "
 "დაკოპირებული მონაცემების დაკარგვას, როცა აპლიკაცია, საიდანაც ის დააკოპირეს, "
-"დაიხურება.<nl/><nl/>ამის მაგიერ იფიქრეთ, გამორთოთ ბუფერის ისტორია, ან, რომ "
-"მან დროის ერთ მომენტში ერთი ელემენტი დაიმახსოვროს."
+"დაიხურება.<nl/><nl/>ეს, მხოლოდ, მაშინ გააკეთეთ, თუ უკვე ხელით დაამატეთ "
+"ბუფერის ვიჯეტი სადმე სხვაგან, ან განზრახ ცდილობთ მესამე პირების მიერ "
+"მოწოდებული ბუფერის მმართველის გამოყენებას. ამის მაგიერ იფიქრეთ, გამორთოთ "
+"ბუფერის ისტორია, ან, რომ მან დროის ერთ მომენტში ერთი ელემენტი დაიმახსოვროს."
 
-#: package/contents/ui/ConfigEntries.qml:217
-#, kde-format
-msgctxt "Name of the system tray entry"
-msgid "Entry"
-msgstr "ერთეული"
+#: qml/ConfigGeneral.qml:196
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"Disabling the Notifications widget is not recommended, as notifications sent "
+"by apps will no longer be shown.<nl/><nl/>Only do this if you’ve manually "
+"added a standalone Notifications widget somewhere else, or are intentionally "
+"using a 3rd-party notification manager to handle notifications."
+msgstr ""
+"გაფრთხილებების ვიჯეტის გამორთვა რეკომენდებული არაა, რადგან აპების მიერ "
+"გამოგზავნილი გაფრთხილებები ნაჩვენები აღარ იქნება.<nl/><nl/>ეს, მხოლოდ, მაშინ "
+"გააკეთეთ, თუ უკვე ხელით დაამატეთ გაფრთხილებების ვიჯეტი სადმე სხვაგან, ან "
+"განზრახ ცდილობთ მესამე პირების მიერ მოწოდებული გაფრთხილებების მმართველის "
+"გამოყენებას გაფრთხილებების სამართავად."
 
-#: package/contents/ui/ConfigEntries.qml:224
+#: qml/ConfigGeneral.qml:208
 #, kde-format
-msgid "Visibility"
-msgstr "ხილვადობა"
+msgctxt "@item:inlistbox Icon size"
+msgid "Scale with Panel height"
+msgstr "გადიდება პანელის სიმაღლესთან ერთად"
 
-#: package/contents/ui/ConfigEntries.qml:231
+#: qml/ConfigGeneral.qml:209
 #, kde-format
-msgid "Keyboard Shortcut"
-msgstr "კლავიატურის მალსახმობი"
+msgctxt "@item:inlistbox Icon size"
+msgid "Scale with Panel width"
+msgstr "გადიდება პანელის სიგანესთან ერთად"
 
-#: package/contents/ui/ConfigEntries.qml:263
+#: qml/ConfigGeneral.qml:211
 #, kde-format
-msgid "Always show all entries"
-msgstr "ყოველთვის ყველა ჩანაწერის ჩვენება"
-
-#: package/contents/ui/ConfigGeneral.qml:23
-#, kde-format
-msgctxt "The arrangement of system tray icons in the Panel"
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon size:"
 msgstr "პანელის ხატულების ზომა:"
 
-#: package/contents/ui/ConfigGeneral.qml:25
+#: qml/ConfigGeneral.qml:215 qml/ConfigGeneral.qml:256
 #, kde-format
+msgctxt "@item:inlistbox Icon spacing"
 msgid "Small"
 msgstr "პატარა"
 
-#: package/contents/ui/ConfigGeneral.qml:32
-#, kde-format
-msgid "Scale with Panel height"
-msgstr "პანელის სიმაღლესთან ერთად გადიდება"
-
-#: package/contents/ui/ConfigGeneral.qml:33
-#, kde-format
-msgid "Scale with Panel width"
-msgstr "პანელის სიგანესთან ერთად გადიდება"
-
-#: package/contents/ui/ConfigGeneral.qml:39
+#: qml/ConfigGeneral.qml:244
 #, kde-format
 msgid "Automatically enabled when in Touch Mode"
 msgstr "შეხების რეჟიმში ავტომატურადაა ჩართული"
 
-#: package/contents/ui/ConfigGeneral.qml:49
+#: qml/ConfigGeneral.qml:252
 #, kde-format
 msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon spacing:"
 msgstr "პანელის ხატულებს შორის დაშორება:"
 
-#: package/contents/ui/ConfigGeneral.qml:52
-#, kde-format
-msgctxt "@item:inlistbox Icon spacing"
-msgid "Small"
-msgstr "პატარა"
-
-#: package/contents/ui/ConfigGeneral.qml:56
+#: qml/ConfigGeneral.qml:260
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Normal"
 msgstr "ჩვეულებრივი"
 
-#: package/contents/ui/ConfigGeneral.qml:60
+#: qml/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Large"
 msgstr "დიდი"
 
-#: package/contents/ui/ConfigGeneral.qml:85
+#: qml/ConfigGeneral.qml:289
 #, kde-format
 msgctxt "@info:usagetip under a combobox when Touch Mode is on"
 msgid "Automatically set to Large when in Touch Mode"
 msgstr "შეხების რეჟიმში ავტომატურად დიდი ზომების დაყენება"
 
-#: package/contents/ui/ExpandedRepresentation.qml:59
+#: qml/ConfigGeneral.qml:315
+#, kde-format
+msgctxt "@title:column"
+msgid "Entries"
+msgstr "ჩანაწერები"
+
+#: qml/ConfigGeneral.qml:319
+#, kde-format
+msgctxt "@option:check, This is referring to system tray entries"
+msgid "Always show all"
+msgstr "ყოველთვის ყველაფრის ჩვენება"
+
+#: qml/ExpandedRepresentation.qml:60
 #, kde-format
 msgctxt "@action:button"
 msgid "Go Back"
 msgstr "უკან გადასვლა"
 
-#: package/contents/ui/ExpandedRepresentation.qml:71
+#: qml/ExpandedRepresentation.qml:72
 #, kde-format
 msgid "Status and Notifications"
 msgstr "სტატუსი და შეტყობინებები"
 
-#: package/contents/ui/ExpandedRepresentation.qml:140
+#: qml/ExpandedRepresentation.qml:169
 #, kde-format
 msgid "More actions"
 msgstr "მეტი ქმედება"
 
-#: package/contents/ui/ExpandedRepresentation.qml:240
+#: qml/ExpandedRepresentation.qml:255
 #, kde-format
 msgid "Keep Open"
 msgstr "ღიად დატოვება"
 
-#: package/contents/ui/ExpanderArrow.qml:26
+#: qml/ExpanderArrow.qml:25
 #, kde-format
 msgid "Show all the items in the system tray in a popup"
 msgstr "სისტემის კუთხეში მყოფი ელემენტების მხტუნავ ფანჯარაში ჩვენება"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Close popup"
 msgstr "მხტუნარას დახურვა"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Show hidden icons"
 msgstr "დამალული ხატულების ჩვენება"
 
-#: package/contents/ui/HiddenItemsView.qml:42
+#: qml/HiddenItemsView.qml:37
 #, kde-format
 msgctxt "@info:whatsthis accessible description for popup grid"
 msgid "Grid with %1 items in %2 columns"
 msgstr "ბადე %1 ელემენტით %2 სვეტში"
 
-#: package/contents/ui/HiddenItemsView.qml:46
+#: qml/HiddenItemsView.qml:41
 #, kde-format
 msgctxt "Some letters with tall characters, ascenders, descenders, etc"
 msgid "AILlmyjgGJP"
 msgstr "AILlmyjgGJP"
+
+#~ msgid "Always hidden"
+#~ msgstr "ყოველთვის დამალული"
+
+#~ msgid "Disabled"
+#~ msgstr "გამორთულია"
+
+#~ msgid "Small"
+#~ msgstr "პატარა"
+
+#~ msgctxt "Name of the system tray entry"
+#~ msgid "Entry"
+#~ msgstr "ერთეული"
+
+#~ msgid "Visibility"
+#~ msgstr "ხილვადობა"
+
+#~ msgid "Keyboard Shortcut"
+#~ msgstr "კლავიატურის მალსახმობი"
+
+#~ msgid "Always show all entries"
+#~ msgstr "ყოველთვის ყველა ჩანაწერის ჩვენება"
 
 #~ msgid "Some letters with tall characters, ascenders, descenders, etc"
 #~ msgstr "ზოგიერთი მაღალი სიმბოლო, ისარი ზემოთ, ისარი ქვემოთ და ა.შ"

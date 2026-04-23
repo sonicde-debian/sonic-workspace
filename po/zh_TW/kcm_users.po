@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-08-08 02:22+0900\n"
+"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"PO-Revision-Date: 2025-12-16 21:42+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -12,56 +12,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 26.03.70\n"
 
-#: src/fingerprintmodel.cpp:145 src/fingerprintmodel.cpp:229
+#: src/fingerprintmodel.cpp:144 src/fingerprintmodel.cpp:228
 #, kde-format
 msgid "No fingerprint device found."
 msgstr "找不到指紋裝置。"
 
-#: src/fingerprintmodel.cpp:302
+#: src/fingerprintmodel.cpp:301
 #, kde-format
 msgid "Retry scanning your finger."
 msgstr "重新掃描您的手指。"
 
-#: src/fingerprintmodel.cpp:304
+#: src/fingerprintmodel.cpp:303
 #, kde-format
 msgid "Swipe too short. Try again."
 msgstr "滑動距離太短。請重試。"
 
-#: src/fingerprintmodel.cpp:306
+#: src/fingerprintmodel.cpp:305
 #, kde-format
 msgid "Finger not centered on the reader. Try again."
 msgstr "手指未置於感應器中央。請重試。"
 
-#: src/fingerprintmodel.cpp:308
+#: src/fingerprintmodel.cpp:307
 #, kde-format
 msgid "Remove your finger from the reader, and try again."
 msgstr "請將手指提起離開感應器後再重試。"
 
-#: src/fingerprintmodel.cpp:316
+#: src/fingerprintmodel.cpp:315
 #, kde-format
 msgid "Fingerprint enrollment has failed."
 msgstr "指紋登錄失敗。"
 
-#: src/fingerprintmodel.cpp:319
+#: src/fingerprintmodel.cpp:318
 #, kde-format
 msgid ""
 "There is no space left for this device, delete other fingerprints to "
 "continue."
 msgstr "本裝置無法登錄更多指紋，請刪除其他指紋後再繼續。"
 
-#: src/fingerprintmodel.cpp:322
+#: src/fingerprintmodel.cpp:321
 #, kde-format
 msgid "The device was disconnected."
 msgstr "裝置已斷線。"
 
-#: src/fingerprintmodel.cpp:327
+#: src/fingerprintmodel.cpp:326
 #, kde-format
 msgid "An unknown error has occurred."
 msgstr "發生了未知錯誤。"
 
-#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:215
+#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:228
 #, kde-format
 msgid "Change Password"
 msgstr "變更密碼(&C)"
@@ -137,22 +137,22 @@ msgstr "建立使用者"
 msgid "Name:"
 msgstr "姓名(&N)："
 
-#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:173
+#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:171
 #, kde-format
 msgid "Username:"
 msgstr "使用者名稱(&U)："
 
-#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:190
+#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:203
 #, kde-format
 msgid "Standard"
 msgstr "標準"
 
-#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:191
+#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:204
 #, kde-format
 msgid "Administrator"
 msgstr "管理員"
 
-#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:180
+#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:193
 #, kde-format
 msgid "Account type:"
 msgstr "帳號類型："
@@ -173,7 +173,7 @@ msgctxt "@action:button Create a new user"
 msgid "Create"
 msgstr "建立"
 
-#: src/ui/CreateUser.qml:109
+#: src/ui/CreateUser.qml:111
 #, kde-format
 msgctxt "@action:button Cancel creating new user"
 msgid "Cancel"
@@ -312,17 +312,17 @@ msgstr "請在指紋感應器上重複滑動您的左手大拇指。"
 msgid "Configure Fingerprints"
 msgstr "設定指紋"
 
-#: src/ui/FingerprintDialog.qml:38
+#: src/ui/FingerprintDialog.qml:39
 #, kde-format
 msgid "Add"
 msgstr "新增"
 
-#: src/ui/FingerprintDialog.qml:50
+#: src/ui/FingerprintDialog.qml:51
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
 
-#: src/ui/FingerprintDialog.qml:58
+#: src/ui/FingerprintDialog.qml:59
 #, kde-format
 msgid "Done"
 msgstr "完成"
@@ -574,7 +574,25 @@ msgstr "刪除 %1"
 msgid "Change avatar"
 msgstr "變更大頭貼"
 
-#: src/ui/UserDetailsPage.qml:201
+#: src/ui/UserDetailsPage.qml:185
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change your own username while logged in; log out and then log in as "
+"another user to change this account’s username."
+msgstr ""
+"無法變更在登入時變更您自己的使用者名稱；請登出後登入為另一個使用者才能變更這"
+"個帳號的使用者名稱。"
+
+#: src/ui/UserDetailsPage.qml:186
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change the username of a logged-in user; wait until this user logs "
+"out first."
+msgstr "無法變更已登入使用者的使用者名稱，請先等這個使用者登出。"
+
+#: src/ui/UserDetailsPage.qml:214
 #, kde-format
 msgid ""
 "Cannot change the account type to Standard unless there is at least one "
@@ -585,32 +603,42 @@ msgstr ""
 "時候將會無法進行任何管理員權限的驗證，使得不安全的根使用者變成利用管理員權限"
 "的唯一途徑。"
 
-#: src/ui/UserDetailsPage.qml:209
+#: src/ui/UserDetailsPage.qml:222
 #, kde-format
 msgid "Email address:"
 msgstr "電子郵件地址(&E)："
 
-#: src/ui/UserDetailsPage.qml:238
+#: src/ui/UserDetailsPage.qml:254
 #, kde-format
 msgid "Delete files"
 msgstr "刪除檔案"
 
-#: src/ui/UserDetailsPage.qml:245
+#: src/ui/UserDetailsPage.qml:261
 #, kde-format
 msgid "Keep files"
 msgstr "保留檔案"
 
-#: src/ui/UserDetailsPage.qml:252
+#: src/ui/UserDetailsPage.qml:268
 #, kde-format
 msgid "Delete User…"
 msgstr "刪除使用者(&D)…"
 
-#: src/ui/UserDetailsPage.qml:264
+#: src/ui/UserDetailsPage.qml:274
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot delete yourself! Log out and then log in as another user to delete "
+"this user account."
+msgstr ""
+"不能刪除您自己！如果真的要刪除這個使用者帳號，請登出後改登入為另一個使用者再"
+"刪除這個使用者帳號。"
+
+#: src/ui/UserDetailsPage.qml:286
 #, kde-format
 msgid "Configure Fingerprint Authentication…"
 msgstr "設定指紋驗證…"
 
-#: src/ui/UserDetailsPage.qml:296
+#: src/ui/UserDetailsPage.qml:318
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

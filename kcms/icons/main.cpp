@@ -70,9 +70,7 @@ IconModule::IconModule(QObject *parent, const KPluginMetaData &data)
     QPixmapCache::setCacheLimit(50 * 1024); // 50 MiB
 }
 
-IconModule::~IconModule()
-{
-}
+IconModule::~IconModule() = default;
 
 IconsSettings *IconModule::iconsSettings() const
 {
@@ -363,7 +361,7 @@ QPixmap IconModule::getBestIcon(KIconTheme &theme, const QStringList &iconNames,
         }
     }
 
-    return QPixmap();
+    return {};
 }
 
 int IconModule::pluginIndex(const QString &themeName) const

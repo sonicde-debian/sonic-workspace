@@ -14,7 +14,6 @@
 
 #include <KLocalizedString>
 #include <Plasma/Applet>
-#include <Plasma5Support/DataContainer>
 #include <PlasmaQuick/AppletQuickItem>
 
 #include <QIcon>
@@ -105,7 +104,7 @@ PlasmoidModel::PlasmoidModel(const QPointer<SystemTraySettings> &settings, const
 QVariant PlasmoidModel::data(const QModelIndex &index, int role) const
 {
     if (!checkIndex(index, CheckIndexOption::IndexIsValid)) {
-        return QVariant();
+        return {};
     }
 
     const PlasmoidModel::Item &item = m_items[index.row()];
@@ -122,7 +121,7 @@ QVariant PlasmoidModel::data(const QModelIndex &index, int role) const
             return icon.isNull() ? QVariant() : icon;
         }
         default:
-            return QVariant();
+            return {};
         }
     }
 
@@ -146,7 +145,7 @@ QVariant PlasmoidModel::data(const QModelIndex &index, int role) const
         case BaseRole::EffectiveStatus:
             return calculateEffectiveStatus(applet != nullptr, status, pluginMetaData.pluginId());
         default:
-            return QVariant();
+            return {};
         }
     }
 
@@ -156,7 +155,7 @@ QVariant PlasmoidModel::data(const QModelIndex &index, int role) const
     case Role::HasApplet:
         return applet != nullptr;
     default:
-        return QVariant();
+        return {};
     }
 }
 
@@ -208,6 +207,8 @@ void PlasmoidModel::removeApplet(Plasma::Applet *applet)
 
 void PlasmoidModel::appendRow(const KPluginMetaData &pluginMetaData)
 {
+    Q_ASSERT(pluginMetaData.isValid());
+
     int idx = rowCount();
     beginInsertRows(QModelIndex(), idx, idx);
 
@@ -285,14 +286,14 @@ static QString extractItemId(const StatusNotifierItemSource *sniData)
 QVariant StatusNotifierModel::data(const QModelIndex &index, int role) const
 {
     if (!checkIndex(index, CheckIndexOption::IndexIsValid)) {
-        return QVariant();
+        return {};
     }
 
-    const StatusNotifierModel::Item &item = m_items[index.row()];
-    StatusNotifierItemSource *sniData = m_sniHost->itemForService(item.source);
+    const QString source = m_items[index.row()];
+    StatusNotifierItemSource *sniData = m_sniHost->itemForService(source);
 
     if (!sniData) {
-        qCWarning(SYSTEM_TRAY) << "Could not find sniData for source" << item.source;
+        qCWarning(SYSTEM_TRAY) << "Could not find sniData for source" << source;
         return {};
     }
 
@@ -307,7 +308,7 @@ QVariant StatusNotifierModel::data(const QModelIndex &index, int role) const
                 return extractIcon(sniData->icon());
             }
         default:
-            return QVariant();
+            return {};
         }
     }
 
@@ -330,15 +331,13 @@ QVariant StatusNotifierModel::data(const QModelIndex &index, int role) const
         case BaseRole::EffectiveStatus:
             return calculateEffectiveStatus(true, extractStatus(sniData), itemId);
         default:
-            return QVariant();
+            return {};
         }
     }
 
     switch (static_cast<Role>(role)) {
     case Role::DataEngineSource:
-        return item.source;
-    case Role::Service:
-        return QVariant::fromValue(item.service);
+        return source;
     case Role::AttentionIcon:
         return extractIcon(sniData->attentionIcon());
     case Role::AttentionIconName:
@@ -370,7 +369,7 @@ QVariant StatusNotifierModel::data(const QModelIndex &index, int role) const
     case Role::WindowId:
         return sniData->windowId();
     default:
-        return QVariant();
+        return {};
     }
 }
 
@@ -384,7 +383,6 @@ QHash<int, QByteArray> StatusNotifierModel::roleNames() const
     QHash<int, QByteArray> roles = BaseModel::roleNames();
 
     roles.insert(static_cast<int>(Role::DataEngineSource), QByteArrayLiteral("DataEngineSource"));
-    roles.insert(static_cast<int>(Role::Service), QByteArrayLiteral("Service"));
     roles.insert(static_cast<int>(Role::AttentionIcon), QByteArrayLiteral("AttentionIcon"));
     roles.insert(static_cast<int>(Role::AttentionIconName), QByteArrayLiteral("AttentionIconName"));
     roles.insert(static_cast<int>(Role::AttentionMovieName), QByteArrayLiteral("AttentionMovieName"));
@@ -409,15 +407,11 @@ void StatusNotifierModel::addSource(const QString &source)
     int count = rowCount();
     beginInsertRows(QModelIndex(), count, count);
 
-    StatusNotifierModel::Item item;
-    item.source = source;
-
     StatusNotifierItemSource *sni = m_sniHost->itemForService(source);
     connect(sni, &StatusNotifierItemSource::dataUpdated, this, [=, this]() {
         dataUpdated(source);
     });
-    item.service = sni->createService();
-    m_items.append(item);
+    m_items.append(source);
     endInsertRows();
 }
 
@@ -426,7 +420,6 @@ void StatusNotifierModel::removeSource(const QString &source)
     int idx = indexOfSource(source);
     if (idx >= 0) {
         beginRemoveRows(QModelIndex(), idx, idx);
-        delete m_items[idx].service;
         m_items.removeAt(idx);
         endRemoveRows();
     }
@@ -444,7 +437,7 @@ void StatusNotifierModel::dataUpdated(const QString &sourceName)
 int StatusNotifierModel::indexOfSource(const QString &source) const
 {
     for (int i = 0; i < rowCount(); i++) {
-        if (m_items[i].source == source) {
+        if (m_items[i] == source) {
             return i;
         }
     }

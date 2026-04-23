@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Volkan Gezer <volkangezer@gmail.com>, 2021, 2022.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasmashellprivateplugin\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-08-27 09:12+0300\n"
-"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
+"POT-Creation-Date: 2026-02-17 02:42+0000\n"
+"PO-Revision-Date: 2026-03-09 21:56+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -28,13 +28,13 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "volkangezer@gmail.com, emir_sari@icloud.com"
 
-#: batterycontrol/batteriesnamesmonitor_p.cpp:46
+#: batterycontrol/batteriesnamesmonitor_p.cpp:45
 #, kde-format
 msgctxt "Placeholder is the battery number"
 msgid "Battery %1"
 msgstr "Pil %1"
 
-#: batterycontrol/batteriesnamesmonitor_p.cpp:48
+#: batterycontrol/batteriesnamesmonitor_p.cpp:47
 #, kde-format
 msgid "Battery"
 msgstr "Pil"
@@ -86,63 +86,64 @@ msgstr "%1 %2"
 msgid "Days"
 msgstr "Gün"
 
-#: calendar/qml/MonthViewHeader.qml:137
+#: calendar/qml/MonthViewHeader.qml:139
 #, kde-format
 msgid "Months"
 msgstr "Ay"
 
-#: calendar/qml/MonthViewHeader.qml:143
+#: calendar/qml/MonthViewHeader.qml:147
 #, kde-format
 msgid "Years"
 msgstr "Yıl"
 
-#: calendar/qml/MonthViewHeader.qml:181
+#: calendar/qml/MonthViewHeader.qml:184
 #, kde-format
 msgid "Previous Month"
 msgstr "Önceki Ay"
 
-#: calendar/qml/MonthViewHeader.qml:183
+#: calendar/qml/MonthViewHeader.qml:186
 #, kde-format
 msgid "Previous Year"
 msgstr "Önceki Yıl"
 
-#: calendar/qml/MonthViewHeader.qml:185
+#: calendar/qml/MonthViewHeader.qml:188
 #, kde-format
 msgid "Previous Decade"
 msgstr "Önceki On Yıl"
 
-#: calendar/qml/MonthViewHeader.qml:202
+#: calendar/qml/MonthViewHeader.qml:206
 #, kde-format
 msgctxt "Reset calendar to today"
 msgid "Today"
 msgstr "Bugün"
 
-#: calendar/qml/MonthViewHeader.qml:203
+#: calendar/qml/MonthViewHeader.qml:207
 #, kde-format
 msgid "Reset calendar to today"
 msgstr "Takvimi bugüne sıfırla"
 
-#: calendar/qml/MonthViewHeader.qml:214
+#: calendar/qml/MonthViewHeader.qml:220
 #, kde-format
 msgid "Next Month"
 msgstr "Sonraki Ay"
 
-#: calendar/qml/MonthViewHeader.qml:216
+#: calendar/qml/MonthViewHeader.qml:222
 #, kde-format
 msgid "Next Year"
 msgstr "Sonraki Yıl"
 
-#: calendar/qml/MonthViewHeader.qml:218
+#: calendar/qml/MonthViewHeader.qml:224
 #, kde-format
 msgid "Next Decade"
 msgstr "Sonraki On Yıl"
 
-#: calendar/qml/MonthViewHeader.qml:272
+#: calendar/qml/MonthViewHeader.qml:283
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Keep Open"
 msgstr "Açık tut"
 
-#: containmentlayoutmanager/qml/BasicAppletContainer.qml:285
+#: containmentlayoutmanager/qml/BasicAppletContainer.qml:286
 #, kde-format
 msgid "Configure…"
 msgstr "Yapılandır…"
@@ -171,17 +172,17 @@ msgstr "Ekran koruyucu zaman aşımı"
 msgid "Sets the minutes after which the screen is locked."
 msgstr "Ekranın kaç saniye sonra kilitleneceğini ayarlar."
 
-#: sessionsprivate/sessionsmodel.cpp:235 sessionsprivate/sessionsmodel.cpp:239
+#: sessionsprivate/sessionsmodel.cpp:255 sessionsprivate/sessionsmodel.cpp:259
 #, kde-format
 msgid "New Session"
 msgstr "Yeni Oturum"
 
-#: shellprivate/kcategorizeditemsviewmodels.cpp:65
+#: shellprivate/kcategorizeditemsviewmodels.cpp:66
 #, kde-format
 msgid "Filters"
 msgstr "Süzgeçler"
 
-#: shellprivate/plasmaappletitemmodel.cpp:198
+#: shellprivate/plasmaappletitemmodel.cpp:199
 #, kde-format
 msgid ""
 "This Widget was written for an unknown older version of Plasma and is not "
@@ -192,7 +193,7 @@ msgstr ""
 "%1 ile uyumlu değil. Güncel bir sürüm için araç takımının yazarıyla "
 "iletişime geçin."
 
-#: shellprivate/plasmaappletitemmodel.cpp:202
+#: shellprivate/plasmaappletitemmodel.cpp:203
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
@@ -201,7 +202,7 @@ msgstr ""
 "Bu araç takımı Plasma %1 için yazılmış ve Plasma %2 ile uyumlu değil. Güncel "
 "bir sürüm için araç takımının yazarıyla iletişime geçin."
 
-#: shellprivate/plasmaappletitemmodel.cpp:206
+#: shellprivate/plasmaappletitemmodel.cpp:207
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
@@ -210,7 +211,7 @@ msgstr ""
 "Bu araç takımı Plasma %1 için yazılmış ve Plasma %2 ile uyumlu değil. Araç "
 "takımını kullanmak için lütfen Plasma’yı güncelleyin."
 
-#: shellprivate/plasmaappletitemmodel.cpp:211
+#: shellprivate/plasmaappletitemmodel.cpp:212
 #, kde-format
 msgid ""
 "This Widget was written for Plasma %1 and is not compatible with the latest "
@@ -219,132 +220,132 @@ msgstr ""
 "Bu araç takımı Plasma %1 için yazılmış ve Plasma’nın güncel sürümüyle uyumlu "
 "değil. Araç takımını kullanmak için lütfen Plasma’yı güncelleyin."
 
-#: shellprivate/widgetexplorer.cpp:109
+#: shellprivate/widgetexplorer.cpp:110
 msgctxt "applet category"
 msgid "Accessibility"
 msgstr "Erişilebilirlik"
 
-#: shellprivate/widgetexplorer.cpp:110
+#: shellprivate/widgetexplorer.cpp:111
 msgctxt "applet category"
 msgid "Application Launchers"
 msgstr "Uygulama Başlatıcıları"
 
-#: shellprivate/widgetexplorer.cpp:111
+#: shellprivate/widgetexplorer.cpp:112
 msgctxt "applet category"
 msgid "Astronomy"
 msgstr "Gökbilim"
 
-#: shellprivate/widgetexplorer.cpp:112
+#: shellprivate/widgetexplorer.cpp:113
 msgctxt "applet category"
 msgid "Date and Time"
 msgstr "Tarih ve Zaman"
 
-#: shellprivate/widgetexplorer.cpp:113
+#: shellprivate/widgetexplorer.cpp:114
 msgctxt "applet category"
 msgid "Development Tools"
 msgstr "Geliştirme Araçları"
 
-#: shellprivate/widgetexplorer.cpp:114
+#: shellprivate/widgetexplorer.cpp:115
 msgctxt "applet category"
 msgid "Education"
 msgstr "Eğitim"
 
-#: shellprivate/widgetexplorer.cpp:115
+#: shellprivate/widgetexplorer.cpp:116
 msgctxt "applet category"
 msgid "Environment and Weather"
 msgstr "Çevre ve Hava"
 
-#: shellprivate/widgetexplorer.cpp:116
+#: shellprivate/widgetexplorer.cpp:117
 msgctxt "applet category"
 msgid "Examples"
 msgstr "Örnekler"
 
-#: shellprivate/widgetexplorer.cpp:117
+#: shellprivate/widgetexplorer.cpp:118
 msgctxt "applet category"
 msgid "File System"
 msgstr "Dosya Sistemi"
 
-#: shellprivate/widgetexplorer.cpp:118
+#: shellprivate/widgetexplorer.cpp:119
 msgctxt "applet category"
 msgid "Fun and Games"
 msgstr "Eğlence ve Oyunlar"
 
-#: shellprivate/widgetexplorer.cpp:119
+#: shellprivate/widgetexplorer.cpp:120
 msgctxt "applet category"
 msgid "Graphics"
 msgstr "Grafikler"
 
-#: shellprivate/widgetexplorer.cpp:120
+#: shellprivate/widgetexplorer.cpp:121
 msgctxt "applet category"
 msgid "Language"
 msgstr "Dil"
 
-#: shellprivate/widgetexplorer.cpp:121
+#: shellprivate/widgetexplorer.cpp:122
 msgctxt "applet category"
 msgid "Mapping"
 msgstr "Haritalama"
 
-#: shellprivate/widgetexplorer.cpp:122
+#: shellprivate/widgetexplorer.cpp:123
 msgctxt "applet category"
 msgid "Miscellaneous"
 msgstr "Çeşitli"
 
-#: shellprivate/widgetexplorer.cpp:123
+#: shellprivate/widgetexplorer.cpp:124
 msgctxt "applet category"
 msgid "Multimedia"
 msgstr "Çoklu Ortam"
 
-#: shellprivate/widgetexplorer.cpp:124
+#: shellprivate/widgetexplorer.cpp:125
 msgctxt "applet category"
 msgid "Online Services"
-msgstr "Çevrimiçi Hizmetler"
+msgstr "Çevrim İçi Hizmetler"
 
-#: shellprivate/widgetexplorer.cpp:125
+#: shellprivate/widgetexplorer.cpp:126
 msgctxt "applet category"
 msgid "Personal Information"
 msgstr "Kişisel Bilgi"
 
-#: shellprivate/widgetexplorer.cpp:126
+#: shellprivate/widgetexplorer.cpp:127
 msgctxt "applet category"
 msgid "Productivity"
 msgstr "Üretkenlik"
 
-#: shellprivate/widgetexplorer.cpp:127
+#: shellprivate/widgetexplorer.cpp:128
 msgctxt "applet category"
 msgid "System Information"
 msgstr "Sistem Bilgisi"
 
-#: shellprivate/widgetexplorer.cpp:128
+#: shellprivate/widgetexplorer.cpp:129
 msgctxt "applet category"
 msgid "Utilities"
 msgstr "İzlenceler"
 
-#: shellprivate/widgetexplorer.cpp:129
+#: shellprivate/widgetexplorer.cpp:130
 msgctxt "applet category"
 msgid "Windows and Tasks"
 msgstr "Pencereler ve Görevler"
 
-#: shellprivate/widgetexplorer.cpp:130
+#: shellprivate/widgetexplorer.cpp:131
 msgctxt "applet category"
 msgid "Clipboard"
 msgstr "Pano"
 
-#: shellprivate/widgetexplorer.cpp:131
+#: shellprivate/widgetexplorer.cpp:132
 msgctxt "applet category"
 msgid "Tasks"
 msgstr "Görevler"
 
-#: shellprivate/widgetexplorer.cpp:147
+#: shellprivate/widgetexplorer.cpp:148
 #, kde-format
 msgid "All Widgets"
 msgstr "Tüm Araç Takımları"
 
-#: shellprivate/widgetexplorer.cpp:151
+#: shellprivate/widgetexplorer.cpp:152
 #, kde-format
 msgid "Running"
 msgstr "Çalışıyor"
 
-#: shellprivate/widgetexplorer.cpp:157
+#: shellprivate/widgetexplorer.cpp:158
 #, kde-format
 msgctxt ""
 "@item:inmenu used in the widget filter. Filter widgets that can be un-"
@@ -353,7 +354,7 @@ msgctxt ""
 msgid "User-installed"
 msgstr "Kullanıcı tarafından kurulan"
 
-#: shellprivate/widgetexplorer.cpp:161
+#: shellprivate/widgetexplorer.cpp:162
 #, kde-format
 msgctxt ""
 "@item:inmenu used in the widget filter. Filter widgets that can were "
@@ -361,44 +362,44 @@ msgctxt ""
 msgid "Recently installed"
 msgstr "Son kurulan"
 
-#: shellprivate/widgetexplorer.cpp:165
+#: shellprivate/widgetexplorer.cpp:166
 #, kde-format
 msgid "Categories:"
 msgstr "Kategoriler:"
 
-#: shellprivate/widgetexplorer.cpp:235
+#: shellprivate/widgetexplorer.cpp:236
 #, kde-format
 msgid "Download New Plasma Widgets"
 msgstr "Yeni Plasma Araç Takımları İndir"
 
-#: shellprivate/widgetexplorer.cpp:244
+#: shellprivate/widgetexplorer.cpp:245
 #, kde-format
 msgid "Install Widget From Local File…"
 msgstr "Yerel Dosyadan Araç Takımı Kur…"
 
-#: shellprivate/widgetexplorer.cpp:483
+#: shellprivate/widgetexplorer.cpp:484
 #, kde-format
 msgctxt "@title:window"
 msgid "Get New Widgets"
 msgstr "Yeni Araç Takımları Al"
 
-#: shellprivate/widgetexplorer.cpp:502
+#: shellprivate/widgetexplorer.cpp:503
 #, kde-format
 msgid "Select Plasmoid File"
 msgstr "Plasmoid Dosyası Seç"
 
-#: shellprivate/widgetexplorer.cpp:518
+#: shellprivate/widgetexplorer.cpp:519
 #, kde-format
 msgctxt "%1 is the name of an applet, %2 is an error message"
 msgid "Installing the package %1 failed: %2."
 msgstr "%1 paketinin kurulumu başarısız oldu: %2"
 
-#: shellprivate/widgetexplorer.cpp:519
+#: shellprivate/widgetexplorer.cpp:520
 #, kde-format
 msgid "Installation Failure"
 msgstr "Kurulum Başarısız Oldu"
 
-#: timezoneselector/TimezoneSelector.qml:106
+#: timezoneselector/TimezoneSelector.qml:104
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -408,42 +409,42 @@ msgstr ""
 "Şu anda seçili zaman dilimi, bu harita üzerinde görselleştirmek için uygun "
 "değil."
 
-#: timezoneselector/TimezoneSelector.qml:196
+#: timezoneselector/TimezoneSelector.qml:194
 #, kde-format
 msgctxt "@action:button"
 msgid "Zoom in"
 msgstr "Yakınlaştır"
 
-#: timezoneselector/TimezoneSelector.qml:212
+#: timezoneselector/TimezoneSelector.qml:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Zoom out"
 msgstr "Uzaklaştır"
 
-#: timezoneselector/TimezoneSelector.qml:241
+#: timezoneselector/TimezoneSelector.qml:239
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Region:"
 msgstr "Bölge:"
 
-#: timezoneselector/TimezoneSelector.qml:248
+#: timezoneselector/TimezoneSelector.qml:246
 #, kde-format
 msgctxt "Placeholder for empty time zone combobox selector"
 msgid "Choose…"
 msgstr "Seç…"
 
-#: timezoneselector/TimezoneSelector.qml:252
+#: timezoneselector/TimezoneSelector.qml:250
 #, kde-format
 msgid "Timezone region selector"
 msgstr "Zaman dilimi bölgesi seçicisi"
 
-#: timezoneselector/TimezoneSelector.qml:273
+#: timezoneselector/TimezoneSelector.qml:271
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Time zone:"
 msgstr "Zaman dilimi:"
 
-#: timezoneselector/TimezoneSelector.qml:283
+#: timezoneselector/TimezoneSelector.qml:281
 #, kde-format
 msgid "Timezone location selector"
 msgstr "Zaman dilimi konumu seçicisi"

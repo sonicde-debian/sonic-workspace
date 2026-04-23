@@ -229,7 +229,7 @@ void IconApplet::populate()
         setLocalPath(backingDesktopFile);
 
         if (downloadFavIcon) {
-            KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(m_url);
+            auto *job = new KIO::FavIconRequestJob(m_url);
             connect(job, &KIO::FavIconRequestJob::result, this, [job, backingDesktopFile, this](KJob *) {
                 if (!job->error()) {
                     KDesktopFile(backingDesktopFile).desktopGroup().writeEntry(QStringLiteral("Icon"), job->iconFile());
@@ -266,8 +266,7 @@ void IconApplet::populateFromDesktopFile(const QString &path)
 
     setIconName(desktopFile.readIcon());
 
-    delete m_openContainingFolderAction;
-    m_openContainingFolderAction = nullptr;
+    delete std::exchange(m_openContainingFolderAction, nullptr);
     m_openWithActions.clear();
     m_jumpListActions.clear();
 
@@ -372,7 +371,7 @@ QList<QAction *> IconApplet::extraActions()
                     continue;
                 }
 
-                QAction *action = new QAction(QIcon::fromTheme(serviceAction.icon()), serviceAction.text(), this);
+                auto *action = new QAction(QIcon::fromTheme(serviceAction.icon()), serviceAction.text(), this);
                 if (serviceAction.isSeparator()) {
                     action->setSeparator(true);
                 }
@@ -434,7 +433,7 @@ void IconApplet::run()
         connect(m_startupTasksModel, &QAbstractItemModel::rowsAboutToBeRemoved, this, std::bind(handleRow, false /*busy*/, _1, _2, _3));
     }
 
-    KIO::OpenUrlJob *job = new KIO::OpenUrlJob(QUrl::fromLocalFile(m_localPath));
+    auto *job = new KIO::OpenUrlJob(QUrl::fromLocalFile(m_localPath));
     job->setRunExecutables(true); // so it can launch apps
     job->setUiDelegate(new KNotificationJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled));
     job->start();
@@ -458,7 +457,7 @@ void IconApplet::processDrop(QObject *dropEvent)
         auto service = new KService(localPath);
 
         if (service->isApplication()) {
-            KIO::ApplicationLauncherJob *job = new KIO::ApplicationLauncherJob(KService::Ptr(service));
+            auto *job = new KIO::ApplicationLauncherJob(KService::Ptr(service));
             job->setUrls(urls);
             job->setUiDelegate(new KNotificationJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled));
             job->start();
@@ -596,7 +595,7 @@ void IconApplet::setLocalPath(const QString &localPath)
     }
 }
 
-K_PLUGIN_CLASS(IconApplet)
+K_PLUGIN_CLASS_WITH_JSON(IconApplet, "metadata.json")
 
 #include "iconapplet.moc"
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: klipper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 02:38+0000\n"
+"POT-Creation-Date: 2026-03-12 02:38+0000\n"
 "PO-Revision-Date: 2025-08-30 19:34+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -24,22 +24,12 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#, kde-format
-msgctxt "NAME OF TRANSLATORS"
-msgid "Your names"
-msgstr "زايد السعيدي, محمد سعد"
-
-#, kde-format
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
-msgstr "zayed.alsaidi@gmail.com,metehyi@free.fr"
-
-#: configdialog.cpp:85
+#: configdialog.cpp:84
 #, kde-format
 msgid "Clipboard history:"
 msgstr "تاريخ الحافظة:"
 
-#: configdialog.cpp:91
+#: configdialog.cpp:90
 #, kde-format
 msgctxt "Number of entries"
 msgid "%v entry"
@@ -51,12 +41,12 @@ msgstr[3] "%v مدخلات"
 msgstr[4] "%v مدخلة"
 msgstr[5] "%v مدخلة"
 
-#: configdialog.cpp:100
+#: configdialog.cpp:99
 #, kde-format
 msgid "Selection and Clipboard:"
 msgstr "التحديد والحافظة:"
 
-#: configdialog.cpp:107
+#: configdialog.cpp:106
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -81,49 +71,49 @@ msgstr ""
 "الحافظة (وفقًا للخيارات أدناه)، ولكن لا يمكن لصقه إلا باستخدام زر الفأرة "
 "الأوسط."
 
-#: configdialog.cpp:136 configdialog.cpp:174
+#: configdialog.cpp:135 configdialog.cpp:173
 #, kde-format
 msgid "Always save in history"
 msgstr "دائما احفظ في المحفوظات"
 
-#: configdialog.cpp:140
+#: configdialog.cpp:139
 #, kde-format
 msgid "Text selection:"
 msgstr "تحديد النص:"
 
-#: configdialog.cpp:142 configdialog.cpp:180
+#: configdialog.cpp:141 configdialog.cpp:179
 #, kde-format
 msgid "Only when explicitly copied"
 msgstr "فقط عند النسخ بصراحة"
 
-#: configdialog.cpp:147
+#: configdialog.cpp:146
 #, kde-format
 msgid "Whether text selections are saved in the clipboard history."
 msgstr "إذا كان سيحفظ تحديدات النص في محفوظات الحافظة."
 
-#: configdialog.cpp:178
+#: configdialog.cpp:177
 #, kde-format
 msgid "Non-text selection:"
 msgstr "التحديد غير النصي:"
 
-#: configdialog.cpp:185
+#: configdialog.cpp:184
 #, kde-format
 msgid "Never save in history"
 msgstr "لا تحفظه في المحفوظات"
 
-#: configdialog.cpp:190
+#: configdialog.cpp:189
 #, kde-format
 msgid ""
 "Whether non-text selections (such as images) are saved in the clipboard "
 "history."
 msgstr "إذا كان سيحفظ التحديدات غير النصية (مثل الصور) في محفوظات الحافظة."
 
-#: configdialog.cpp:264
+#: configdialog.cpp:263
 #, kde-format
 msgid "Show action popup menu:"
 msgstr "اعرض قائمة الإجراءات المنبثقة:"
 
-#: configdialog.cpp:274
+#: configdialog.cpp:273
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -138,12 +128,7 @@ msgstr ""
 "هنا، أو لم تظهر لنافذة مستبعدة، فيمكن عرضها باستخدام اختصار المفتاح "
 "<shortcut>%1 </shortcut>."
 
-#: configdialog.cpp:283
-#, kde-format
-msgid "Exclude Windows..."
-msgstr "استثنِ النوافذ..."
-
-#: configdialog.cpp:297
+#: configdialog.cpp:285
 #, kde-format
 msgctxt "Unit of time"
 msgid "%v second"
@@ -155,23 +140,18 @@ msgstr[3] "%v ثواني"
 msgstr[4] "%v ثانية"
 msgstr[5] "%v ثانية"
 
-#: configdialog.cpp:298
+#: configdialog.cpp:286
 #, kde-format
 msgctxt "No timeout"
 msgid "None"
 msgstr "لا شيء"
 
-#: configdialog.cpp:307
+#: configdialog.cpp:295
 #, kde-format
 msgid "Options:"
 msgstr "الخيارات:"
 
-#: configdialog.cpp:334
-#, kde-format
-msgid "Exclude Windows"
-msgstr "استثنِ النوافذ"
-
-#: configdialog.cpp:364
+#: configdialog.cpp:320
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -182,34 +162,34 @@ msgstr ""
 "عندما يطابق <interface>نمط المطابقة</interface> محتويات من الحافظة؛ ستظهر "
 "<interface>أوامرها</interface> في قائمة كليبر المنبثقة ويمكن استبعدها."
 
-#: configdialog.cpp:373
+#: configdialog.cpp:329
 #, kde-format
 msgctxt "@title:column"
 msgid "Match pattern and commands"
 msgstr "نمط المطابقة والأوامر"
 
-#: configdialog.cpp:373
+#: configdialog.cpp:329
 #, kde-format
 msgctxt "@title:column"
 msgid "Description"
 msgstr "الوصف"
 
-#: configdialog.cpp:379
+#: configdialog.cpp:335
 #, kde-format
 msgid "Add Action..."
 msgstr "أضف إجراء..."
 
-#: configdialog.cpp:383
+#: configdialog.cpp:339
 #, kde-format
 msgid "Edit Action..."
 msgstr "حرر إجراء..."
 
-#: configdialog.cpp:388
+#: configdialog.cpp:344
 #, kde-format
 msgid "Delete Action"
 msgstr "احذف إجراء "
 
-#: configdialog.cpp:395
+#: configdialog.cpp:351
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -219,7 +199,7 @@ msgstr ""
 "هذه الإجراءات تظهر في القائمة المنبثقة والتي يمكن ضبطها في صفحة "
 "<interface>قائمة الإجراءات</interface>."
 
-#: configdialog.cpp:581
+#: configdialog.cpp:546
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -227,87 +207,54 @@ msgid ""
 "commands?"
 msgstr "أأحذف الإجراء المحددة <resource>%1</resource><nl/> وجميع أوامره؟"
 
-#: configdialog.cpp:582
+#: configdialog.cpp:547
 #, kde-format
 msgid "Confirm Delete Action"
 msgstr "أكّد إجراء الحذف"
 
-#: configdialog.cpp:611
+#: configdialog.cpp:600
 #, kde-format
 msgctxt "General Config"
 msgid "General"
 msgstr "عام"
 
-#: configdialog.cpp:611
+#: configdialog.cpp:600
 #, kde-format
 msgid "General Configuration"
 msgstr "ضبط عام"
 
-#: configdialog.cpp:612
+#: configdialog.cpp:601
 #, kde-format
 msgctxt "Popup Menu Config"
 msgid "Action Menu"
 msgstr "قائمة الإجراءات"
 
-#: configdialog.cpp:612
+#: configdialog.cpp:601
 #, kde-format
 msgid "Action Menu"
 msgstr "قائمة الإجراءات"
 
-#: configdialog.cpp:613
+#: configdialog.cpp:602
 #, kde-format
 msgctxt "Actions Config"
 msgid "Actions Configuration"
 msgstr "ضبط الإجراءات"
 
-#: configdialog.cpp:613
+#: configdialog.cpp:602
 #, kde-format
 msgid "Actions Configuration"
 msgstr "ضبط الإجراءات"
 
-#: configdialog.cpp:616
+#: configdialog.cpp:605
 #, kde-format
 msgctxt "Shortcuts Config"
 msgid "Shortcuts"
 msgstr "الاختصارات"
 
-#: configdialog.cpp:616
+#: configdialog.cpp:605
 #, kde-format
 msgid "Shortcuts Configuration"
 msgstr "ضبط الاختصارات"
-
-#: configdialog.cpp:701
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The action popup will not be shown automatically for these windows, even if "
-"it is enabled. This is because, for example, a web browser may highlight a "
-"URL in the address bar while typing, so the menu would show for every "
-"keystroke.<nl/><nl/>If the action menu appears unexpectedly when using a "
-"particular application, then add it to this list. <link>How to find the name "
-"to enter</link>."
-msgstr ""
-"لن تعرض نافذة الإجراء المنبثقة آليًّا لهذه النوافذ ولو مكنت. هذا لأنه، على "
-"سبيل المثال، قد يميز مستعرض الويب عنوان URL في شريط العناوين أثناء الكتابة، "
-"لذلك ستظهر القائمة لكل ضغطة مفتاح. <nl/> <nl/> إذا ظهرت قائمة الإجراء بشكل "
-"غير متوقع عند استخدام تطبيق معين، عندها أضفها إلى هذه القائمة. <link> كيفية "
-"العثور على الاسم المراد إدخاله </link>."
-
-#: configdialog.cpp:714
-#, kde-kuit-format
-msgctxt "@info:tooltip"
-msgid ""
-"The name that needs to be entered here is the WM_CLASS name of the window to "
-"be excluded. To find the WM_CLASS name for a window, in another terminal "
-"window enter the command:<nl/><nl/>&nbsp;&nbsp;<icode>xprop | grep WM_CLASS</"
-"icode><nl/><nl/>and click on the window that you want to exclude. The first "
-"name that it displays after the equal sign is the one that you need to enter."
-msgstr ""
-"الاسم الذي يجب إدخاله هنا هو اسم WM_CLASS للنافذة المراد استبعادها. للعثور "
-"على اسم WM_CLASS لإطار ما، أدخل الأمر التالي في نافذة طرفية أخرى: <nl/><nl/"
-">&nbsp;&nbsp;<icode>xprop | grep WM_CLASS</icode><nl/><nl/> وانقر على "
-"النافذة التي تريد استبعادها. الاسم الأول الذي سيعرض بعد علامة التساوي هو "
-"الاسم الذي تريد إدخاله."
 
 #: declarative/qml/BarcodePage.qml:32
 #, kde-format
@@ -379,39 +326,39 @@ msgstr "لا توجد مساحة كافية لعرض رمز الاستجابة �
 msgid "Creating QR code failed"
 msgstr "فشل إنشاء رمز الاستجابة السريعة"
 
-#: declarative/qml/ClipboardItemDelegate.qml:203
+#: declarative/qml/ClipboardItemDelegate.qml:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Collapse"
 msgstr "اطوِ"
 
-#: declarative/qml/ClipboardItemDelegate.qml:203
+#: declarative/qml/ClipboardItemDelegate.qml:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Expand"
 msgstr "وسع"
 
-#: declarative/qml/ClipboardMenu.qml:276
+#: declarative/qml/ClipboardMenu.qml:275
 #, kde-format
 msgid "Clear History"
 msgstr "امحُ التاريخ"
 
-#: declarative/qml/ClipboardMenu.qml:328
+#: declarative/qml/ClipboardMenu.qml:329
 #, kde-format
 msgid "All History"
 msgstr "كل التأريخ"
 
-#: declarative/qml/ClipboardMenu.qml:333
+#: declarative/qml/ClipboardMenu.qml:334
 #, kde-format
 msgid "Starred Only"
 msgstr "المُفضّل فقط"
 
-#: declarative/qml/ClipboardMenu.qml:440
+#: declarative/qml/ClipboardMenu.qml:441
 #, kde-format
 msgid "No matches"
 msgstr "لا يوجد تطابق"
 
-#: declarative/qml/ClipboardMenu.qml:440
+#: declarative/qml/ClipboardMenu.qml:441
 #, kde-format
 msgid "Clipboard is empty"
 msgstr "الحافظة فارغة"
@@ -426,45 +373,45 @@ msgstr "استدعِ إجراء"
 msgid "Show QR code"
 msgstr "أظهر رمز الاستجابة السريعة"
 
-#: declarative/qml/DelegateToolButtons.qml:47
+#: declarative/qml/DelegateToolButtons.qml:48
 #, kde-format
 msgid "Edit contents"
 msgstr "حرّر المحتويات"
 
-#: declarative/qml/DelegateToolButtons.qml:53
+#: declarative/qml/DelegateToolButtons.qml:54
 #, kde-format
 msgid "Remove from history"
 msgstr "أزل من التّاريخ"
 
-#: declarative/qml/DelegateToolButtons.qml:58
+#: declarative/qml/DelegateToolButtons.qml:59
 #, kde-format
 msgid "Remove Star"
 msgstr "أزل المُفضّل"
 
-#: declarative/qml/DelegateToolButtons.qml:58
+#: declarative/qml/DelegateToolButtons.qml:59
 #, kde-format
 msgid "Star"
 msgstr "النجم"
 
-#: declarative/qml/EditPage.qml:64
+#: declarative/qml/EditPage.qml:63
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "Text edit area"
 msgstr "منطقة تحرير النص"
 
-#: declarative/qml/EditPage.qml:82
+#: declarative/qml/EditPage.qml:81
 #, kde-format
 msgctxt "@action:button"
 msgid "Save"
 msgstr "احفظ"
 
-#: declarative/qml/EditPage.qml:90
+#: declarative/qml/EditPage.qml:89
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
 msgstr "ألغِ"
 
-#: declarative/qml/UrlItemDelegate.qml:97
+#: declarative/qml/UrlItemDelegate.qml:99
 #, kde-format
 msgctxt ""
 "Indicator that there are more urls in the clipboard than previews shown"
@@ -659,116 +606,111 @@ msgstr "صفّر الأيقونة إلى الإعداد المبدئي للأم�
 msgid "Icon:"
 msgstr "الأيقونة:"
 
-#: historymodel.cpp:280
+#: historymodel.cpp:283
 #, kde-format
 msgid "The clipboard history contains starred items. Clear them too?"
 msgstr "يحتوي سجل الحافظة على عناصر مميزة بنجمة. هل تريد مسحها أيضًا؟"
 
-#: historymodel.cpp:281 historymodel.cpp:301
+#: historymodel.cpp:284 historymodel.cpp:304
 #, kde-format
 msgid "Clear Clipboard History"
 msgstr "امحُ تاريخ الحافظة"
 
-#: historymodel.cpp:282
+#: historymodel.cpp:285
 #, kde-format
 msgid "Clear Everything"
 msgstr "امحُ كلّ شيء"
 
-#: historymodel.cpp:283
+#: historymodel.cpp:286
 #, kde-format
 msgid "Keep Starred Items"
 msgstr "أبقِ على العناصر المُفضّلة"
 
-#: historymodel.cpp:300
+#: historymodel.cpp:303
 #, kde-format
 msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr "أحقا أمحو وأحذف كامل تاريخ الحافظة؟"
 
-#: historymodel.cpp:384
+#: historymodel.cpp:387
 #, kde-format
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr "%1×%2"
 
-#: historymodel.cpp:564
+#: historymodel.cpp:567
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr "هذا العنصر مميز بنجمة. هل تريد حقا إزالته من السجل؟"
 
-#: historymodel.cpp:565
+#: historymodel.cpp:568
 #, kde-format
 msgid "Remove Starred Item"
 msgstr "أزل العنصر مُفضّل"
 
-#: klipper.cpp:91
+#: klipper.cpp:78
 #, kde-format
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "قائمة الإجراءات المنبثقة الآليّة"
 
-#: klipper.cpp:109
+#: klipper.cpp:96
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "ام&حُ تاريخ الحافظة"
 
-#: klipper.cpp:114
+#: klipper.cpp:101
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr "استدع إجراء على الحافظة الحالية يدوياً"
 
-#: klipper.cpp:122
+#: klipper.cpp:109
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr "&حرّر المحتويات"
 
-#: klipper.cpp:128
+#: klipper.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr "أظهر &شفرة شريطية..."
 
-#: klipper.cpp:137
+#: klipper.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "العنصر التالي في التاريخ"
 
-#: klipper.cpp:142
+#: klipper.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "العنصر السابق في التاريخ"
 
-#: klipper.cpp:149
+#: klipper.cpp:134
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr "اعرض عناصر الحافظة عند موضع الفأرة"
 
-#: klipper.cpp:437
-#, kde-format
-msgid "Mobile Barcode"
-msgstr "شفرة شريطية للجوال"
-
-#: klipper.cpp:480 klipper.cpp:489
+#: klipper.cpp:402 klipper.cpp:411
 #, kde-format
 msgid "Clipboard history"
 msgstr "تاريخ الحافظة: "
 
-#: klipper.cpp:506
+#: klipper.cpp:428
 #, kde-format
 msgid "up"
 msgstr "أعلى"
 
-#: klipper.cpp:513
+#: klipper.cpp:435
 #, kde-format
 msgid "current"
 msgstr "الحالي"
 
-#: klipper.cpp:520
+#: klipper.cpp:442
 #, kde-format
 msgid "down"
 msgstr "أسفل"
@@ -892,50 +834,44 @@ msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
 msgstr "اعرض القائمة المنبثقة للإجراءات القابلة للتطبيق بمجرد إجراء التحديد."
 
-#. i18n: ectx: label, entry (NoActionsForWM_CLASS), group (General)
-#: klipper.kcfg:57
-#, kde-format
-msgid "No actions for WM_CLASS"
-msgstr "لا يوجد إجراءات لـ WM_CLASS"
-
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, kde-format
 msgid "Automatic action menu time:"
 msgstr "مدة ظهور قائمة الإجراءات:"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:64
+#: klipper.kcfg:60
 #, kde-format
 msgid "Display the automatic action popup menu for this time."
 msgstr "اعرض قائمة الإجراءات الآليّة المنبثقة مدة هذا الوقت."
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, kde-format
 msgid "History size:"
 msgstr "حجم التّأريخ:"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:71
+#: klipper.kcfg:67
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr "سوف يحوي محفوظات الحافظة ما يصل إلى هذه العناصر."
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:74
+#: klipper.kcfg:70
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr "مدخلة مزيفة لتبين التغيرات في ودجة قائمة الإجراء"
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:84
+#: klipper.kcfg:80
 #, kde-format
 msgid "Trim whitespace from selection"
 msgstr "احذف الفراغات البيضاء من التحديد"
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:86
+#: klipper.kcfg:82
 #, kde-format
 msgid ""
 "Remove any whitespace from the start and end of selected text, before "
@@ -948,13 +884,13 @@ msgstr ""
 "لن يتأثر النص المحفوظ في الحافظة."
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:89
+#: klipper.kcfg:85
 #, kde-format
 msgid "For an item chosen from history"
 msgstr "لعنصر مختار من التاريخ"
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:91
+#: klipper.kcfg:87
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions if an entry is chosen from the "
@@ -964,13 +900,13 @@ msgstr ""
 "الحافظة."
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:94
+#: klipper.kcfg:90
 #, kde-format
 msgid "Include MIME actions"
 msgstr "ضمّن إجراءات المعتمدة على MIME"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:96
+#: klipper.kcfg:92
 #, kde-format
 msgid ""
 "If a file name or URL is selected, include applications that can accept its "
@@ -979,15 +915,65 @@ msgstr ""
 "إذا حدد اسم ملف أو عنوان URL، فضمّن التطبيقات التي يمكنها التعامل مع نوع MIME "
 "الخاص به في نافذة الإجراءات المنبثقة."
 
-#: klipperpopup.cpp:36
+#: klipperpopup.cpp:37
 #, kde-format
 msgid "Clipboard Popup"
 msgstr "منبثقة الحافظة"
 
-#: urlgrabber.cpp:200
+#: urlgrabber.cpp:197
 #, kde-format
 msgid "&Cancel"
 msgstr "أ&لغ"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "زايد السعيدي, محمد سعد"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "zayed.alsaidi@gmail.com,metehyi@free.fr"
+
+#~ msgid "Mobile Barcode"
+#~ msgstr "شفرة شريطية للجوال"
+
+#~ msgid "Exclude Windows..."
+#~ msgstr "استثنِ النوافذ..."
+
+#~ msgid "Exclude Windows"
+#~ msgstr "استثنِ النوافذ"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The action popup will not be shown automatically for these windows, even "
+#~ "if it is enabled. This is because, for example, a web browser may "
+#~ "highlight a URL in the address bar while typing, so the menu would show "
+#~ "for every keystroke.<nl/><nl/>If the action menu appears unexpectedly "
+#~ "when using a particular application, then add it to this list. <link>How "
+#~ "to find the name to enter</link>."
+#~ msgstr ""
+#~ "لن تعرض نافذة الإجراء المنبثقة آليًّا لهذه النوافذ ولو مكنت. هذا لأنه، على "
+#~ "سبيل المثال، قد يميز مستعرض الويب عنوان URL في شريط العناوين أثناء "
+#~ "الكتابة، لذلك ستظهر القائمة لكل ضغطة مفتاح. <nl/> <nl/> إذا ظهرت قائمة "
+#~ "الإجراء بشكل غير متوقع عند استخدام تطبيق معين، عندها أضفها إلى هذه "
+#~ "القائمة. <link> كيفية العثور على الاسم المراد إدخاله </link>."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "The name that needs to be entered here is the WM_CLASS name of the window "
+#~ "to be excluded. To find the WM_CLASS name for a window, in another "
+#~ "terminal window enter the command:<nl/><nl/>&nbsp;&nbsp;<icode>xprop | "
+#~ "grep WM_CLASS</icode><nl/><nl/>and click on the window that you want to "
+#~ "exclude. The first name that it displays after the equal sign is the one "
+#~ "that you need to enter."
+#~ msgstr ""
+#~ "الاسم الذي يجب إدخاله هنا هو اسم WM_CLASS للنافذة المراد استبعادها. "
+#~ "للعثور على اسم WM_CLASS لإطار ما، أدخل الأمر التالي في نافذة طرفية أخرى: "
+#~ "<nl/><nl/>&nbsp;&nbsp;<icode>xprop | grep WM_CLASS</icode><nl/><nl/> "
+#~ "وانقر على النافذة التي تريد استبعادها. الاسم الأول الذي سيعرض بعد علامة "
+#~ "التساوي هو الاسم الذي تريد إدخاله."
+
+#~ msgid "No actions for WM_CLASS"
+#~ msgstr "لا يوجد إجراءات لـ WM_CLASS"
 
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Configure Klipper…"

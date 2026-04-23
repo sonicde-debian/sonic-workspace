@@ -35,6 +35,7 @@ RunnerMatchesModel::RunnerMatchesModel(const QString &runnerId, const std::optio
     connect(this, &RunnerMatchesModel::rowsInserted, this, &RunnerMatchesModel::countChanged);
     connect(this, &RunnerMatchesModel::rowsRemoved, this, &RunnerMatchesModel::countChanged);
     connect(this, &RunnerMatchesModel::modelReset, this, &RunnerMatchesModel::countChanged);
+    connect(runnerManager(), &KRunner::RunnerManager::queryingChanged, this, &RunnerMatchesModel::queryingChanged);
 
     if (name.has_value()) {
         m_name = name.value();
@@ -70,7 +71,7 @@ QVariant RunnerMatchesModel::data(const QModelIndex &index, int role) const
 {
     KRunner::QueryMatch match = getQueryMatch(index);
     if (!match.isValid()) {
-        return QVariant();
+        return {};
     }
 
     // Since we have different enums than the KRunner model, we have to implement reading all the data manually
@@ -211,7 +212,7 @@ QVariant RunnerMatchesModel::data(const QModelIndex &index, int role) const
         return actionList;
     }
 
-    return QVariant();
+    return {};
 }
 
 bool RunnerMatchesModel::trigger(int row, const QString &actionId, const QVariant &argument)

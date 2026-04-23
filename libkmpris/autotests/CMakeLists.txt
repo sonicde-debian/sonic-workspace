@@ -12,11 +12,11 @@ set_tests_properties(
 
 add_test(
     NAME mprisdeclarativetest_Mpris2Model
-    COMMAND dbus-launch python3 ${CMAKE_CURRENT_SOURCE_DIR}/mprisdeclarativetest.py "tst_Mpris2Model.qml"
+    COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/mprisdeclarativetest.py "tst_Mpris2Model.qml"
 )
 add_test(
     NAME mprisdeclarativetest_MultiplexerModel
-    COMMAND dbus-launch python3 ${CMAKE_CURRENT_SOURCE_DIR}/mprisdeclarativetest.py "tst_MultiplexerModel.qml"
+    COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/mprisdeclarativetest.py "tst_MultiplexerModel.qml"
 )
 execute_process(COMMAND gcc -print-file-name=libasan.so OUTPUT_VARIABLE LIBASAN_PATH ECHO_OUTPUT_VARIABLE OUTPUT_STRIP_TRAILING_WHITESPACE)
 set_tests_properties(
@@ -26,11 +26,9 @@ set_tests_properties(
         ENVIRONMENT "LC_ALL=en_US.UTF-8;LD_PRELOAD=${LIBASAN_PATH};CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}/bin;QMLTEST_PATH=$<TARGET_FILE:${QT_CMAKE_EXPORT_NAMESPACE}::qmltestrunner>"
 )
 
-if(WITH_X11)
     find_program(xdotool_PATH xdotool REQUIRED)
     add_test(NAME mediakeystest
         COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/mediakeystest.py ${KDE_INSTALL_FULL_LIBEXECDIR}/kglobalacceld
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../appiumtests
     )
     set_tests_properties(mediakeystest PROPERTIES RUN_SERIAL ON)
-endif()

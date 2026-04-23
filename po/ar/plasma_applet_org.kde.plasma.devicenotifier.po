@@ -1,14 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014, 2017.
-# SPDX-FileCopyrightText: 2021, 2022, 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2021, 2022, 2024, 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-07-15 23:12+0400\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
+"PO-Revision-Date: 2026-02-26 13:13+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -19,44 +19,38 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "افحص الأخطاء"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "ضُمّ دون التحقق"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
-msgstr "ضمّ"
+msgstr "صِل"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "افتح في مدير الملفّات"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "حاول الإصلاح"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
-msgstr "ضم وافتح"
+msgstr "صِل وافتح"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "أخرِج"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "أزِل بأمان"
@@ -95,7 +89,7 @@ msgstr "يمكن إزالة هذا الجهاز الآن بأمان."
 #: devicemessagemonitor_p.cpp:192
 #, kde-format
 msgid "You are not authorized to mount this device."
-msgstr "لست مستوثقًا لضمّ هذا الجهاز."
+msgstr "لست متوثقًا لوصل هذا الجهاز."
 
 #: devicemessagemonitor_p.cpp:196
 #, kde-format
@@ -121,7 +115,7 @@ msgstr "نوع خطأ مجهول"
 #: devicemessagemonitor_p.cpp:208
 #, kde-format
 msgid "Could not mount this device as it is busy."
-msgstr "تعذّر ضمّ هذا الجهاز فهو مشغول."
+msgstr "تعذّر وصل هذا الجهاز فهو مشغول."
 
 #: devicemessagemonitor_p.cpp:235
 #, kde-format
@@ -149,7 +143,7 @@ msgstr "، "
 #: devicemessagemonitor_p.cpp:258
 #, kde-format
 msgid "Could not mount this device."
-msgstr "تعذّر ضمّ هذا الجهاز."
+msgstr "تعذّر وصل هذا الجهاز."
 
 #: devicemessagemonitor_p.cpp:262
 #, kde-format
@@ -168,7 +162,7 @@ msgid "Could not repair this device: %1"
 msgstr "لم يتمكن من إصلاح هذا الجهاز: %1"
 
 # هنا للتناسق مع يجري الوصول فقط
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -177,7 +171,7 @@ msgid "Checking…"
 msgstr "يفحص…"
 
 # هنا للتناسق مع يجري الوصول فقط
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -185,14 +179,14 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "يصلح…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 حرّة من %2"
 
 # يجري هنا أفضل لأن يَصِل قصيرة والنص صغير
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -201,7 +195,7 @@ msgid "Accessing…"
 msgstr "يَصِل..."
 
 # هنا للتناسق مع يجري الوصول فقط
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -209,27 +203,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "يفصل..."
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "لا تفصله! ما زالت الملفات تنقل…"
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "أزِل الكل"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "انقر لإزالة جميع الأجهزة بأمان."
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "لم توصل أي أجهزة منفصلة"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "لا يوجد أقراص"
@@ -244,31 +238,35 @@ msgstr "آخر جهاز حديث"
 msgid "No Devices Available"
 msgstr "لا أجهزة متوفّرة"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "اضبط الأجهزة المنفصلة"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "الأجهزة المنفصلة"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "الأجهزة غير المنفصلة"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "كلّ الأجهزة"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "افتح منبثقة عند وصل جهاز جديد"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "ضُمّ دون التحقق"
 
 #~ msgid "Filesystem is not responding"
 #~ msgstr "نظام الملفات لا يستجيب"

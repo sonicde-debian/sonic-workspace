@@ -11,6 +11,7 @@
 #include <KConfigGroup>
 #include <KIO/OpenFileManagerWindowJob>
 #include <KSharedConfig>
+#include <algorithm>
 
 #include "../finder/suffixcheck.h"
 #include "imagelistmodel.h"
@@ -20,7 +21,7 @@ namespace
 {
 inline bool isChildItem(const QStringList &customPathsInKDirWatch, const QString &childPath)
 {
-    return std::any_of(customPathsInKDirWatch.cbegin(), customPathsInKDirWatch.cend(), [&childPath](const QString &customPath) {
+    return std::ranges::any_of(customPathsInKDirWatch, [&childPath](const QString &customPath) {
         if (customPath.endsWith(QDir::separator())) {
             return childPath.startsWith(customPath);
         } else {
@@ -35,8 +36,9 @@ ImageProxyModel::ImageProxyModel(const QStringList &customPaths,
                                  const QBindable<bool> &bindableUsedInConfig,
                                  QObject *parent)
     : QConcatenateTablesProxyModel(parent)
-    , m_imageModel(new ImageListModel(bindableTargetSize, bindableUsedInConfig, this))
-    , m_packageModel(new PackageListModel(bindableTargetSize, bindableUsedInConfig, this))
+    , m_imageModel(new ImageListModel(bindableUsedInConfig, this))
+    , m_packageModel(new PackageListModel(bindableUsedInConfig, this))
+    , m_targetSize(bindableTargetSize.makeBinding())
 {
     connect(this, &ImageProxyModel::rowsInserted, this, &ImageProxyModel::countChanged);
     connect(this, &ImageProxyModel::rowsRemoved, this, &ImageProxyModel::countChanged);
@@ -115,12 +117,12 @@ void ImageProxyModel::reload()
 QStringList ImageProxyModel::addBackground(const QUrl &url)
 {
     if (!url.isLocalFile()) {
-        return QStringList();
+        return {};
     }
 
     const QFileInfo info(url.toLocalFile());
     if (!info.exists()) {
-        return QStringList();
+        return {};
     }
 
     QStringList results;
@@ -208,7 +210,7 @@ void ImageProxyModel::commitDeletion()
         QModelIndex idx = index(row, 0);
 
         if (idx.data(PendingDeletionRole).toBool()) {
-            pendingList.append(idx.data(PackageNameRole).toString());
+            pendingList.append(idx.data(SourceRole).toUrl().toLocalFile());
         }
     }
 
@@ -222,7 +224,7 @@ void ImageProxyModel::commitDeletion()
     QStringList updatedList;
 
     // Check if the file still exists
-    std::copy_if(list.cbegin(), list.cend(), std::back_inserter(updatedList), [&pendingList](const QString &_p) {
+    std::ranges::copy_if(list, std::back_inserter(updatedList), [&pendingList](const QString &_p) {
         QString p = _p;
         if (constexpr QLatin1String prefix{"file://"}; p.startsWith(prefix)) {
             p.remove(0, prefix.size());
@@ -237,7 +239,17 @@ void ImageProxyModel::commitDeletion()
 
 void ImageProxyModel::openContainingFolder(int row) const
 {
-    KIO::highlightInFileManager({index(row, 0).data(PathRole).toUrl()});
+    const QModelIndex sourceIndex = mapToSource(index(row, 0));
+    if (!sourceIndex.isValid()) {
+        return;
+    }
+
+    const AbstractImageListModel *sourceModel = qobject_cast<const AbstractImageListModel *>(sourceIndex.model());
+    if (!sourceModel) {
+        return;
+    }
+
+    KIO::highlightInFileManager({sourceModel->effectiveSource(sourceIndex, m_targetSize)});
 }
 
 void ImageProxyModel::slotHandleLoaded(AbstractImageListModel *model)

@@ -1,3 +1,4 @@
+
 /*
     SPDX-FileCopyrightText: 2005 Jean-Remy Falleri <jr.falleri@laposte.net>
     SPDX-FileCopyrightText: 2005-2007 Kevin Ottens <ervin@kde.org>
@@ -23,9 +24,7 @@
 #include <kpassworddialog.h>
 #include <kwallet.h>
 #include <kwindowsystem.h>
-#if HAVE_X11
 #include <KX11Extras>
-#endif
 
 // solid specific includes
 #include <solid/device.h>
@@ -41,9 +40,7 @@ SolidUiServer::SolidUiServer(QObject *parent, const QList<QVariant> &)
 {
 }
 
-SolidUiServer::~SolidUiServer()
-{
-}
+SolidUiServer::~SolidUiServer() = default;
 
 void SolidUiServer::showPassphraseDialog(const QString &udi, const QString &returnService, const QString &returnObject, uint wId, const QString &appId)
 {
@@ -55,7 +52,7 @@ void SolidUiServer::showPassphraseDialog(const QString &udi, const QString &retu
 
     Solid::Device device(udi);
 
-    KPasswordDialog *dialog = new KPasswordDialog(nullptr, KPasswordDialog::ShowKeepPassword);
+    auto *dialog = new KPasswordDialog(nullptr, KPasswordDialog::ShowKeepPassword);
 
     QString label = device.vendor();
     if (!label.isEmpty())
@@ -101,7 +98,7 @@ void SolidUiServer::showPassphraseDialog(const QString &udi, const QString &retu
 
 void SolidUiServer::onPassphraseDialogCompleted(const QString &pass, bool keep)
 {
-    KPasswordDialog *dialog = qobject_cast<KPasswordDialog *>(sender());
+    auto *dialog = qobject_cast<KPasswordDialog *>(sender());
 
     if (dialog) {
         QString returnService = dialog->property("soliduiserver.returnService").toString();
@@ -148,15 +145,13 @@ void SolidUiServer::reparentDialog(QWidget *dialog, WId wId, const QString &appI
     dialog->setAttribute(Qt::WA_NativeWindow, true);
     KWindowSystem::setMainWindow(dialog->windowHandle(), wId); // correct, set dialog parent
 
-#if HAVE_X11
-    if (KWindowSystem::isPlatformX11()) {
+    {
         if (modal) {
             KX11Extras::setState(dialog->winId(), NET::Modal);
         } else {
             KX11Extras::clearState(dialog->winId(), NET::Modal);
         }
     }
-#endif
 
     // allow dialog activation even if it interrupts, better than trying hacks
     // with keeping the dialog on top or on all desktops

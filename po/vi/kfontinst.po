@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kfontinst\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-08 00:45+0000\n"
 "PO-Revision-Date: 2022-05-12 12:01+0200\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -28,7 +28,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "phu.nguyen@kdemail.net,clytie@riverland.net.au"
 
-#: apps/Installer.cpp:36 kcmfontinst/KCmFontInst.cpp:949
+#: apps/Installer.cpp:36 kcmfontinst/KCmFontInst.cpp:946
 #, kde-format
 msgid ""
 "Do you wish to install the font(s) for personal use (only available to you), "
@@ -37,7 +37,7 @@ msgstr ""
 "Bạn muốn cài đặt (các) phông chữ để sử dụng riêng (chỉ khả dụng cho bạn), "
 "hay trên toàn hệ thống (khả dụng cho tất cả các người dùng)?"
 
-#: apps/Installer.cpp:37 kcmfontinst/KCmFontInst.cpp:952
+#: apps/Installer.cpp:37 kcmfontinst/KCmFontInst.cpp:949
 #, kde-format
 msgid "Where to Install"
 msgstr "Cài đặt vào đâu"
@@ -52,7 +52,7 @@ msgstr "Trình cài đặt phông chữ"
 msgid "Simple font installer"
 msgstr "Trình cài đặt phông chữ đơn giản"
 
-#: apps/Installer.cpp:117 apps/Printer.cpp:331
+#: apps/Installer.cpp:117 apps/Printer.cpp:327
 #, kde-format
 msgid "(C) Craig Drummond, 2007"
 msgstr "(C) Craig Drummond, 2007"
@@ -68,37 +68,37 @@ msgstr "Làm hộp thoại tạm thời cho một ứng dụng X được xác �
 msgid "URL to install"
 msgstr "URL để cài đặt"
 
-#: apps/Printer.cpp:241
+#: apps/Printer.cpp:239
 #, kde-format
 msgid "Print"
 msgstr "In"
 
-#: apps/Printer.cpp:311 kcmfontinst/DuplicatesDialog.cpp:224
+#: apps/Printer.cpp:307 kcmfontinst/DuplicatesDialog.cpp:224
 #, kde-format
 msgid "Canceling…"
 msgstr "Đang huỷ…"
 
-#: apps/Printer.cpp:327
+#: apps/Printer.cpp:323
 #, kde-format
 msgid "Font Printer"
 msgstr "Trình in phông chữ"
 
-#: apps/Printer.cpp:329
+#: apps/Printer.cpp:325
 #, kde-format
 msgid "Simple font printer"
 msgstr "Trình in phông chữ đơn giản"
 
-#: apps/Printer.cpp:337
+#: apps/Printer.cpp:333
 #, kde-format
 msgid "Makes the dialog transient for an X app specified by winid"
 msgstr "Làm hộp thoại tạm thời cho một ứng dụng X được xác định bởi winid"
 
-#: apps/Printer.cpp:339
+#: apps/Printer.cpp:335
 #, kde-format
 msgid "Size index to print fonts"
 msgstr "Chỉ số cỡ để in phông chữ"
 
-#: apps/Printer.cpp:343
+#: apps/Printer.cpp:339
 #, kde-format
 msgid ""
 "Font to print, specified as \"Family,Style\" where Style is a 24-bit decimal "
@@ -107,12 +107,12 @@ msgstr ""
 "Phông chữ để in ra, có dạng \"Họ,Kiểu cách\" với Kiểu cách là một số thập "
 "phân 24-bit được tạo bởi: <độ đậm><độ rộng><độ xiên>"
 
-#: apps/Printer.cpp:346
+#: apps/Printer.cpp:342
 #, kde-format
 msgid "File containing list of fonts to print"
 msgstr "Tệp chứa danh sách các phông chữ để in ra"
 
-#: apps/Printer.cpp:348
+#: apps/Printer.cpp:344
 #, kde-format
 msgid "Remove file containing list of fonts to print"
 msgstr "Xoá tệp chứa danh sách các phông chữ để in ra"
@@ -243,57 +243,57 @@ msgid "Open font in font viewer?"
 msgid_plural "Open all %1 fonts in font viewer?"
 msgstr[0] "Mở tất cả %1 phông chữ trong trình xem phông chữ?"
 
-#: kcmfontinst/FontFilter.cpp:105
+#: kcmfontinst/FontFilter.cpp:106
 #, kde-format
 msgid "Family"
 msgstr "Họ"
 
-#: kcmfontinst/FontFilter.cpp:107
+#: kcmfontinst/FontFilter.cpp:108
 #, kde-format
 msgid "Style"
 msgstr "Kiểu cách"
 
-#: kcmfontinst/FontFilter.cpp:109
+#: kcmfontinst/FontFilter.cpp:110
 #, kde-format
 msgid "Foundry"
 msgstr "Xưởng đúc"
 
-#: kcmfontinst/FontFilter.cpp:111
+#: kcmfontinst/FontFilter.cpp:112
 #, kde-format
 msgid "FontConfig Match"
 msgstr "So khớp (match) của FontConfig"
 
-#: kcmfontinst/FontFilter.cpp:113
+#: kcmfontinst/FontFilter.cpp:114
 #, kde-format
 msgid "File Type"
 msgstr "Kiểu tệp"
 
-#: kcmfontinst/FontFilter.cpp:115
+#: kcmfontinst/FontFilter.cpp:116
 #, kde-format
 msgid "File Name"
 msgstr "Tên tệp"
 
-#: kcmfontinst/FontFilter.cpp:117
+#: kcmfontinst/FontFilter.cpp:118
 #, kde-format
 msgid "File Location"
 msgstr "Địa điểm tệp"
 
-#: kcmfontinst/FontFilter.cpp:119
+#: kcmfontinst/FontFilter.cpp:120
 #, kde-format
 msgid "Writing System"
 msgstr "Hệ chữ viết"
 
-#: kcmfontinst/FontFilter.cpp:130
+#: kcmfontinst/FontFilter.cpp:131
 #, kde-format
 msgid "Set Criteria"
 msgstr "Đặt tiêu chí"
 
-#: kcmfontinst/FontFilter.cpp:189
+#: kcmfontinst/FontFilter.cpp:190
 #, kde-format
 msgid "Symbol/Other"
 msgstr "Kí hiệu/Khác"
 
-#: kcmfontinst/FontFilter.cpp:267 kcmfontinst/FontFilter.cpp:335
+#: kcmfontinst/FontFilter.cpp:268 kcmfontinst/FontFilter.cpp:336
 #, kde-format
 msgid "Filter by %1…"
 msgstr "Lọc bằng %1…"
@@ -345,19 +345,19 @@ msgstr "%1 [%2]"
 msgid "Delete"
 msgstr "Xoá"
 
-#: kcmfontinst/FontList.cpp:1302 kcmfontinst/GroupList.cpp:791
-#: kcmfontinst/KCmFontInst.cpp:1115 kcmfontinst/KCmFontInst.cpp:1135
+#: kcmfontinst/FontList.cpp:1302 kcmfontinst/GroupList.cpp:790
+#: kcmfontinst/KCmFontInst.cpp:1112 kcmfontinst/KCmFontInst.cpp:1132
 #, kde-format
 msgid "Enable"
 msgstr "Bật"
 
-#: kcmfontinst/FontList.cpp:1303 kcmfontinst/GroupList.cpp:792
-#: kcmfontinst/KCmFontInst.cpp:1116 kcmfontinst/KCmFontInst.cpp:1135
+#: kcmfontinst/FontList.cpp:1303 kcmfontinst/GroupList.cpp:791
+#: kcmfontinst/KCmFontInst.cpp:1113 kcmfontinst/KCmFontInst.cpp:1132
 #, kde-format
 msgid "Disable"
 msgstr "Tắt"
 
-#: kcmfontinst/FontList.cpp:1308 kcmfontinst/GroupList.cpp:798
+#: kcmfontinst/FontList.cpp:1308 kcmfontinst/GroupList.cpp:797
 #, kde-format
 msgid "Print…"
 msgstr "In…"
@@ -372,32 +372,32 @@ msgstr "Tải lại"
 msgid "Open all %1 fonts in font viewer?"
 msgstr "Mở tất cả %1 phông chữ trong trình xem phông chữ?"
 
-#: kcmfontinst/GroupList.cpp:61
+#: kcmfontinst/GroupList.cpp:62
 #, kde-format
 msgid "All Fonts"
 msgstr "Tất cả phông chữ"
 
-#: kcmfontinst/GroupList.cpp:64
+#: kcmfontinst/GroupList.cpp:65
 #, kde-format
 msgid "Personal Fonts"
 msgstr "Phông riêng"
 
-#: kcmfontinst/GroupList.cpp:67
+#: kcmfontinst/GroupList.cpp:68
 #, kde-format
 msgid "System Fonts"
 msgstr "Phông hệ thống"
 
-#: kcmfontinst/GroupList.cpp:70
+#: kcmfontinst/GroupList.cpp:71
 #, kde-format
 msgid "Unclassified"
 msgstr "Chưa phân loại"
 
-#: kcmfontinst/GroupList.cpp:352
+#: kcmfontinst/GroupList.cpp:353
 #, kde-format
 msgid "Group"
 msgstr "Nhóm"
 
-#: kcmfontinst/GroupList.cpp:537
+#: kcmfontinst/GroupList.cpp:538
 #, kde-format
 msgid ""
 "<p>Do you really want to remove '<b>%1</b>'?</p><p><i>This will only remove "
@@ -406,22 +406,22 @@ msgstr ""
 "<p>Bạn có thật sự muốn xoá '<b>%1</b>' không?</p><p><i>Việc này sẽ chỉ xoá "
 "nhóm đó, chứ không xoá các phông chữ.</i></p>"
 
-#: kcmfontinst/GroupList.cpp:541
+#: kcmfontinst/GroupList.cpp:542
 #, kde-format
 msgid "Remove Group"
 msgstr "Xoá nhóm"
 
-#: kcmfontinst/GroupList.cpp:542 kcmfontinst/GroupList.cpp:789
+#: kcmfontinst/GroupList.cpp:543 kcmfontinst/GroupList.cpp:788
 #, kde-format
 msgid "Remove"
 msgstr "Xoá"
 
-#: kcmfontinst/GroupList.cpp:542
+#: kcmfontinst/GroupList.cpp:543
 #, kde-format
 msgid "Remove group"
 msgstr "Xoá nhóm"
 
-#: kcmfontinst/GroupList.cpp:588
+#: kcmfontinst/GroupList.cpp:589
 #, kde-format
 msgid ""
 "<h3>Font Groups</h3><p>This list displays the font groups available on your "
@@ -440,7 +440,7 @@ msgstr ""
 "vào nhóm mong muốn. Để bỏ một họ khỏi nhóm, kéo phông chữ đó vào nhóm \"Tất "
 "cả phông chữ\".</li></ul></p>"
 
-#: kcmfontinst/GroupList.cpp:596
+#: kcmfontinst/GroupList.cpp:597
 #, kde-format
 msgid ""
 "<li><i>All Fonts</i> contains all the fonts installed on your system.</"
@@ -451,7 +451,7 @@ msgstr ""
 "thống của bạn.</li><li><i>Chưa phân loại</i> chứa tất cả các phông chữ chưa "
 "được đặt vào một nhóm \"Tự chọn\" nào.</li>"
 
-#: kcmfontinst/GroupList.cpp:599
+#: kcmfontinst/GroupList.cpp:600
 #, kde-format
 msgid ""
 "<li><i>All Fonts</i> contains all the fonts installed on your system - both  "
@@ -468,57 +468,57 @@ msgstr ""
 "li><li><i>Chưa phân loại</i> chứa tất cả các phông chữ chưa được đặt vào một "
 "nhóm \"Tự chọn\" nào.</li>"
 
-#: kcmfontinst/GroupList.cpp:701
+#: kcmfontinst/GroupList.cpp:702
 #, kde-format
 msgid "<qt>A group named <b>'%1'</b> already exists.</qt>"
 msgstr "<qt>Một nhóm tên là '<b>%1</b>' đã tồn tại.</qt>"
 
-#: kcmfontinst/GroupList.cpp:794
+#: kcmfontinst/GroupList.cpp:793
 #, kde-format
 msgid "Rename…"
 msgstr "Đổi tên…"
 
-#: kcmfontinst/GroupList.cpp:803
+#: kcmfontinst/GroupList.cpp:802
 #, kde-format
 msgid "Export…"
 msgstr "Xuất khẩu…"
 
-#: kcmfontinst/GroupList.cpp:897
+#: kcmfontinst/GroupList.cpp:896
 #, kde-format
 msgid "Add to \"%1\"."
 msgstr "Thêm vào \"%1\"."
 
-#: kcmfontinst/GroupList.cpp:899
+#: kcmfontinst/GroupList.cpp:898
 #, kde-format
 msgid "Remove from current group."
 msgstr "Bỏ khỏi nhóm hiện tại."
 
-#: kcmfontinst/GroupList.cpp:901
+#: kcmfontinst/GroupList.cpp:900
 #, kde-format
 msgid "Move to personal folder."
 msgstr "Di chuyển sang thư mục riêng."
 
-#: kcmfontinst/GroupList.cpp:903
+#: kcmfontinst/GroupList.cpp:902
 #, kde-format
 msgid "Move to system folder."
 msgstr "Di chuyển sang thư mục hệ thống."
 
-#: kcmfontinst/JobRunner.cpp:138
+#: kcmfontinst/JobRunner.cpp:139
 #, kde-format
 msgid "Skip"
 msgstr "Bỏ qua"
 
-#: kcmfontinst/JobRunner.cpp:141
+#: kcmfontinst/JobRunner.cpp:142
 #, kde-format
 msgid "AutoSkip"
 msgstr "Tự động bỏ qua"
 
-#: kcmfontinst/JobRunner.cpp:186
+#: kcmfontinst/JobRunner.cpp:187
 #, kde-format
 msgid "<h3>Cancel?</h3><p>Are you sure you wish to cancel?</p>"
 msgstr "<h3>Huỷ?</h3><p>Bạn có chắc chắn muốn huỷ không?</p>"
 
-#: kcmfontinst/JobRunner.cpp:198
+#: kcmfontinst/JobRunner.cpp:199
 #, kde-format
 msgid ""
 "<h3>Finished</h3><p>Please note that any open applications will need to be "
@@ -527,42 +527,42 @@ msgstr ""
 "<h3>Hoàn thành</h3><p>Vui lòng lưu ý rằng bất kì ứng dụng đang mở nào cũng "
 "cần được khởi động lại để có thể nhận ra được các thay đổi.</p>"
 
-#: kcmfontinst/JobRunner.cpp:206
+#: kcmfontinst/JobRunner.cpp:207
 #, kde-format
 msgid "Do not show this message again"
 msgstr "Đừng hiện lại thông điệp này"
 
-#: kcmfontinst/JobRunner.cpp:314
+#: kcmfontinst/JobRunner.cpp:315
 #, kde-format
 msgid "Installing"
 msgstr "Đang cài đặt"
 
-#: kcmfontinst/JobRunner.cpp:317
+#: kcmfontinst/JobRunner.cpp:318
 #, kde-format
 msgid "Uninstalling"
 msgstr "Đang gỡ cài đặt"
 
-#: kcmfontinst/JobRunner.cpp:320 kcmfontinst/JobRunner.cpp:417
+#: kcmfontinst/JobRunner.cpp:321 kcmfontinst/JobRunner.cpp:417
 #, kde-format
 msgid "Enabling"
 msgstr "Đang bật"
 
-#: kcmfontinst/JobRunner.cpp:323 kcmfontinst/JobRunner.cpp:421
+#: kcmfontinst/JobRunner.cpp:324 kcmfontinst/JobRunner.cpp:421
 #, kde-format
 msgid "Moving"
 msgstr "Đang chuyển"
 
-#: kcmfontinst/JobRunner.cpp:326
+#: kcmfontinst/JobRunner.cpp:327
 #, kde-format
 msgid "Updating"
 msgstr "Đang cập nhật"
 
-#: kcmfontinst/JobRunner.cpp:330
+#: kcmfontinst/JobRunner.cpp:331
 #, kde-format
 msgid "Removing"
 msgstr "Đang xoá"
 
-#: kcmfontinst/JobRunner.cpp:334
+#: kcmfontinst/JobRunner.cpp:335
 #, kde-format
 msgid "Disabling"
 msgstr "Đang tắt"
@@ -582,22 +582,22 @@ msgstr "Không thể khởi động hậu phương."
 msgid "Backend died, but has been restarted. Please try again."
 msgstr "Hậu phương chết, nhưng đã được khởi động lại. Vui lòng thử lại."
 
-#: kcmfontinst/JobRunner.cpp:618 kcmfontinst/JobRunner.cpp:624
+#: kcmfontinst/JobRunner.cpp:618 kcmfontinst/JobRunner.cpp:625
 #, kde-format
 msgid "<h3>Error</h3>"
 msgstr "<h3>Lỗi</h3>"
 
-#: kcmfontinst/JobRunner.cpp:690
+#: kcmfontinst/JobRunner.cpp:692
 #, kde-format
 msgid "Failed to download <i>%1</i>"
 msgstr "Tải về <i>%1</i> thất bại"
 
-#: kcmfontinst/JobRunner.cpp:692
+#: kcmfontinst/JobRunner.cpp:694
 #, kde-format
 msgid "System backend died. Please try again.<br><i>%1</i>"
 msgstr "Hậu phương hệ thống chết. Vui lòng thử lại. <br><i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:694
+#: kcmfontinst/JobRunner.cpp:696
 #, kde-format
 msgid ""
 "<i>%1</i> is a bitmap font, and these have been disabled on your system."
@@ -605,7 +605,7 @@ msgstr ""
 "<i>%1</i> là một phông chữ kiểu bản đồ bit, và các phông chữ kiểu này đã bị "
 "tắt trên hệ thống của bạn."
 
-#: kcmfontinst/JobRunner.cpp:696
+#: kcmfontinst/JobRunner.cpp:698
 #, kde-format
 msgid ""
 "<i>%1</i> contains the font <b>%2</b>, which is already installed on your "
@@ -613,132 +613,132 @@ msgid ""
 msgstr ""
 "<i>%1</i> chứa phông chữ <b>%2</b>, nó đã được cài đặt trên hệ thống của bạn."
 
-#: kcmfontinst/JobRunner.cpp:698
+#: kcmfontinst/JobRunner.cpp:700
 #, kde-format
 msgid "<i>%1</i> is not a font."
 msgstr "<i>%1</i> không phải là một phông chữ."
 
-#: kcmfontinst/JobRunner.cpp:700
+#: kcmfontinst/JobRunner.cpp:702
 #, kde-format
 msgid "Could not remove all files associated with <i>%1</i>"
 msgstr "Không xoá được tất cả các tệp liên kết với <i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:702
+#: kcmfontinst/JobRunner.cpp:704
 #, kde-format
 msgid "Failed to start the system daemon.<br><i>%1</i>"
 msgstr "Khởi động trình nền hệ thống thất bại.<br><i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:705 kio/KioFonts.cpp:719
+#: kcmfontinst/JobRunner.cpp:707 kio/KioFonts.cpp:719
 #, kde-format
 msgid "<i>%1</i> already exists."
 msgstr "<i>%1</i> đã tồn tại."
 
-#: kcmfontinst/JobRunner.cpp:708
+#: kcmfontinst/JobRunner.cpp:710
 #, kde-format
 msgid "<i>%1</i> does not exist."
 msgstr "<i>%1</i> không tồn tại."
 
-#: kcmfontinst/JobRunner.cpp:710
+#: kcmfontinst/JobRunner.cpp:712
 #, kde-format
 msgid "Permission denied.<br><i>%1</i>"
 msgstr "Truy cập bị từ chối.<br><i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:712
+#: kcmfontinst/JobRunner.cpp:714
 #, kde-format
 msgid "Unsupported action.<br><i>%1</i>"
 msgstr "Hành động không được hỗ trợ.<br><i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:714
+#: kcmfontinst/JobRunner.cpp:716
 #, kde-format
 msgid "Authentication failed.<br><i>%1</i>"
 msgstr "Xác thực thất bại.<br><i>%1</i>"
 
-#: kcmfontinst/JobRunner.cpp:716
+#: kcmfontinst/JobRunner.cpp:718
 #, kde-format
 msgid "Unexpected error while processing: <i>%1</i>"
 msgstr "Lỗi bất ngờ khi đang xử lí: <i>%1</i>"
 
-#: kcmfontinst/KCmFontInst.cpp:213
+#: kcmfontinst/KCmFontInst.cpp:211
 #, kde-format
 msgid "Create New Group…"
 msgstr "Tạo nhóm mới…"
 
-#: kcmfontinst/KCmFontInst.cpp:216
+#: kcmfontinst/KCmFontInst.cpp:214
 #, kde-format
 msgid "Remove Group…"
 msgstr "Xoá nhóm…"
 
-#: kcmfontinst/KCmFontInst.cpp:219
+#: kcmfontinst/KCmFontInst.cpp:217
 #, kde-format
 msgid "Enable Fonts in Group…"
 msgstr "Bật các phông chữ trong nhóm…"
 
-#: kcmfontinst/KCmFontInst.cpp:222
+#: kcmfontinst/KCmFontInst.cpp:220
 #, kde-format
 msgid "Disable Fonts in Group…"
 msgstr "Tắt các phông chữ trong nhóm…"
 
-#: kcmfontinst/KCmFontInst.cpp:243
+#: kcmfontinst/KCmFontInst.cpp:241
 #, kde-format
 msgid "This displays a preview of the selected font."
 msgstr "Tại đây sẽ hiển thị phần xem thử phông chữ được chọn."
 
-#: kcmfontinst/KCmFontInst.cpp:260
+#: kcmfontinst/KCmFontInst.cpp:258
 #, kde-format
 msgid "Find Duplicates…"
 msgstr "Tìm phông chữ trùng…"
 
-#: kcmfontinst/KCmFontInst.cpp:260
+#: kcmfontinst/KCmFontInst.cpp:258
 #, kde-format
 msgid "Scan for Duplicate Fonts…"
 msgstr "Quét tìm phông chữ trùng…"
 
-#: kcmfontinst/KCmFontInst.cpp:262
+#: kcmfontinst/KCmFontInst.cpp:260
 #, kde-format
 msgid "Install from File…"
 msgstr "Cài từ tệp…"
 
-#: kcmfontinst/KCmFontInst.cpp:262
+#: kcmfontinst/KCmFontInst.cpp:260
 #, kde-format
 msgid "Install fonts from a local file"
 msgstr "Cài phông chữ từ tệp cục bộ"
 
-#: kcmfontinst/KCmFontInst.cpp:263
+#: kcmfontinst/KCmFontInst.cpp:261
 #, kde-format
 msgid "Get New Fonts…"
 msgstr "Lấy phông chữ mới…"
 
-#: kcmfontinst/KCmFontInst.cpp:264
+#: kcmfontinst/KCmFontInst.cpp:262
 #, kde-format
 msgid "Download new fonts"
 msgstr "Tải về phông chữ mới"
 
-#: kcmfontinst/KCmFontInst.cpp:266
+#: kcmfontinst/KCmFontInst.cpp:264
 #, kde-format
 msgid "Delete Selected Fonts…"
 msgstr "Xoá các phông đã chọn…"
 
-#: kcmfontinst/KCmFontInst.cpp:331
+#: kcmfontinst/KCmFontInst.cpp:329
 #, kde-format
 msgid "Change Preview Text…"
 msgstr "Đổi văn bản xem thử…"
 
-#: kcmfontinst/KCmFontInst.cpp:430
+#: kcmfontinst/KCmFontInst.cpp:428
 #, kde-format
 msgid "Add Fonts"
 msgstr "Thêm phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:555
+#: kcmfontinst/KCmFontInst.cpp:552
 #, kde-format
 msgid "Failed to save list of fonts to print."
 msgstr "Lưu danh sách các phông chữ để in thất bại."
 
-#: kcmfontinst/KCmFontInst.cpp:576
+#: kcmfontinst/KCmFontInst.cpp:573
 #, kde-format
 msgid "Failed to start font printer."
 msgstr "Khởi động trình in phông chữ thất bại."
 
-#: kcmfontinst/KCmFontInst.cpp:583
+#: kcmfontinst/KCmFontInst.cpp:580
 #, kde-format
 msgid ""
 "There are no printable fonts.\n"
@@ -747,58 +747,58 @@ msgstr ""
 "Không có phông chữ nào in được.\n"
 "Bạn chỉ có thể in các phông chữ đã bật mà không phải là kiểu bản đồ bit."
 
-#: kcmfontinst/KCmFontInst.cpp:585
+#: kcmfontinst/KCmFontInst.cpp:582
 #, kde-format
 msgid "Cannot Print"
 msgstr "Không thể in"
 
-#: kcmfontinst/KCmFontInst.cpp:600
+#: kcmfontinst/KCmFontInst.cpp:597
 #, kde-format
 msgid "You did not select anything to delete."
 msgstr "Bạn chưa chọn gì để xoá."
 
-#: kcmfontinst/KCmFontInst.cpp:600
+#: kcmfontinst/KCmFontInst.cpp:597
 #, kde-format
 msgid "Nothing to Delete"
 msgstr "Không có gì để xoá"
 
-#: kcmfontinst/KCmFontInst.cpp:615
+#: kcmfontinst/KCmFontInst.cpp:612
 #, kde-format
 msgid "<p>Do you really want to delete</p><p>'<b>%1</b>'?</p>"
 msgstr "<p>Bạn có thật sự muốn xoá</p><p>'<b>%1</b>' không?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:618
+#: kcmfontinst/KCmFontInst.cpp:615
 #, kde-format
 msgid "Delete Font"
 msgstr "Xoá phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:625
+#: kcmfontinst/KCmFontInst.cpp:622
 #, kde-format
 msgid "Do you really want to delete this font?"
 msgid_plural "Do you really want to delete these %1 fonts?"
 msgstr[0] "Bạn có thật sự muốn xoá %1 phông chữ này?"
 
-#: kcmfontinst/KCmFontInst.cpp:627
+#: kcmfontinst/KCmFontInst.cpp:624
 #, kde-format
 msgid "Delete Fonts"
 msgstr "Xoá phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:632
+#: kcmfontinst/KCmFontInst.cpp:629
 #, kde-format
 msgid "Deleting font(s)…"
 msgstr "Đang xoá phông chữ…"
 
-#: kcmfontinst/KCmFontInst.cpp:647
+#: kcmfontinst/KCmFontInst.cpp:644
 #, kde-format
 msgid "You did not select anything to move."
 msgstr "Bạn chưa chọn gì để di chuyển."
 
-#: kcmfontinst/KCmFontInst.cpp:647
+#: kcmfontinst/KCmFontInst.cpp:644
 #, kde-format
 msgid "Nothing to Move"
 msgstr "Không có gì để di chuyển"
 
-#: kcmfontinst/KCmFontInst.cpp:657
+#: kcmfontinst/KCmFontInst.cpp:654
 #, kde-format
 msgid ""
 "<p>Do you really want to move</p><p>'<b>%1</b>'</p><p>from <i>%2</i> to <i>"
@@ -807,17 +807,17 @@ msgstr ""
 "<p>Bạn có thật sự muốn di chuyển</p><p>'<b>%1</b>'</p><p>từ <i>%2</i> đến <i>"
 "%3</i>?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:662
+#: kcmfontinst/KCmFontInst.cpp:659
 #, kde-format
 msgid "Move Font"
 msgstr "Di chuyển phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:663 kcmfontinst/KCmFontInst.cpp:675
+#: kcmfontinst/KCmFontInst.cpp:660 kcmfontinst/KCmFontInst.cpp:672
 #, kde-format
 msgid "Move"
 msgstr "Di chuyển"
 
-#: kcmfontinst/KCmFontInst.cpp:668
+#: kcmfontinst/KCmFontInst.cpp:665
 #, kde-format
 msgid ""
 "<p>Do you really want to move this font from <i>%2</i> to <i>%3</i>?</p>"
@@ -827,73 +827,73 @@ msgstr[0] ""
 "<p>Bạn có thật sự muốn di chuyển %1 phông chữ này từ <i>%2</i> đến <i>%3</i>?"
 "</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:674
+#: kcmfontinst/KCmFontInst.cpp:671
 #, kde-format
 msgid "Move Fonts"
 msgstr "Di chuyển phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:679
+#: kcmfontinst/KCmFontInst.cpp:676
 #, kde-format
 msgid "Moving font(s)…"
 msgstr "Đang di chuyển phông chữ…"
 
-#: kcmfontinst/KCmFontInst.cpp:693
+#: kcmfontinst/KCmFontInst.cpp:690
 #, kde-format
 msgid "Export Group"
 msgstr "Xuất khẩu nhóm"
 
-#: kcmfontinst/KCmFontInst.cpp:719
+#: kcmfontinst/KCmFontInst.cpp:716
 #, kde-format
 msgid "No files?"
 msgstr "Không có tệp nào?"
 
-#: kcmfontinst/KCmFontInst.cpp:722
+#: kcmfontinst/KCmFontInst.cpp:719
 #, kde-format
 msgid "Failed to open %1 for writing"
 msgstr "Mở %1 để ghi thất bại"
 
-#: kcmfontinst/KCmFontInst.cpp:742
+#: kcmfontinst/KCmFontInst.cpp:739
 #, kde-format
 msgid "Create New Group"
 msgstr "Tạo nhóm mới"
 
-#: kcmfontinst/KCmFontInst.cpp:742
+#: kcmfontinst/KCmFontInst.cpp:739
 #, kde-format
 msgid "Name of new group:"
 msgstr "Tên của nhóm mới:"
 
-#: kcmfontinst/KCmFontInst.cpp:742
+#: kcmfontinst/KCmFontInst.cpp:739
 #, kde-format
 msgid "New Group"
 msgstr "Nhóm mới"
 
-#: kcmfontinst/KCmFontInst.cpp:770
+#: kcmfontinst/KCmFontInst.cpp:767
 #, kde-format
 msgid "Preview Text"
 msgstr "Văn bản xem thử"
 
-#: kcmfontinst/KCmFontInst.cpp:770
+#: kcmfontinst/KCmFontInst.cpp:767
 #, kde-format
 msgid "Please enter new text:"
 msgstr "Vui lòng nhập vào văn bản mới:"
 
-#: kcmfontinst/KCmFontInst.cpp:822
+#: kcmfontinst/KCmFontInst.cpp:819
 #, kde-format
 msgid "Scanning font list…"
 msgstr "Đang quét danh sách phông chữ…"
 
-#: kcmfontinst/KCmFontInst.cpp:881
+#: kcmfontinst/KCmFontInst.cpp:878
 #, kde-format
 msgid "No fonts"
 msgstr "Không có phông chữ nào"
 
-#: kcmfontinst/KCmFontInst.cpp:886
+#: kcmfontinst/KCmFontInst.cpp:883
 #, kde-format
 msgid "1 Font"
 msgid_plural "%1 Fonts"
 msgstr[0] "%1 phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:895
+#: kcmfontinst/KCmFontInst.cpp:892
 #, kde-format
 msgid ""
 "<table><tr><td align=\"right\">Enabled:</td><td>%1</td></tr><tr><td align="
@@ -905,7 +905,7 @@ msgstr ""
 "\">Tắt:</td><td>%2</td></tr><tr><td align=\"right\">Bật một phần:</td><td>"
 "%3</td></tr><tr><td align=\"right\">Tổng:</td><td>%4</td></tr></table>"
 
-#: kcmfontinst/KCmFontInst.cpp:905
+#: kcmfontinst/KCmFontInst.cpp:902
 #, kde-format
 msgid ""
 "<table><tr><td align=\"right\">Enabled:</td><td>%1</td></tr><tr><td align="
@@ -916,62 +916,62 @@ msgstr ""
 "\">Tắt:</td><td>%2</td></tr><tr><td align=\"right\">Tổng:</td><td>%3</td></"
 "tr></table>"
 
-#: kcmfontinst/KCmFontInst.cpp:982
+#: kcmfontinst/KCmFontInst.cpp:979
 #, kde-format
 msgid "Looking for any associated files…"
 msgstr "Đang tìm các tệp liên kết…"
 
-#: kcmfontinst/KCmFontInst.cpp:986
+#: kcmfontinst/KCmFontInst.cpp:983
 #, kde-format
 msgid "Scanning Files…"
 msgstr "Đang quét tệp…"
 
-#: kcmfontinst/KCmFontInst.cpp:987
+#: kcmfontinst/KCmFontInst.cpp:984
 #, kde-format
 msgid "Looking for additional files to install…"
 msgstr "Đang tìm các tệp bổ sung để cài đặt…"
 
-#: kcmfontinst/KCmFontInst.cpp:1002
+#: kcmfontinst/KCmFontInst.cpp:999
 #, kde-format
 msgid "Looking for files associated with %1"
 msgstr "Đang tìm các tệp liên kết với %1"
 
-#: kcmfontinst/KCmFontInst.cpp:1030
+#: kcmfontinst/KCmFontInst.cpp:1027
 #, kde-format
 msgid "Installing font(s)…"
 msgstr "Đang cài đặt phông chữ…"
 
-#: kcmfontinst/KCmFontInst.cpp:1095
+#: kcmfontinst/KCmFontInst.cpp:1092
 #, kde-format
 msgid "You did not select anything to enable."
 msgstr "Bạn chưa chọn gì để bật."
 
-#: kcmfontinst/KCmFontInst.cpp:1095
+#: kcmfontinst/KCmFontInst.cpp:1092
 #, kde-format
 msgid "You did not select anything to disable."
 msgstr "Bạn chưa chọn gì để tắt."
 
-#: kcmfontinst/KCmFontInst.cpp:1096
+#: kcmfontinst/KCmFontInst.cpp:1093
 #, kde-format
 msgid "Nothing to Enable"
 msgstr "Không có gì để bật"
 
-#: kcmfontinst/KCmFontInst.cpp:1096
+#: kcmfontinst/KCmFontInst.cpp:1093
 #, kde-format
 msgid "Nothing to Disable"
 msgstr "Không có gì để tắt"
 
-#: kcmfontinst/KCmFontInst.cpp:1110
+#: kcmfontinst/KCmFontInst.cpp:1107
 #, kde-format
 msgid "<p>Do you really want to enable</p><p>'<b>%1</b>'?</p>"
 msgstr "<p>Bạn có thật sự muốn bật</p><p>'<b>%1</b>' không?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1111
+#: kcmfontinst/KCmFontInst.cpp:1108
 #, kde-format
 msgid "<p>Do you really want to disable</p><p>'<b>%1</b>'?</p>"
 msgstr "<p>Bạn có thật sự muốn tắt</p><p>'<b>%1</b>' không?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1112
+#: kcmfontinst/KCmFontInst.cpp:1109
 #, kde-format
 msgid ""
 "<p>Do you really want to enable</p><p>'<b>%1</b>', contained within group "
@@ -979,7 +979,7 @@ msgid ""
 msgstr ""
 "<p>Bạn có thật sự muốn bật</p><p>'<b>%1</b>', nằm trong nhóm '<b>%2</b>'?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1113
+#: kcmfontinst/KCmFontInst.cpp:1110
 #, kde-format
 msgid ""
 "<p>Do you really want to disable</p><p>'<b>%1</b>', contained within group "
@@ -987,29 +987,29 @@ msgid ""
 msgstr ""
 "<p>Bạn có thật sự muốn tắt</p><p>'<b>%1</b>', nằm trong nhóm '<b>%2</b>'?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1114 kcmfontinst/KCmFontInst.cpp:1115
+#: kcmfontinst/KCmFontInst.cpp:1111 kcmfontinst/KCmFontInst.cpp:1112
 #, kde-format
 msgid "Enable Font"
 msgstr "Bật phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:1114 kcmfontinst/KCmFontInst.cpp:1116
+#: kcmfontinst/KCmFontInst.cpp:1111 kcmfontinst/KCmFontInst.cpp:1113
 #, kde-format
 msgid "Disable Font"
 msgstr "Tắt phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:1122
+#: kcmfontinst/KCmFontInst.cpp:1119
 #, kde-format
 msgid "Do you really want to enable this font?"
 msgid_plural "Do you really want to enable these %1 fonts?"
 msgstr[0] "Bạn có thật sự muốn bật %1 phông chữ này không?"
 
-#: kcmfontinst/KCmFontInst.cpp:1123
+#: kcmfontinst/KCmFontInst.cpp:1120
 #, kde-format
 msgid "Do you really want to disable this font?"
 msgid_plural "Do you really want to disable these %1 fonts?"
 msgstr[0] "Bạn có thật sự muốn tắt %1 phông chữ này không?"
 
-#: kcmfontinst/KCmFontInst.cpp:1125
+#: kcmfontinst/KCmFontInst.cpp:1122
 #, kde-format
 msgid ""
 "<p>Do you really want to enable this font contained within group '<b>%2</b>'?"
@@ -1020,7 +1020,7 @@ msgid_plural ""
 msgstr[0] ""
 "<p>Bạn có thật sự muốn bật %1 phông chữ này, nằm trong nhóm '<b>%2</b>'?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1129
+#: kcmfontinst/KCmFontInst.cpp:1126
 #, kde-format
 msgid ""
 "<p>Do you really want to disable this font contained within group '<b>%2</"
@@ -1031,22 +1031,22 @@ msgid_plural ""
 msgstr[0] ""
 "<p>Bạn có thật sự muốn tắt %1 phông chữ này, nằm trong nhóm '<b>%2</b>'?</p>"
 
-#: kcmfontinst/KCmFontInst.cpp:1133 kcmfontinst/KCmFontInst.cpp:1135
+#: kcmfontinst/KCmFontInst.cpp:1130 kcmfontinst/KCmFontInst.cpp:1132
 #, kde-format
 msgid "Enable Fonts"
 msgstr "Bật phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:1133 kcmfontinst/KCmFontInst.cpp:1135
+#: kcmfontinst/KCmFontInst.cpp:1130 kcmfontinst/KCmFontInst.cpp:1132
 #, kde-format
 msgid "Disable Fonts"
 msgstr "Tắt phông chữ"
 
-#: kcmfontinst/KCmFontInst.cpp:1142
+#: kcmfontinst/KCmFontInst.cpp:1139
 #, kde-format
 msgid "Enabling font(s)…"
 msgstr "Đang bật phông chữ…"
 
-#: kcmfontinst/KCmFontInst.cpp:1144
+#: kcmfontinst/KCmFontInst.cpp:1141
 #, kde-format
 msgid "Disabling font(s)…"
 msgstr "Đang tắt phông chữ…"
@@ -1173,59 +1173,59 @@ msgstr "%1 không phải là một phông chữ."
 msgid "Could not remove all files associated with %1"
 msgstr "Không xoá được tất cả các tệp liên kết với %1"
 
-#: lib/Fc.cpp:409 lib/KfiConstants.h:108
+#: lib/Fc.cpp:407 lib/KfiConstants.h:108
 #, kde-format
 msgid "Unknown"
 msgstr "Không rõ"
 
-#: lib/FcEngine.cpp:869
+#: lib/FcEngine.cpp:894
 #, kde-format
 msgctxt "First letter of the alphabet (in upper then lower case)"
 msgid "Aa"
 msgstr "Aa"
 
-#: lib/FcEngine.cpp:872
+#: lib/FcEngine.cpp:897
 #, kde-format
 msgctxt ""
 "All letters of the alphabet (in upper/lower case pairs), followed by numbers"
 msgid "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
 msgstr "AaĂăÂâBbCcDdĐđEeÊêGgHhIiKkLlMmNnOoÔôƠơPpQqRrSsTtUuƯưVvXxYy0123456789"
 
-#: lib/FcEngine.cpp:1034
+#: lib/FcEngine.cpp:1059
 #, kde-format
 msgid "No characters found."
 msgstr "Không tìm thấy kí tự nào."
 
-#: lib/FcEngine.cpp:1072
+#: lib/FcEngine.cpp:1097
 #, kde-format
 msgctxt "A sentence that uses all of the letters of the alphabet"
 msgid "The quick brown fox jumps over the lazy dog"
 msgstr "Ông già sửa căn hầm bí mật để nó đỡ nghiêng"
 
-#: lib/FcEngine.cpp:1077
+#: lib/FcEngine.cpp:1102
 #, kde-format
 msgctxt "All of the letters of the alphabet, uppercase"
 msgid "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 msgstr "AĂÂBCDĐEÊGHIKLMNOÔƠPQRSTUƯVXY"
 
-#: lib/FcEngine.cpp:1082
+#: lib/FcEngine.cpp:1107
 #, kde-format
 msgctxt "All of the letters of the alphabet, lowercase"
 msgid "abcdefghijklmnopqrstuvwxyz"
 msgstr "aăâbcdđeêghiklmnoôơpqrstuưvxy"
 
-#: lib/FcEngine.cpp:1087
+#: lib/FcEngine.cpp:1112
 #, kde-format
 msgctxt "Numbers and characters"
 msgid "0123456789.:,;(*!?'/\\\")£$€%^&-+@~#<>{}[]"
 msgstr "0123456789.:,;(*!?'/\\\")₫£$€%^&-+@~#<>{}[]"
 
-#: lib/FcEngine.cpp:1485
+#: lib/FcEngine.cpp:1510
 #, kde-format
 msgid "ERROR: Could not determine font's name."
 msgstr "LỖI: Không xác định được tên của phông chữ."
 
-#: lib/FcEngine.cpp:1488
+#: lib/FcEngine.cpp:1513
 #, kde-format
 msgid "%2 [1 pixel]"
 msgid_plural "%2 [%1 pixels]"
@@ -1509,57 +1509,57 @@ msgstr "Dấu phân cách, Đoạn văn"
 msgid "Separator, Space"
 msgstr "Dấu phân cách, Dấu cách"
 
-#: viewpart/CharTip.cpp:154
+#: viewpart/CharTip.cpp:152
 #, kde-format
 msgid "Category"
 msgstr "Nhóm"
 
-#: viewpart/CharTip.cpp:156
+#: viewpart/CharTip.cpp:154
 #, kde-format
 msgid "UCS-4"
 msgstr "UCS-4"
 
-#: viewpart/CharTip.cpp:159
+#: viewpart/CharTip.cpp:157
 #, kde-format
 msgid "UTF-16"
 msgstr "UTF-16"
 
-#: viewpart/CharTip.cpp:170
+#: viewpart/CharTip.cpp:168
 #, kde-format
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: viewpart/CharTip.cpp:187
+#: viewpart/CharTip.cpp:185
 #, kde-format
 msgid "XML Decimal Entity"
 msgstr "Thực thể thập phân XML"
 
-#: viewpart/FontViewPart.cpp:91
+#: viewpart/FontViewPart.cpp:90
 #, kde-format
 msgid "Show Face:"
 msgstr "Hiện họ phông:"
 
-#: viewpart/FontViewPart.cpp:94
+#: viewpart/FontViewPart.cpp:93
 #, kde-format
 msgid "Install…"
 msgstr "Đang cài đặt…"
 
-#: viewpart/FontViewPart.cpp:115
+#: viewpart/FontViewPart.cpp:114
 #, kde-format
 msgid "Change Text…"
 msgstr "Đổi văn bản…"
 
-#: viewpart/FontViewPart.cpp:341
+#: viewpart/FontViewPart.cpp:337
 #, kde-format
 msgid "Could not read font."
 msgstr "Không đọc được phông chữ."
 
-#: viewpart/FontViewPart.cpp:407
+#: viewpart/FontViewPart.cpp:403
 #, kde-format
 msgid "Preview String"
 msgstr "Chuỗi xem thử"
 
-#: viewpart/FontViewPart.cpp:407
+#: viewpart/FontViewPart.cpp:403
 #, kde-format
 msgid "Please enter new string:"
 msgstr "Vui lòng nhập vào chuỗi mới:"

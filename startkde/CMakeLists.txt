@@ -17,26 +17,27 @@ add_library(startplasma OBJECT startplasma.cpp ${startplasma_SRCS})
 target_link_libraries(startplasma PUBLIC
     Qt::Core
     Qt::DBus
-    KF6::ConfigCore
+    KF6::ConfigGui
     KF6::DBusAddons
     KF6::Notifications
     KF6::Package
     Canberra::Canberra
     PW::KLookAndFeel
     PW::KWorkspace
+    KNightTime
 )
 
-add_executable(startplasma-x11 ${START_PLASMA_COMMON_SRCS} startplasma-x11.cpp kcheckrunning/kcheckrunning.cpp)
-add_executable(startplasma-wayland ${START_PLASMA_COMMON_SRCS} startplasma-wayland.cpp)
-
-target_link_libraries(startplasma-x11 PRIVATE
-    startplasma
-    X11::X11 # for kcheckrunning
+kconfig_target_kcfg_file(startplasma
+    FILE ${CMAKE_SOURCE_DIR}/kcms/lookandfeel/lookandfeelsettings.kcfg
+    CLASS_NAME LookAndFeelSettings
 )
 
-target_link_libraries(startplasma-wayland PRIVATE
-    startplasma
-)
+    add_executable(startplasma-x11 ${START_PLASMA_COMMON_SRCS} startplasma-x11.cpp kcheckrunning/kcheckrunning.cpp)
+
+    target_link_libraries(startplasma-x11 PRIVATE
+        startplasma
+        X11::X11 # for kcheckrunning
+    )
 
 add_subdirectory(plasma-session)
 add_subdirectory(plasma-shutdown)
@@ -52,6 +53,5 @@ endif()
 configure_file(config-startplasma.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-startplasma.h)
 
 install(TARGETS startplasma-x11 ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-install(TARGETS startplasma-wayland ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS plasma-sourceenv.sh DESTINATION ${KDE_INSTALL_LIBEXECDIR})
 install(PROGRAMS plasma-dbus-run-session-if-needed DESTINATION ${KDE_INSTALL_LIBEXECDIR})

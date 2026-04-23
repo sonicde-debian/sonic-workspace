@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2026 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 #
-# giovanni <g.sora@tiscali.it>, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2026 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-04-23 10:14+0200\n"
+"POT-Creation-Date: 2026-03-08 02:54+0000\n"
+"PO-Revision-Date: 2026-02-05 18:01+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,17 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
+
+#, kde-format
+msgid "Inherit Language"
+msgstr "Heredita Linguage"
 
 #: binarydialectmodel.cpp:52
 #, kde-format
-msgctxt "Binary dialect IEC, with sigle in parentheses"
+msgctxt "Binary dialect IEC, with single in parentheses"
 msgid "International Electrotechnical Commission (IEC)"
 msgstr "International Electrotechnical Commission (IEC)"
 
 #: binarydialectmodel.cpp:56
 #, kde-format
-msgctxt "Binary dialect JEDEC, with sigle in parentheses"
+msgctxt "Binary dialect JEDEC, with single in parentheses"
 msgid "Joint Electron Device Engineering Council (JEDEC)"
 msgstr "Joint Electron Device Engineering Council (JEDEC)"
 
@@ -37,16 +41,19 @@ msgstr "Systema Metric (SI)"
 
 #: binarydialectmodel.cpp:75
 #, kde-format
+msgctxt "Binary dialect IEC description"
 msgid "Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)"
 msgstr "Binari -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)"
 
 #: binarydialectmodel.cpp:77
 #, kde-format
-msgid "Binary - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
+msgctxt "Binary dialect JEDEC description"
+msgid "Binary - Kilobytes (KB), Megabytes (MB), Gigabytes (GB)"
 msgstr "Binari - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
 
 #: binarydialectmodel.cpp:79
 #, kde-format
+msgctxt "Binary dialect Metric description"
 msgid "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
 msgstr "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
 
@@ -250,7 +257,7 @@ msgctxt ""
 msgid "Could not find an example for this locale"
 msgstr "Non pote trovar un exemplo pro iste  configuration regional ( locale)"
 
-#: glibclocaleconstructor.cpp:164
+#: glibclocaleconstructor.cpp:165
 #, kde-kuit-format
 msgctxt "@info this will be shown as an error message"
 msgid ""
@@ -262,13 +269,13 @@ msgstr ""
 "usar le instrumento <command>localectl</command>. Pro favor invia un reporto "
 "de falta (bug) re isto a <link>https://bugs.kde.org</link>"
 
-#: languagelistmodel.cpp:95
+#: languagelistmodel.cpp:97
 #, kde-format
 msgctxt "%1 is language name, %2 is language code name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: languagelistmodel.cpp:101
+#: languagelistmodel.cpp:103
 #, kde-format
 msgctxt ""
 "%1 is português in system locale name, Brazil is to distinguish European "
@@ -283,12 +290,10 @@ msgid "Can't locate executable `check-language-support`"
 msgstr "Non pote localisar executabile 'check-languge-support'"
 
 #: localegeneratorubuntu.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "the arg is the output of failed check-language-support call"
-#| msgid "check-language-support failed, output: %1"
+#, kde-format
 msgctxt "the arg is the output of failed check-language-support call"
 msgid "check-language-support failed, output: %1 %2"
-msgstr "check-language-support falleva, exito: %1"
+msgstr "check-language-support falleva, exito: %1 %2"
 
 #: localegeneratorubuntu.cpp:88
 #, kde-format
@@ -297,12 +302,10 @@ msgid "Not all missing packages managed to resolve! %1"
 msgstr "Non tote pacchettos mancante gereva a resolver! %1"
 
 #: localegeneratorubuntu.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "%1 is a list of package names"
-#| msgid "Failed to install package %1"
+#, kde-format
 msgctxt "%1 is a list of package names, %2 is the error explanation"
 msgid "Failed to install language packages (%1): %2"
-msgstr "Falleva a installar pacchetto %1"
+msgstr "Falleva a installar pacchettos de linguage   (%1): %2"
 
 #: localegenhelper/localegenhelper.cpp:45
 #, kde-format
@@ -452,15 +455,6 @@ msgctxt ""
 msgid " (Standard format for %1)"
 msgstr "(Formato standardo per %1)"
 
-#: regionandlangsettingsbase.kcfg:14 regionandlangsettingsbase.kcfg:17
-#: regionandlangsettingsbase.kcfg:20 regionandlangsettingsbase.kcfg:23
-#: regionandlangsettingsbase.kcfg:26 regionandlangsettingsbase.kcfg:29
-#: regionandlangsettingsbase.kcfg:32 regionandlangsettingsbase.kcfg:35
-#: regionandlangsettingsbase.kcfg:38
-#, kde-format
-msgid "Inherit Language"
-msgstr "Heredita Linguage"
-
 #: ui/AdvancedLanguageSelectPage.qml:23
 #, kde-format
 msgid "Language"
@@ -481,7 +475,7 @@ msgstr ""
 #, kde-format
 msgctxt "Error message, %1 is the language name"
 msgid "The language \"%1\" is unsupported"
-msgstr "Le linguage \"%1\" nones supportate"
+msgstr "Le linguage \"%1\" non es supportate"
 
 #: ui/AdvancedLanguageSelectPage.qml:58
 #, kde-format

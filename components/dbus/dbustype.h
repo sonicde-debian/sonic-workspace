@@ -47,9 +47,7 @@
         constexpr static const char *signature = DBUSSIGNATURE;                                                                                                \
     };
 
-namespace Plasma
-{
-namespace DBus
+namespace Plasma::DBus
 {
 DBUS_QML_TYPE(BOOL, bool, bool, bool, "b")
 DBUS_QML_TYPE(INT16, int16, int, short, "n")
@@ -75,13 +73,8 @@ public:
     explicit VARIANT()
     {
     }
-#if (QT_VERSION == QT_VERSION_CHECK(6, 8, 0)) // https://bugreports.qt.io/browse/QTBUG-130522
-    Q_INVOKABLE explicit VARIANT(const QVariant &_value)
-        : value(_value)
-#else
     Q_INVOKABLE explicit VARIANT(const QJSValue &value)
         : value(value.toVariant())
-#endif
     {
     }
     operator QVariant() const
@@ -99,5 +92,4 @@ public:
     QDBusVariant value;
     constexpr static const char *signature = "v";
 };
-}
 }

@@ -4,12 +4,12 @@
     SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
 */
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.5 as QQC2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
 
 import org.kde.kcmutils as KCM
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kirigami as Kirigami
 
 KCM.SimpleKCM {
     title: i18n("Create User")
@@ -97,7 +97,9 @@ KCM.SimpleKCM {
                         debouncer.isTriggered = true;
                         return;
                     }
-                    kcm.mainUi.createUser(userNameField.text, realNameField.text, passwordField.text, (usertypeBox.model[usertypeBox.currentIndex]["type"] === "administrator"));
+                    const userTypeIsAdmin = (usertypeBox.model[usertypeBox.currentIndex]["type"] === "administrator");
+                    const userIsCreated = kcm.mainUi.createUser(userNameField.text, realNameField.text, passwordField.text, userTypeIsAdmin);
+                    kcm.mainUi.createUserEnabled = userIsCreated;
                 }
             }
             Item {

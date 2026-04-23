@@ -22,9 +22,7 @@
 #include <KNotificationJobUiDelegate>
 #include <KService>
 #include <KStringHandler>
-#include <KWindowInfo>
 #include <KWindowSystem>
-#include <KX11Extras>
 
 #include "clipcommandprocess.h"
 #include "klippersettings.h"
@@ -107,7 +105,7 @@ void URLGrabber::matchingMimeActions(const QString &clipData)
     if (!mimetype.isDefault()) {
         const KService::List lst = KApplicationTrader::queryByMimeType(mimetype.name());
         if (!lst.isEmpty()) {
-            ClipAction *action = new ClipAction(QString(), mimetype.comment());
+            auto *action = new ClipAction(QString(), mimetype.comment());
             for (const KService::Ptr &service : lst) {
                 action->addCommand(ClipCommand(QString(), service->name(), true, service->icon(), ClipCommand::IGNORE, service->storageId()));
             }
@@ -154,20 +152,12 @@ void URLGrabber::actionMenu(HistoryItemConstPtr item, bool automatically_invoked
     const ActionList matchingActionsList = matchingActions(text, automatically_invoked);
 
     if (!matchingActionsList.isEmpty()) {
-        // don't react on blacklisted (e.g. konqi's/netscape's urls) unless the user explicitly asked for it
-        if (automatically_invoked && isAvoidedWindow()) {
-            return;
-        }
-
         m_myCommandMapper.clear();
 
         m_myPopupKillTimer->stop();
 
         m_myMenu.reset(new QMenu);
         m_myMenu->setWindowFlag(Qt::FramelessWindowHint, true);
-        if (KWindowSystem::isPlatformWayland()) {
-            m_myMenu->setWindowFlag(Qt::Popup, false);
-        }
         m_myMenu->setObjectName(QStringLiteral("klipperActionPopup"));
 
         connect(m_myMenu.get(), &QMenu::triggered, this, &URLGrabber::slotItemSelected);
@@ -178,6 +168,10 @@ void URLGrabber::actionMenu(HistoryItemConstPtr item, bool automatically_invoked
             int listSize = cmdList.count();
             for (int i = 0; i < listSize; ++i) {
                 ClipCommand command = cmdList.at(i);
+
+                if (!command.isEnabled) {
+                    continue;
+                }
 
                 QString item = command.description;
                 if (item.isEmpty())
@@ -252,10 +246,9 @@ void URLGrabber::execute(const ClipAction *action, int cmdIdx) const
             job->setUiDelegate(new KNotificationJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled));
             job->start();
         } else {
-            ClipCommandProcess *proc = new ClipCommandProcess(*action, command, text, m_myClipItem);
+            auto *proc = new ClipCommandProcess(*action, command, text, m_myClipItem);
             if (proc->program().isEmpty()) {
-                delete proc;
-                proc = nullptr;
+                delete std::exchange(proc, nullptr);
             } else {
                 proc->start();
             }
@@ -266,46 +259,32 @@ void URLGrabber::execute(const ClipAction *action, int cmdIdx) const
 void URLGrabber::loadSettings()
 {
     m_stripWhiteSpace = KlipperSettings::stripWhiteSpace();
-    m_myAvoidWindows = KlipperSettings::noActionsForWM_CLASS();
     m_myPopupKillTimeout = KlipperSettings::timeoutForActionPopups();
 
     qDeleteAll(m_myActions);
     m_myActions.clear();
 
-    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("General"));
+    const KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    const KConfigGroup cg(config, QStringLiteral("General"));
     int num = cg.readEntry("Number of Actions", 0);
-    QString group;
     for (int i = 0; i < num; i++) {
-        group = QStringLiteral("Action_%1").arg(i);
-        m_myActions.append(new ClipAction(KSharedConfig::openConfig(), group));
+        const QString group = QStringLiteral("Action_%1").arg(i);
+        m_myActions.append(new ClipAction(config, group));
     }
 }
 
 void URLGrabber::saveSettings() const
 {
-    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("General"));
+    KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    KConfigGroup cg(config, QStringLiteral("General"));
     cg.writeEntry("Number of Actions", m_myActions.count());
 
     int i = 0;
-    QString group;
     for (ClipAction *action : std::as_const(m_myActions)) {
-        group = QStringLiteral("Action_%1").arg(i);
-        action->save(KSharedConfig::openConfig(), group);
+        const QString group = QStringLiteral("Action_%1").arg(i);
+        action->save(config, group);
         ++i;
     }
-
-    KlipperSettings::setNoActionsForWM_CLASS(m_myAvoidWindows);
-}
-
-// find out whether the active window's WM_CLASS is in our avoid-list
-bool URLGrabber::isAvoidedWindow() const
-{
-    const WId active = KX11Extras::activeWindow();
-    if (!active) {
-        return false;
-    }
-    KWindowInfo info(active, NET::Properties(), NET::WM2WindowClass);
-    return m_myAvoidWindows.contains(QString::fromLatin1(info.windowClassName()));
 }
 
 void URLGrabber::slotKillPopupMenu()

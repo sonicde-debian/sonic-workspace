@@ -22,7 +22,7 @@ UnmountAction::UnmountAction(const QString &udi, QObject *parent)
     m_isRoot = false;
 
     if (device.is<Solid::StorageAccess>()) {
-        Solid::StorageAccess *storageaccess = device.as<Solid::StorageAccess>();
+        auto *storageaccess = device.as<Solid::StorageAccess>();
         if (storageaccess) {
             m_hasStorageAccess = true;
             m_isRoot = storageaccess->filePath() == u"/";
@@ -32,9 +32,7 @@ UnmountAction::UnmountAction(const QString &udi, QObject *parent)
     connect(m_stateMonitor.get(), &DevicesStateMonitor::stateChanged, this, &UnmountAction::updateIsValid);
 }
 
-UnmountAction::~UnmountAction()
-{
-}
+UnmountAction::~UnmountAction() = default;
 
 QString UnmountAction::name() const
 {
@@ -60,7 +58,7 @@ void UnmountAction::triggered()
 {
     Solid::Device device(m_udi);
     if (device.is<Solid::OpticalDisc>()) {
-        Solid::OpticalDrive *drive = device.as<Solid::OpticalDrive>();
+        auto *drive = device.as<Solid::OpticalDrive>();
         if (!drive) {
             drive = device.parent().as<Solid::OpticalDrive>();
         }
@@ -70,7 +68,7 @@ void UnmountAction::triggered()
         return;
     }
 
-    Solid::StorageAccess *access = device.as<Solid::StorageAccess>();
+    auto *access = device.as<Solid::StorageAccess>();
     if (access && access->isAccessible()) {
         access->teardown();
     }

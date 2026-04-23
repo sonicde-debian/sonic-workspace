@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcm_autostart\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-11-08 21:17-0300\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-08 21:10-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -23,22 +23,22 @@ msgstr ""
 "X-Generator: Lokalize 25.08.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: autostartmodel.cpp:383
+#: autostartmodel.cpp:381
 #, kde-format
 msgid "\"%1\" is not an absolute url."
 msgstr "\"%1\" é uma URL absoluta."
 
-#: autostartmodel.cpp:386
+#: autostartmodel.cpp:384
 #, kde-format
 msgid "\"%1\" does not exist."
 msgstr "\"%1\" não existe."
 
-#: autostartmodel.cpp:389
+#: autostartmodel.cpp:387
 #, kde-format
 msgid "\"%1\" is not a file."
 msgstr "\"%1\" não é um arquivo."
 
-#: autostartmodel.cpp:392
+#: autostartmodel.cpp:390
 #, kde-format
 msgid "\"%1\" is not readable."
 msgstr "\"%1\" não pode ser lido."
@@ -255,12 +255,12 @@ msgctxt "@label Entry has failed (exited with an error)"
 msgid "Failed"
 msgstr "Falhou"
 
-#: unit.cpp:83
+#: unit.cpp:81
 #, kde-format
 msgid "Error occurred when receiving reply of GetAll call %1"
 msgstr "Ocorreu um erro ao receber a resposta da chamada GetAll %1"
 
-#: unit.cpp:155
+#: unit.cpp:153
 #, kde-format
 msgid "Failed to open journal"
 msgstr "Falha ao abrir o diário"

@@ -1,85 +1,173 @@
 /*
     SPDX-FileCopyrightText: 2013 Sebastian Kügler <sebas@kde.org>
     SPDX-FileCopyrightText: 2015 Kai Uwe Broulik <kde@privat.broulik.de>
+    SPDX-FileCopyrightText: 2025 Shubham Arora <contact@shubhamarora.dev>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+pragma ComponentBehavior: Bound
 
-import QtQuick 2.0
-import QtQuick.Controls 2.5 as QtControls
-import org.kde.kirigami 2.5 as Kirigami
-import org.kde.plasma.private.sessions 2.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.private.sessions
 import org.kde.kcmutils as KCM
+import "data.js" as Data
 
-KCM.SimpleKCM {
+KCM.ScrollViewKCM {
     id: root
 
-    readonly property int checkedOptions: logout.checked + logoutScreen.checked + shutdown.checked + reboot.checked + lock.checked + switchUser.checked + hibernate.checked + sleep.checked
+    property bool cfg_show_requestLogoutScreen
+    property bool cfg_show_requestLogout
+    property bool cfg_show_requestShutDown
+    property bool cfg_show_requestReboot
+    property bool cfg_show_lockScreen
+    property bool cfg_show_switchUser
+    property bool cfg_show_suspendToDisk
+    property bool cfg_show_suspendToRam
+    property var cfg_actionsOrder: []
+    property list<string> cfgKeys: []
 
-    property alias cfg_show_requestLogoutScreen: logoutScreen.checked
-    property alias cfg_show_requestLogout: logout.checked
-    property alias cfg_show_requestShutDown: shutdown.checked
-    property alias cfg_show_requestReboot: reboot.checked
+    readonly property int checkedOptions: (Number(cfg_show_requestLogout) +
+                                          Number(cfg_show_requestLogoutScreen) +
+                                          Number(cfg_show_requestShutDown) +
+                                          Number(cfg_show_requestReboot) +
+                                          Number(cfg_show_lockScreen) +
+                                          Number(cfg_show_switchUser) +
+                                          Number(cfg_show_suspendToDisk) +
+                                          Number(cfg_show_suspendToRam))
 
-    property alias cfg_show_lockScreen: lock.checked
-    property alias cfg_show_switchUser: switchUser.checked
-    property alias cfg_show_suspendToDisk: hibernate.checked
-    property alias cfg_show_suspendToRam: sleep.checked
+    SessionManagement {
+        id: session
+    }
 
-    Kirigami.FormLayout {
-        SessionManagement {
-            id: session
+    view: ListView {
+        id: list
+        clip: true
+        
+        model: ListModel {
+            id: actionsModel
         }
 
-        QtControls.CheckBox {
-            id: logout
-            Kirigami.FormData.label: i18nc("Heading for a list of actions (leave, lock, switch user, hibernate, suspend)", "Show actions:")
-            text: i18n("Log Out")
-            icon.name: "system-log-out"
-            // ensure user cannot have all options unchecked
-            enabled: session.canLogout && (root.checkedOptions > 1 || !checked)
+        delegate: Loader {
+            id: delegateLoader
+
+            required property string enabledKey
+            required property string cfgKey
+            required property string icon
+            required property string text
+            required property int index
+
+            width: list.width
+
+            sourceComponent: Kirigami.SwipeListItem {
+                id: listItem
+                width: list.width
+
+                Kirigami.Theme.useAlternateBackgroundColor: true
+
+                highlighted: false
+                hoverEnabled: false
+                down: false
+
+                contentItem: RowLayout {
+                    spacing: Kirigami.Units.smallSpacing
+
+                    Kirigami.ListItemDragHandle {
+                        listItem: listItem
+                        listView: list
+                        onMoveRequested: (oldIndex, newIndex) => {
+                            if (oldIndex === newIndex || oldIndex < 0 || newIndex < 0) {
+                                return;
+                            }
+
+                            actionsModel.move(oldIndex, newIndex, 1);
+
+                            var order = [];
+                            for (var i = 0; i < actionsModel.count; ++i) {
+                                var model = actionsModel.get(i);
+                                if (model && model.configKey) {
+                                    order.push(model.configKey);
+                                }
+                            }
+                            root.cfg_actionsOrder = order;
+                        }
+                    }
+
+                    QQC2.CheckBox {
+                        visible: (delegateLoader.enabledKey ? session[delegateLoader.enabledKey] : true)
+                        checked: root[delegateLoader.cfgKey]
+                        onToggled: root[delegateLoader.cfgKey] = checked
+                        enabled: (delegateLoader.enabledKey ? session[delegateLoader.enabledKey] : true) && (root.checkedOptions > 1 || !checked)
+                    }
+
+                    Kirigami.Icon {
+                        source: delegateLoader.icon
+                        Layout.preferredWidth: Kirigami.Units.iconSizes.small
+                        Layout.preferredHeight: Kirigami.Units.iconSizes.small
+                    }
+
+                    QQC2.Label {
+                        text: delegateLoader.text
+                        Layout.fillWidth: true
+                        elide: Text.ElideRight
+                    }
+
+                    QQC2.Label {
+                        visible: !((delegateLoader.enabledKey ? session[delegateLoader.enabledKey] : true) && (root.checkedOptions > 1 || !checked))
+                        text: i18n("Unavailable")
+                        color: Kirigami.Theme.disabledTextColor
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignRight
+                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                        Layout.rightMargin: Kirigami.Units.smallSpacing
+                        elide: Text.ElideRight
+                    }
+                }
+            }
         }
-        QtControls.CheckBox {
-            id: logoutScreen
-            text: i18nc("@option:check", "Show logout screen")
-            icon.name: "system-log-out"
-            enabled: session.canLogout && (root.checkedOptions > 1 || !checked)
+
+        moveDisplaced: Transition {
+            YAnimator {
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
         }
-        QtControls.CheckBox {
-            id: shutdown
-            text: i18n("Shut Down")
-            icon.name: "system-shutdown"
-            enabled: session.canShutdown && (root.checkedOptions > 1 || !checked)
+    }
+
+    Component.onCompleted: {
+        var actions = Data.data;
+
+        var actionMap = {};
+        actions.forEach(action => {
+            actionMap[action.configKey] = action;
+        });
+        for (var i = 0; i < actions.length; i++) {
+            actionMap[actions[i].configKey] = actions[i];
         }
-        QtControls.CheckBox {
-            id: reboot
-            text: i18n("Restart")
-            icon.name: "system-reboot"
-            enabled: session.canReboot && (root.checkedOptions > 1 || !checked)
+
+        var order = cfg_actionsOrder && cfg_actionsOrder.length ? cfg_actionsOrder : [];
+        if (!order.length) {
+            actions.forEach(action => order.push(action.configKey));
+            cfg_actionsOrder = order;
         }
-        QtControls.CheckBox {
-            id: lock
-            text: i18n("Lock")
-            icon.name: "system-lock-screen"
-            enabled: session.canLock && (root.checkedOptions > 1 || !checked)
-        }
-        QtControls.CheckBox {
-            id: switchUser
-            text: i18n("Switch User")
-            icon.name: "system-switch-user"
-            enabled: root.checkedOptions > 1 || !checked
-        }
-        QtControls.CheckBox {
-            id: hibernate
-            text: i18n("Hibernate")
-            icon.name: "system-suspend-hibernate"
-            enabled: session.canHibernate && (root.checkedOptions > 1 || !checked)
-        }
-        QtControls.CheckBox {
-            id: sleep
-            text: i18nc("Suspend to RAM", "Sleep")
-            icon.name: "system-suspend"
-            enabled: session.canSuspend && (root.checkedOptions > 1 || !checked)
-        }
+
+        order.forEach(keyName => {
+            var item = actionMap[keyName];
+            if (!item) {
+                return;
+            }
+
+            let key = "cfg_show_" + item.configKey;
+            actionsModel.append({
+                text: item.tooltip_mainText,
+                icon: item.icon,
+                cfgKey: key, // used for binding
+                configKey: item.configKey, // used for reordering
+                enabledKey: item.requires ? ("can" + item.requires) : ""
+            });
+            cfgKeys.push(key);
+        });
     }
 }

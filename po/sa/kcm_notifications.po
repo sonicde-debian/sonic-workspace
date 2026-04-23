@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2024-12-20 21:54+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "टॉगलं न बाधयन्तु"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "अन्ये अनुप्रयोगाः"
@@ -92,14 +92,15 @@ msgstr "ध्वनिसञ्चिकां चिनोतु"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "प्रणाली सूचनाएँ"
+msgid "Configure for System…"
+msgstr ""
 
 #: ui/main.qml:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Other Applications"
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "अनुप्रयोग सेटिंग्स्"
+msgid "Configure for Applications…"
+msgstr "अन्ये अनुप्रयोगाः"
 
 #: ui/main.qml:96
 #, kde-format
@@ -207,7 +208,7 @@ msgstr "सूचनाचिह्नस्य समीपे"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
+msgid "Choose…"
 msgstr ""
 
 #: ui/main.qml:278 ui/main.qml:294
@@ -224,34 +225,43 @@ msgid "Hide after:"
 msgstr "पश्चात् गोपनम् :"
 
 #: ui/main.qml:306
+#, fuzzy, kde-format
+#| msgctxt "Show application jobs in notification widget"
+#| msgid "Show in notifications"
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "सूचनासु दर्शयतु"
+
+#: ui/main.qml:318
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "अतिरिक्तप्रतिक्रिया"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "सूचनासु दर्शयतु"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "आवेदनस्य प्रगतिः :"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "प्रगतेः समये पॉपअपं उद्घाटितं कुर्वन्तु"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "सूचनाबिल्लाः :"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "कार्यप्रबन्धके दर्शयतु"
@@ -262,8 +272,11 @@ msgid "Popup Position"
 msgstr "पॉपअप स्थिति"
 
 #: ui/SourcesPage.qml:20
-#, kde-format
-msgid "Application Settings"
+#, fuzzy, kde-format
+#| msgid "Application Settings"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
 msgstr "अनुप्रयोग सेटिंग्स्"
 
 #: ui/SourcesPage.qml:104
@@ -287,6 +300,14 @@ msgid ""
 "Select an application from the list to configure its notification settings "
 "and behavior"
 msgstr "तस्य सूचनासेटिंग्स् व्यवहारं च विन्यस्तुं सूचीतः एकं अनुप्रयोगं चिनोतु"
+
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "प्रणाली सूचनाएँ"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "अनुप्रयोग सेटिंग्स्"
 
 #~ msgid "Normal notifications:"
 #~ msgstr "सामान्यसूचनाः :"

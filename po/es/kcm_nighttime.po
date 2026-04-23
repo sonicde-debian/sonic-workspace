@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcm_nighttime\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-04 18:54+0100\n"
+"POT-Creation-Date: 2026-02-21 02:47+0000\n"
+"PO-Revision-Date: 2025-11-01 20:49+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: ui/main.qml:26
 #, kde-format
@@ -78,13 +78,13 @@ msgid_plural "%1 minutes"
 msgstr[0] "%1 minuto"
 msgstr[1] "%1 minutos"
 
-#: ui/main.qml:119
+#: ui/main.qml:118
 #, kde-format
 msgctxt "@option:radio"
 msgid "Automatically detect location"
 msgstr "Detectar la ubicación automáticamente"
 
-#: ui/main.qml:146
+#: ui/main.qml:145
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -98,7 +98,7 @@ msgstr ""
 "torres de radiotelefonía, si está disponible, o bien enviando su dirección "
 "IP a <link url='https://geoip.com/privacy/'>GeoIP</link>."
 
-#: ui/main.qml:147
+#: ui/main.qml:146
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -113,19 +113,19 @@ msgstr ""
 "desarrolladores de KDE que escriban una descripción detallada de lo que hace "
 "este servicio."
 
-#: ui/main.qml:164
+#: ui/main.qml:163
 #, kde-format
 msgctxt "@option:radio"
 msgid "Use manual location:"
 msgstr "Usar ubicación manual:"
 
-#: ui/main.qml:176
+#: ui/main.qml:175
 #, kde-format
 msgctxt "@label"
 msgid "Latitude:"
 msgstr "Latitud:"
 
-#: ui/main.qml:196
+#: ui/main.qml:195
 #, kde-format
 msgctxt "@label"
 msgid "Longitude:"
@@ -133,7 +133,7 @@ msgstr "Longitud:"
 
 #: ui/SunPath.qml:52
 #, kde-format
-msgctxt "@info:tooltip"
+msgctxt "@info:tooltip; the variables are times of day, e.g. 07:30"
 msgid "Sunrise starts at %1 and ends at %2"
 msgstr "El amanecer empieza a las %1 y termina a las %2"
 
@@ -145,7 +145,7 @@ msgstr "Salida del sol"
 
 #: ui/SunPath.qml:77
 #, kde-format
-msgctxt "@info:tooltip"
+msgctxt "@info:tooltip; the variables are times of day, e.g. 07:30"
 msgid "Sunset starts at %1 and ends at %2"
 msgstr "El anochecer empieza a las %1 y termina a las %2"
 

@@ -10,9 +10,12 @@
 */
 
 #include "kcm.h"
-#include "klookandfeel.h"
+#include "filedialognamefilters.h"
+#include "klookandfeelmanifest.h"
 #include "lookandfeeldata.h"
+#include "lookandfeelnamevalidator.h"
 #include "lookandfeelsettings.h"
+#include "screenshotmaker.h"
 
 #include <KPackage/PackageLoader>
 
@@ -20,6 +23,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QStandardPaths>
+#include <algorithm>
 
 using namespace Qt::StringLiterals;
 
@@ -255,7 +259,12 @@ KCMLookandFeel::KCMLookandFeel(QObject *parent, const KPluginMetaData &data)
     qmlRegisterUncreatableType<KLookAndFeelManager>(uri, 1, 0, "LookandFeelManager", u"Can't create LookandFeelManager"_s);
     qmlRegisterType<LookAndFeelInformation>(uri, 1, 0, "LookAndFeelInformation");
     qmlRegisterType<ItemModelRow>(uri, 1, 0, "ItemModelRow");
+    qmlRegisterType<LookAndFeelNameValidator>(uri, 1, 0, "LookAndFeelNameValidator");
+    qmlRegisterType<ScreenshotMaker>(uri, 1, 0, "ScreenshotMaker");
     qmlRegisterUncreatableMetaObject(KLookAndFeel::staticMetaObject, uri, 1, 0, "LookAndFeel", QStringLiteral("for enums"));
+    qmlRegisterSingletonType<FileDialogNameFilters>(uri, 1, 0, "FileDialogNameFilters", [](QQmlEngine *, QJSEngine *) -> QObject * {
+        return new FileDialogNameFilters();
+    });
 
     m_model = new QStandardItemModel(this);
     QHash<int, QByteArray> roles = m_model->roleNames();
@@ -274,7 +283,7 @@ KCMLookandFeel::KCMLookandFeel(QObject *parent, const KPluginMetaData &data)
     auto handleLookAndFeelPackageChanged = [this]() {
         // When the selected LNF package changes, update the available theme contents
         const int index = pluginIndex(settings()->lookAndFeelPackage());
-        const KLookAndFeelManager::Contents packageContents = m_model->index(index, 0).data(ContentsRole).value<KLookAndFeelManager::Contents>();
+        const auto packageContents = m_model->index(index, 0).data(ContentsRole).value<KLookAndFeelManager::Contents>();
         if (m_themeContents != packageContents) {
             m_themeContents = packageContents;
             Q_EMIT themeContentsChanged();
@@ -289,9 +298,7 @@ KCMLookandFeel::KCMLookandFeel(QObject *parent, const KPluginMetaData &data)
     connect(m_lnf, &KLookAndFeelManager::plasmaLockedChanged, this, &KCMLookandFeel::plasmaLockedChanged);
 }
 
-KCMLookandFeel::~KCMLookandFeel()
-{
-}
+KCMLookandFeel::~KCMLookandFeel() = default;
 
 void KCMLookandFeel::knsEntryChanged(const KNSCore::Entry &entry)
 {
@@ -404,7 +411,7 @@ void KCMLookandFeel::loadModel()
     // Sort case-insensitively
     QCollator collator;
     collator.setCaseSensitivity(Qt::CaseInsensitive);
-    std::sort(pkgs.begin(), pkgs.end(), [&collator](const KPackage::Package &a, const KPackage::Package &b) {
+    std::ranges::sort(pkgs, [&collator](const KPackage::Package &a, const KPackage::Package &b) {
         return collator.compare(a.metadata().name(), b.metadata().name()) < 0;
     });
 
@@ -418,7 +425,7 @@ void KCMLookandFeel::addKPackageToModel(const KPackage::Package &pkg)
     if (!pkg.metadata().isValid()) {
         return;
     }
-    QStandardItem *row = new QStandardItem(pkg.metadata().name());
+    auto *row = new QStandardItem(pkg.metadata().name());
     row->setData(pkg.metadata().pluginId(), PluginNameRole);
     row->setData(pkg.metadata().description(), DescriptionRole);
     row->setData(QUrl::fromLocalFile(pkg.filePath("preview")), ScreenshotRole);
@@ -460,6 +467,21 @@ void KCMLookandFeel::apply()
     if (!settings()->automaticLookAndFeel()) {
         m_lnf->save(package, m_selectedContents);
     }
+}
+
+void KCMLookandFeel::saveCurrentTheme(const QString &name, const QUrl &url)
+{
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/plasma/look-and-feel/") + name;
+
+    KLookAndFeelManifest manifest = KLookAndFeelManifest::snapshot();
+    manifest.setId(name);
+    manifest.setName(name);
+    manifest.setPreview(url.toLocalFile());
+    manifest.write(path);
+
+    KPackage::Package pkg = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"));
+    pkg.setPath(path);
+    addKPackageToModel(pkg);
 }
 
 KLookAndFeelManager::Contents KCMLookandFeel::themeContents() const

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2019-10-10 07:59+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Ба ман халал нарасонед:"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, fuzzy, kde-format
 #| msgid "Applications"
 msgid "Other Applications"
@@ -92,16 +92,16 @@ msgstr ""
 
 #: ui/main.qml:47
 #, fuzzy, kde-format
-#| msgid "Notifications"
+#| msgid "Configure..."
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Огоҳиҳо"
+msgid "Configure for System…"
+msgstr "Танзимот..."
 
 #: ui/main.qml:53
 #, fuzzy, kde-format
 #| msgid "Application Settings"
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
+msgid "Configure for Applications…"
 msgstr "Танзимоти барнома"
 
 #: ui/main.qml:96
@@ -214,7 +214,7 @@ msgstr "Намоиш додан дар огоҳиҳо"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
+msgid "Choose…"
 msgstr ""
 
 #: ui/main.qml:278 ui/main.qml:294
@@ -232,34 +232,43 @@ msgid "Hide after:"
 msgstr "Пинҳон кардани равзанаи пайдошаванда баъд аз:"
 
 #: ui/main.qml:306
+#, fuzzy, kde-format
+#| msgctxt "Show application jobs in notification widget"
+#| msgid "Show in notifications"
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Намоиш додан дар огоҳиҳо"
+
+#: ui/main.qml:318
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr ""
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Намоиш додан дар огоҳиҳо"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Раванди барнома:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr ""
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr ""
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Намоиш додан дар мудири вазифаҳо"
@@ -270,8 +279,11 @@ msgid "Popup Position"
 msgstr "Мавқеъи пайдошавии равзана"
 
 #: ui/SourcesPage.qml:20
-#, kde-format
-msgid "Application Settings"
+#, fuzzy, kde-format
+#| msgid "Application Settings"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
 msgstr "Танзимоти барнома"
 
 #: ui/SourcesPage.qml:104
@@ -297,6 +309,18 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Notifications"
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Огоҳиҳо"
+
+#, fuzzy
+#~| msgid "Application Settings"
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Танзимоти барнома"
+
+#, fuzzy
 #~| msgid "Critical notifications:"
 #~ msgid "Normal notifications:"
 #~ msgstr "Огоҳиҳои танқидӣ:"
@@ -314,20 +338,9 @@ msgstr ""
 
 #, fuzzy
 #~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Танзимоти барнома"
-
-#, fuzzy
-#~| msgid "Application Settings"
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Танзимоти барнома"
-
-#, fuzzy
-#~| msgid "Configure..."
-#~ msgid "Configure…"
-#~ msgstr "Танзимот..."
 
 #~ msgid "Configure Notifications"
 #~ msgstr "Танзимоти огоҳиҳо"

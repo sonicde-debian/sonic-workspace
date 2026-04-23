@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_containmentactions_switchwindow\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -35,21 +35,21 @@ msgstr "ھەر بىر ئۈستەلئۈستىدە بىر تارماق تىزىم�
 msgid "Display only the current desktop's windows"
 msgstr "ھازىرقى ئۈستەلئۈستىنىڭ كۆزنىكىدىلا كۆرسىتىدۇ"
 
-#: switch.cpp:75
+#: switch.cpp:73
 #, fuzzy, kde-format
 #| msgid "Configure Switch Window Plugin"
 msgctxt "plasma_containmentactions_switchwindow"
 msgid "Configure Switch Window Plugin"
 msgstr "كۆزنەك ئالماشتۇرۇش قىستۇرما سەپلىمىسى"
 
-#: switch.cpp:155
+#: switch.cpp:153
 #, fuzzy, kde-format
 #| msgid "Windows"
 msgctxt "plasma_containmentactions_switchwindow"
 msgid "Windows"
 msgstr "كۆزنەكلەر"
 
-#: switch.cpp:179 switch.cpp:200 switch.cpp:202
+#: switch.cpp:177 switch.cpp:198 switch.cpp:200
 #, fuzzy, kde-format
 #| msgid "All Desktops"
 msgctxt "plasma_containmentactions_switchwindow"

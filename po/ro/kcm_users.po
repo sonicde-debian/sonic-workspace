@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2026 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
-# Sergiu Bivol <sergiu@cip.md>, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2026 Sergiu Bivol <sergiu@cip.md>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-02-25 18:59+0000\n"
+"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"PO-Revision-Date: 2026-02-05 15:21+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -16,39 +16,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
-#: src/fingerprintmodel.cpp:145 src/fingerprintmodel.cpp:229
+#: src/fingerprintmodel.cpp:144 src/fingerprintmodel.cpp:228
 #, kde-format
 msgid "No fingerprint device found."
 msgstr "Niciun dispozitiv de amprente găsit."
 
-#: src/fingerprintmodel.cpp:302
+#: src/fingerprintmodel.cpp:301
 #, kde-format
 msgid "Retry scanning your finger."
 msgstr "Reîncercați scanarea degetului."
 
-#: src/fingerprintmodel.cpp:304
+#: src/fingerprintmodel.cpp:303
 #, kde-format
 msgid "Swipe too short. Try again."
 msgstr "Glisare prea scurtă. Reîncercați."
 
-#: src/fingerprintmodel.cpp:306
+#: src/fingerprintmodel.cpp:305
 #, kde-format
 msgid "Finger not centered on the reader. Try again."
 msgstr "Degetul nu e centrat pe cititor. Reîncercați."
 
-#: src/fingerprintmodel.cpp:308
+#: src/fingerprintmodel.cpp:307
 #, kde-format
 msgid "Remove your finger from the reader, and try again."
 msgstr "Luați degetul de pe cititor și reîncercați."
 
-#: src/fingerprintmodel.cpp:316
+#: src/fingerprintmodel.cpp:315
 #, kde-format
 msgid "Fingerprint enrollment has failed."
 msgstr "Înrolarea amprentei a eșuat."
 
-#: src/fingerprintmodel.cpp:319
+#: src/fingerprintmodel.cpp:318
 #, kde-format
 msgid ""
 "There is no space left for this device, delete other fingerprints to "
@@ -57,17 +57,17 @@ msgstr ""
 "Nu a mai rămas spațiu pentru acest dispozitiv, ștergeți alte amprente pentru "
 "a continua."
 
-#: src/fingerprintmodel.cpp:322
+#: src/fingerprintmodel.cpp:321
 #, kde-format
 msgid "The device was disconnected."
 msgstr "Dispozitivul a fost deconectat."
 
-#: src/fingerprintmodel.cpp:327
+#: src/fingerprintmodel.cpp:326
 #, kde-format
 msgid "An unknown error has occurred."
 msgstr "A intervenit o eroare necunoscută."
 
-#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:215
+#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:228
 #, kde-format
 msgid "Change Password"
 msgstr "Schimbă parola"
@@ -98,18 +98,14 @@ msgid "Change Wallet Password?"
 msgstr "Schimbați parola portofelului?"
 
 #: src/ui/ChangeWalletPassword.qml:29
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Now that you have changed your login password, you may also want to "
-#| "change the password on your default KWallet to match it."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Now that you have changed your login password, consider changing the "
 "password on your default KWallet to match it."
 msgstr ""
-"Acum că v-ați schimbat parola de autentificare, s-ar putea să doriți "
-"schimbarea parolei pentru portofelul implicit KWallet ca să se potrivească."
+"Acum că v-ați schimbat parola de autentificare, aveți în vedere schimbarea "
+"parolei pentru portofelul implicit KWallet ca să se potrivească."
 
 #: src/ui/ChangeWalletPassword.qml:35
 #, kde-format
@@ -151,22 +147,22 @@ msgstr "Creează utilizator"
 msgid "Name:"
 msgstr "Nume:"
 
-#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:173
+#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:171
 #, kde-format
 msgid "Username:"
 msgstr "Nume de utilizator:"
 
-#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:190
+#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:203
 #, kde-format
 msgid "Standard"
 msgstr "Standard"
 
-#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:191
+#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:204
 #, kde-format
 msgid "Administrator"
 msgstr "Administrator"
 
-#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:180
+#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:193
 #, kde-format
 msgid "Account type:"
 msgstr "Tipul contului:"
@@ -182,15 +178,13 @@ msgid "Confirm password:"
 msgstr "Confirmă parola:"
 
 #: src/ui/CreateUser.qml:88
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button Create a new user"
 msgid "Create"
 msgstr "Creează"
 
-#: src/ui/CreateUser.qml:109
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#: src/ui/CreateUser.qml:111
+#, kde-format
 msgctxt "@action:button Cancel creating new user"
 msgid "Cancel"
 msgstr "Renunță"
@@ -199,11 +193,10 @@ msgstr "Renunță"
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Picture Area"
-msgstr ""
+msgstr "Alege zona imaginii"
 
 #: src/ui/EnrolledConfirmation.qml:20
-#, fuzzy, kde-format
-#| msgid "Finger Enrolled"
+#, kde-format
 msgctxt "@info:status"
 msgid "Finger enrolled"
 msgstr "Deget înrolat"
@@ -329,17 +322,17 @@ msgstr "Glisați repetat degetul mare stâng pe senzorul de amprente."
 msgid "Configure Fingerprints"
 msgstr "Configurează amprente"
 
-#: src/ui/FingerprintDialog.qml:38
+#: src/ui/FingerprintDialog.qml:39
 #, kde-format
 msgid "Add"
 msgstr "Adaugă"
 
-#: src/ui/FingerprintDialog.qml:50
+#: src/ui/FingerprintDialog.qml:51
 #, kde-format
 msgid "Cancel"
 msgstr "Renunță"
 
-#: src/ui/FingerprintDialog.qml:58
+#: src/ui/FingerprintDialog.qml:59
 #, kde-format
 msgid "Done"
 msgstr "Gata"
@@ -365,20 +358,16 @@ msgid "Users"
 msgstr "Utilizatori"
 
 #: src/ui/main.qml:31
-#, fuzzy, kde-format
-#| msgctxt "@action:button As in, 'add new user'"
-#| msgid "Add New"
+#, kde-format
 msgctxt "@action:button As in, 'add new user'"
 msgid "Add New…"
-msgstr "Adaugă nou"
+msgstr "Adaugă nou…"
 
 #: src/ui/main.qml:32
-#, fuzzy, kde-format
-#| msgctxt "@action:button As in, 'add new user'"
-#| msgid "Add New"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add New User…"
-msgstr "Adaugă nou"
+msgstr "Adaugă utilizator nou…"
 
 #: src/ui/main.qml:137
 #, kde-format
@@ -521,7 +510,7 @@ msgstr "Alege fișier…"
 #, kde-format
 msgctxt "@title"
 msgid "Choose a picture"
-msgstr "Alege o poză"
+msgstr "Alegeți o poză"
 
 #: src/ui/PicturesSheet.qml:144
 #, kde-format
@@ -534,6 +523,8 @@ msgid ""
 "Image files (All major file types) (*.avif *.bmp *.gif *.jp2 *.jpeg *.jpg *."
 "pbm *.pgm *.png *.ppm *.tiff *.wbmp *.webp *.xbm *.xpm)"
 msgstr ""
+"Fișiere cu imagini (toate tipurile majore) (*.avif *.bmp *.gif *.jp2 *.jpeg "
+"*.jpg *.pbm *.pgm *.png *.ppm *.tiff *.wbmp *.webp *.xbm *.xpm)"
 
 #: src/ui/PicturesSheet.qml:201
 #, kde-format
@@ -551,14 +542,13 @@ msgstr "Folosește pictogramă substituentă pentru avatar"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Logged-In User Without Deleting Files?"
-msgstr ""
+msgstr "Ștergeți utilizatorul autentificat fără a-i șterge fișierele?"
 
 #: src/ui/UserDetailsPage.qml:115
-#, fuzzy, kde-format
-#| msgid "Delete User…"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Logged-In User?"
-msgstr "Șterge utilizatorul…"
+msgstr "Ștergeți utilizatorul autentificat?"
 
 #: src/ui/UserDetailsPage.qml:117
 #, kde-kuit-format
@@ -568,6 +558,9 @@ msgid ""
 "account instead?<nl/><nl/>This will make %1 unable to log in again, and they "
 "may experience strange behaviors until they log out."
 msgstr ""
+"%1 e autentificat acum, așa că fișierele sale nu pot fi șterse. Doriți să "
+"ștergeți doar contul?<nl/><nl/>Aceasta va împiedica pe %1 să se autentifice "
+"și ar putea observa comportament ciudat până la ieșirea din sistem."
 
 #: src/ui/UserDetailsPage.qml:118
 #, kde-format
@@ -576,53 +569,88 @@ msgid ""
 "%1 is currently logged in. Deleting the account will make them unable to log "
 "in again, and they may experience strange behaviors until they log out."
 msgstr ""
+"%1 e autentificat acum. Ștergerea contului va împiedica autentificarea și ar "
+"putea observa comportament ciudat până la ieșirea din sistem."
 
 #: src/ui/UserDetailsPage.qml:125
-#, fuzzy, kde-format
-#| msgid "Delete files"
+#, kde-format
 msgctxt "@action: button"
 msgid "Delete %1"
-msgstr "Șterge fișierele"
+msgstr "Șterge %1"
 
 #: src/ui/UserDetailsPage.qml:144
 #, kde-format
 msgid "Change avatar"
 msgstr "Schimbă avatarul"
 
-#: src/ui/UserDetailsPage.qml:201
+#: src/ui/UserDetailsPage.qml:185
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change your own username while logged in; log out and then log in as "
+"another user to change this account’s username."
+msgstr ""
+"Nu vă puteți schimba numele de utilizator cât sunteți autentificat. Ieșiți "
+"din sistem și autentificați-vă ca alt utilizator pentru a schimba numele de "
+"utilizator al acestul cont."
+
+#: src/ui/UserDetailsPage.qml:186
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change the username of a logged-in user; wait until this user logs "
+"out first."
+msgstr ""
+"Numele de utilizator al unui utilizator autentificat nu poate fi schimbat. "
+"Așteptați ca utilizatorul să iasă din sistem."
+
+#: src/ui/UserDetailsPage.qml:214
 #, kde-format
 msgid ""
 "Cannot change the account type to Standard unless there is at least one "
 "other Administrator account on the system. Without one, authentication would "
 "become impossible or require the insecure use of the root password."
 msgstr ""
+"Tipul contului nu se poate schimba la „standard” decât dacă există cel puțin "
+"un alt cont de administrator în sistem. În lipsa acestuia, autentificarea ar "
+"deveni imposibilă sau ar necesita folosirea nesigură a parolei pentru „root”."
 
-#: src/ui/UserDetailsPage.qml:209
+#: src/ui/UserDetailsPage.qml:222
 #, kde-format
 msgid "Email address:"
 msgstr "Adresă de e-mail:"
 
-#: src/ui/UserDetailsPage.qml:238
+#: src/ui/UserDetailsPage.qml:254
 #, kde-format
 msgid "Delete files"
 msgstr "Șterge fișierele"
 
-#: src/ui/UserDetailsPage.qml:245
+#: src/ui/UserDetailsPage.qml:261
 #, kde-format
 msgid "Keep files"
 msgstr "Păstrează fișierele"
 
-#: src/ui/UserDetailsPage.qml:252
+#: src/ui/UserDetailsPage.qml:268
 #, kde-format
 msgid "Delete User…"
 msgstr "Șterge utilizatorul…"
 
-#: src/ui/UserDetailsPage.qml:264
+#: src/ui/UserDetailsPage.qml:274
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot delete yourself! Log out and then log in as another user to delete "
+"this user account."
+msgstr ""
+"Nu vă puteți șterge! Ieșiți din cont și autentificați-vă ca alt utilizator "
+"pentru a șterge acest cont."
+
+#: src/ui/UserDetailsPage.qml:286
 #, kde-format
 msgid "Configure Fingerprint Authentication…"
 msgstr "Configurează autentificarea prin amprentă…"
 
-#: src/ui/UserDetailsPage.qml:296
+#: src/ui/UserDetailsPage.qml:318
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -640,7 +668,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Failed to crop image: %1"
-msgstr ""
+msgstr "Decuparea imaginii a eșuat: %1"
 
 #: src/user.cpp:337
 #, kde-format

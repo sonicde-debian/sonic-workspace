@@ -64,8 +64,7 @@ SystemEntry::~SystemEntry()
     --s_instanceCount;
 
     if (!s_instanceCount) {
-        delete s_sessionManagement;
-        s_sessionManagement = nullptr;
+        delete std::exchange(s_sessionManagement, nullptr);
     }
 }
 
@@ -184,7 +183,7 @@ QString SystemEntry::iconName() const
         break;
     }
 
-    return QString();
+    return {};
 }
 
 QString SystemEntry::name() const
@@ -218,7 +217,7 @@ QString SystemEntry::name() const
         break;
     }
 
-    return QString();
+    return {};
 }
 
 QString SystemEntry::group() const
@@ -238,7 +237,7 @@ QString SystemEntry::group() const
         break;
     }
 
-    return QString();
+    return {};
 }
 
 QString SystemEntry::description() const
@@ -272,7 +271,7 @@ QString SystemEntry::description() const
         break;
     }
 
-    return QString();
+    return {};
 }
 
 QString SystemEntry::id() const
@@ -307,7 +306,7 @@ QString SystemEntry::id() const
         break;
     }
 
-    return QString();
+    return {};
 }
 
 bool SystemEntry::run(const QString &actionId, const QVariant &argument)

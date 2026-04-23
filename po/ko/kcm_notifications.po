@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
-# SPDX-FileCopyrightText: 2019, 2020, 2021, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2023, 2024, 2025, 2026 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-06-10 22:06+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-02-03 23:22+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "방해 금지 모드 전환"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "다른 앱"
@@ -90,14 +90,14 @@ msgstr "소리 파일 선택"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "시스템 알림"
+msgid "Configure for System…"
+msgstr "시스템 전역 설정…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "앱 설정"
+msgid "Configure for Applications…"
+msgstr "앱 개별 설정…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -205,8 +205,8 @@ msgstr "알림 아이콘 근처"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "사용자 정의…"
+msgid "Choose…"
+msgstr "선택…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -222,33 +222,40 @@ msgstr "다음 시간 이후 숨기기:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "시간 초과 표시기 표시"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "추가 피드백"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "알림에 표시"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "앱 진행 상황:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "진행 중에 알림 열어 두기"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "알림 배지:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "작업 관리자에 표시"
@@ -260,8 +267,10 @@ msgstr "팝업 위치"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "앱 설정"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "앱 알림"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -285,6 +294,18 @@ msgid ""
 "and behavior"
 msgstr "알림 설정과 행동을 설정할 앱 선택"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "시스템 알림"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "앱 설정"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "사용자 정의…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "일반 알림:"
 
@@ -300,16 +321,9 @@ msgstr "알림 설정과 행동을 설정할 앱 선택"
 #~ msgid "Application Settings…"
 #~ msgstr "앱 설정"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "앱 개별 설정…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "앱별 설정"
-
-#~ msgid "Configure…"
-#~ msgstr "설정…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

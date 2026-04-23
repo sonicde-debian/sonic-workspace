@@ -93,9 +93,7 @@ CursorThemeConfig::CursorThemeConfig(QObject *parent, const KPluginMetaData &dat
     });
 }
 
-CursorThemeConfig::~CursorThemeConfig()
-{
-}
+CursorThemeConfig::~CursorThemeConfig() = default;
 
 CursorThemeSettings *CursorThemeConfig::cursorThemeSettings() const
 {
@@ -211,7 +209,7 @@ void CursorThemeConfig::updateSizeComboBox()
 
             for (int i : sizes) {
                 m_pixmap = theme->createIcon(i);
-                QStandardItem *item = new QStandardItem(QIcon(m_pixmap), QString::number(i));
+                auto *item = new QStandardItem(QIcon(m_pixmap), QString::number(i));
                 item->setData(i);
                 m_sizesModel->appendRow(item);
                 comboBoxList << i;
@@ -279,12 +277,12 @@ int CursorThemeConfig::cursorSizeFromIndex(int index)
 QSize CursorThemeConfig::iconSizeFromIndex(int index)
 {
     if (index < 0 || index >= m_sizesModel->rowCount()) {
-        return QSize();
+        return {};
     }
 
     const auto availableSizes = m_sizesModel->item(index)->icon().availableSizes();
     if (availableSizes.isEmpty()) {
-        return QSize();
+        return {};
     }
     return availableSizes.first();
 }
@@ -419,7 +417,7 @@ void CursorThemeConfig::installThemeFile(const QString &path)
     for (const QString &name : archiveDir->entries()) {
         const KArchiveEntry *entry = archiveDir->entry(name);
         if (entry->isDirectory() && entry->name().toLower() != "default"_L1) {
-            const KArchiveDirectory *dir = static_cast<const KArchiveDirectory *>(entry);
+            const auto *dir = static_cast<const KArchiveDirectory *>(entry);
             if (dir->entry(u"index.theme"_s) && dir->entry(u"cursors"_s)) {
                 themeDirs << dir->name();
             }
@@ -464,7 +462,7 @@ void CursorThemeConfig::installThemeFile(const QString &path)
         //     result in strange side effects (from the average users point of view). OTOH
         //     a user might want to do this 'upgrade' a global theme.
 
-        const KArchiveDirectory *dir = static_cast<const KArchiveDirectory *>(archiveDir->entry(dirName));
+        const auto *dir = static_cast<const KArchiveDirectory *>(archiveDir->entry(dirName));
         dir->copyTo(dest.path());
         m_themeModel->addTheme(dest);
     }

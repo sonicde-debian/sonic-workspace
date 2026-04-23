@@ -59,9 +59,7 @@ DeviceControl::DeviceControl(QObject *parent)
     qCDebug(APPLETS::DEVICENOTIFIER) << "Device Controller: Initialized";
 }
 
-DeviceControl::~DeviceControl()
-{
-}
+DeviceControl::~DeviceControl() = default;
 
 int DeviceControl::rowCount(const QModelIndex &parent) const
 {
@@ -389,7 +387,7 @@ void DeviceControl::onDeviceSizeChanged(const QString &udi)
 
         if (isDeviceValid && m_spaceMonitor->getFullSize(udi) == 0) {
             qCDebug(APPLETS::DEVICENOTIFIER) << "Device Controller: 2-stage device arrived : " << udi;
-            Solid::GenericInterface *iface = device.as<Solid::GenericInterface>();
+            auto *iface = device.as<Solid::GenericInterface>();
             if (iface) {
                 iface->setProperty("udi", device.udi());
                 connect(iface, &Solid::GenericInterface::propertyChanged, this, &DeviceControl::onDeviceChanged);

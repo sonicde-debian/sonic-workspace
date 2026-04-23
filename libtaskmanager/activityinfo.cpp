@@ -36,10 +36,8 @@ ActivityInfo::Private::~Private()
     --instanceCount;
 
     if (!instanceCount) {
-        delete activityConsumer;
-        activityConsumer = nullptr;
-        delete activitiesModel;
-        activitiesModel = nullptr;
+        delete std::exchange(activityConsumer, nullptr);
+        delete std::exchange(activitiesModel, nullptr);
     }
 }
 
@@ -72,9 +70,7 @@ ActivityInfo::ActivityInfo(QObject *parent)
             });
 }
 
-ActivityInfo::~ActivityInfo()
-{
-}
+ActivityInfo::~ActivityInfo() = default;
 
 QString ActivityInfo::currentActivity() const
 {

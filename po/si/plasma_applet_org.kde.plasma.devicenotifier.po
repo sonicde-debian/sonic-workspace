@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2009-11-09 22:59+0530\n"
 "Last-Translator: Danishka Navin <danishka@gmail.com>\n"
 "Language-Team: Sinhala <danishka@gmail.com>\n"
@@ -17,44 +17,38 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr ""
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr ""
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr ""
@@ -175,7 +169,7 @@ msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙ�
 msgid "Could not repair this device: %1"
 msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙවලමක්: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -183,7 +177,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr ""
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -191,7 +185,7 @@ msgctxt ""
 msgid "Repairing…"
 msgstr ""
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, fuzzy, kde-format
 #| msgctxt "@info:status Free disk space"
 #| msgid "%1  free"
@@ -199,7 +193,7 @@ msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 නි‍ද‍හ‍ස්‍"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -207,7 +201,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr ""
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -215,30 +209,30 @@ msgctxt ""
 msgid "Removing…"
 msgstr ""
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr ""
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr ""
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, fuzzy, kde-format
 #| msgid "1 action for this device"
 #| msgid_plural "%1 actions for this device"
 msgid "Click to safely remove all devices"
 msgstr "මෙම මෙවලමට ක්‍රියාවක් ඇත"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, fuzzy, kde-format
 #| msgid "Last plugged in device: %1"
 msgid "No removable devices attached"
 msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙවලමක්: %1"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, fuzzy, kde-format
 #| msgid "No devices plugged in"
 msgid "No disks available"
@@ -255,30 +249,30 @@ msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙ�
 msgid "No Devices Available"
 msgstr ""
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, fuzzy, kde-format
 #| msgid "Last plugged in device: %1"
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙවලමක්: %1"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr ""
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, fuzzy, kde-format
 #| msgid "Last plugged in device: %1"
 msgid "Non Removable Devices"
 msgstr "අ‍ව‍සා‍න‍ය‍ට‍ ඇ‍මි‍ණු‍ මෙවලමක්: %1"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr ""
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, fuzzy, kde-format
 #| msgid "No devices plugged in"
 msgid "Show popup when new device is plugged in"

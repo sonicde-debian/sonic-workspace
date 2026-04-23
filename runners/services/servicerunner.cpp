@@ -149,7 +149,7 @@ auto makeScoreFromList(const auto &queryList, const QStringList &strings) {
                 continue; // The combination didn't match.
             }
             for (auto &scoreCard : stringCards) {
-                if (scoreCard.levenshteinScore < 0.8) {
+                if (!scoreCard.startsWith || !scoreCard.completeMatch) {
                     continue; // Not a good match, skip it. We are very strict with keywords
                 }
                 found = true;
@@ -275,7 +275,7 @@ private:
         QStringList resultingArgs = parser.resultingArguments();
         if (const auto error = parser.errorMessage(); resultingArgs.isEmpty() && !error.isEmpty()) {
             qCWarning(RUNNER_SERVICES) << "Failed to resolve executable from service. Error:" << error;
-            return QString();
+            return {};
         }
 
         // Remove any environment variables.
@@ -338,11 +338,23 @@ private:
         int scores = 1; // starts at 1 to avoid division by zero. Is the number of scores to average over.
         qreal finalScore = 0.0;
 
+        const auto startsWithMatchScore = [&](const auto &weightedCards) {
+            if (std::ranges::any_of(weightedCards.cards, [](const ScoreCard &card) {
+                    return card.startsWith;
+                })) {
+                constexpr auto scoreAdjustment = 110.0;
+                finalScore += scoreAdjustment * weightedCards.weight;
+                scores++;
+            }
+        };
+
+        // Perfect match may still be partial. Just means 100% of the input query matched without changes.
         const auto perfectMatchScore = [&](const auto &weightedCards) {
             if (std::ranges::any_of(weightedCards.cards, [](const ScoreCard &card) {
                     return card.perfectMatch;
                 })) {
-                finalScore += 100.0 * weightedCards.weight;
+                constexpr auto scoreAdjustment = 100.0;
+                finalScore += scoreAdjustment * weightedCards.weight;
                 scores++;
             }
         };
@@ -357,7 +369,11 @@ private:
         };
 
         for (const auto &weightedCard : weightedCards) {
+            // When the card started with the search term give it a hefty bump
+            startsWithMatchScore(weightedCard);
+            // Perfect matches are those where the search term matched without any changes (may be partial though)
             perfectMatchScore(weightedCard);
+            // Other sorting of still equal results is based on fuzzyness
             fuzzyScore(weightedCard);
         }
 
@@ -388,12 +404,7 @@ private:
 
             setupMatch(service, match);
             match.setCategoryRelevance(score->categoryRelevance);
-            // KRunner may apply counter-productive bumps to the score of up to 0.5 points. That can easily produce
-            // unrealistic results where suddenly one thing is top score for no discernable reason. We outscore KRunner
-            // by moving our score range into the hundreds, making the 0.5 bump negligible.
-            // In Plasma 6.6 and later we'll depend on a KRunner that does no longer have this behavior.
-            constexpr qreal outscoreMultiplier = 100.0;
-            match.setRelevance(score->value * outscoreMultiplier);
+            match.setRelevance(score->value);
             qCDebug(RUNNER_SERVICES) << match.text() << "is this relevant:" << match.relevance() << "category relevance" << match.categoryRelevance();
 
             matches << match;
@@ -478,7 +489,7 @@ private:
                 qreal relevance = 0.5;
                 if (action.text().compare(query, Qt::CaseInsensitive) == 0) {
                     relevance = 0.65;
-                    match.setCategoryRelevance(KRunner::QueryMatch::CategoryRelevance::High); // Give it a higer match type to ensure it is shown, BUG: 455436
+                    match.setCategoryRelevance(KRunner::QueryMatch::CategoryRelevance::High); // Give it a higher match type to ensure it is shown, BUG: 455436
                 } else if (matchIndex == 0) {
                     relevance += 0.05;
                 }

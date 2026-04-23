@@ -10,17 +10,18 @@
 #include <QFileInfo>
 #include <QPixmap>
 #include <QStandardPaths>
-#include <QThreadPool>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QtConcurrent>
 
 #include <KIO/PreviewJob>
+#include <algorithm>
 
 #include "../finder/imagefinder.h"
 #include "../finder/suffixcheck.h"
 
-ImageListModel::ImageListModel(const QBindable<QSize> &bindableTargetSize, const QBindable<bool> &bindableUsedInConfig, QObject *parent)
-    : AbstractImageListModel(bindableTargetSize, bindableUsedInConfig, parent)
+ImageListModel::ImageListModel(const QBindable<bool> &bindableUsedInConfig, QObject *parent)
+    : AbstractImageListModel(bindableUsedInConfig, parent)
 {
 }
 
@@ -32,7 +33,7 @@ int ImageListModel::rowCount(const QModelIndex &parent) const
 QVariant ImageListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     const int row = index.row();
@@ -65,11 +66,8 @@ QVariant ImageListModel::data(const QModelIndex &index, int role) const
         return QString();
     }
 
-    case PathRole:
+    case SourceRole:
         return QUrl::fromLocalFile(m_data.at(row));
-
-    case PackageNameRole:
-        return m_data.at(row);
 
     case RemovableRole: {
         const QString &path = m_data.at(row);
@@ -105,12 +103,18 @@ bool ImageListModel::setData(const QModelIndex &index, const QVariant &value, in
 
 int ImageListModel::indexOf(const QUrl &url) const
 {
-    const auto it = std::find(m_data.cbegin(), m_data.cend(), url.toLocalFile());
+    const auto it = std::ranges::find(m_data, url.toLocalFile());
     if (it == m_data.cend()) {
         return -1;
     }
 
     return std::distance(m_data.cbegin(), it);
+}
+
+QUrl ImageListModel::effectiveSource(const QModelIndex &index, const QSize &targetSize) const
+{
+    Q_UNUSED(targetSize)
+    return index.data(SourceRole).toUrl();
 }
 
 void ImageListModel::load(const QStringList &customPaths)
@@ -121,21 +125,14 @@ void ImageListModel::load(const QStringList &customPaths)
 
     AbstractImageListModel::load(customPaths);
 
-    ImageFinder *finder = new ImageFinder(m_customPaths);
-    connect(finder, &ImageFinder::imageFound, this, &ImageListModel::slotHandleImageFound);
-    QThreadPool::globalInstance()->start(finder);
-}
+    QtConcurrent::run(ImageWallpaper::findAll, m_customPaths).then(this, [this](const QStringList &paths) {
+        beginResetModel();
+        m_data = paths;
+        endResetModel();
 
-void ImageListModel::slotHandleImageFound(const QStringList &paths)
-{
-    beginResetModel();
-
-    m_data = paths;
-
-    endResetModel();
-
-    m_loading = false;
-    Q_EMIT loaded(this);
+        m_loading = false;
+        Q_EMIT loaded(this);
+    });
 }
 
 QStringList ImageListModel::addBackground(const QUrl &url)

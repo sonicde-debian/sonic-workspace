@@ -1,14 +1,14 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
 #
-# SPDX-FileCopyrightText: 2019, 2020, 2021, 2023, 2024, 2025 Giovanni Sora <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2023, 2024, 2025, 2026 Giovanni Sora <g.sora@tiscali.it>
 # giovanni <g.sora@tiscali.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-05-12 15:51+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-02-05 17:01+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "Commuta a non disturbar"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Altere applicationes"
@@ -93,14 +93,14 @@ msgstr "Selige file de sono"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Notificationes de Systema"
+msgid "Configure for System…"
+msgstr "Configura per Systema..."
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Preferentias de application"
+msgid "Configure for Applications…"
+msgstr "Configura per applicationes ..."
 
 #: ui/main.qml:96
 #, kde-format
@@ -210,8 +210,8 @@ msgstr "Icone de proxime notification"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Personalisa…"
+msgid "Choose…"
+msgstr "Selige..."
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -228,33 +228,40 @@ msgstr "Cela postea:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Monstra indicator de expiration"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Evalutation de retorno additional"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Monstra in notificationes"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Progresso de application:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Mantene popup aperite durante progression"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Placas (badges) de notification:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Monstra in gerente de carga"
@@ -266,8 +273,10 @@ msgstr "Position de popup"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Preferentias de application"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Notificationes de application"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -293,6 +302,18 @@ msgstr ""
 "Selige un application ab le lista per configurar su preferentias de "
 "notification e comportamento"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Notificationes de Systema"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Preferentias de application"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Personalisa…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Notificationes normal:"
 
@@ -306,16 +327,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Preferentias de application…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Configura Preferentias de application ..."
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Preferentias de application specific"
-
-#~ msgid "Configure…"
-#~ msgstr "Configura..."
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

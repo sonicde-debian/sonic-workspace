@@ -21,6 +21,7 @@ import org.kde.plasma.private.digitalclock
 import org.kde.config as KConfig
 import org.kde.kcmutils as KCMUtils
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.clock
 
 // Top-level layout containing:
 // - Leading column with world clock and agenda view
@@ -179,7 +180,7 @@ PlasmaExtras.Representation {
             Layout.minimumHeight: Kirigami.Units.gridUnit * 4
 
             function formatDateWithoutYear(date: date): string {
-                // Unfortunatelly Qt overrides ECMA's Date.toLocaleDateString(),
+                // Unfortunately Qt overrides ECMA's Date.toLocaleDateString(),
                 // which is able to return locale-specific date-and-month-only date
                 // formats, with its dumb version that only supports Qt::DateFormat
                 // enum subset. So to get a day-and-month-only date format string we
@@ -314,7 +315,7 @@ PlasmaExtras.Representation {
                                 Layout.fillHeight: true
 
                                 color: eventItem.modelData.eventColor
-                                width: 5
+                                implicitWidth: 5
                                 visible: eventItem.modelData.eventColor !== ""
                             }
 
@@ -494,7 +495,7 @@ PlasmaExtras.Representation {
 
                     required property string modelData
 
-                    readonly property bool isCurrentTimeZone: root.timeZoneResolvesToLastSelectedTimeZone(modelData)
+                    readonly property bool isCurrentTimeZone: tzClock.timeZone == root.currentTimeZone
 
                     width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
 
@@ -502,19 +503,25 @@ PlasmaExtras.Representation {
                     rightPadding: calendar.paddings
 
                     highlighted: ListView.isCurrentItem
-                    Accessible.name: root.displayStringForTimeZone(modelData)
-                    Accessible.description: root.timeForZone(modelData, Plasmoid.configuration.showSeconds === 2)
+                    Accessible.name: Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone);
+                    Accessible.description: root.formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds === 2)
 
                     // Only highlight with keyboard
                     down: false
                     hoverEnabled: false
+
+                    Clock {
+                        id: tzClock
+                        timeZone: listItem.modelData
+                        trackSeconds: Plasmoid.configuration.showSeconds === 2 // Always
+                    }
 
                     contentItem: RowLayout {
                         spacing: Kirigami.Units.smallSpacing
 
                         PlasmaComponents.Label {
                             Layout.fillWidth: true
-                            text: root.displayStringForTimeZone(listItem.modelData)
+                            text: Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone);
                             textFormat: Text.PlainText
                             font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
                             maximumLineCount: 1
@@ -523,7 +530,7 @@ PlasmaExtras.Representation {
 
                         PlasmaComponents.Label {
                             horizontalAlignment: Qt.AlignRight
-                            text: root.timeForZone(listItem.modelData, Plasmoid.configuration.showSeconds === 2)
+                            text: root.formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds === 2)
                             textFormat: Text.PlainText
                             font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
                             elide: Text.ElideRight
@@ -588,7 +595,7 @@ PlasmaExtras.Representation {
             borderOpacity: 0.25
 
             eventPluginsManager: eventPluginsManager
-            today: root.currentDateTimeInSelectedTimeZone
+            today: root.currentTime
             firstDayOfWeek: Plasmoid.configuration.firstDayOfWeek > -1
                 ? Plasmoid.configuration.firstDayOfWeek
                 : Qt.locale().firstDayOfWeek

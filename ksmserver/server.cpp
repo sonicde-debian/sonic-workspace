@@ -34,6 +34,7 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
+#include <algorithm>
 #include <cassert>
 #include <cerrno>
 #include <climits>
@@ -57,7 +58,6 @@
 
 #include <KNotification>
 #include <KSharedConfig>
-#include <QTemporaryFile>
 #include <kactioncollection.h>
 #include <kauthorized.h>
 #include <kconfig.h>
@@ -73,11 +73,10 @@
 
 #include <KScreenLocker/KsldApp>
 
+#include <QStandardPaths>
 #include <krandom.h>
-#include <qstandardpaths.h>
 #include <startup_interface.h>
 
-#include "kscreenlocker_interface.h"
 #include "kwinsession_interface.h"
 
 #include <KUpdateLaunchEnvironmentJob>
@@ -180,7 +179,7 @@ int numTransports = 0;
 
 Status KSMRegisterClientProc(SmsConn /* smsConn */, SmPointer managerData, char *previousId)
 {
-    KSMClient *client = (KSMClient *)managerData;
+    auto *client = (KSMClient *)managerData;
     client->registerClient(previousId);
     return 1;
 }
@@ -353,7 +352,7 @@ Status SetAuthentication(int count, IceListenObj *listenObjs, IceAuthDataEntry *
 
         // ICE Auth File
         {
-            IceAuthFileEntry *file_entry = (IceAuthFileEntry *)malloc(sizeof(IceAuthFileEntry));
+            auto *file_entry = (IceAuthFileEntry *)malloc(sizeof(IceAuthFileEntry));
             file_entry->protocol_name = strdup("ICE");
             file_entry->protocol_data = NULL;
             file_entry->protocol_data_length = 0;
@@ -379,7 +378,7 @@ Status SetAuthentication(int count, IceListenObj *listenObjs, IceAuthDataEntry *
 
         // XSMP Auth file
         {
-            IceAuthFileEntry *file_entry = (IceAuthFileEntry *)malloc(sizeof(IceAuthFileEntry));
+            auto *file_entry = (IceAuthFileEntry *)malloc(sizeof(IceAuthFileEntry));
             file_entry->protocol_name = strdup("XSMP");
             file_entry->protocol_data = NULL;
             file_entry->protocol_data_length = 0;
@@ -1062,14 +1061,14 @@ void KSMServer::tryRestore()
         // We only discard the entries here because a violating app will get all entries disabled, not just the ones in
         // excess. So we need to loop all entries twice: once to establish the in-excess apps, and again to actually start
         // (or not).
-        const bool dontStart = std::any_of(dontStartEntries.cbegin(), dontStartEntries.cend(), [&entry](const auto &dontStartEntry) {
+        const bool dontStart = std::ranges::any_of(dontStartEntries, [&entry](const auto &dontStartEntry) {
             return dontStartEntry.clientId == entry.clientId;
         });
         if (dontStart) {
             continue;
         }
 
-        const bool alreadyStarted = std::any_of(clients.cbegin(), clients.cend(), [&entry](const auto &client) {
+        const bool alreadyStarted = std::ranges::any_of(clients, [&entry](const auto &client) {
             return QString::fromLocal8Bit(client->clientId()) == entry.clientId;
         });
         if (alreadyStarted) {
@@ -1092,13 +1091,6 @@ void KSMServer::tryRestore()
 void KSMServer::startupDone()
 {
     state = Idle;
-}
-
-void KSMServer::openSwitchUserDialog()
-{
-    // this method exists only for compatibility. Users should ideally call this directly
-    OrgKdeScreensaverInterface iface(QStringLiteral("org.freedesktop.ScreenSaver"), QStringLiteral("/ScreenSaver"), QDBusConnection::sessionBus());
-    iface.SwitchUser();
 }
 
 #include "moc_server.cpp"

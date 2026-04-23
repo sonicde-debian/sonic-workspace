@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_lockout\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-06-25 14:22+0200\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2025-11-28 21:52+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -22,54 +22,15 @@ msgstr ""
 msgid "General"
 msgstr "Generale"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Mostra azioni:"
+msgid "Unavailable"
+msgstr "Non disponibile"
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Chiudi sessione"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Mostra la schermata di chiusura della sessione"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Spegni"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Riavvia"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Blocca"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Cambia utente"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Ibernazione"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Sospendi"
 
 #: data.js:6
 #, kde-format
@@ -78,8 +39,8 @@ msgstr "Blocca lo schermo"
 
 #: data.js:12
 #, kde-format
-msgid "Switch user"
-msgstr "Cambia utente"
+msgid "Switch user…"
+msgstr "Cambia utente…"
 
 #: data.js:13
 #, kde-format
@@ -88,8 +49,8 @@ msgstr "Avvia una sessione parallela con un utente diverso"
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
-msgstr "Spegni…"
+msgid "Shut down"
+msgstr "Spegni"
 
 #: data.js:20
 #, kde-format
@@ -98,8 +59,8 @@ msgstr "Spegni il computer"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Riavvia…"
+msgid "Restart"
+msgstr "Riavvia"
 
 #: data.js:27
 #, kde-format
@@ -108,8 +69,8 @@ msgstr "Riavvia il computer"
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
-msgstr "Chiudi sessione…"
+msgid "Log out"
+msgstr "Chiudi sessione"
 
 #: data.js:34
 #, kde-format
@@ -127,15 +88,61 @@ msgstr "Mostra la schermata di chiusura della sessione"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Termina la sessione, spegni o riavvia il computer"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Sospendi"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Sospensione (sospendi in RAM)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Ibernazione"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Ibernazione (sospendi su disco)"
+
+#, fuzzy
+#~| msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
+#~| msgid "Actions"
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Azioni"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Mostra azioni:"
+
+#~ msgid "Log Out"
+#~ msgstr "Chiudi sessione"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Mostra la schermata di chiusura della sessione"
+
+#~ msgid "Shut Down"
+#~ msgstr "Spegni"
+
+#~ msgid "Switch User"
+#~ msgstr "Cambia utente"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Spegni…"
+
+#~ msgid "Restart…"
+#~ msgstr "Riavvia…"
+
+#~ msgid "Logout…"
+#~ msgstr "Chiudi sessione…"
 
 #~ msgid "Logout"
 #~ msgstr "Chiudi sessione"
@@ -166,10 +173,6 @@ msgstr "Ibernazione (sospendi su disco)"
 
 #~ msgid "Leave..."
 #~ msgstr "Esci..."
-
-#~ msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
-#~ msgid "Actions"
-#~ msgstr "Azioni"
 
 #~ msgid "Suspend"
 #~ msgstr "Sospensione"

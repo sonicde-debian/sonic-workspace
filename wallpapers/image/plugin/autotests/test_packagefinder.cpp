@@ -8,7 +8,6 @@
 #include <QDir>
 #include <QSignalSpy>
 #include <QTest>
-#include <QThreadPool>
 
 #include <KPackage/PackageLoader>
 
@@ -25,6 +24,7 @@ private Q_SLOTS:
     void testFindPreferredSizeInPackage_data();
     void testFindPreferredSizeInPackage();
     void testPackageFinderCanFindPackages();
+    void testSelectors();
 
 private:
     QDir m_dataDir;
@@ -80,36 +80,45 @@ void PackageFinderTest::testFindPreferredSizeInPackage()
     QVERIFY(package.isValid());
     QVERIFY(package.metadata().isValid());
 
-    PackageFinder::findPreferredImageInPackage(package, resolution);
+    WallpaperPackage::findPreferredImageInPackage(package, resolution);
 
     QVERIFY(package.filePath("preferred").contains(expected));
 }
 
 void PackageFinderTest::testPackageFinderCanFindPackages()
 {
-    PackageFinder *finder =
-        new PackageFinder({m_dataDir.absolutePath(), m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName2)}, QSize(1920, 1080));
-    QSignalSpy spy(finder, &PackageFinder::packageFound);
-
-    QThreadPool::globalInstance()->start(finder);
-
-    spy.wait(10 * 1000);
-    QCOMPARE(spy.size(), 1);
-
-    const auto items = spy.takeFirst().at(0).value<QList<WallpaperPackage>>();
+    const auto items = WallpaperPackage::findAll({m_dataDir.absolutePath(), m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName2)});
     // Total 3 packages in the directory, but one package is broken and should not be added to the list.
     QCOMPARE(items.size(), ImageBackendTestData::defaultPackageCount);
 
+    KPackage::Package firstPackage = items.at(0).package();
+    WallpaperPackage::findPreferredImageInPackage(firstPackage, QSize(1920, 1080));
+
+    KPackage::Package secondPackage = items.at(1).package();
+    WallpaperPackage::findPreferredImageInPackage(secondPackage, QSize(1920, 1080));
+
     // Folders are sorted by names
     // FEATURE207976-dark-wallpaper
-    QCOMPARE(items.at(0).package().filePath("preferred"),
+    QCOMPARE(firstPackage.filePath("preferred"),
              m_dataDir.absoluteFilePath(QStringLiteral("%1/contents/images/1024x768.png").arg(ImageBackendTestData::defaultPackageFolderName1)));
-    QCOMPARE(items.at(0).package().filePath("preferredDark"),
+    QCOMPARE(firstPackage.filePath("preferredDark"),
              m_dataDir.absoluteFilePath(QStringLiteral("%1/contents/images_dark/1920x1080.jpg").arg(ImageBackendTestData::defaultPackageFolderName1)));
     // package
-    QCOMPARE(items.at(1).package().filePath("preferred"),
+    QCOMPARE(secondPackage.filePath("preferred"),
              m_dataDir.absoluteFilePath(QStringLiteral("%1/contents/images/1920x1080.jpg").arg(ImageBackendTestData::defaultPackageFolderName2)));
-    QCOMPARE(items.at(1).package().filePath("preferredDark"), QString());
+    QCOMPARE(secondPackage.filePath("preferredDark"), QString());
+}
+
+void PackageFinderTest::testSelectors()
+{
+    const auto withLightImages = WallpaperPackage::from(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName2));
+    QCOMPARE(withLightImages->selectors(), QStringList());
+
+    const auto withDarkAndLightImages = WallpaperPackage::from(m_dataDir.absoluteFilePath(ImageBackendTestData::defaultPackageFolderName1));
+    QCOMPARE(withDarkAndLightImages->selectors(), QStringList() << QStringLiteral("dark-light") << QStringLiteral("day-night"));
+
+    const auto withAnimatedDarkAndLightImages = WallpaperPackage::from(QFINDTESTDATA("testdata/animated-dark-light"));
+    QCOMPARE(withAnimatedDarkAndLightImages->selectors(), QStringList() << QStringLiteral("dark-light"));
 }
 
 QTEST_MAIN(PackageFinderTest)

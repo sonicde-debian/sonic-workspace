@@ -41,7 +41,7 @@ QImage CursorTheme::autoCropImage(const QImage &image) const
 {
     // Compute an autocrop rectangle for the image
     QRect r(image.rect().bottomRight(), image.rect().topLeft());
-    const quint32 *pixels = reinterpret_cast<const quint32 *>(image.bits());
+    const auto *pixels = reinterpret_cast<const quint32 *>(image.bits());
 
     for (int y = 0; y < image.height(); y++) {
         for (int x = 0; x < image.width(); x++) {
@@ -122,9 +122,6 @@ bool CursorTheme::haveXfixes()
     bool result = false;
 
 #ifdef HAVE_XFIXES
-    if (!QX11Info::isPlatformX11()) {
-        return result;
-    }
     int event_base, error_base;
     if (XFixesQueryExtension(QX11Info::display(), &event_base, &error_base)) {
         int major, minor;

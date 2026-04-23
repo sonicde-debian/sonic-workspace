@@ -5,7 +5,7 @@
 */
 
 #include "slidefiltermodel.h"
-
+#include "model/abstractimagelistmodel.h"
 #include "slidemodel.h"
 
 #include <QDateTime>
@@ -26,7 +26,7 @@ inline QString getDisplayName(const QModelIndex &modelIndex)
 
 inline QString getLocalFilePath(const QModelIndex &modelIndex)
 {
-    return modelIndex.data(ImageRoles::PathRole).toUrl().toLocalFile();
+    return modelIndex.data(ImageRoles::SourceRole).toUrl().toLocalFile();
 }
 
 inline QString getFilePathWithDir(const QFileInfo &fileInfo)
@@ -35,7 +35,8 @@ inline QString getFilePathWithDir(const QFileInfo &fileInfo)
 }
 }
 
-SlideFilterModel::SlideFilterModel(const QBindable<bool> &usedInConfig,
+SlideFilterModel::SlideFilterModel(const QBindable<QSize> &targetSize,
+                                   const QBindable<bool> &usedInConfig,
                                    const QBindable<SortingMode::Mode> &sortingMode,
                                    const QBindable<bool> &slideshowFoldersFirst,
                                    QObject *parent)
@@ -43,6 +44,7 @@ SlideFilterModel::SlideFilterModel(const QBindable<bool> &usedInConfig,
     , m_SortingMode(sortingMode.makeBinding())
     , m_SortingFoldersFirst(slideshowFoldersFirst.makeBinding())
     , m_usedInConfig(usedInConfig.makeBinding())
+    , m_targetSize(targetSize.makeBinding())
     , m_random(m_randomDevice())
 {
     srand(time(nullptr));
@@ -220,6 +222,26 @@ void SlideFilterModel::invalidateFilter()
     QSortFilterProxyModel::invalidateFilter();
 }
 
+void SlideFilterModel::swapFirstWithRandom()
+{
+    const int size = rowCount();
+    if (size < 2)
+        return;
+
+    // [start, end)
+    const int pos = QRandomGenerator::global()->bounded(1, size);
+    // get the randomOrder index of the sourceModel index of the proxy index
+    const QModelIndex srcIdxA = mapToSource(index(0, 0));
+    const QModelIndex srcIdxB = mapToSource(index(pos, 0));
+    const int rndIdxA = m_randomOrder.indexOf(srcIdxA.row());
+    const int rndIdxB = m_randomOrder.indexOf(srcIdxB.row());
+    // and finally swap
+    m_randomOrder.swapItemsAt(rndIdxA, rndIdxB);
+
+    QSortFilterProxyModel::invalidate();
+    sort(0);
+}
+
 int SlideFilterModel::indexOf(const QString &path)
 {
     if (!sourceModel())
@@ -231,7 +253,22 @@ int SlideFilterModel::indexOf(const QString &path)
 
 void SlideFilterModel::openContainingFolder(int rowIndex)
 {
-    KIO::highlightInFileManager({index(rowIndex, 0).data(ImageRoles::PathRole).toUrl()});
+    auto slideModel = static_cast<SlideModel *>(sourceModel());
+    slideModel->openContainingFolder(mapToSource(index(rowIndex, 0)).row());
+}
+
+void SlideFilterModel::selectAllSlides()
+{
+    for (int rowIndex = 0; rowIndex < sourceModel()->rowCount(); rowIndex++) {
+        setData(index(rowIndex, 0), true, ImageRoles::ToggleRole);
+    }
+}
+
+void SlideFilterModel::deselectAllSlides()
+{
+    for (int rowIndex = 0; rowIndex < sourceModel()->rowCount(); rowIndex++) {
+        setData(index(rowIndex, 0), false, ImageRoles::ToggleRole);
+    }
 }
 
 void SlideFilterModel::buildRandomOrder()

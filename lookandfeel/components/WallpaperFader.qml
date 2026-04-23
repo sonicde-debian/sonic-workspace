@@ -4,13 +4,10 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
 import Qt5Compat.GraphicalEffects
 
-import org.kde.kirigami 2.20 as Kirigami
-import org.kde.plasma.private.sessions 2.0
-import org.kde.breeze.components
+import org.kde.kirigami as Kirigami
 
 Item {
     id: wallpaperFader
@@ -80,47 +77,21 @@ Item {
         State {
             name: "on"
             PropertyChanges {
-                target: mainStack
-                opacity: 1
-            }
-            PropertyChanges {
-                target: footer
-                opacity: 1
-            }
-            PropertyChanges {
-                target: wallpaperFader
-                factor: 1
-            }
-            PropertyChanges {
-                target: clock.shadow
-                opacity: 0
-            }
-            PropertyChanges {
-                target: clock
-                opacity: 1
+                mainStack.opacity: 1
+                footer.opacity: 1
+                wallpaperFader.factor: 1
+                clock.shadow.opacity: 0
+                clock.opacity: 1
             }
         },
         State {
             name: "off"
             PropertyChanges {
-                target: mainStack
-                opacity: 0
-            }
-            PropertyChanges {
-                target: footer
-                opacity: 0
-            }
-            PropertyChanges {
-                target: wallpaperFader
-                factor: 0
-            }
-            PropertyChanges {
-                target: clock.shadow
-                opacity: wallpaperFader.alwaysShowClock ? 1 : 0
-            }
-            PropertyChanges {
-                target: clock
-                opacity: wallpaperFader.alwaysShowClock ? 1 : 0
+                mainStack.opacity: 0
+                footer.opacity: 0
+                wallpaperFader.factor: 0
+                clock.shadow.opacity: wallpaperFader.alwaysShowClock ? 1 : 0
+                clock.opacity: wallpaperFader.alwaysShowClock ? 1 : 0
             }
         }
     ]
@@ -130,7 +101,7 @@ Item {
             to: "on"
             //Note: can't use animators as they don't play well with parallelanimations
             NumberAnimation {
-                targets: [mainStack, footer, clock]
+                targets: [wallpaperFader.mainStack, wallpaperFader.footer, wallpaperFader.clock]
                 property: "opacity"
                 duration: Kirigami.Units.veryLongDuration
                 easing.type: Easing.InOutQuad
@@ -140,7 +111,7 @@ Item {
             from: "on"
             to: "off"
             NumberAnimation {
-                targets: [mainStack, footer, clock]
+                targets: [wallpaperFader.mainStack, wallpaperFader.footer, wallpaperFader.clock]
                 property: "opacity"
                 duration: Kirigami.Units.veryLongDuration
                 easing.type: Easing.InOutQuad

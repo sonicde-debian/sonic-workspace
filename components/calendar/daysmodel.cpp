@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QMetaObject>
+#include <algorithm>
 
 class DaysModelPrivate
 {
@@ -32,9 +33,7 @@ public:
     EventPluginsManager *pluginsManager = nullptr;
 };
 
-DaysModelPrivate::DaysModelPrivate()
-{
-}
+DaysModelPrivate::DaysModelPrivate() = default;
 
 DaysModel::DaysModel(QObject *parent)
     : QAbstractItemModel(parent)
@@ -340,7 +339,7 @@ QVariantList DaysModel::eventsForDate(const QDate &date)
     d->qmlData.reserve(events.size());
 
     // sort events by their time and type
-    std::sort(events.begin(), events.end(), [](const CalendarEvents::EventData &a, const CalendarEvents::EventData &b) {
+    std::ranges::sort(events, [](const CalendarEvents::EventData &a, const CalendarEvents::EventData &b) {
         if (a.type() != b.type()) {
             return a.type() < b.type();
         }
@@ -359,7 +358,7 @@ QVariantList DaysModel::eventsForDate(const QDate &date)
 QModelIndex DaysModel::indexForDate(const QDate &date)
 {
     if (!d->data) {
-        return QModelIndex();
+        return {};
     }
 
     const DayData &firstDay = d->data->at(0);
@@ -456,7 +455,7 @@ QModelIndex DaysModel::parent(const QModelIndex &child) const
     if (child.internalId()) {
         return createIndex(child.internalId(), 0, nullptr);
     }
-    return QModelIndex();
+    return {};
 }
 
 #include "moc_daysmodel.cpp"

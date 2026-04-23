@@ -14,6 +14,30 @@ inline std::optional<char> narrow(int i)
     return c;
 }
 
+inline QString unescapeBackslashEncoding(QStringView input)
+{
+    QString result;
+    result.reserve(input.size());
+
+    for (int i = 0; i < input.size(); ++i) {
+        if (input[i] == u'\\' && i + 1 < input.size()) {
+            if (input[i + 1] == u'x') {
+                if (i + 3 < input.size()) {
+                    auto ok = false;
+                    auto value = input.mid(i + 2, 2).toUShort(&ok, 16);
+                    if (ok) {
+                        result += QChar(value);
+                        i += 3;
+                    }
+                }
+            }
+        } else {
+            result += input[i];
+        }
+    }
+    return result;
+}
+
 inline QString decodeUnitName(const QStringView &input)
 {
     QByteArray decoded;
@@ -46,7 +70,7 @@ inline QString decodeUnitName(const QStringView &input)
         decoded.append(decodedChar.value());
         it = nextIt;
     }
-    return QString::fromUtf8(decoded);
+    return unescapeBackslashEncoding(QString::fromUtf8(decoded));
 }
 
 // https://systemd.io/DESKTOP_ENVIRONMENTS/
@@ -69,7 +93,7 @@ inline QStringView unitNameToServiceName(QStringView unitName)
         // Sometimes can be -uuid.scope instead
         name.truncate(index);
     }
-    // At this point the only remaining part could be a launcher prefix, technically desktop names may contain hypens
+    // At this point the only remaining part could be a launcher prefix, technically desktop names may contain hyphens
     // too so we can but hope that it's not a leading part. Otherwise resolution fails, sucks but not the end of the world.
     if (auto separatorIndex = name.indexOf(separator); separatorIndex > 0 && separatorIndex < name.indexOf(QLatin1Char('.'))) {
         name = name.mid(separatorIndex + 1);

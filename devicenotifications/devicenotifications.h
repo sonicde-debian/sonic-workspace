@@ -16,10 +16,7 @@
 #include <KDEDModule>
 #include <KNotification>
 
-#include "qwayland-kde-output-device-v2.h"
 #include <libudev.h>
-
-struct wl_registry;
 
 class UdevDevice
 {
@@ -76,32 +73,6 @@ private:
     QSocketNotifier *m_notifier = nullptr;
 };
 
-class Output : public QObject, public QtWayland::kde_output_device_v2
-{
-    Q_OBJECT
-public:
-    Output(uint32_t id);
-    ~Output();
-
-    uint32_t id() const
-    {
-        return m_id;
-    }
-
-    QString uuid() const
-    {
-        return m_uuid;
-    }
-
-Q_SIGNALS:
-    void uuidAdded();
-
-private:
-    void kde_output_device_v2_uuid(const QString &uuid) override;
-    uint32_t m_id;
-    QString m_uuid;
-};
-
 class KdedDeviceNotifications : public KDEDModule
 {
     Q_OBJECT
@@ -110,8 +81,6 @@ class KdedDeviceNotifications : public KDEDModule
 public:
     KdedDeviceNotifications(QObject *parent, const QVariantList &args);
     ~KdedDeviceNotifications() override;
-
-    void setupWaylandOutputListener();
 
     Q_SCRIPTABLE void dismissUsbDeviceAdded();
 
@@ -125,8 +94,6 @@ private:
     QHash<QString, QString> m_displayNames;
     QList<QString> m_removableDevices;
 
-    wl_registry *m_registry = nullptr;
-    std::vector<std::unique_ptr<Output>> m_outputs;
     QList<QString> m_recentlyRemovedOutputs;
     bool m_initialOutputsReceived = false;
 

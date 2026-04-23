@@ -21,9 +21,7 @@ namespace WorkspaceScripting
 class Widget::Private
 {
 public:
-    Private()
-    {
-    }
+    Private() = default;
 
     QPointer<Plasma::Applet> applet;
 };
@@ -58,7 +56,7 @@ QString Widget::type() const
         return d->applet->pluginMetaData().pluginId();
     }
 
-    return QString();
+    return {};
 }
 
 void Widget::remove()
@@ -82,7 +80,7 @@ QString Widget::globalShorcut() const
         return d->applet->globalShortcut().toString();
     }
 
-    return QString();
+    return {};
 }
 
 Plasma::Applet *Widget::applet() const
@@ -150,7 +148,7 @@ QJSValue Widget::geometry() const
         return rect;
     }
 
-    return QJSValue();
+    return {};
 }
 
 void Widget::setGeometry(const QJSValue &geometry)

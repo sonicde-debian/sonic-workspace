@@ -12,7 +12,10 @@
 #include <QDBusPendingReply>
 #include <QFile>
 #include <QFileInfo>
+#include <QJsonArray>
+#include <QJsonValue>
 #include <QPainter>
+#include <QProcess>
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQmlPropertyMap>
@@ -23,7 +26,6 @@
 
 #ifdef PACKAGEKIT_OFFLINE_UPDATES
 #include <PackageKit/Daemon>
-#include <PackageKit/Offline>
 #endif
 
 #include <KLocalizedString>
@@ -31,7 +33,6 @@
 #include <KWindowEffects>
 #include <KWindowSystem>
 #include <KX11Extras>
-#include <LayerShellQt/Window>
 
 #include <cstdio>
 #include <netwm.h>
@@ -66,6 +67,7 @@ static const QString s_dbusPropertiesInterface = QStringLiteral("org.freedesktop
 static const QString s_login1ManagerInterface = QStringLiteral("org.freedesktop.login1.Manager");
 static const QString s_login1RebootToFirmwareSetup = QStringLiteral("RebootToFirmwareSetup");
 static const QString s_login1RebootToBootLoaderMenu = QStringLiteral("RebootToBootLoaderMenu");
+static const QString s_login1RebootToBootLoaderEntry = QStringLiteral("RebootToBootLoaderEntry");
 
 KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype, QScreen *screen)
     : QuickViewSharedEngine(parent)
@@ -77,19 +79,11 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
     setColor(QColor(Qt::transparent));
     setScreen(screen);
 
-    if (KWindowSystem::isPlatformWayland() && !m_windowed) {
-        if (auto w = LayerShellQt::Window::get(this)) {
-            w->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityExclusive);
-            w->setExclusiveZone(-1);
-            w->setLayer(LayerShellQt::Window::LayerOverlay);
-        }
-    }
-
     setResizeMode(PlasmaQuick::QuickViewSharedEngine::SizeRootObjectToView);
 
     // Qt doesn't set this on unmanaged windows
     // FIXME: or does it?
-    if (KWindowSystem::isPlatformX11()) {
+    {
         constexpr auto role = std::string_view("logoutdialog");
         constexpr std::size_t roleLength = role.length();
 
@@ -134,6 +128,7 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
     // Trying to access a non-existent context property throws an error, always create the property and then update it later
     context->setContextProperty(u"rebootToFirmwareSetup"_s, false);
     context->setContextProperty(u"rebootToBootLoaderMenu"_s, false);
+    context->setContextProperty(u"rebootToBootLoaderEntry"_s, u""_s);
 
     {
         QDBusMessage message = QDBusMessage::createMethodCall(s_login1Service, s_login1Path, s_dbusPropertiesInterface, QStringLiteral("Get"));
@@ -162,6 +157,55 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
             if (reply.value().toULongLong() != std::numeric_limits<uint64_t>::max()) {
                 context->setContextProperty(u"rebootToBootLoaderMenu"_s, true);
             }
+        });
+    }
+
+    {
+        QDBusMessage message = QDBusMessage::createMethodCall(s_login1Service, s_login1Path, s_dbusPropertiesInterface, QStringLiteral("Get"));
+        message.setArguments({s_login1ManagerInterface, s_login1RebootToBootLoaderEntry});
+        QDBusPendingReply<QVariant> call = QDBusConnection::systemBus().asyncCall(message);
+        auto *callWatcher = new QDBusPendingCallWatcher(call, this);
+        connect(callWatcher, &QDBusPendingCallWatcher::finished, context, [context, this](QDBusPendingCallWatcher *watcher) {
+            QDBusPendingReply<QVariant> reply = *watcher;
+            watcher->deleteLater();
+
+            auto bootEntryId = reply.value().toString();
+
+            if (bootEntryId.isEmpty()) {
+                return;
+            }
+
+            if (bootEntryId.contains(u"reboot-to-firmware-setup"_s)) {
+                context->setContextProperty(u"rebootToFirmwareSetup"_s, true);
+                return;
+            }
+
+            QProcess *bootctl = new QProcess(this);
+
+            connect(bootctl, &QProcess::finished, context, [context, bootEntryId, bootctl](int exitCode, QProcess::ExitStatus) {
+                bootctl->deleteLater();
+
+                if (exitCode != 0) {
+                    return;
+                }
+
+                const QJsonDocument output = QJsonDocument::fromJson(bootctl->readAllStandardOutput());
+
+                for (const QJsonValue entry : output.array()) {
+                    if (const QJsonValue entryId = entry[u"id"_s]; entryId.toString() != bootEntryId) {
+                        continue;
+                    }
+
+                    if (const QJsonValue entryShowTitle = entry[u"showTitle"_s]; entryShowTitle.isString()) {
+                        context->setContextProperty(u"rebootToBootLoaderEntry"_s, entryShowTitle.toString());
+                        break;
+                    }
+                }
+            });
+
+            const QStringList bootctlArgs{u"list"_s, u"--json=short"_s};
+
+            bootctl->start(u"bootctl"_s, bootctlArgs);
         });
     }
 
@@ -223,11 +267,8 @@ void KSMShutdownDlg::init(const KPackage::Package &package)
         setGeometry(screen()->geometry());
     });
 
-    // decide in backgroundcontrast whether doing things darker or lighter
-    // set backgroundcontrast here, because in QEvent::PlatformSurface
-    // is too early and we don't have the root object yet
-    const QColor backgroundColor = rootObject() ? rootObject()->property("backgroundColor").value<QColor>() : QColor();
-    KWindowEffects::enableBackgroundContrast(this, true, 0.4, (backgroundColor.value() > 128 ? 1.6 : 0.3), 1.7);
+    KWindowEffects::enableBlurBehind(this, true);
+    KWindowEffects::enableBackgroundContrast(this, true, 1.0, 1.0, 1.5);
     if (m_windowed) {
         show();
     } else {
@@ -237,7 +278,6 @@ void KSMShutdownDlg::init(const KPackage::Package &package)
     requestActivate();
 
     setKeyboardGrabEnabled(true);
-    KWindowEffects::enableBlurBehind(this, true);
 }
 
 void KSMShutdownDlg::resizeEvent(QResizeEvent *e)

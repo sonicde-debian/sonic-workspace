@@ -119,9 +119,7 @@ public:
     }
 };
 
-SleepJob::SleepJob()
-{
-}
+SleepJob::SleepJob() = default;
 
 void SleepJob::start()
 {
@@ -144,7 +142,7 @@ Startup::Startup(QObject *parent)
     const AutoStart autostart;
 
     KJob *x11WindowManagerJob = nullptr;
-    if (qEnvironmentVariable("XDG_SESSION_TYPE") != QLatin1String("wayland")) {
+    {
         QString windowManager;
         if (qEnvironmentVariableIsSet("KDEWM")) {
             windowManager = qEnvironmentVariable("KDEWM");
@@ -157,19 +155,6 @@ Startup::Startup(QObject *parent)
             x11WindowManagerJob = new StartServiceJob(windowManager, {}, QStringLiteral("org.kde.KWin"));
         } else {
             x11WindowManagerJob = new StartServiceJob(windowManager, {}, {});
-        }
-    } else {
-        // This must block until started as it sets the WAYLAND_DISPLAY/DISPLAY env variables needed for the rest of the boot
-        // fortunately it's very fast as it's just starting a wrapper
-        StartServiceJob kwinWaylandJob(QStringLiteral("kwin_wayland_wrapper"), {QStringLiteral("--xwayland")}, QStringLiteral("org.kde.KWinWrapper"));
-        kwinWaylandJob.exec();
-        // kslpash is only launched in plasma-session from the wayland mode, for X it's in startplasma-x11
-
-        const KConfig cfg(QStringLiteral("ksplashrc"));
-        // the splashscreen and progress indicator
-        KConfigGroup ksplashCfg = cfg.group(QStringLiteral("KSplash"));
-        if (ksplashCfg.readEntry("Engine", QStringLiteral("KSplashQML")) == QLatin1String("KSplashQML")) {
-            QProcess::startDetached(QStringLiteral("ksplashqml"), {});
         }
     }
 
@@ -241,7 +226,7 @@ void KCMInitJob::start()
     kcminit.setTimeout(10 * 1000);
 
     QDBusPendingReply<void> pending = kcminit.runPhase1();
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pending, this);
+    auto *watcher = new QDBusPendingCallWatcher(pending, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this]() {
         emitResult();
     });
@@ -258,7 +243,7 @@ void RestoreSessionJob::start()
     OrgKdeKSMServerInterfaceInterface ksmserverIface(QStringLiteral("org.kde.ksmserver"), QStringLiteral("/KSMServer"), QDBusConnection::sessionBus());
     auto pending = ksmserverIface.restoreSession();
 
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pending, this);
+    auto *watcher = new QDBusPendingCallWatcher(pending, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this]() {
         emitResult();
     });

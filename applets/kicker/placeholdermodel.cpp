@@ -33,9 +33,7 @@ void PlaceholderModel::inhibitTriggering()
     m_triggerInhibitor.start();
 }
 
-PlaceholderModel::~PlaceholderModel()
-{
-}
+PlaceholderModel::~PlaceholderModel() = default;
 
 QString PlaceholderModel::description() const
 {
@@ -43,7 +41,7 @@ QString PlaceholderModel::description() const
         return abstractModel->description();
 
     } else {
-        return QString();
+        return {};
     }
 }
 
@@ -92,7 +90,7 @@ QModelIndex PlaceholderModel::parent(const QModelIndex &index) const
 {
     Q_UNUSED(index)
 
-    return QModelIndex();
+    return {};
 }
 
 QVariant PlaceholderModel::data(const QModelIndex &index, int role) const
@@ -112,7 +110,7 @@ QVariant PlaceholderModel::data(const QModelIndex &index, int role) const
             //     return "select";
 
         default:
-            return QVariant();
+            return {};
         }
     }
 
@@ -131,7 +129,7 @@ int PlaceholderModel::rowCount(const QModelIndex &parent) const
 QModelIndex PlaceholderModel::indexToSourceIndex(const QModelIndex &index) const
 {
     if (!m_sourceModel || !index.isValid()) {
-        return QModelIndex();
+        return {};
     }
 
     const auto row = index.row();
@@ -159,7 +157,7 @@ int PlaceholderModel::rowToSourceRow(int row) const
 QModelIndex PlaceholderModel::sourceIndexToIndex(const QModelIndex &sourceIndex) const
 {
     if (!m_sourceModel || !sourceIndex.isValid()) {
-        return QModelIndex();
+        return {};
     }
 
     const auto sourceRow = sourceIndex.row();
@@ -193,7 +191,7 @@ QString PlaceholderModel::labelForRow(int row)
         return abstractModel->labelForRow(rowToSourceRow(row));
 
     } else {
-        return QString();
+        return {};
     }
 }
 
@@ -302,7 +300,7 @@ void PlaceholderModel::connectSignals()
         Q_EMIT countChanged();
     });
 
-    // We do not have persistant indices
+    // We do not have persistent indices
     // connect(sourceModelPtr, &QAbstractItemModel::layoutAboutToBeChanged),
     //         this, &PlaceholderModel::layoutAboutToBeChanged);
     // connect(sourceModelPtr, &QAbstractItemModel::layoutChanged),

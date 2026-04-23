@@ -41,46 +41,17 @@ QSize resSize(QStringView str)
     const int index = str.indexOf(QLatin1Char('x'));
 
     if (index != -1) {
-        return QSize(str.left(index).toInt(), str.mid(index + 1).toInt());
+        return {str.left(index).toInt(), str.mid(index + 1).toInt()};
     }
 
-    return QSize();
+    return {};
 }
 }
 
-static bool isDayNightSupported(const QString &lightFilePath, const QString &darkFilePath)
-{
-    if (QImageReader(lightFilePath).supportsAnimation()) {
-        return false;
-    } else if (QImageReader(darkFilePath).supportsAnimation()) {
-        return false;
-    }
-    return true;
-}
-
-WallpaperPackage::WallpaperPackage(const KPackage::Package &package)
+WallpaperPackage::WallpaperPackage(const KPackage::Package &package, const QStringList &selectors)
     : m_package(package)
+    , m_selectors(selectors)
 {
-    const QString preferredDarkImage = package.filePath(QByteArrayLiteral("preferredDark"));
-    if (!preferredDarkImage.isEmpty()) {
-        m_selectors << QStringLiteral("dark-light");
-
-        const QString preferredImage = package.filePath(QByteArrayLiteral("preferred"));
-        if (isDayNightSupported(preferredImage, preferredDarkImage)) {
-            m_selectors << QStringLiteral("day-night");
-        }
-    }
-}
-
-QString WallpaperPackage::displayName() const
-{
-    const QString title = m_package.metadata().name();
-
-    if (title.isEmpty()) {
-        return QFileInfo(m_package.filePath("preferred")).completeBaseName();
-    }
-
-    return title;
 }
 
 KPackage::Package WallpaperPackage::package() const
@@ -93,14 +64,53 @@ QStringList WallpaperPackage::selectors() const
     return m_selectors;
 }
 
-PackageFinder::PackageFinder(const QStringList &paths, const QSize &targetSize, QObject *parent)
-    : QObject(parent)
-    , m_paths(paths)
-    , m_targetSize(targetSize)
+static bool isDayNightSupported(const QString &lightFilePath, const QString &darkFilePath)
 {
+    if (QImageReader(lightFilePath).supportsAnimation()) {
+        return false;
+    } else if (QImageReader(darkFilePath).supportsAnimation()) {
+        return false;
+    }
+    return true;
 }
 
-void PackageFinder::run()
+std::optional<WallpaperPackage> WallpaperPackage::from(const QString &filePath)
+{
+    KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Wallpaper/Images"));
+    package.setPath(filePath);
+    return from(package);
+}
+
+std::optional<WallpaperPackage> WallpaperPackage::from(const KPackage::Package &package)
+{
+    if (!package.isValid() || !package.metadata().isValid()) {
+        return std::nullopt;
+    }
+
+    const QDir imageDirectory(package.filePath("images"));
+    const QFileInfoList imageFiles = imageDirectory.entryInfoList(suffixes(), QDir::Files | QDir::Readable);
+    if (imageFiles.isEmpty()) {
+        return std::nullopt;
+    }
+
+    QStringList selectors;
+
+    if (const QString imagesDarkPath = package.filePath("images_dark"); !imagesDarkPath.isEmpty()) {
+        const QDir darkImagesDirectory(imagesDarkPath);
+        const QFileInfoList darkImageFiles = darkImagesDirectory.entryInfoList(suffixes(), QDir::Files | QDir::Readable);
+        if (!darkImageFiles.isEmpty()) {
+            selectors << QStringLiteral("dark-light");
+
+            if (isDayNightSupported(imageFiles.first().absoluteFilePath(), darkImageFiles.first().absoluteFilePath())) {
+                selectors << QStringLiteral("day-night");
+            }
+        }
+    }
+
+    return WallpaperPackage(package, selectors);
+}
+
+QList<WallpaperPackage> WallpaperPackage::findAll(const QStringList &paths)
 {
     QList<WallpaperPackage> packages;
     QStringList folders;
@@ -110,7 +120,7 @@ void PackageFinder::run()
 
     KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Wallpaper/Images"));
 
-    const auto addPackage = [this, &package, &packages, &folders](const QString &_folderPath) {
+    const auto addPackage = [&package, &packages, &folders](const QString &_folderPath) {
         const QString folderPath = findSymlinkTarget(QFileInfo(_folderPath)).absoluteFilePath();
 
         if (folders.contains(folderPath)) {
@@ -125,22 +135,9 @@ void PackageFinder::run()
 
         package.setPath(folderPath);
 
-        if (package.isValid() && package.metadata().isValid()) {
-            // Check if there are any available images.
-            QDir imageDir(package.filePath("images"));
-            imageDir.setFilter(QDir::Files | QDir::Readable);
-            imageDir.setNameFilters(suffixes());
-
-            if (imageDir.entryInfoList().empty()) {
-                // This is an empty package. Skip it.
-                folders << folderPath;
-                return true;
-            }
-
-            findPreferredImageInPackage(package, m_targetSize);
-            packages << WallpaperPackage(package);
+        if (const auto wallpaper = WallpaperPackage::from(package)) {
+            packages << *wallpaper;
             folders << folderPath;
-
             return true;
         }
 
@@ -150,8 +147,9 @@ void PackageFinder::run()
 
     int i;
 
-    for (i = 0; i < m_paths.size(); ++i) {
-        const QString &path = m_paths.at(i);
+    QStringList visitQueue = paths;
+    for (i = 0; i < visitQueue.size(); ++i) {
+        const QString &path = visitQueue.at(i);
         const QFileInfo info(path);
 
         if (!info.isDir()) {
@@ -169,15 +167,15 @@ void PackageFinder::run()
         for (const QFileInfo &wp : files) {
             if (!addPackage(wp.filePath())) {
                 // Add this to the directories we should be looking at
-                m_paths.append(wp.filePath());
+                visitQueue.append(wp.filePath());
             }
         }
     }
 
-    Q_EMIT packageFound(packages);
+    return packages;
 }
 
-void PackageFinder::findPreferredImageInPackage(KPackage::Package &package, const QSize &targetSize)
+void WallpaperPackage::findPreferredImageInPackage(KPackage::Package &package, const QSize &targetSize)
 {
     if (!package.isValid()) {
         return;

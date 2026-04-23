@@ -10,6 +10,7 @@
 #include <Plasma/Containment>
 #include <Plasma/Corona>
 #include <PlasmaQuick/AppletQuickItem>
+#include <algorithm>
 
 // FIXME HACK TODO: Unfortunately we have no choice but to hard-code a list of
 // applets we know to expose the correct interface right now -- this is slated
@@ -25,9 +26,7 @@ ContainmentInterface::ContainmentInterface(QObject *parent)
 {
 }
 
-ContainmentInterface::~ContainmentInterface()
-{
-}
+ContainmentInterface::~ContainmentInterface() = default;
 
 bool ContainmentInterface::mayAddLauncher(QObject *appletInterface, ContainmentInterface::Target target, const KService::Ptr &service)
 {
@@ -35,7 +34,7 @@ bool ContainmentInterface::mayAddLauncher(QObject *appletInterface, ContainmentI
         return false;
     }
 
-    Plasma::Applet *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
+    auto *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
     Plasma::Containment *containment = applet->containment();
 
     if (!containment) {
@@ -99,7 +98,7 @@ bool ContainmentInterface::hasLauncher(QObject *appletInterface, ContainmentInte
         return false;
     }
 
-    Plasma::Applet *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
+    auto *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
     Plasma::Containment *containment = applet->containment();
 
     if (!containment) {
@@ -136,7 +135,7 @@ void ContainmentInterface::addLauncher(QObject *appletInterface, ContainmentInte
         return;
     }
 
-    Plasma::Applet *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
+    auto *applet = appletInterface->property("_plasma_applet").value<Plasma::Applet *>();
     Plasma::Containment *containment = applet->containment();
 
     if (!containment) {
@@ -226,7 +225,7 @@ QObject *ContainmentInterface::screenContainment(QObject *appletInterface)
 
 bool ContainmentInterface::screenContainmentMutable(QObject *appletInterface)
 {
-    const Plasma::Containment *containment = static_cast<const Plasma::Containment *>(screenContainment(appletInterface));
+    const auto *containment = static_cast<const Plasma::Containment *>(screenContainment(appletInterface));
 
     if (containment) {
         return (containment->immutability() == Plasma::Types::Mutable);
@@ -245,7 +244,7 @@ void ContainmentInterface::ensureMutable(Plasma::Containment *containment)
 Plasma::Applet *ContainmentInterface::findTaskManagerApplet(Plasma::Containment *containment)
 {
     const QList<Plasma::Applet *> applets = containment->applets();
-    const auto found = std::find_if(applets.cbegin(), applets.cend(), [](const Plasma::Applet *applet) {
+    const auto found = std::ranges::find_if(applets, [](const Plasma::Applet *applet) {
         return m_knownTaskManagers.contains(applet->pluginMetaData().pluginId());
     });
     return found != applets.cend() ? *found : nullptr;

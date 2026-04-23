@@ -64,8 +64,9 @@ inline std::optional<Match> bitap(const QStringView &name, const QStringView &pa
     hammingDistance = std::min(hammingDistance, int(pattern.length() - 1));
 
     // allocate on heap to prevent stackoverflow on musl libc (patternMask ~512k size, musl stack 128k)
-    std::unique_ptr<const PatternMask> patternMask = [&pattern, &name] {
-        auto patternMask = std::make_unique<PatternMask>();
+    auto patternMask = [&pattern, &name] {
+        thread_local auto patternMask = std::make_unique<PatternMask>();
+
         // The following is an optimized version of patternMask.fill(Mask().set()); to set all **necessary** bits to 1.
         for (const auto &qchar : pattern) {
             patternMask->at(qchar.unicode()).set();
@@ -86,7 +87,7 @@ inline std::optional<Match> bitap(const QStringView &name, const QStringView &pa
             }
         }
 
-        return patternMask;
+        return patternMask.get();
     }();
 
     Match match{
@@ -163,12 +164,10 @@ inline qreal score(const QStringView &name, const auto &match, auto hammingDista
     if (name.size() == 0) {
         return 0.0; // No name, no score.
     }
+    Q_ASSERT(hammingDistance > 0); // The semantics for distance 0 are undefined at this time! If you need this come up with something
 
     const auto maxSize = name.size();
     const auto penalty = [&] {
-        if (hammingDistance <= 0) {
-            return 1.0; // No penalty for no distance
-        }
         constexpr auto tenth = 10.0;
         constexpr auto half = 2.0;
         return qreal(match.distance) / qreal(hammingDistance) / tenth / half;

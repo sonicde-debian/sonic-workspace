@@ -8,10 +8,7 @@
 #include "config-X11.h"
 #include "desktopview.h"
 #include "panelshadows_p.h"
-#include "panelview.h"
 #include "shellcorona.h"
-
-#include <LayerShellQt/Window>
 
 #include <QAction>
 #include <QDebug>
@@ -24,18 +21,13 @@
 #include <KWindowSystem>
 #include <plasmaquick/popupplasmawindow.h>
 #include <qnamespace.h>
-#if HAVE_X11
 #include <KX11Extras>
-#endif
 #include <klocalizedstring.h>
 #include <kwindoweffects.h>
 
 #include <Plasma/Containment>
 #include <Plasma/PluginLoader>
 #include <PlasmaQuick/Dialog>
-
-#include <KWayland/Client/plasmashell.h>
-#include <KWayland/Client/surface.h>
 
 #include <chrono>
 
@@ -48,21 +40,12 @@ PanelRulerView::PanelRulerView(Plasma::Containment *containment, PanelView *pane
     , m_panelView(panelView)
     , m_mainConfigView(mainConfigView)
 {
-    if (KWindowSystem::isPlatformWayland()) {
-        m_layerWindow = LayerShellQt::Window::get(this);
-        m_layerWindow->setLayer(LayerShellQt::Window::LayerTop);
-        m_layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-        m_layerWindow->setScope(QStringLiteral("dock"));
-        m_layerWindow->setCloseOnDismissed(false);
-    }
     setScreen(m_panelView->screen());
 
     connect(this, &PanelRulerView::mainItemChanged, this, &PanelRulerView::syncPanelLocation);
 }
 
-PanelRulerView::~PanelRulerView()
-{
-}
+PanelRulerView::~PanelRulerView() = default;
 
 void PanelRulerView::syncPanelLocation()
 {
@@ -93,8 +76,7 @@ void PanelRulerView::syncPanelLocation()
         setBorders(Qt::TopEdge);
     }
 
-    if (KWindowSystem::isPlatformX11()) {
-#if HAVE_X11
+    {
         KX11Extras::setType(winId(), NET::Dock);
         KX11Extras::setState(winId(), NET::KeepAbove);
 
@@ -126,69 +108,6 @@ void PanelRulerView::syncPanelLocation()
         default:
             setPosition(available.bottomLeft() + screen->geometry().topLeft() - QPoint(0, height()));
         }
-#endif
-    } else if (m_layerWindow) {
-        switch (m_containment->location()) {
-        case Plasma::Types::LeftEdge:
-        case Plasma::Types::RightEdge:
-            m_layerWindow->setDesiredSize(QSize(mainItem()->implicitWidth(), available.height()));
-            break;
-        case Plasma::Types::TopEdge:
-        case Plasma::Types::BottomEdge:
-        default:
-            m_layerWindow->setDesiredSize(QSize(available.width(), mainItem()->implicitHeight()));
-            break;
-        }
-
-        setScreen(screen);
-
-        m_layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-        LayerShellQt::Window::Anchors anchors;
-
-        switch (m_containment->location()) {
-        case Plasma::Types::TopEdge:
-            anchors.setFlag(LayerShellQt::Window::AnchorTop);
-            break;
-        case Plasma::Types::LeftEdge:
-            anchors.setFlag(LayerShellQt::Window::AnchorLeft);
-            break;
-        case Plasma::Types::RightEdge:
-            anchors.setFlag(LayerShellQt::Window::AnchorRight);
-            break;
-        case Plasma::Types::BottomEdge:
-        default:
-            anchors.setFlag(LayerShellQt::Window::AnchorBottom);
-            break;
-        }
-
-        if (m_containment->formFactor() == Plasma::Types::Horizontal) {
-            switch (m_panelView->alignment()) {
-            case Qt::AlignLeft:
-                anchors.setFlag(LayerShellQt::Window::AnchorLeft);
-                break;
-            case Qt::AlignCenter:
-                break;
-            case Qt::AlignRight:
-                anchors.setFlag(LayerShellQt::Window::AnchorRight);
-                break;
-            }
-        } else {
-            switch (m_panelView->alignment()) {
-            case Qt::AlignLeft:
-                anchors.setFlag(LayerShellQt::Window::AnchorTop);
-                break;
-            case Qt::AlignCenter:
-                break;
-            case Qt::AlignRight:
-                anchors.setFlag(LayerShellQt::Window::AnchorBottom);
-                break;
-            }
-        }
-
-        // m_layerWindow->setMargins(margins);
-        m_layerWindow->setAnchors(anchors);
-
-        requestUpdate();
     }
 }
 
@@ -217,13 +136,15 @@ PanelConfigView::PanelConfigView(Plasma::Containment *containment, PanelView *pa
     , m_panelView(panelView)
     , m_sharedQmlEngine(std::make_unique<PlasmaQuick::SharedQmlEngine>(this))
 {
-    ShellCorona *c = qobject_cast<ShellCorona *>(m_containment->corona());
+    auto *c = qobject_cast<ShellCorona *>(m_containment->corona());
     setProperty("restrictedPopupGeometry", QVariant(c->availableScreenRect(m_containment->screen())));
     connect(m_containment, &Plasma::Containment::screenChanged, this, [this, c](int screen) {
         setProperty("restrictedPopupGeometry", QVariant(c->availableScreenRect(screen)));
     });
     connect(m_containment->corona(), &Plasma::Corona::availableScreenRectChanged, this, [this, c](int screen) {
-        setProperty("restrictedPopupGeometry", QVariant(c->availableScreenRect(screen)));
+        if (screen == m_containment->screen()) {
+            setProperty("restrictedPopupGeometry", QVariant(c->availableScreenRect(screen)));
+        }
     });
 
     connect(panelView, &QObject::destroyed, this, &QObject::deleteLater);
@@ -260,9 +181,7 @@ PanelConfigView::PanelConfigView(Plasma::Containment *containment, PanelView *pa
     m_focusWindow = qApp->focusWindow();
 }
 
-PanelConfigView::~PanelConfigView()
-{
-}
+PanelConfigView::~PanelConfigView() = default;
 
 void PanelConfigView::init()
 {
@@ -272,7 +191,7 @@ void PanelConfigView::init()
     setMainItem(qobject_cast<QQuickItem *>(m_sharedQmlEngine->rootObject()));
     if (mainItem()) {
         if (m_panelRulerView) {
-            QQuickItem *ruler = mainItem()->property("panelRuler").value<QQuickItem *>();
+            auto *ruler = mainItem()->property("panelRuler").value<QQuickItem *>();
             m_panelRulerView->setMainItem(ruler);
             m_panelRulerView->syncPanelLocation();
         }
@@ -297,7 +216,7 @@ void PanelConfigView::showAddWidgetDialog()
 
 void PanelConfigView::addPanelSpacer()
 {
-    ShellCorona *c = qobject_cast<ShellCorona *>(m_containment->corona());
+    auto *c = qobject_cast<ShellCorona *>(m_containment->corona());
     if (!c) {
         return;
     }
@@ -460,7 +379,7 @@ PanelRulerView *PanelConfigView::panelRulerView()
     }
 
     if (mainItem()) {
-        QQuickItem *ruler = mainItem()->property("panelRuler").value<QQuickItem *>();
+        auto *ruler = mainItem()->property("panelRuler").value<QQuickItem *>();
         m_panelRulerView->setMainItem(ruler);
         m_panelRulerView->syncPanelLocation();
     }

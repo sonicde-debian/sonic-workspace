@@ -106,21 +106,19 @@ RootModel::RootModel(QObject *parent)
 {
 }
 
-RootModel::~RootModel()
-{
-}
+RootModel::~RootModel() = default;
 
 QVariant RootModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_entryList.count()) {
-        return QVariant();
+        return {};
     }
 
     if (role == Kicker::HasActionListRole || role == Kicker::ActionListRole) {
         const AbstractEntry *entry = m_entryList.at(index.row());
 
         if (entry->type() == AbstractEntry::GroupType) {
-            const GroupEntry *group = static_cast<const GroupEntry *>(entry);
+            const auto *group = static_cast<const GroupEntry *>(entry);
             AbstractModel *model = group->childModel();
 
             if (model == m_recentAppsModel || model == m_recentDocsModel) {
@@ -325,11 +323,11 @@ void RootModel::refresh()
         QHash<QString, AbstractEntry *> appsHash;
 
         std::function<void(AbstractEntry *)> processEntry = [&](AbstractEntry *entry) {
-            if (entry->type() == AbstractEntry::RunnableType) {
-                AppEntry *appEntry = static_cast<AppEntry *>(entry);
+            if (entry->type() == AbstractEntry::ApplicationType) {
+                auto *appEntry = static_cast<AppEntry *>(entry);
                 appsHash.insert(appEntry->service()->menuId(), appEntry);
             } else if (entry->type() == AbstractEntry::GroupType) {
-                GroupEntry *groupEntry = static_cast<GroupEntry *>(entry);
+                auto *groupEntry = static_cast<GroupEntry *>(entry);
                 AbstractModel *model = groupEntry->childModel();
 
                 if (!model) {
@@ -366,7 +364,7 @@ void RootModel::refresh()
 
                 if (at == (m_pageSize - 1)) {
                     at = 0;
-                    AppsModel *model = new AppsModel(page, false, this);
+                    auto *model = new AppsModel(page, false, this);
                     groups.append(new GroupEntry(this, QString(), QString(), model));
                     page.clear();
                 } else {
@@ -375,7 +373,7 @@ void RootModel::refresh()
             }
 
             if (!page.isEmpty()) {
-                AppsModel *model = new AppsModel(page, false, this);
+                auto *model = new AppsModel(page, false, this);
                 groups.append(new GroupEntry(this, QString(), QString(), model));
             }
 
@@ -414,7 +412,7 @@ void RootModel::refresh()
 
             while (i.hasNext()) {
                 i.next();
-                AppsModel *model = new AppsModel(i.value(), false, this);
+                auto *model = new AppsModel(i.value(), false, this);
                 model->setDescription(i.key());
                 groups.append(new GroupEntry(this, i.key(), QString(), model));
             }
@@ -440,8 +438,8 @@ void RootModel::refresh()
         KConfigGroup applicationsGroup = stateConfig->group(QStringLiteral("Application"));
 
         std::function<void(AbstractEntry *)> processEntry = [&](AbstractEntry *entry) {
-            if (entry->type() == AbstractEntry::RunnableType) {
-                AppEntry *appEntry = static_cast<AppEntry *>(entry);
+            if (entry->type() == AbstractEntry::ApplicationType) {
+                auto *appEntry = static_cast<AppEntry *>(entry);
 
                 const QString appId = appEntry->id();
                 installedApps.append(appId);
@@ -466,7 +464,7 @@ void RootModel::refresh()
                     applicationsGroup.deleteGroup(appId);
                 }
             } else if (entry->type() == AbstractEntry::GroupType) {
-                GroupEntry *groupEntry = static_cast<GroupEntry *>(entry);
+                auto *groupEntry = static_cast<GroupEntry *>(entry);
                 if (AbstractModel *model = groupEntry->childModel()) {
                     for (int i = 0; i < model->count(); ++i) {
                         processEntry(static_cast<AbstractEntry *>(model->index(i, 0).internalPointer()));
@@ -519,7 +517,7 @@ void RootModel::refresh()
     if (m_showFavoritesPlaceholder) {
         // This entry is a placeholder and shouldn't ever be visible
         QList<AbstractEntry *> placeholderList;
-        AppsModel *placeholderModel = new AppsModel(placeholderList, false, this);
+        auto *placeholderModel = new AppsModel(placeholderList, false, this);
 
         // Favorites group containing a placeholder entry, so it would be considered as a group, not an entry
         QList<AbstractEntry *> placeholderEntry;
@@ -527,7 +525,7 @@ void RootModel::refresh()
                                                i18n("This shouldn't be visible! Use KICKER_FAVORITES_MODEL"),
                                                QStringLiteral("dialog-warning"),
                                                placeholderModel));
-        AppsModel *favoritesPlaceholderModel = new AppsModel(placeholderEntry, false, this);
+        auto *favoritesPlaceholderModel = new AppsModel(placeholderEntry, false, this);
 
         favoritesPlaceholderModel->setDescription(QStringLiteral("KICKER_FAVORITES_MODEL")); // Intentionally no i18n.
         m_entryList.prepend(new GroupEntry(this, i18n("Favorites"), QStringLiteral("bookmarks"), favoritesPlaceholderModel));
@@ -630,8 +628,8 @@ void RootModel::refreshNewlyInstalledApps()
     bool hasTrackedApp = false;
 
     std::function<void(AbstractEntry *)> processEntry = [&](AbstractEntry *entry) {
-        if (entry->type() == AbstractEntry::RunnableType) {
-            AppEntry *appEntry = static_cast<AppEntry *>(entry);
+        if (entry->type() == AbstractEntry::ApplicationType) {
+            auto *appEntry = static_cast<AppEntry *>(entry);
 
             const QString appId = appEntry->id();
             installedApps.append(appId);
@@ -646,7 +644,7 @@ void RootModel::refreshNewlyInstalledApps()
                 refreshNewlyInstalledEntry(appEntry);
             }
         } else if (entry->type() == AbstractEntry::GroupType) {
-            GroupEntry *groupEntry = static_cast<GroupEntry *>(entry);
+            auto *groupEntry = static_cast<GroupEntry *>(entry);
             if (AbstractModel *model = groupEntry->childModel()) {
                 for (int i = 0; i < model->count(); ++i) {
                     if (auto *entry = static_cast<AbstractEntry *>(model->index(i, 0).internalPointer())) {
@@ -700,8 +698,8 @@ void RootModel::onResourceScoresChanged(const QString &activity,
     const QStringView appId = QStringView(resource).mid(s_prefix.size());
 
     std::function<void(AbstractEntry *)> processEntry = [&](AbstractEntry *entry) {
-        if (entry->type() == AbstractEntry::RunnableType) {
-            AppEntry *appEntry = static_cast<AppEntry *>(entry);
+        if (entry->type() == AbstractEntry::ApplicationType) {
+            auto *appEntry = static_cast<AppEntry *>(entry);
 
             if (appEntry->id() == appId && appEntry->isNewlyInstalled()) {
                 qCDebug(KICKER_DEBUG) << appEntry->id() << "is no longer considered newly installed (resourceScore)";
@@ -713,7 +711,7 @@ void RootModel::onResourceScoresChanged(const QString &activity,
                 refreshNewlyInstalledEntry(appEntry);
             }
         } else if (entry->type() == AbstractEntry::GroupType) {
-            GroupEntry *groupEntry = static_cast<GroupEntry *>(entry);
+            auto *groupEntry = static_cast<GroupEntry *>(entry);
             if (AbstractModel *model = groupEntry->childModel()) {
                 for (int i = 0; i < model->count(); ++i) {
                     processEntry(static_cast<AbstractEntry *>(model->index(i, 0).internalPointer()));

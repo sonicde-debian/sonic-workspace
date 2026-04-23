@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2020-01-06 12:09+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Mittehäirimise lülitamine"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Muud rakendused"
@@ -93,16 +93,16 @@ msgstr ""
 
 #: ui/main.qml:47
 #, fuzzy, kde-format
-#| msgid "Notifications"
+#| msgid "Configure..."
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Märguanded"
+msgid "Configure for System…"
+msgstr "Seadista ..."
 
 #: ui/main.qml:53
 #, fuzzy, kde-format
 #| msgid "Application Settings"
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
+msgid "Configure for Applications…"
 msgstr "Rakenduste seadistused"
 
 #: ui/main.qml:96
@@ -223,7 +223,7 @@ msgstr "Näitamine märguandeikooni lähedal"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
+msgid "Choose…"
 msgstr ""
 
 #: ui/main.qml:278 ui/main.qml:294
@@ -240,34 +240,43 @@ msgid "Hide after:"
 msgstr "Peidetakse pärast:"
 
 #: ui/main.qml:306
+#, fuzzy, kde-format
+#| msgctxt "Show application jobs in notification widget"
+#| msgid "Show in notifications"
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Näidatakse märguannetes"
+
+#: ui/main.qml:318
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr ""
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Näidatakse märguannetes"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Rakenduste edenemine:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Hüpik hoitakse edenemise ajal lahti"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Märguannete numbrimullid:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Näidatakse tegumihalduris"
@@ -278,8 +287,11 @@ msgid "Popup Position"
 msgstr "Hüpiku asukoht"
 
 #: ui/SourcesPage.qml:20
-#, kde-format
-msgid "Application Settings"
+#, fuzzy, kde-format
+#| msgid "Application Settings"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
 msgstr "Rakenduste seadistused"
 
 #: ui/SourcesPage.qml:104
@@ -310,6 +322,18 @@ msgstr ""
 "Vali loendist rakendus, mille märguannete seadistusi ja käitumist muuta."
 
 #, fuzzy
+#~| msgid "Notifications"
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Märguanded"
+
+#, fuzzy
+#~| msgid "Application Settings"
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Rakenduste seadistused"
+
+#, fuzzy
 #~| msgid "Critical notifications:"
 #~ msgid "Normal notifications:"
 #~ msgstr "Kriitilised märguanded:"
@@ -327,20 +351,9 @@ msgstr ""
 
 #, fuzzy
 #~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Rakenduste seadistused"
-
-#, fuzzy
-#~| msgid "Application Settings"
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Rakenduste seadistused"
-
-#, fuzzy
-#~| msgid "Configure..."
-#~ msgid "Configure…"
-#~ msgstr "Seadista ..."
 
 #~ msgid "Configure Notifications"
 #~ msgstr "Märguannete seadistamine"

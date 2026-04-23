@@ -3,8 +3,8 @@
 #include "config-workspace.h"
 #include "defaultwallpaper.h"
 #include "kcm_wallpaper_debug.h"
-#include "qdbusinterface.h"
-#include "qdbusreply.h"
+#include <QDBusInterface>
+#include <QDBusReply>
 #include <defaultwallpaper.h>
 #include <outputorderwatcher.h>
 
@@ -14,7 +14,6 @@
 #include <Plasma/PluginLoader>
 
 #include <KConfig>
-#include <KConfigGroup>
 #include <KConfigLoader>
 #include <KLocalizedString>
 #include <KPluginFactory>
@@ -422,7 +421,7 @@ void WallpaperModule::setSelectedScreen(const QString &screenName)
 QString WallpaperModule::wallpaperPluginSource()
 {
     if (m_currentWallpaperPlugin.isEmpty()) {
-        return QString();
+        return {};
     }
 
     const auto model = wallpaperConfigModel();
@@ -433,7 +432,7 @@ QString WallpaperModule::wallpaperPluginSource()
         }
     }
 
-    return QString();
+    return {};
 }
 
 void WallpaperModule::setCurrentWallpaperPlugin(const QString &wallpaperPlugin)

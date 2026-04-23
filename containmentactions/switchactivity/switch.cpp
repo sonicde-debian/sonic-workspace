@@ -20,9 +20,7 @@ SwitchActivity::SwitchActivity(QObject *parent, const QVariantList &args)
 {
 }
 
-SwitchActivity::~SwitchActivity()
-{
-}
+SwitchActivity::~SwitchActivity() = default;
 
 void SwitchActivity::makeMenu()
 {
@@ -30,7 +28,7 @@ void SwitchActivity::makeMenu()
     m_actions.clear();
     for (const auto activities = m_consumer.activities(); const QString &id : activities) {
         KActivities::Info info(id);
-        QAction *action = new QAction(QIcon::fromTheme(info.icon()), info.name(), this);
+        auto *action = new QAction(QIcon::fromTheme(info.icon()), info.name(), this);
         action->setData(id);
 
         if (id == m_consumer.currentActivity()) {

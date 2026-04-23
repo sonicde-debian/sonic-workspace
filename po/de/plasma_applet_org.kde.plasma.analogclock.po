@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2007, 2008 Thomas Reitelbach <tr@erdfunkstelle.de>
+# SPDX-FileCopyrightText: 2007-2008 Thomas Reitelbach <tr@erdfunkstelle.de>
 # SPDX-FileCopyrightText: 2013, 2019 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2023 Jannick Kuhr <opensource@kuhr.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.analogclock\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-05 00:44+0000\n"
 "PO-Revision-Date: 2023-02-01 23:44+0100\n"
 "Last-Translator: Jannick Kuhr <opensource@kuhr.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.12.1\n"
 
-#: contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: contents/ui/configGeneral.qml:19
+#: qml/configGeneral.qml:19
 #, kde-format
 msgid "Show seconds hand"
 msgstr "Sekundenzeiger anzeigen"
 
-#: contents/ui/configGeneral.qml:20
+#: qml/configGeneral.qml:20
 #, kde-format
 msgid "General:"
 msgstr "Allgemein:"
 
-#: contents/ui/configGeneral.qml:24
+#: qml/configGeneral.qml:24
 #, kde-format
 msgid "Show time zone"
 msgstr "Zeitzone anzeigen"
 
-#: contents/ui/main.qml:80
+#: qml/main.qml:60
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Current time is %1; Current date is %2"
