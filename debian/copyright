@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: plasma-workspace
-Source: https://invent.kde.org/plasma/plasma-workspace
-Upstream-Contact: plasma-devel@kde.org
+Upstream-Name: sonic-workspace
+Source: https://github.com/Sonic-DE/sonic-workspace
+Upstream-Contact: https://github.com/Sonic-DE
 
 Files: *
 Copyright: 2007, Aaron Seigo <aseigo@kde.org>
