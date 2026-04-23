@@ -6,18 +6,16 @@
 
 pragma ComponentBehavior: Bound
 pragma Singleton
-import QtQuick 2.8
-import QtQuick.Window 2.12
-import QtQuick.Layouts 1.1
-import QtQml 2.15
+import QtQuick
+import QtQuick.Window
+import QtQml
 
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasma5support 2.0 as P5Support
-import org.kde.kquickcontrolsaddons 2.0
-import org.kde.kirigami 2.11 as Kirigami
+import org.kde.plasma.clock
+import org.kde.kirigami as Kirigami
 
 import org.kde.notificationmanager as NotificationManager
-import org.kde.taskmanager 0.1 as TaskManager
+import org.kde.taskmanager as TaskManager
 
 import plasma.applet.org.kde.plasma.notifications as Notifications
 
@@ -35,6 +33,10 @@ QtObject {
     property bool inhibited: false
 
     onInhibitedChanged: {
+        // Explicitly update server state before potentially sending a inhibition summary,
+        // so it's not considered "added while inhibited" and shown in history unwanted.
+        NotificationManager.Server.inhibited = inhibited;
+
         if (!inhibited) {
             const urgency = notificationSettings.lowPriorityHistory ? NotificationManager.Notifications.LowUrgency : NotificationManager.Notifications.NormalUrgency;
             popupNotificationsModel.showInhibitionSummary(urgency, notificationSettings.historyBlacklistedApplications, notificationSettings.historyBlacklistedServices);
@@ -462,12 +464,8 @@ QtObject {
     }
 
     // This periodically checks whether do not disturb mode timed out and updates the "minutes ago" labels
-    property P5Support.DataSource timeSource: P5Support.DataSource {
-        engine: "time"
-        connectedSources: ["Local"]
-        interval: 60000 // 1 min
-        intervalAlignment: P5Support.Types.AlignToMinute
-        onDataChanged: {
+    property Clock clockSource: Clock {
+        onDateTimeChanged: {
             globals.checkInhibition();
             globals.timeChanged();
         }
@@ -519,9 +517,10 @@ QtObject {
             required property string desktopEntry
 
             readonly property bool isTransient: model.transient // "transient" is a reserved keyword, cannot declare it as required property
-            readonly property bool hasSomeActions: (hasDefaultAction || false) || (actionLabels || []).length > 0 || (configureActionLabel || "").length > 0 || (hasReplyAction || false)
+            readonly property bool hasSomeActions: hasDefaultAction || (actionLabels).length > 0 || (configureActionLabel).length > 0 || hasReplyAction
 
             popupWidth: globals.popupWidth
+            showPopupTimeout: globals.notificationSettings.showPopupTimeout
 
             isCritical: urgency === NotificationManager.Notifications.CriticalUrgency || (urgency === NotificationManager.Notifications.NormalUrgency && !globals.notificationSettings.inhibitNotificationsWhenFullscreen)
 
@@ -542,7 +541,7 @@ QtObject {
 
                 applicationName: popup.applicationName
                 applicationIconSource: popup.applicationIconName
-                originName: popup.originName || ""
+                originName: popup.originName
 
                 time: isNaN(popup.updated) ? popup.created : popup.updated
 
@@ -555,30 +554,30 @@ QtObject {
                 closable: popup.closable
 
                 summary: popup.summary
-                body: popup.body || ""
+                body: popup.body
                 accessibleDescription: popup.accessibleDescription
                 icon: popup.image || popup.iconName
-                hasDefaultAction: popup.hasDefaultAction || false
+                hasDefaultAction: popup.hasDefaultAction
 
-                urls: popup.urls || []
-                urgency: popup.urgency || NotificationManager.Notifications.NormalUrgency
+                urls: popup.urls
+                urgency: popup.urgency
 
-                jobState: popup.jobState || 0
-                percentage: popup.percentage || 0
-                jobError: popup.jobError || 0
+                jobState: popup.jobState
+                percentage: popup.percentage
+                jobError: popup.jobError
                 suspendable: !!popup.suspendable
                 killable: !!popup.killable
-                jobDetails: popup.jobDetails || null
+                jobDetails: popup.jobDetails
 
-                configureActionLabel: popup.configureActionLabel || ""
+                configureActionLabel: popup.configureActionLabel
                 actionNames: popup.actionNames
                 actionLabels: popup.actionLabels
 
-                hasReplyAction: popup.hasReplyAction || false
-                replyActionLabel: popup.replyActionLabel || ""
-                replyPlaceholderText: popup.replyPlaceholderText || ""
-                replySubmitButtonText: popup.replySubmitButtonText || ""
-                replySubmitButtonIconName: popup.replySubmitButtonIconName || ""
+                hasReplyAction: popup.hasReplyAction
+                replyActionLabel: popup.replyActionLabel
+                replyPlaceholderText: popup.replyPlaceholderText
+                replySubmitButtonText: popup.replySubmitButtonText
+                replySubmitButtonIconName: popup.replySubmitButtonIconName
 
                 // explicit close, even when resident
                 onCloseClicked: globals.popupNotificationsModel.close(globals.popupNotificationsModel.index(index, 0))
@@ -771,14 +770,6 @@ QtObject {
         function onHeightChanged() {
             globals.repositionTimer.start();
         }
-    }
-
-    // Keeps the Inhibited property on DBus in sync with our inhibition handling
-    property Binding serverInhibitedBinding: Binding {
-        target: NotificationManager.Server
-        property: "inhibited"
-        value: globals.inhibited
-        restoreMode: Binding.RestoreBinding
     }
 
     function toggleDoNotDisturbMode() {

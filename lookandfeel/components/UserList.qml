@@ -3,10 +3,11 @@
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
+pragma ComponentBehavior: Bound
 
-import QtQuick 2.15
+import QtQuick
 
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kirigami as Kirigami
 
 /*
  * A model with a list of users to show in the view.
@@ -28,7 +29,7 @@ import org.kde.kirigami 2.20 as Kirigami
  */
 ListView {
     id: view
-    readonly property string selectedUser: currentItem ? currentItem.userName : ""
+    readonly property string selectedUser: currentItem ? (currentItem as UserDelegate).userName : ""
     readonly property int userItemWidth: Kirigami.Units.gridUnit * 8
     readonly property int userItemHeight: Kirigami.Units.gridUnit * 9
     readonly property bool constrainText: count > 1
@@ -54,14 +55,18 @@ ListView {
     interactive: count > 1
 
     delegate: UserDelegate {
-        avatarPath: model.icon || ""
+        id: userDelegate
+        required property int index
+        required property string icon
+        required property string realName
+        required property var model
+        avatarPath: icon || ""
         iconSource: model.iconName || "user-identity"
         fontSize: view.fontSize
         needsPassword: model.needsPassword !== undefined ? model.needsPassword : true
-        vtNumber: model.vtNumber
 
         name: {
-            const displayName = model.realName || model.name
+            const displayName = realName || model.name
 
             if (model.vtNumber === undefined || model.vtNumber < 0) {
                 return displayName
@@ -97,8 +102,8 @@ ListView {
         isCurrent: ListView.isCurrentItem
 
         onClicked: {
-            ListView.view.currentIndex = index;
-            ListView.view.userSelected();
+            view.currentIndex = index;
+            view.userSelected();
         }
     }
 

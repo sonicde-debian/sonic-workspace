@@ -6,15 +6,17 @@
 
 #include "lookandfeelautoswitcher.h"
 #include "idletimeout.h"
+#include "klookandfeelmanager.h"
 #include "logging.h"
 #include "lookandfeelautoswitcherstate.h"
 #include "lookandfeelsettings.h"
 
+#include <KPackage/PackageLoader>
 #include <KPluginFactory>
 
 #include <QDateTime>
 #include <QDebug>
-#include <QProcess>
+#include <algorithm>
 
 K_PLUGIN_CLASS_WITH_JSON(LookAndFeelAutoSwitcher, "lookandfeelautoswitcher.json")
 
@@ -29,9 +31,7 @@ LookAndFeelAutoSwitcher::LookAndFeelAutoSwitcher(QObject *parent, const QList<QV
     reconfigure();
 }
 
-LookAndFeelAutoSwitcher::~LookAndFeelAutoSwitcher()
-{
-}
+LookAndFeelAutoSwitcher::~LookAndFeelAutoSwitcher() = default;
 
 bool LookAndFeelAutoSwitcher::changesConfig(const KConfigGroup &group, const QByteArrayList &names) const
 {
@@ -41,7 +41,7 @@ bool LookAndFeelAutoSwitcher::changesConfig(const KConfigGroup &group, const QBy
             QByteArrayLiteral("DefaultLightLookAndFeel"),
             QByteArrayLiteral("DefaultDarkLookAndFeel"),
         };
-        return std::any_of(keys.begin(), keys.end(), [names](const QByteArray &name) {
+        return std::ranges::any_of(keys, [names](const QByteArray &name) {
             return names.contains(name);
         });
     }
@@ -117,7 +117,21 @@ QString LookAndFeelAutoSwitcher::lookAndFeelAtDateTime(const QDateTime &dateTime
 void LookAndFeelAutoSwitcher::applyLookAndFeel(const QString &id)
 {
     qCDebug(LOOKANDFEELAUTOSWITCHER) << "Applying" << id << "global theme";
-    QProcess::startDetached(QStringLiteral("plasma-apply-lookandfeel"), QStringList({QStringLiteral("--keep-auto"), QStringLiteral("--apply"), id}));
+
+    if (m_settings->lookAndFeelPackage() == id) {
+        return;
+    }
+
+    m_settings->setLookAndFeelPackage(id);
+    m_settings->save();
+
+    KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"));
+    package.setPath(id);
+
+    const KLookAndFeelManager::Contents selection = KLookAndFeelManager::AppearanceSettings;
+
+    KLookAndFeelManager manager;
+    manager.save(package, selection);
 }
 
 void LookAndFeelAutoSwitcher::reschedule()

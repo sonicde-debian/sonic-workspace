@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-20 03:19+0000\n"
 "PO-Revision-Date: 2024-12-20 21:54+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -19,54 +19,54 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
 "X-Generator: Lokalize 24.08.2\n"
 
-#: src/fingerprintmodel.cpp:145 src/fingerprintmodel.cpp:229
+#: src/fingerprintmodel.cpp:144 src/fingerprintmodel.cpp:228
 #, kde-format
 msgid "No fingerprint device found."
 msgstr "अङ्गुलिचिह्नयन्त्रं न लब्धम्।"
 
-#: src/fingerprintmodel.cpp:302
+#: src/fingerprintmodel.cpp:301
 #, kde-format
 msgid "Retry scanning your finger."
 msgstr "पुनः अङ्गुलीं स्कैन् कर्तुं प्रयतस्व।"
 
-#: src/fingerprintmodel.cpp:304
+#: src/fingerprintmodel.cpp:303
 #, kde-format
 msgid "Swipe too short. Try again."
 msgstr "अति लघु स्वाइप् कुर्वन्तु। पुनः प्रयासं कुरुत।"
 
-#: src/fingerprintmodel.cpp:306
+#: src/fingerprintmodel.cpp:305
 #, kde-format
 msgid "Finger not centered on the reader. Try again."
 msgstr "अङ्गुली पाठकं न केन्द्रीकृता। पुनः प्रयासं कुर्वन्तु।"
 
-#: src/fingerprintmodel.cpp:308
+#: src/fingerprintmodel.cpp:307
 #, kde-format
 msgid "Remove your finger from the reader, and try again."
 msgstr "पाठकात् अङ्गुलीं निष्कास्य पुनः प्रयासं कुर्वन्तु ।"
 
-#: src/fingerprintmodel.cpp:316
+#: src/fingerprintmodel.cpp:315
 #, kde-format
 msgid "Fingerprint enrollment has failed."
 msgstr "अङ्गुलिचिह्ननामाङ्कनं विफलम् अभवत्।"
 
-#: src/fingerprintmodel.cpp:319
+#: src/fingerprintmodel.cpp:318
 #, kde-format
 msgid ""
 "There is no space left for this device, delete other fingerprints to "
 "continue."
 msgstr "अस्य यन्त्रस्य कृते स्थानं नास्ति, अग्रे गन्तुं अन्ये अङ्गुलिचिह्नानि विलोपयन्तु।"
 
-#: src/fingerprintmodel.cpp:322
+#: src/fingerprintmodel.cpp:321
 #, kde-format
 msgid "The device was disconnected."
 msgstr "यन्त्रस्य सम्बन्धः विच्छिन्नः आसीत् ।"
 
-#: src/fingerprintmodel.cpp:327
+#: src/fingerprintmodel.cpp:326
 #, kde-format
 msgid "An unknown error has occurred."
 msgstr "अज्ञातदोषः अभवत् ।"
 
-#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:215
+#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:228
 #, kde-format
 msgid "Change Password"
 msgstr "गुप्तशब्दं परिवर्तयन्तु"
@@ -149,22 +149,22 @@ msgstr "उपयोक्तारं रचयन्तु"
 msgid "Name:"
 msgstr "नामः:"
 
-#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:173
+#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:171
 #, kde-format
 msgid "Username:"
 msgstr "उपयोक्तृनाम :"
 
-#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:190
+#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:203
 #, kde-format
 msgid "Standard"
 msgstr "स्तरीय"
 
-#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:191
+#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:204
 #, kde-format
 msgid "Administrator"
 msgstr "प्रशासकः"
 
-#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:180
+#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:193
 #, kde-format
 msgid "Account type:"
 msgstr "खाताप्रकारः :"
@@ -186,7 +186,7 @@ msgctxt "@action:button Create a new user"
 msgid "Create"
 msgstr "निर्मियताम्"
 
-#: src/ui/CreateUser.qml:109
+#: src/ui/CreateUser.qml:111
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgctxt "@action:button Cancel creating new user"
@@ -326,17 +326,17 @@ msgstr "कृपया अङ्गुलिचिह्नसंवेदक�
 msgid "Configure Fingerprints"
 msgstr "अङ्गुलिचिह्नानि विन्यस्यताम्"
 
-#: src/ui/FingerprintDialog.qml:38
+#: src/ui/FingerprintDialog.qml:39
 #, kde-format
 msgid "Add"
 msgstr "संयोजयति"
 
-#: src/ui/FingerprintDialog.qml:50
+#: src/ui/FingerprintDialog.qml:51
 #, kde-format
 msgid "Cancel"
 msgstr "निरसयतु"
 
-#: src/ui/FingerprintDialog.qml:58
+#: src/ui/FingerprintDialog.qml:59
 #, kde-format
 msgid "Done"
 msgstr "कृतम्‌"
@@ -584,7 +584,23 @@ msgstr "सञ्चिकाः विलोपयन्तु"
 msgid "Change avatar"
 msgstr "अवतार परिवर्तयतु"
 
-#: src/ui/UserDetailsPage.qml:201
+#: src/ui/UserDetailsPage.qml:185
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change your own username while logged in; log out and then log in as "
+"another user to change this account’s username."
+msgstr ""
+
+#: src/ui/UserDetailsPage.qml:186
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change the username of a logged-in user; wait until this user logs "
+"out first."
+msgstr ""
+
+#: src/ui/UserDetailsPage.qml:214
 #, kde-format
 msgid ""
 "Cannot change the account type to Standard unless there is at least one "
@@ -595,32 +611,40 @@ msgstr ""
 "Standard इति परिवर्तयितुं न शक्यते । एकं विना प्रमाणीकरणं असम्भवं भविष्यति अथवा "
 "मूलगुप्तशब्दस्य असुरक्षितप्रयोगस्य आवश्यकता स्यात् ।"
 
-#: src/ui/UserDetailsPage.qml:209
+#: src/ui/UserDetailsPage.qml:222
 #, kde-format
 msgid "Email address:"
 msgstr "ईमेल-सङ्केतः :"
 
-#: src/ui/UserDetailsPage.qml:238
+#: src/ui/UserDetailsPage.qml:254
 #, kde-format
 msgid "Delete files"
 msgstr "सञ्चिकाः विलोपयन्तु"
 
-#: src/ui/UserDetailsPage.qml:245
+#: src/ui/UserDetailsPage.qml:261
 #, kde-format
 msgid "Keep files"
 msgstr "सञ्चिकाः स्थापयन्तु"
 
-#: src/ui/UserDetailsPage.qml:252
+#: src/ui/UserDetailsPage.qml:268
 #, kde-format
 msgid "Delete User…"
 msgstr "उपयोक्तारं विलोपयन्तु..."
 
-#: src/ui/UserDetailsPage.qml:264
+#: src/ui/UserDetailsPage.qml:274
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot delete yourself! Log out and then log in as another user to delete "
+"this user account."
+msgstr ""
+
+#: src/ui/UserDetailsPage.qml:286
 #, kde-format
 msgid "Configure Fingerprint Authentication…"
 msgstr "अङ्गुलिचिह्नप्रमाणीकरणं विन्यस्तं कुर्वन्तु..."
 
-#: src/ui/UserDetailsPage.qml:296
+#: src/ui/UserDetailsPage.qml:318
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

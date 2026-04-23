@@ -7,6 +7,7 @@
 
 #include "historymodel.h"
 
+#include <algorithm>
 #include <chrono>
 #include <zlib.h>
 
@@ -93,7 +94,7 @@ QString computeUuid(const QMimeData *data)
         }
     }
     if (data->hasImage()) {
-        const QImage image = data->imageData().value<QImage>();
+        const auto image = data->imageData().value<QImage>();
         hash.addData(QByteArrayView(reinterpret_cast<const char *>(image.constBits()), image.sizeInBytes()));
     }
     return QString::fromLatin1(hash.result().toHex());
@@ -192,7 +193,7 @@ void HistoryModel::clear()
     }
     QList<QUrl> deletedDataFolders;
     deletedDataFolders.reserve(m_items.size());
-    std::transform(m_items.cbegin(), m_items.cend(), std::back_inserter(deletedDataFolders), [this](const auto &item) {
+    std::ranges::transform(m_items, std::back_inserter(deletedDataFolders), [this](const auto &item) {
         return QUrl::fromLocalFile(m_dbFolder + u"/data/" + item->uuid() + u'/');
     });
     auto job = KIO::del(deletedDataFolders, KIO::HideProgressInfo);
@@ -207,6 +208,7 @@ void HistoryModel::clear()
         m_starredCount = 0;
         endResetModel();
     }
+    m_clip->clear(SystemClipboard::SelectionMode(SystemClipboard::Selection | SystemClipboard::Clipboard));
 }
 
 void HistoryModel::clearNonStarredHistory()
@@ -267,6 +269,7 @@ void HistoryModel::clearNonStarredHistory()
     }
 
     QSqlQuery(u"VACUUM"_s, m_db).exec();
+    m_clip->clear(SystemClipboard::SelectionMode(SystemClipboard::Selection | SystemClipboard::Clipboard));
 }
 
 void HistoryModel::clearHistory()
@@ -369,7 +372,7 @@ QBindable<int> HistoryModel::bindableStarredCount() const
 QVariant HistoryModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_items.size() || index.column() != 0) {
-        return QVariant();
+        return {};
     }
 
     Q_ASSERT_X(m_db.isOpen(), Q_FUNC_INFO, qPrintable(m_db.lastError().text()));
@@ -419,7 +422,7 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const
         // frequent database queries if performance becomes an issue with large histories
         return isItemStarred(item->uuid());
     }
-    return QVariant();
+    return {};
 }
 
 bool HistoryModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -576,7 +579,7 @@ bool HistoryModel::remove(const QString &uuid)
 
 int HistoryModel::indexOf(const QString &uuid) const
 {
-    auto it = std::find_if(m_items.cbegin(), m_items.cend(), [&uuid](const auto &item) {
+    auto it = std::ranges::find_if(m_items, [&uuid](const auto &item) {
         return item->uuid() == uuid;
     });
     return it == m_items.cend() ? -1 : std::distance(m_items.cbegin(), it);
@@ -593,7 +596,7 @@ int HistoryModel::indexOf(const HistoryItem *item) const
 HistoryItemConstPtr HistoryModel::first() const
 {
     if (m_items.empty()) {
-        return HistoryItemConstPtr();
+        return {};
     }
     return m_items[0];
 }

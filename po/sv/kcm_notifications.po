@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
 #
-# SPDX-FileCopyrightText: 2019, 2020, 2021, 2024, 2025 Stefan Asserhäll <stefan.asserhall@gmail.com>
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2024, 2025, 2026 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-05-31 15:16+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-18 08:47+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "Ändra stör ej"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Övriga program"
@@ -90,14 +90,14 @@ msgstr "Välj ljudfil"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Systemunderrättelser"
+msgid "Configure for System…"
+msgstr "Anpassa för system…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Programinställningar"
+msgid "Configure for Applications…"
+msgstr "Anpassa för program…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -207,8 +207,8 @@ msgstr "Nära underrättelseikon"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Egen…"
+msgid "Choose…"
+msgstr "Välj…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -225,33 +225,40 @@ msgstr "Dölj efter:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Visa tidsgränsindikering"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Ytterligare återmatning"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Visa i underrättelser"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Programförlopp:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Behåll meddelanderuta öppen under förlopp"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Underrättelsebrickor:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Visa i aktivitetshanterare"
@@ -263,8 +270,10 @@ msgstr "Meddelanderutans position"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Programinställningar"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Programunderrättelser"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -290,6 +299,18 @@ msgstr ""
 "Välj ett program i listan för att anpassa dess underrättelseinställningar "
 "och beteende"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Systemunderrättelser"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Programinställningar"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Egen…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Normala underrättelser:"
 
@@ -305,18 +326,9 @@ msgstr ""
 
 #, fuzzy
 #~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Programinställningar"
-
-#, fuzzy
-#~| msgid "Application Settings"
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Programinställningar"
-
-#~ msgid "Configure…"
-#~ msgstr "Anpassa…"
 
 #~ msgid "Configure Notifications"
 #~ msgstr "Anpassa underrättelser"

@@ -14,8 +14,6 @@
 #include <KWindowSystem>
 #include <KX11Extras>
 
-#include <PlasmaQuick/PlasmaShellWaylandIntegration>
-
 DashboardWindow::DashboardWindow(QQuickItem *parent)
     : QQuickWindow(parent ? parent->window() : nullptr)
     , m_mainItem(nullptr)
@@ -27,14 +25,9 @@ DashboardWindow::DashboardWindow(QQuickItem *parent)
     setIcon(QIcon::fromTheme(QStringLiteral("plasma")));
 
     connect(&m_theme, &Plasma::Theme::themeChanged, this, &DashboardWindow::updateTheme);
-
-    // this takes care of SkipSwitcher and SkipTaskbar
-    PlasmaShellWaylandIntegration::get(this);
 }
 
-DashboardWindow::~DashboardWindow()
-{
-}
+DashboardWindow::~DashboardWindow() = default;
 
 QQuickItem *DashboardWindow::mainItem() const
 {
@@ -119,9 +112,7 @@ void DashboardWindow::toggle()
         close();
     } else {
         showFullScreen();
-        if (KWindowSystem::isPlatformX11()) {
-            KX11Extras::forceActiveWindow(winId());
-        }
+        KX11Extras::forceActiveWindow(winId());
     }
 }
 
@@ -131,9 +122,7 @@ bool DashboardWindow::event(QEvent *event)
         const QPlatformSurfaceEvent *pSEvent = static_cast<QPlatformSurfaceEvent *>(event);
 
         if (pSEvent->surfaceEventType() == QPlatformSurfaceEvent::SurfaceCreated) {
-            if (KWindowSystem::isPlatformX11()) {
-                KX11Extras::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::SkipSwitcher);
-            }
+            KX11Extras::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::SkipSwitcher);
         }
     } else if (event->type() == QEvent::Show) {
         updateTheme();
@@ -145,7 +134,7 @@ bool DashboardWindow::event(QEvent *event)
         if (m_mainItem) {
             m_mainItem->setVisible(false);
         }
-    } else if (event->type() == QEvent::FocusOut && KWindowSystem::isPlatformX11() && isVisible()) {
+    } else if (event->type() == QEvent::FocusOut && isVisible()) {
         KX11Extras::forceActiveWindow(winId());
     }
 

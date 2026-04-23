@@ -2,78 +2,77 @@
 # Roman Paholik <wizzardsk@gmail.com>, 2013, 2014, 2015, 2017.
 # Mthw <jari_45@hotmail.com>, 2018.
 # Matej Mrenica <matejm98mthw@gmail.com>, 2020, 2021, 2022, 2023.
-# SPDX-FileCopyrightText: 2025 Lucia Mrenica <lucia.mrenica@gmail.com>
+# SPDX-FileCopyrightText: 2026 Lucia Mrenica <lucia.mrenica@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.systemtray\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-21 10:46+0200\n"
+"POT-Creation-Date: 2026-02-19 02:48+0000\n"
+"PO-Revision-Date: 2026-01-31 17:16+0100\n"
 "Last-Translator: Lucia Mrenica <lucia.mrenica@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: package/contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "General"
 msgstr "Všeobecné"
 
-#: package/contents/config/config.qml:18
+#: qml/ConfigGeneral.qml:43
 #, kde-format
-msgid "Entries"
-msgstr "Položky"
+msgctxt "@item:inlistbox Show this System Tray item when relevant"
+msgid "Show when relevant"
+msgstr "Zobraziť, ak je to relevantné"
 
-#: package/contents/ui/ConfigEntries.qml:39
+#: qml/ConfigGeneral.qml:47
 #, kde-format
-msgid "Shown when relevant"
-msgstr "Zobraziť, keď je to relevantné"
-
-#: package/contents/ui/ConfigEntries.qml:43
-#, kde-format
-msgid "Always shown"
+msgctxt "@item:inlistbox Always show this System Tray item"
+msgid "Always show"
 msgstr "Vždy zobraziť"
 
-#: package/contents/ui/ConfigEntries.qml:47
+#: qml/ConfigGeneral.qml:51
 #, kde-format
-msgid "Always hidden"
-msgstr "Vždy skryť"
+msgctxt "@item:inlistbox Show this System Tray item only in the expanded popup"
+msgid "Show only in popup"
+msgstr "Zobraziť len v popup okne"
 
-#: package/contents/ui/ConfigEntries.qml:51
+#: qml/ConfigGeneral.qml:55
 #, kde-format
-msgid "Disabled"
-msgstr "Zakázané"
+msgctxt "@item:inlistbox Never show this System Tray item; disable it"
+msgid "Never show (disabled)"
+msgstr "Nikdy nezobrazovať (vypnuté)"
 
-#: package/contents/ui/ConfigEntries.qml:122
+#: qml/ConfigGeneral.qml:126
 #, kde-format
 msgid "Application Status"
 msgstr "Stav aplikácie"
 
-#: package/contents/ui/ConfigEntries.qml:124
+#: qml/ConfigGeneral.qml:128
 #, kde-format
 msgid "Communications"
 msgstr "Komunikácia"
 
-#: package/contents/ui/ConfigEntries.qml:126
+#: qml/ConfigGeneral.qml:130
 #, kde-format
 msgid "System Services"
 msgstr "Systémové služby"
 
-#: package/contents/ui/ConfigEntries.qml:128
+#: qml/ConfigGeneral.qml:132
 #, kde-format
 msgid "Hardware Control"
 msgstr "Ovládanie hardvéru"
 
-#: package/contents/ui/ConfigEntries.qml:131
+#: qml/ConfigGeneral.qml:135
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Rôzne"
 
-#: package/contents/ui/ConfigEntries.qml:174
+#: qml/ConfigGeneral.qml:172
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
@@ -83,147 +82,185 @@ msgid ""
 "><nl/>Use this setting at your own risk, and do not report issues to KDE or "
 "the app’s author."
 msgstr ""
+"Predtým, ako to urobíte tu, vyhľadajte nastavenie v <application>%1</"
+"application>, aby ste deaktivovali ikonu v paneli úloh. Ikony niektorých "
+"aplikácií v paneli úloh neboli navrhnuté tak, aby sa dali deaktivovať, a "
+"použitie tohto nastavenia môže spôsobiť ich neočakávané správanie.<nl/><nl/"
+">Toto nastavenie používajte na vlastné riziko a nehláste problémy KDE ani "
+"autorovi aplikácie."
 
-#: package/contents/ui/ConfigEntries.qml:177
+#: qml/ConfigGeneral.qml:175
 #, kde-format
 msgctxt "@action:button"
 msgid "I understand the risks"
-msgstr ""
+msgstr "Rozumiem rizikám"
 
-#: package/contents/ui/ConfigEntries.qml:189
+#: qml/ConfigGeneral.qml:187
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
 "Disabling the clipboard is not recommended, as it will cause copied data to "
-"be lost when the application it was copied from is closed.<nl/><nl/>Instead "
-"consider configuring the clipboard to disable its history, or only remember "
-"one item at a time."
+"be lost when the application it was copied from is closed.<nl/><nl/>Only do "
+"this if you’ve manually added a standalone Clipboard widget somewhere else, "
+"or are using a 3rd-party clipboard manager. Also, instead consider "
+"configuring the clipboard to not save history, or to only remember one item "
+"at a time."
 msgstr ""
+"Deaktivácia schránky sa neodporúča, pretože to spôsobí stratu skopírovaných "
+"údajov po zatvorení aplikácie, z ktorej boli skopírované.<nl/><nl/>Urobte to "
+"len v prípade, ak ste ručne pridali samostatný widget schránky niekde inde "
+"alebo používate správcu schránky tretej strany. Zvážte tiež konfiguráciu "
+"schránky tak, aby neukladala históriu alebo si pamätala len jednu položku "
+"naraz."
 
-#: package/contents/ui/ConfigEntries.qml:217
-#, kde-format
-msgctxt "Name of the system tray entry"
-msgid "Entry"
-msgstr "Položka"
+#: qml/ConfigGeneral.qml:196
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"Disabling the Notifications widget is not recommended, as notifications sent "
+"by apps will no longer be shown.<nl/><nl/>Only do this if you’ve manually "
+"added a standalone Notifications widget somewhere else, or are intentionally "
+"using a 3rd-party notification manager to handle notifications."
+msgstr ""
+"Deaktivácia widgetu Oznámenia sa neodporúča, pretože oznámenia odoslané "
+"aplikáciami sa už nebudú zobrazovať.<nl/><nl/>Toto urobte len v prípade, ak "
+"ste ručne pridali samostatný widget Oznámenia niekde inde alebo zámerne "
+"používate správcu oznámení tretej strany na spracovanie oznámení."
 
-#: package/contents/ui/ConfigEntries.qml:224
+#: qml/ConfigGeneral.qml:208
 #, kde-format
-msgid "Visibility"
-msgstr "Viditeľnosť"
+msgctxt "@item:inlistbox Icon size"
+msgid "Scale with Panel height"
+msgstr "Prispôsobiť výške panela"
 
-#: package/contents/ui/ConfigEntries.qml:231
+#: qml/ConfigGeneral.qml:209
 #, kde-format
-msgid "Keyboard Shortcut"
-msgstr "Klávesová skratka"
+msgctxt "@item:inlistbox Icon size"
+msgid "Scale with Panel width"
+msgstr "Prispôsobiť šírke panela"
 
-#: package/contents/ui/ConfigEntries.qml:263
+#: qml/ConfigGeneral.qml:211
 #, kde-format
-msgid "Always show all entries"
-msgstr "Vždy zobraziť všetky položky"
-
-#: package/contents/ui/ConfigGeneral.qml:23
-#, kde-format
-msgctxt "The arrangement of system tray icons in the Panel"
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon size:"
 msgstr "Veľkosť ikon panelu:"
 
-#: package/contents/ui/ConfigGeneral.qml:25
-#, kde-format
-msgid "Small"
-msgstr "Malá"
-
-#: package/contents/ui/ConfigGeneral.qml:32
-#, kde-format
-msgid "Scale with Panel height"
-msgstr "Prispôsobiť výške panelu"
-
-#: package/contents/ui/ConfigGeneral.qml:33
-#, kde-format
-msgid "Scale with Panel width"
-msgstr "Prispôsobiť šírke panelu"
-
-#: package/contents/ui/ConfigGeneral.qml:39
-#, kde-format
-msgid "Automatically enabled when in Touch Mode"
-msgstr "Automaticky spustené v dotykovom režime"
-
-#: package/contents/ui/ConfigGeneral.qml:49
-#, kde-format
-msgctxt "@label:listbox The spacing between system tray icons in the Panel"
-msgid "Panel icon spacing:"
-msgstr "Vzdialenosť medzi ikonami na paneli:"
-
-#: package/contents/ui/ConfigGeneral.qml:52
+#: qml/ConfigGeneral.qml:215 qml/ConfigGeneral.qml:256
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Small"
 msgstr "Malé"
 
-#: package/contents/ui/ConfigGeneral.qml:56
+#: qml/ConfigGeneral.qml:244
+#, kde-format
+msgid "Automatically enabled when in Touch Mode"
+msgstr "Automaticky spustené v dotykovom režime"
+
+#: qml/ConfigGeneral.qml:252
+#, kde-format
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
+msgid "Panel icon spacing:"
+msgstr "Vzdialenosť medzi ikonami na paneli:"
+
+#: qml/ConfigGeneral.qml:260
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Normal"
 msgstr "Normálne"
 
-#: package/contents/ui/ConfigGeneral.qml:60
+#: qml/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Large"
 msgstr "Veľké"
 
-#: package/contents/ui/ConfigGeneral.qml:85
+#: qml/ConfigGeneral.qml:289
 #, kde-format
 msgctxt "@info:usagetip under a combobox when Touch Mode is on"
 msgid "Automatically set to Large when in Touch Mode"
 msgstr "Automaticky nastaviť na Veľké v dotykovom režime"
 
-#: package/contents/ui/ExpandedRepresentation.qml:59
+#: qml/ConfigGeneral.qml:315
+#, kde-format
+msgctxt "@title:column"
+msgid "Entries"
+msgstr "Položky"
+
+#: qml/ConfigGeneral.qml:319
+#, kde-format
+msgctxt "@option:check, This is referring to system tray entries"
+msgid "Always show all"
+msgstr "Vždy zobraziť všetko"
+
+#: qml/ExpandedRepresentation.qml:60
 #, kde-format
 msgctxt "@action:button"
 msgid "Go Back"
 msgstr "Návrat"
 
-#: package/contents/ui/ExpandedRepresentation.qml:71
+#: qml/ExpandedRepresentation.qml:72
 #, kde-format
 msgid "Status and Notifications"
 msgstr "Stav a upozornenia"
 
-#: package/contents/ui/ExpandedRepresentation.qml:140
+#: qml/ExpandedRepresentation.qml:169
 #, kde-format
 msgid "More actions"
 msgstr "Viac akcií"
 
-#: package/contents/ui/ExpandedRepresentation.qml:240
+#: qml/ExpandedRepresentation.qml:255
 #, kde-format
 msgid "Keep Open"
 msgstr "Držať otvorené"
 
-#: package/contents/ui/ExpanderArrow.qml:26
+#: qml/ExpanderArrow.qml:25
 #, kde-format
 msgid "Show all the items in the system tray in a popup"
 msgstr "Zobrazenie všetkých položiek v systémovej lište vo vyskakovacom okne"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Close popup"
 msgstr "Zavrieť okno"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Show hidden icons"
 msgstr "Zobraziť skryté ikony"
 
-#: package/contents/ui/HiddenItemsView.qml:42
+#: qml/HiddenItemsView.qml:37
 #, kde-format
 msgctxt "@info:whatsthis accessible description for popup grid"
 msgid "Grid with %1 items in %2 columns"
-msgstr ""
+msgstr "Tabuľka s %1 položkami v %2 stĺpcoch"
 
-#: package/contents/ui/HiddenItemsView.qml:46
+#: qml/HiddenItemsView.qml:41
 #, kde-format
 msgctxt "Some letters with tall characters, ascenders, descenders, etc"
 msgid "AILlmyjgGJP"
 msgstr "AILlmyjgGJP"
+
+#~ msgid "Always hidden"
+#~ msgstr "Vždy skryť"
+
+#~ msgid "Disabled"
+#~ msgstr "Zakázané"
+
+#~ msgid "Small"
+#~ msgstr "Malá"
+
+#~ msgctxt "Name of the system tray entry"
+#~ msgid "Entry"
+#~ msgstr "Položka"
+
+#~ msgid "Visibility"
+#~ msgstr "Viditeľnosť"
+
+#~ msgid "Keyboard Shortcut"
+#~ msgstr "Klávesová skratka"
+
+#~ msgid "Always show all entries"
+#~ msgstr "Vždy zobraziť všetky položky"
 
 #~ msgid "Expand System Tray"
 #~ msgstr "Rozbaliť systémovú listu"

@@ -10,6 +10,7 @@
 
 #include <QBindable>
 #include <QList>
+#include <QSize>
 #include <QSortFilterProxyModel>
 
 #include "sortingmode.h"
@@ -19,7 +20,8 @@ class SlideFilterModel : public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    explicit SlideFilterModel(const QBindable<bool> &usedInConfig,
+    explicit SlideFilterModel(const QBindable<QSize> &targetSize,
+                              const QBindable<bool> &usedInConfig,
                               const QBindable<SortingMode::Mode> &sortingMode,
                               const QBindable<bool> &slideshowFoldersFirst,
                               QObject *parent);
@@ -31,9 +33,12 @@ public:
     void setSourceModel(QAbstractItemModel *sourceModel) override;
     void invalidate();
     void invalidateFilter();
+    void swapFirstWithRandom();
 
     Q_INVOKABLE int indexOf(const QString &path);
     Q_INVOKABLE void openContainingFolder(int rowIndex);
+    Q_INVOKABLE void selectAllSlides();
+    Q_INVOKABLE void deselectAllSlides();
 
 private:
     void buildRandomOrder();
@@ -45,6 +50,7 @@ private:
     QPropertyNotifier m_slideshowFoldersFirstNotifier;
     Q_OBJECT_BINDABLE_PROPERTY_WITH_ARGS(SlideFilterModel, bool, m_usedInConfig, true)
     QPropertyNotifier m_usedInConfigNotifier;
+    Q_OBJECT_BINDABLE_PROPERTY(SlideFilterModel, QSize, m_targetSize)
     std::random_device m_randomDevice;
     std::mt19937 m_random;
 };

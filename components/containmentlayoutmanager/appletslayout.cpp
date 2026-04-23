@@ -19,6 +19,7 @@
 #include <Plasma/Containment>
 #include <Plasma/Corona>
 #include <PlasmaQuick/AppletQuickItem>
+#include <algorithm>
 #include <chrono>
 
 using namespace std::chrono_literals;
@@ -42,8 +43,8 @@ AppletsLayout::AppletsLayout(QQuickItem *parent)
         if (!m_containment) {
             return;
         }
-        // We can't save the layout during bootup, for performance reasons and to avoid race consitions as much as possible, so if we needto save and still
-        // starting up, don't actually savenow, but we will when Corona::startupCompleted is emitted
+        // We can't save the layout during boot-up, for performance reasons and to avoid race conditions as much as possible, so if we
+        // need to save and still starting up, don't actually save now, but we will when Corona::startupCompleted is emitted
 
         if (!m_configKey.isEmpty() && m_containment && m_containment->corona()->isStartupCompleted()) {
             const QString serializedConfig = m_layoutManager->serializeLayout();
@@ -105,9 +106,7 @@ AppletsLayout::AppletsLayout(QQuickItem *parent)
     });
 }
 
-AppletsLayout::~AppletsLayout()
-{
-}
+AppletsLayout::~AppletsLayout() = default;
 
 Plasma::Containment *AppletsLayout::containment() const
 {
@@ -548,7 +547,7 @@ void AppletsLayout::componentComplete()
     // layout all extra non applet items
     if (width() > 0 && height() > 0) {
         for (auto *child : childItems()) {
-            ItemContainer *item = qobject_cast<ItemContainer *>(child);
+            auto *item = qobject_cast<ItemContainer *>(child);
             if (item && item != m_placeHolder && !m_layoutManager->itemIsManaged(item)) {
                 m_layoutManager->positionItemAndAssign(item);
             }
@@ -604,7 +603,7 @@ void AppletsLayout::mousePressEvent(QMouseEvent *event)
     // If any container is in edit mode, accept the press event so we can
     // cancel the edit mode. If not, don't accept the event so it can be
     // passed on to other parts.
-    if (const auto children = childItems(); std::none_of(children.begin(), children.end(), [](QQuickItem *child) {
+    if (const auto children = childItems(); std::ranges::none_of(children, [](QQuickItem *child) {
             auto container = qobject_cast<ItemContainer *>(child);
             return container ? container->editMode() : false;
         })) {
@@ -808,7 +807,7 @@ void AppletsLayout::handleReleaseEvent(const QPointF &scenePosition)
 
     // Click any empty area to exit the edit mode
     for (const auto children = childItems(); auto *child : children) {
-        if (ItemContainer *item = qobject_cast<ItemContainer *>(child); item && item != m_placeHolder) {
+        if (auto *item = qobject_cast<ItemContainer *>(child); item && item != m_placeHolder) {
             item->setEditMode(false);
         }
     }

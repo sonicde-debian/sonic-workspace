@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the plasma-workspace package.
 #
 # Volkan Gezer <volkangezer@gmail.com>, 2022.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-25 09:54+0300\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-13 17:59+0300\n"
 "Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "Rahatsız Etmeyin kipini aç/kapat"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Başka Uygulamalar"
@@ -92,14 +92,14 @@ msgstr "Ses dosyası seç"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Sistem Bildirimleri"
+msgid "Configure for System…"
+msgstr "Sistem için Yapılandır…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Uygulama Ayarları"
+msgid "Configure for Applications…"
+msgstr "Uygulamalar için Yapılandır…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -208,8 +208,8 @@ msgstr "Bildirim simgesi yakınında"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Özel…"
+msgid "Choose…"
+msgstr "Seç…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -226,33 +226,40 @@ msgstr "Şundan sonra gizle:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Zaman aşımı göstergesini göster"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Ek Geri Bildirim"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Bildirimlerde göster"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Uygulama ilerlemesi:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "İlerleme sırasında açılır pencereyi açık tut"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Bildirim rozetleri:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Görev yöneticisinde göster"
@@ -264,8 +271,10 @@ msgstr "Açılır Pencere Konumu"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Uygulama Ayarları"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Uygulama Bildirimleri"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -290,6 +299,18 @@ msgid ""
 msgstr ""
 "Bildirim ayarlarını ve davranışlarını yapılandırmak için listeden bir "
 "uygulama seçin."
+
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Sistem Bildirimleri"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Uygulama Ayarları"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Özel…"
 
 #~ msgid "Normal notifications:"
 #~ msgstr "Olağan bildirimler:"

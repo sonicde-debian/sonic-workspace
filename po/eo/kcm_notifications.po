@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2024-07-27 14:20+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Baskuligi ne ĝeni"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Aliaj Aplikoj"
@@ -93,14 +93,15 @@ msgstr "Elekti sondosieron"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Sistemsciigoj"
+msgid "Configure for System…"
+msgstr ""
 
 #: ui/main.qml:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Other Applications"
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Aplikaj Agordoj"
+msgid "Configure for Applications…"
+msgstr "Aliaj Aplikoj"
 
 #: ui/main.qml:96
 #, kde-format
@@ -209,7 +210,7 @@ msgstr "Proksime de sciiga piktogramo"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
+msgid "Choose…"
 msgstr ""
 
 #: ui/main.qml:278 ui/main.qml:294
@@ -226,34 +227,43 @@ msgid "Hide after:"
 msgstr "Kaŝi post:"
 
 #: ui/main.qml:306
+#, fuzzy, kde-format
+#| msgctxt "Show application jobs in notification widget"
+#| msgid "Show in notifications"
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Montru en sciigoj"
+
+#: ui/main.qml:318
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Pliaj rimarkoj"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Montru en sciigoj"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Progreso de aplikaĵo:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Tenu la ŝprucfenestron malfermita dum progreso"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Sciiginsignoj:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Montru en taskadministranto"
@@ -264,8 +274,11 @@ msgid "Popup Position"
 msgstr "Popup Pozicio"
 
 #: ui/SourcesPage.qml:20
-#, kde-format
-msgid "Application Settings"
+#, fuzzy, kde-format
+#| msgid "Application Settings"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
 msgstr "Aplikaj Agordoj"
 
 #: ui/SourcesPage.qml:104
@@ -290,6 +303,14 @@ msgid ""
 "and behavior"
 msgstr ""
 "Elektu aplikaĵon el la listo por agordi ĝiajn sciigajn agordojn kaj konduton"
+
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Sistemsciigoj"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Aplikaj Agordoj"
 
 #~ msgid "Normal notifications:"
 #~ msgstr "Normalaj sciigoj:"

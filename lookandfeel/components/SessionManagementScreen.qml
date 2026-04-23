@@ -4,12 +4,12 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.15
+import QtQuick
 
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
-import org.kde.plasma.components 3.0 as PlasmaComponents3
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.plasma.components as PlasmaComponents3
+import org.kde.kirigami as Kirigami
 
 FocusScope {
     id: root
@@ -148,10 +148,17 @@ FocusScope {
             Layout.alignment: Qt.AlignHCenter
             implicitHeight: actionItemsLayout.implicitHeight
             implicitWidth: actionItemsLayout.implicitWidth
-            Row { //deliberately not rowlayout as I'm not trying to resize child items
+            GridLayout {
                 id: actionItemsLayout
-                anchors.verticalCenter: parent.top
-                spacing: Kirigami.Units.largeSpacing
+                anchors.centerIn: parent
+
+                readonly property int spacing: Kirigami.Units.largeSpacing
+                rowSpacing: spacing
+                columnSpacing: spacing
+
+                readonly property int buttonCount: visibleChildren.length
+                readonly property int singleRowWidth: (children[0].implicitWidth * buttonCount) + (spacing * (buttonCount - 1))
+                columns: singleRowWidth < root.width ? buttonCount : Math.ceil(buttonCount / 2)
             }
         }
         Item {

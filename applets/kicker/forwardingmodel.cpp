@@ -11,20 +11,18 @@ ForwardingModel::ForwardingModel(QObject *parent)
 {
 }
 
-ForwardingModel::~ForwardingModel()
-{
-}
+ForwardingModel::~ForwardingModel() = default;
 
 QString ForwardingModel::description() const
 {
     if (!m_sourceModel) {
-        return QString();
+        return {};
     }
 
-    AbstractModel *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (!abstractModel) {
-        return QString();
+        return {};
     }
 
     return abstractModel->description();
@@ -73,7 +71,7 @@ QModelIndex ForwardingModel::index(int row, int column, const QModelIndex &paren
     Q_UNUSED(parent)
 
     if (!m_sourceModel) {
-        return QModelIndex();
+        return {};
     }
 
     return createIndex(row, column);
@@ -83,13 +81,13 @@ QModelIndex ForwardingModel::parent(const QModelIndex &index) const
 {
     Q_UNUSED(index)
 
-    return QModelIndex();
+    return {};
 }
 
 QVariant ForwardingModel::data(const QModelIndex &index, int role) const
 {
     if (!m_sourceModel) {
-        return QVariant();
+        return {};
     }
 
     return m_sourceModel->data(indexToSourceIndex(index), role);
@@ -107,7 +105,7 @@ int ForwardingModel::rowCount(const QModelIndex &parent) const
 QModelIndex ForwardingModel::indexToSourceIndex(const QModelIndex &index) const
 {
     if (!m_sourceModel || !index.isValid()) {
-        return QModelIndex();
+        return {};
     }
 
     return m_sourceModel->index(index.row(), index.column(), index.parent().isValid() ? indexToSourceIndex(index.parent()) : QModelIndex());
@@ -119,7 +117,7 @@ bool ForwardingModel::trigger(int row, const QString &actionId, const QVariant &
         return false;
     }
 
-    AbstractModel *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (!abstractModel) {
         return false;
@@ -131,13 +129,13 @@ bool ForwardingModel::trigger(int row, const QString &actionId, const QVariant &
 QString ForwardingModel::labelForRow(int row)
 {
     if (!m_sourceModel) {
-        return QString();
+        return {};
     }
 
-    AbstractModel *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (!abstractModel) {
-        return QString();
+        return {};
     }
 
     return abstractModel->labelForRow(row);
@@ -149,7 +147,7 @@ AbstractModel *ForwardingModel::modelForRow(int row)
         return nullptr;
     }
 
-    AbstractModel *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (!abstractModel) {
         return nullptr;
@@ -160,7 +158,7 @@ AbstractModel *ForwardingModel::modelForRow(int row)
 
 AbstractModel *ForwardingModel::favoritesModel()
 {
-    AbstractModel *sourceModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *sourceModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (sourceModel) {
         return sourceModel->favoritesModel();
@@ -175,7 +173,7 @@ int ForwardingModel::separatorCount() const
         return 0;
     }
 
-    AbstractModel *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
+    auto *abstractModel = qobject_cast<AbstractModel *>(m_sourceModel);
 
     if (!abstractModel) {
         return 0;

@@ -12,6 +12,8 @@ import QtQuick.Layouts
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.clock
+import org.kde.plasma.private.digitalclock
 
 Item {
     id: toolTipContentItem
@@ -21,7 +23,7 @@ Item {
     implicitWidth: mainLayout.implicitWidth + Kirigami.Units.gridUnit
     implicitHeight: mainLayout.implicitHeight + Kirigami.Units.gridUnit
 
-    LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
+    LayoutMirroring.enabled: Application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
     Kirigami.Theme.colorSet: Kirigami.Theme.Window
@@ -35,10 +37,16 @@ Item {
     Accessible.description: {
         const description = tooltipSubLabelText.visible ? [tooltipSubLabelText.text] : [];
         for (let i = 0; i < timeZoneRepeater.count; i += 2) {
-            description.push(`${timeZoneRepeater.itemAt(i).text}: ${timeZoneRepeater.itemAt(i + 1).text}`);
+            description.push(`${(timeZoneRepeater.itemAt(i) as PlasmaComponents.Label).text}: ${(timeZoneRepeater.itemAt(i + 1) as PlasmaComponents.Label).text}`);
         }
         return description.join('; ');
     }
+
+    Clock {
+        id: clock
+        timeZone: Plasmoid.configuration.lastSelectedTimezone
+    }
+
 
     ColumnLayout {
         id: mainLayout
@@ -60,7 +68,7 @@ Item {
             level: 3
             elide: Text.ElideRight
             // keep this consistent with toolTipMainText in analog-clock
-            property var mainText: clocks.visible ? Qt.formatDate(root.currentDateTimeInSelectedTimeZone, Qt.locale(), Locale.LongFormat) : Qt.locale().toString(root.currentDateTimeInSelectedTimeZone, "dddd")
+            property var mainText: clocks.visible ? Qt.formatDate(clock.dateTime, Qt.locale(), Locale.LongFormat) : Qt.locale().toString(clock.dateTime, "dddd")
             property bool anyTimezoneSet: !!mainText
             text: anyTimezoneSet ? mainText : i18nc("@label main text shown in digital clock's tooltip when timezone is missing", "Time zone is not set")
             textFormat: Text.PlainText
@@ -76,11 +84,11 @@ Item {
 
             property var subText: {
                 if (Plasmoid.configuration.showSeconds === 0) {
-                    return Qt.formatDate(root.currentDateTimeInSelectedTimeZone, Qt.locale(), root.dateFormatString);
+                    return Qt.formatDate(clock.dateTime, Qt.locale(), root.dateFormatString);
                 } else {
                     return "%1\n%2"
-                        .arg(Qt.formatTime(root.currentDateTimeInSelectedTimeZone, Qt.locale(), Locale.LongFormat))
-                        .arg(Qt.formatDate(root.currentDateTimeInSelectedTimeZone, Qt.locale(), root.dateFormatString))
+                        .arg(Qt.formatTime(clock.dateTime, Qt.locale(), Locale.LongFormat))
+                        .arg(Qt.formatDate(clock.dateTime, Qt.locale(), root.dateFormatString))
                 }
             }
             text: tooltipMaintext.anyTimezoneSet ? subText : i18nc("@label sub text shown in digital clock's tooltip when timezone is missing", "Click the clock icon to open Date & Time settings and set a time zone.")
@@ -121,6 +129,7 @@ Item {
                     }, [])
 
                 PlasmaComponents.Label {
+                    id: label
                     required property int index
                     required property string modelData
 
@@ -128,13 +137,20 @@ Item {
                     Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
                     text: {
                         if (index % 2 === 0) {
-                            return i18nc("@label %1 is a city or time zone name", "%1:", root.displayStringForTimeZone(modelData));
+                            return i18nc("@label %1 is a city or time zone name", "%1:", Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone));
                         } else {
-                            return timeForZone(modelData, Plasmoid.configuration.showSeconds > 0);
+                            return formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds > 0);
                         }
                     }
+                    Clock {
+                        id: tzClock
+                        timeZone: label.modelData
+                        trackSeconds: Plasmoid.configuration.showSeconds
+                    }
+
                     textFormat: Text.PlainText
-                    font.weight: root.timeZoneResolvesToLastSelectedTimeZone(modelData) ? Font.Bold : Font.Normal
+
+                    font.weight: tzClock.timeZone == root.currentTimeZone ? Font.Bold : Font.Normal
                     font.features: {
                         if (index % 2 === 1) {
                             return { "tnum": 1 }

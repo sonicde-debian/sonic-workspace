@@ -7,6 +7,7 @@
 
 #include "outputorderwatcher.h"
 
+#include <algorithm>
 #include <ranges>
 #include <version>
 
@@ -15,58 +16,12 @@
 
 #include <KWindowSystem>
 
-#include "qwayland-kde-output-order-v1.h"
-#include <QtWaylandClient/QWaylandClientExtension>
-#include <QtWaylandClient/QtWaylandClientVersion>
-
-#if HAVE_X11
 #include <X11/Xlib.h>
 #include <xcb/randr.h>
 #include <xcb/xcb_event.h>
-#endif // HAVE_X11
 
 template<typename T>
 using ScopedPointer = QScopedPointer<T, QScopedPointerPodDeleter>;
-
-class WaylandOutputOrder : public QWaylandClientExtensionTemplate<WaylandOutputOrder, &QtWayland::kde_output_order_v1::destroy>,
-                           public QtWayland::kde_output_order_v1
-{
-    Q_OBJECT
-public:
-    WaylandOutputOrder(QObject *parent)
-        : QWaylandClientExtensionTemplate(1)
-    {
-        setParent(parent);
-        initialize();
-    }
-
-protected:
-    void kde_output_order_v1_output(const QString &outputName) override
-    {
-        if (m_done) {
-            m_outputOrder.clear();
-            m_done = false;
-        }
-        m_outputOrder.append(outputName);
-    }
-
-    void kde_output_order_v1_done() override
-    {
-        // If no output arrived it means we don't have *any* usable output
-        if (m_done) {
-            m_outputOrder.clear();
-        }
-        m_done = true;
-        Q_EMIT outputOrderChanged(m_outputOrder);
-    }
-
-Q_SIGNALS:
-    void outputOrderChanged(const QStringList &outputName);
-
-private:
-    QStringList m_outputOrder;
-    bool m_done = true;
-};
 
 OutputOrderWatcher::OutputOrderWatcher(QObject *parent)
     : QObject(parent)
@@ -89,16 +44,7 @@ void OutputOrderWatcher::useFallback(bool fallback, const char *reason)
 
 OutputOrderWatcher *OutputOrderWatcher::instance(QObject *parent)
 {
-#if HAVE_X11
-    if (KWindowSystem::isPlatformX11()) {
-        return new X11OutputOrderWatcher(parent);
-    } else
-#endif
-        if (KWindowSystem::isPlatformWayland()) {
-        return new WaylandOutputOrderWatcher(parent);
-    }
-    // return default impl that does something at least
-    return new OutputOrderWatcher(parent);
+    return new X11OutputOrderWatcher(parent);
 }
 
 void OutputOrderWatcher::refresh()
@@ -125,7 +71,7 @@ void OutputOrderWatcher::refresh()
             return c1 < c2;
         }
     };
-    std::sort(pendingOutputOrder.begin(), pendingOutputOrder.end(), outputLess);
+    std::ranges::sort(pendingOutputOrder, outputLess);
 
     if (m_outputOrder != pendingOutputOrder) {
         m_outputOrder = pendingOutputOrder;
@@ -139,7 +85,6 @@ QStringList OutputOrderWatcher::outputOrder() const
     return m_outputOrder;
 }
 
-#if HAVE_X11
 X11OutputOrderWatcher::X11OutputOrderWatcher(QObject *parent)
     : OutputOrderWatcher(parent)
     , m_x11Interface(qGuiApp->nativeInterface<QNativeInterface::QX11Application>())
@@ -235,10 +180,10 @@ void X11OutputOrderWatcher::refresh()
     const auto screens = qGuiApp->screens();
     std::vector<QString> screenNames;
     screenNames.reserve(screens.size());
-    std::transform(screens.begin(), screens.end(), std::back_inserter(screenNames), [](const QScreen *screen) {
+    std::ranges::transform(screens, std::back_inserter(screenNames), [](const QScreen *screen) {
         return screen->name();
     });
-    const bool isScreenPresent = std::all_of(orderMap.cbegin(), orderMap.cend(), [&screenNames](const auto &pr) {
+    const bool isScreenPresent = std::ranges::all_of(orderMap, [&screenNames](const auto &pr) {
         return std::ranges::find(screenNames, std::get<QString>(pr)) != screenNames.end();
     });
     if (!isScreenPresent) [[unlikely]] {
@@ -249,7 +194,7 @@ void X11OutputOrderWatcher::refresh()
         return;
     }
 
-    std::sort(orderMap.begin(), orderMap.end());
+    std::ranges::sort(orderMap);
 
     // Rather verbose ifdef due to clang support of ranges API
 #if defined(__clang__) && __clang_major__ < 16
@@ -282,7 +227,7 @@ bool X11OutputOrderWatcher::nativeEventFilter(const QByteArray &eventType, void 
         return false;
     }
 
-    xcb_generic_event_t *ev = static_cast<xcb_generic_event_t *>(message);
+    auto *ev = static_cast<xcb_generic_event_t *>(message);
 
     const auto responseType = XCB_EVENT_RESPONSE_TYPE(ev);
 
@@ -301,7 +246,7 @@ bool X11OutputOrderWatcher::nativeEventFilter(const QByteArray &eventType, void 
         } else if (randrEvent->subCode == XCB_RANDR_NOTIFY_OUTPUT_CHANGE) {
             // When the ast screen is removed, its qscreen becomes name ":0.0" as the fake screen, but nothing happens really,
             // screenpool doesn't notice (and looking at the assert_x there are, that was expected"
-            // then the screen gets connected again, a new screen gets conencted, the old 0.0 one
+            // then the screen gets connected again, a new screen gets connected, the old 0.0 one
             // gets disconnected, but the screen order stuff doesn't say anything as it's still
             // the same connector name as before
             // so screenpool finds itself with an empty screenorder
@@ -322,65 +267,6 @@ void X11OutputOrderWatcher::roundtrip() const
     ScopedPointer<xcb_get_input_focus_reply_t> sync(xcb_get_input_focus_reply(m_x11Interface->connection(), cookie, &error));
     if (error) {
         free(error);
-    }
-}
-#endif
-
-WaylandOutputOrderWatcher::WaylandOutputOrderWatcher(QObject *parent)
-    : OutputOrderWatcher(parent)
-{
-    // Asking for primaryOutputName() before this happened, will return qGuiApp->primaryScreen()->name() anyways, so set it so the outputOrderChanged will
-    // have parameters that are coherent
-    OutputOrderWatcher::refresh();
-
-    auto outputListManagement = new WaylandOutputOrder(this);
-    m_orderProtocolPresent = outputListManagement->isActive();
-    if (!m_orderProtocolPresent) {
-        useFallback(true, "kde_output_order_v1 protocol is not available");
-        return;
-    }
-    connect(outputListManagement, &WaylandOutputOrder::outputOrderChanged, this, [this](const QStringList &order) {
-        m_pendingOutputOrder = order;
-
-        if (hasAllScreens()) {
-            if (m_pendingOutputOrder != m_outputOrder) {
-                m_outputOrder = m_pendingOutputOrder;
-                Q_EMIT outputOrderChanged(m_outputOrder);
-            }
-        }
-        // otherwise wait for next QGuiApp screenAdded/removal
-        // to keep things in sync
-    });
-}
-
-bool WaylandOutputOrderWatcher::hasAllScreens() const
-{
-    // for each name in our ordered list, find a screen with that name
-    const auto screens = qApp->screens();
-    const auto screenNames = screens | std::views::transform(&QScreen::name);
-    return std::ranges::all_of(std::as_const(m_pendingOutputOrder), [&screenNames](const QString &name) {
-#ifdef __cpp_lib_ranges_contains
-        return std::ranges::contains(screenNames, name);
-#else
-            return std::ranges::find(screenNames, name) != screenNames.end();
-#endif
-    });
-}
-
-void WaylandOutputOrderWatcher::refresh()
-{
-    if (!m_orderProtocolPresent) {
-        OutputOrderWatcher::refresh();
-        return;
-    }
-
-    if (!hasAllScreens()) {
-        return;
-    }
-
-    if (m_outputOrder != m_pendingOutputOrder) {
-        m_outputOrder = m_pendingOutputOrder;
-        Q_EMIT outputOrderChanged(m_outputOrder);
     }
 }
 

@@ -17,6 +17,7 @@ Name[es]=Guardar sesión de Plasma
 Name[eu]=Plasmaren saioa gorde
 Name[fi]=Plasma-istunnon tallennus
 Name[fr]=Enregistrement de l'espace de travail de Plasma
+Name[ga]=Plasma Seisiún Sábhála
 Name[gl]=Garda de sesión de Plasma
 Name[he]=שמירת הפעלת פלזמה
 Name[hu]=Plasma munkamenetmentés
@@ -52,6 +53,3 @@ Type=Application
 X-KDE-StartupNotify=false
 OnlyShowIn=KDE;
 NoDisplay=true
-X-KDE-Wayland-Interfaces=org_kde_plasma_window_management
-
-

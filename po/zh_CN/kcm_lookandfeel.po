@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-05 00:45+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -26,6 +26,12 @@ msgstr "KDE 中国, Guo Yunhe, Tyson Tan"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde-china@kde.org, i@guoyunhe.me, tds00@qq.com"
+
+#: filedialognamefilters.cpp:28
+#, kde-format
+msgctxt "Name filter for file dialogs: File type (file extension wildcards)"
+msgid "Image Files (%1)"
+msgstr "图像文件 (%1)"
 
 #. i18n: ectx: label, entry (lookAndFeelPackage), group (KDE)
 #: lookandfeelsettings.kcfg:9
@@ -214,13 +220,71 @@ msgstr "移除主题"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Cannot delete the active theme"
-msgstr "无法删除活动主题"
+msgstr "无法删除已激活的主题"
 
 #: ui/LookAndFeelSelector.qml:61 ui/StaticLookAndFeel.qml:79
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Cannot delete system-installed themes"
 msgstr "无法删除系统安装的主题"
+
+#: ui/LookAndFeelSnapshot.qml:16
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Current Theme"
+msgstr "保存当前主题"
+
+#: ui/LookAndFeelSnapshot.qml:25
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Plasma’s current appearance and theme settings will be saved in a new global "
+"theme."
+msgstr "Plasma 的当前外观和主题设置将保存在新的全局主题中。"
+
+#: ui/LookAndFeelSnapshot.qml:69
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "Add a preview image…"
+msgstr "添加预览图像…"
+
+#: ui/LookAndFeelSnapshot.qml:79
+#, kde-format
+msgctxt "@action:button Configure day-night cycle times"
+msgid "Take a screenshot…"
+msgstr "截图…"
+
+#: ui/LookAndFeelSnapshot.qml:86
+#, kde-format
+msgctxt "@label:textbox Name of new global theme that will be created"
+msgid "Name:"
+msgstr "名称："
+
+#: ui/LookAndFeelSnapshot.qml:92
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "Type in name…"
+msgstr "输入名称…"
+
+#: ui/LookAndFeelSnapshot.qml:101
+#, kde-format
+msgctxt ""
+"@action:button Confirm creating new global theme from the user's current "
+"appearance settings"
+msgid "Confirm"
+msgstr "确认"
+
+#: ui/LookAndFeelSnapshot.qml:113
+#, kde-format
+msgctxt "@info"
+msgid "A global theme with this name or id already exists."
+msgstr "已存在同名全局主题。"
+
+#: ui/LookAndFeelSnapshot.qml:127
+#, kde-format
+msgctxt "@title:title"
+msgid "Choose a Preview Image"
+msgstr "选择预览图像"
 
 #: ui/main.qml:22
 #, kde-format
@@ -229,6 +293,12 @@ msgid "Switch to Dark Mode at Night"
 msgstr "夜间切换到深色模式"
 
 #: ui/main.qml:40
+#, kde-format
+msgctxt "@action:button"
+msgid "Save Current Theme…"
+msgstr "保存当前主题…"
+
+#: ui/main.qml:45
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Get New…"

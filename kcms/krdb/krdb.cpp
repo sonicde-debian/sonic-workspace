@@ -51,12 +51,10 @@
 #include <KUpdateLaunchEnvironmentJob>
 
 #include "krdb.h"
-#if HAVE_X11
 #include <X11/Xlib.h>
 #include <private/qtx11extras_p.h>
 #include <xcb/xcb.h>
 #include <xcb/xcb_cursor.h>
-#endif
 
 #include <filesystem>
 
@@ -330,15 +328,8 @@ int xftDpi()
     KConfig cfg(QStringLiteral("kcmfonts"));
     int dpi = 0;
 
-    if (KWindowSystem::isPlatformWayland()) {
-        KConfig cfg(QStringLiteral("kwinrc"));
-        KConfigGroup xwaylandGroup = cfg.group(QStringLiteral("Xwayland"));
-        qreal scale = xwaylandGroup.readEntry("Scale", 1.0);
-        dpi = scale * 96;
-    } else {
-        KConfigGroup fontsCfg(&cfg, u"General"_s);
-        dpi = fontsCfg.readEntry(QStringLiteral("forceFontDPI"), 96);
-    }
+    KConfigGroup fontsCfg(&cfg, u"General"_s);
+    dpi = fontsCfg.readEntry(QStringLiteral("forceFontDPI"), 96);
 
     return dpi;
 }
@@ -386,12 +377,6 @@ void runRdb(unsigned int flags)
     KConfigGroup mousecfg(KSharedConfig::openConfig(QStringLiteral("kcminputrc")), u"Mouse"_s);
     QString theme = mousecfg.readEntry("cursorTheme", QStringLiteral("breeze_cursors"));
     int cursorSize = mousecfg.readEntry("cursorSize", 24);
-
-    if (KWindowSystem::isPlatformWayland()) {
-        KConfig kwinConfig(QStringLiteral("kwinrc"));
-        KConfigGroup xwaylandGroup(&kwinConfig, u"Xwayland"_s);
-        cursorSize *= xwaylandGroup.readEntry("Scale", 1.0);
-    }
 
     QString contents;
     contents += "Xcursor.theme: "_L1 + theme + u'\n';
@@ -469,7 +454,6 @@ void runRdb(unsigned int flags)
 #endif
     proc.execute();
 
-#if HAVE_X11
     xcb_connection_t *connection = xcb_connect(nullptr, nullptr);
     if (!xcb_connection_has_error(connection)) {
         xcb_screen_t *screen = xcb_setup_roots_iterator(xcb_get_setup(connection)).data;
@@ -493,14 +477,13 @@ void runRdb(unsigned int flags)
     }
 
     xcb_disconnect(connection);
-#endif
 
     applyGtkStyles(1);
     applyGtkStyles(2);
 
     /* Qt exports */
     if (exportQtColors || exportQtSettings) {
-        QSettings *settings = new QSettings(QStringLiteral("Trolltech"));
+        auto *settings = new QSettings(QStringLiteral("Trolltech"));
 
         if (exportQtColors)
             applyQtColors(kglobalcfg, *settings, newPal); // For kcmcolors
@@ -509,7 +492,6 @@ void runRdb(unsigned int flags)
             applyQtSettings(kglobalcfg, *settings); // For kcmstyle
 
         delete settings;
-#if HAVE_X11
         if (qApp->platformName() == QLatin1String("xcb")) {
             // We let KIPC take care of ourselves, as we are in a KDE app with
             // QApp::setDesktopSettingsAware(false);
@@ -539,6 +521,5 @@ void runRdb(unsigned int flags)
                             (unsigned char *)stamp.buffer().data(),
                             stamp.buffer().size());
         }
-#endif
     }
 }

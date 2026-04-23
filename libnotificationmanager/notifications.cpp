@@ -10,8 +10,9 @@
 #include <QDebug>
 #include <QFile>
 #include <QMetaEnum>
+#include <QPointer>
+
 #include <canberra.h>
-#include <memory>
 
 #include <KConfig>
 #include <KConfigGroup>
@@ -108,6 +109,8 @@ public:
     ca_context *canberraContext = nullptr;
     LimitedRowCountProxyModel *limiterModel = nullptr;
 
+    QPointer<KNotification> inhibitionSummaryNotification;
+
 private:
     Notifications *const q;
 };
@@ -117,9 +120,7 @@ Notifications::Private::Private(Notifications *q)
 {
 }
 
-Notifications::Private::~Private()
-{
-}
+Notifications::Private::~Private() = default;
 
 void Notifications::Private::initSourceModels()
 {
@@ -259,10 +260,8 @@ void Notifications::Private::initProxyModels()
     } else {
         sortModel->setSourceModel(filterModel);
         limiterModel->setSourceModel(sortModel);
-        delete flattenModel;
-        flattenModel = nullptr;
-        delete groupingModel;
-        groupingModel = nullptr;
+        delete std::exchange(flattenModel, nullptr);
+        delete std::exchange(groupingModel, nullptr);
     }
 
     q->setSourceModel(limiterModel);
@@ -407,7 +406,7 @@ QModelIndex Notifications::Private::mapFromModel(const QModelIndex &idx) const
 std::shared_ptr<Settings> Notifications::Private::settings() const
 {
     static std::weak_ptr<Settings> s_instance;
-    if (!s_instance.expired()) {
+    if (s_instance.expired()) {
         std::shared_ptr<Settings> ptr(new Settings());
         s_instance = ptr;
         return ptr;
@@ -681,7 +680,7 @@ QDateTime Notifications::lastRead() const
     if (d->notificationsModel) {
         return d->notificationsModel->lastRead();
     }
-    return QDateTime();
+    return {};
 }
 
 void Notifications::setLastRead(const QDateTime &lastRead)
@@ -875,7 +874,7 @@ QModelIndex Notifications::groupIndex(const QModelIndex &idx) const
     }
 
     qCWarning(NOTIFICATIONMANAGER) << "Cannot get group index for item that isn't a group or inside one";
-    return QModelIndex();
+    return {};
 }
 
 void Notifications::collapseAllGroups()
@@ -908,26 +907,37 @@ void Notifications::showInhibitionSummary(Urgency urgency, const QStringList &bl
         return;
     }
 
-    KNotification *notification = new KNotification(u"inhibitionSummary"_s);
-    notification->setTitle(i18ncp("@title", "Unread Notification", "Unread Notifications", inhibited));
-    notification->setText(i18ncp("@info",
-                                 "%1 notification was received while Do Not Disturb was active.",
-                                 "%1 notifications were received while Do Not Disturb was active.",
-                                 inhibited));
-    notification->setIconName(u"preferences-desktop-notification-bell"_s);
-    notification->setFlags(KNotification::CloseOnTimeout);
-    notification->setComponentName(u"libnotificationmanager"_s);
-    notification->setHint(u"transient"_s, true);
+    // Don't just update it so it pops up again.
+    hideInhibitionSummary();
+
+    d->inhibitionSummaryNotification = new KNotification(u"inhibitionSummary"_s);
+    d->inhibitionSummaryNotification->setTitle(i18ncp("@title", "Unread Notification", "Unread Notifications", inhibited));
+    d->inhibitionSummaryNotification->setText(i18ncp("@info",
+                                                     "%1 notification was received while Do Not Disturb was active.",
+                                                     "%1 notifications were received while Do Not Disturb was active.",
+                                                     inhibited));
+    d->inhibitionSummaryNotification->setIconName(u"preferences-desktop-notification-bell"_s);
+    d->inhibitionSummaryNotification->setFlags(KNotification::CloseOnTimeout);
+    d->inhibitionSummaryNotification->setComponentName(u"libnotificationmanager"_s);
+    d->inhibitionSummaryNotification->setHint(u"transient"_s, true);
 
     const QString showNotificationsText = i18nc("@action:button Show the notifications popup", "Show Notifications");
 
-    const KNotificationAction *defaultShowNotificationsAction = notification->addDefaultAction(showNotificationsText);
+    const KNotificationAction *defaultShowNotificationsAction = d->inhibitionSummaryNotification->addDefaultAction(showNotificationsText);
     connect(defaultShowNotificationsAction, &KNotificationAction::activated, this, &Notifications::showNotificationsRequested);
 
-    const KNotificationAction *showNotificationsAction = notification->addAction(showNotificationsText);
+    const KNotificationAction *showNotificationsAction = d->inhibitionSummaryNotification->addAction(showNotificationsText);
     connect(showNotificationsAction, &KNotificationAction::activated, this, &Notifications::showNotificationsRequested);
 
-    notification->sendEvent();
+    d->inhibitionSummaryNotification->sendEvent();
+}
+
+void Notifications::hideInhibitionSummary()
+{
+    if (d->inhibitionSummaryNotification) {
+        d->inhibitionSummaryNotification->close();
+        d->inhibitionSummaryNotification = nullptr;
+    }
 }
 
 QVariant Notifications::data(const QModelIndex &index, int role) const

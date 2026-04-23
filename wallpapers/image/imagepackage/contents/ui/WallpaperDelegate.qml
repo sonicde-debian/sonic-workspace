@@ -10,7 +10,6 @@ import QtQuick.Controls as QtControls2
 import Qt5Compat.GraphicalEffects
 
 import org.kde.kirigami as Kirigami
-import org.kde.kquickcontrolsaddons
 import org.kde.kcmutils as KCM
 
 KCM.GridDelegate {
@@ -18,7 +17,7 @@ KCM.GridDelegate {
 
     property alias color: backgroundRect.color
     property alias previewSize: previewImage.sourceSize
-    property string key: model.packageName || model.path
+    property string key: model.source
     property list<string> selectors: model.selectors
     opacity: model.pendingDeletion ? 0.5 : 1
     scale: index, 1 // Workaround for https://bugreports.qt.io/browse/QTBUG-107458
@@ -125,7 +124,7 @@ KCM.GridDelegate {
     }
 
     Behavior on opacity {
-        OpacityAnimator {
+        NumberAnimation {
             duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }

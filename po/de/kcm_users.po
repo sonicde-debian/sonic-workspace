@@ -1,57 +1,58 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
 # SPDX-FileCopyrightText: 2020, 2022 Frederik Schwarzer <schwarzer@kde.org>
-# SPDX-FileCopyrightText: 2020, 2021 Burkhard Lück <lueck@hube-lueck.de>
+# SPDX-FileCopyrightText: 2020-2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2023 Jannick Kuhr <opensource@kuhr.org>
 # SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
 # SPDX-FileCopyrightText: 2024 Flori G <Renner03@protonmail.com>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025-2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm_users\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-19 21:06+0200\n"
-"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"PO-Revision-Date: 2026-01-12 20:01+0100\n"
+"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.08.3\n"
 
-#: src/fingerprintmodel.cpp:145 src/fingerprintmodel.cpp:229
+#: src/fingerprintmodel.cpp:144 src/fingerprintmodel.cpp:228
 #, kde-format
 msgid "No fingerprint device found."
 msgstr "Kein Fingerabdruckleser gefunden."
 
-#: src/fingerprintmodel.cpp:302
+#: src/fingerprintmodel.cpp:301
 #, kde-format
 msgid "Retry scanning your finger."
 msgstr "Scannen Ihres Fingers erneut versuchen."
 
-#: src/fingerprintmodel.cpp:304
+#: src/fingerprintmodel.cpp:303
 #, kde-format
 msgid "Swipe too short. Try again."
 msgstr "Zu kurz darüber gestrichen. Erneut versuchen."
 
-#: src/fingerprintmodel.cpp:306
+#: src/fingerprintmodel.cpp:305
 #, kde-format
 msgid "Finger not centered on the reader. Try again."
 msgstr "Finger nicht zentriert am Leser. Erneut versuchen."
 
-#: src/fingerprintmodel.cpp:308
+#: src/fingerprintmodel.cpp:307
 #, kde-format
 msgid "Remove your finger from the reader, and try again."
 msgstr "Ihren Finger vom Leser entfernen und erneut versuchen."
 
-#: src/fingerprintmodel.cpp:316
+#: src/fingerprintmodel.cpp:315
 #, kde-format
 msgid "Fingerprint enrollment has failed."
 msgstr "Fingerabdruck-Registrierung ist fehlgeschlagen."
 
-#: src/fingerprintmodel.cpp:319
+#: src/fingerprintmodel.cpp:318
 #, kde-format
 msgid ""
 "There is no space left for this device, delete other fingerprints to "
@@ -60,17 +61,17 @@ msgstr ""
 "Für dieses Gerät ist kein Speicherplatz frei, löschen Sie andere "
 "Fingerabdrücke um fortzufahren."
 
-#: src/fingerprintmodel.cpp:322
+#: src/fingerprintmodel.cpp:321
 #, kde-format
 msgid "The device was disconnected."
 msgstr "Das Gerät wurde getrennt."
 
-#: src/fingerprintmodel.cpp:327
+#: src/fingerprintmodel.cpp:326
 #, kde-format
 msgid "An unknown error has occurred."
 msgstr "Es ist ein unbekannter Fehler aufgetreten."
 
-#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:215
+#: src/ui/ChangePassword.qml:29 src/ui/UserDetailsPage.qml:228
 #, kde-format
 msgid "Change Password"
 msgstr "Passwort ändern"
@@ -126,10 +127,10 @@ msgid ""
 msgstr ""
 "KWallet ist ein Passwortspeicher, der Ihre Passwörter für drahtlose "
 "Netzwerke und andere verschlüsselte Ressourcen speichert. Er ist mit einem "
-"eigenen Passwort gesperrt das sich von Ihrem Passwort für die Anmeldung "
-"unterscheidet. Wenn die beiden Passwörter übereinstimmen, kann die Sperre "
-"bei der Anmeldung automatisch aufgehoben werden, so dass Sie das Passwort "
-"nicht mehr eingeben müssen."
+"eigenen Passwort gesperrt, das sich von Ihrem Anmeldepasswort unterscheidet. "
+"Wenn die beiden Passwörter übereinstimmen, kann die Sperre bei der Anmeldung "
+"automatisch aufgehoben werden, sodass Sie das KWallet-Passwort nicht selbst "
+"eingeben müssen."
 
 #: src/ui/ChangeWalletPassword.qml:60
 #, kde-format
@@ -151,22 +152,22 @@ msgstr "Benutzer erstellen"
 msgid "Name:"
 msgstr "Name:"
 
-#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:173
+#: src/ui/CreateUser.qml:42 src/ui/UserDetailsPage.qml:171
 #, kde-format
 msgid "Username:"
 msgstr "Benutzername:"
 
-#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:190
+#: src/ui/CreateUser.qml:52 src/ui/UserDetailsPage.qml:203
 #, kde-format
 msgid "Standard"
 msgstr "Standard"
 
-#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:191
+#: src/ui/CreateUser.qml:53 src/ui/UserDetailsPage.qml:204
 #, kde-format
 msgid "Administrator"
 msgstr "Systemverwalter"
 
-#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:180
+#: src/ui/CreateUser.qml:56 src/ui/UserDetailsPage.qml:193
 #, kde-format
 msgid "Account type:"
 msgstr "Art des Kontos:"
@@ -187,7 +188,7 @@ msgctxt "@action:button Create a new user"
 msgid "Create"
 msgstr "Erstellen"
 
-#: src/ui/CreateUser.qml:109
+#: src/ui/CreateUser.qml:111
 #, kde-format
 msgctxt "@action:button Cancel creating new user"
 msgid "Cancel"
@@ -351,17 +352,17 @@ msgstr ""
 msgid "Configure Fingerprints"
 msgstr "Fingerabdrücke einrichten"
 
-#: src/ui/FingerprintDialog.qml:38
+#: src/ui/FingerprintDialog.qml:39
 #, kde-format
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: src/ui/FingerprintDialog.qml:50
+#: src/ui/FingerprintDialog.qml:51
 #, kde-format
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/ui/FingerprintDialog.qml:58
+#: src/ui/FingerprintDialog.qml:59
 #, kde-format
 msgid "Done"
 msgstr "Fertig"
@@ -390,13 +391,13 @@ msgstr "Benutzer"
 #, kde-format
 msgctxt "@action:button As in, 'add new user'"
 msgid "Add New…"
-msgstr "Neu hinzufügen …"
+msgstr "Neu hinzufügen …"
 
 #: src/ui/main.qml:32
 #, kde-format
 msgctxt "@action:button"
 msgid "Add New User…"
-msgstr "Neuen Benutzer hinzufügen …"
+msgstr "Neuen Benutzer hinzufügen …"
 
 #: src/ui/main.qml:137
 #, kde-format
@@ -533,7 +534,7 @@ msgstr "Initialen"
 #, kde-format
 msgctxt "@action:button"
 msgid "Choose File…"
-msgstr "Datei wählen …"
+msgstr "Datei wählen …"
 
 #: src/ui/PicturesSheet.qml:140
 #, kde-format
@@ -614,7 +615,28 @@ msgstr "%1 löschen"
 msgid "Change avatar"
 msgstr "Avatar ändern"
 
-#: src/ui/UserDetailsPage.qml:201
+#: src/ui/UserDetailsPage.qml:185
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change your own username while logged in; log out and then log in as "
+"another user to change this account’s username."
+msgstr ""
+"Sie können Ihren eigenen Benutzernamen nicht ändern, während Sie angemeldet "
+"sind. Melden Sie sich ab und unter einer anderen Benutzerkennung wieder an, "
+"um den Benutzernamen dieses Kontos zu ändern."
+
+#: src/ui/UserDetailsPage.qml:186
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot change the username of a logged-in user; wait until this user logs "
+"out first."
+msgstr ""
+"Der Benutzername eines angemeldeten Benutzers kann nicht geändert werden. "
+"Warten Sie, bis sich der Benutzer abgemeldet hat."
+
+#: src/ui/UserDetailsPage.qml:214
 #, kde-format
 msgid ""
 "Cannot change the account type to Standard unless there is at least one "
@@ -626,32 +648,43 @@ msgstr ""
 "die Authentifizierung unmöglich oder würde die unsichere Verwendung des "
 "Passworts vom Systemverwalter erfordern."
 
-#: src/ui/UserDetailsPage.qml:209
+#: src/ui/UserDetailsPage.qml:222
 #, kde-format
 msgid "Email address:"
 msgstr "E-Mail-Adresse:"
 
-#: src/ui/UserDetailsPage.qml:238
+#: src/ui/UserDetailsPage.qml:254
 #, kde-format
 msgid "Delete files"
 msgstr "Dateien löschen"
 
-#: src/ui/UserDetailsPage.qml:245
+#: src/ui/UserDetailsPage.qml:261
 #, kde-format
 msgid "Keep files"
 msgstr "Dateien behalten"
 
-#: src/ui/UserDetailsPage.qml:252
+#: src/ui/UserDetailsPage.qml:268
 #, kde-format
 msgid "Delete User…"
-msgstr "Benutzer löschen …"
+msgstr "Benutzer löschen …"
 
-#: src/ui/UserDetailsPage.qml:264
+#: src/ui/UserDetailsPage.qml:274
+#, kde-format
+msgctxt "@label:tooltip"
+msgid ""
+"Cannot delete yourself! Log out and then log in as another user to delete "
+"this user account."
+msgstr ""
+"Sie können Ihr eigenes Benutzerkonto nicht löschen! Melden Sie sich ab und "
+"unter einer anderen Benutzerkennung wieder an, um dieses Benutzerkonto zu "
+"löschen."
+
+#: src/ui/UserDetailsPage.qml:286
 #, kde-format
 msgid "Configure Fingerprint Authentication…"
-msgstr "Fingerabdruck-Authentifizierung konfigurieren …"
+msgstr "Fingerabdruck-Authentifizierung einrichten …"
 
-#: src/ui/UserDetailsPage.qml:296
+#: src/ui/UserDetailsPage.qml:318
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

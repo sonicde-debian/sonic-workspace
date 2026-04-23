@@ -27,6 +27,7 @@
 #include <PlasmaActivities/Stats/ResultSet>
 #include <PlasmaActivities/Stats/ResultWatcher>
 #include <PlasmaActivities/Stats/Terms>
+#include <algorithm>
 #include <qnamespace.h>
 
 #include "config-KDECI_BUILD.h"
@@ -65,9 +66,7 @@ public:
     class NormalizedId
     {
     public:
-        NormalizedId()
-        {
-        }
+        NormalizedId() = default;
 
         NormalizedId(const Private *parent, const QString &id)
         {
@@ -224,7 +223,7 @@ public:
 
         QStringList ordering = thisCfgGroup.readEntry("ordering", QStringList()) + globalCfgGroup.readEntry("ordering", QStringList());
         // Normalizing all the ids
-        std::transform(ordering.begin(), ordering.end(), ordering.begin(), [&](const QString &item) {
+        std::ranges::transform(ordering, ordering.begin(), [&](const QString &item) {
             return normalizedId(item).value();
         });
 
@@ -258,7 +257,7 @@ public:
                         if (groupOrdering.length() != m_items.length()) {
                             continue;
                         }
-                        std::transform(groupOrdering.begin(), groupOrdering.end(), groupOrdering.begin(), [&](const QString &item) {
+                        std::ranges::transform(groupOrdering, groupOrdering.begin(), [&](const QString &item) {
                             return normalizedId(item).value();
                         });
                         for (const auto &item : m_items) {
@@ -286,10 +285,13 @@ public:
         }
 
         // Sorting the items in the cache
-        std::sort(m_items.begin(), m_items.end(), [&](const NormalizedId &left, const NormalizedId &right) {
-            auto leftIndex = ordering.indexOf(left.value());
-            auto rightIndex = ordering.indexOf(right.value());
-            // clang-format off
+        std::ranges::
+            sort(
+                m_items,
+                [&](const NormalizedId &left, const NormalizedId &right) {
+                    auto leftIndex = ordering.indexOf(left.value());
+                    auto rightIndex = ordering.indexOf(right.value());
+                    // clang-format off
                     return (leftIndex == -1 && rightIndex == -1) ?
                                left.value() < right.value() :
 
@@ -301,12 +303,12 @@ public:
 
                            // otherwise
                                leftIndex < rightIndex;
-            // clang-format on
-        });
+                    // clang-format on
+                });
 
         // Debugging:
         QList<QString> itemStrings(m_items.size());
-        std::transform(m_items.cbegin(), m_items.cend(), itemStrings.begin(), [](const NormalizedId &item) {
+        std::ranges::transform(m_items, itemStrings.begin(), [](const NormalizedId &item) {
             return item.value();
         });
         qCDebug(KICKER_DEBUG) << "After ordering: " << itemStrings;
@@ -403,7 +405,7 @@ public:
     QVariant data(const QModelIndex &item, int role = Qt::DisplayRole) const override
     {
         if (item.parent().isValid())
-            return QVariant();
+            return {};
 
         const auto index = item.row();
 
@@ -411,7 +413,7 @@ public:
         // In that case, m_itemEntries.value will return default constructed value which is nullptr.
         auto it = m_itemEntries.find(m_items.value(index).value());
         if (it == m_itemEntries.cend()) {
-            return QVariant();
+            return {};
         }
         const auto &entry = it->second;
         // clang-format off
@@ -434,22 +436,11 @@ public:
         if (row < 0 || row >= rowCount()) {
             return false;
         }
-
-        const QString id = data(index(row, 0), Kicker::UrlRole).toString();
-        if (m_itemEntries.contains(id)) {
-            return m_itemEntries.at(id)->run(actionId, argument);
-        }
-        // Entries with preferred:// can be changed by the user, BUG: 416161
-        // then the list of entries could be out of sync
         auto it = m_itemEntries.find(m_items.value(row).value());
         if (it == m_itemEntries.cend()) {
             return false;
         }
-        const auto &entry = it->second;
-        if (QUrl(entry->id()).scheme() == QLatin1String("preferred")) {
-            return entry->run(actionId, argument);
-        }
-        return false;
+        return it->second->run(actionId, argument);
     }
 
     void move(int from, int to)
@@ -589,7 +580,7 @@ void KAStatsFavoritesModel::setEnabled(bool enable)
 QStringList KAStatsFavoritesModel::favorites() const
 {
     qCWarning(KICKER_DEBUG) << "KAStatsFavoritesModel::favorites returns nothing, it is here just to keep the API backwards-compatible";
-    return QStringList();
+    return {};
 }
 
 void KAStatsFavoritesModel::setFavorites(const QStringList &favorites)
@@ -631,15 +622,14 @@ void KAStatsFavoritesModel::portOldFavorites(const QStringList &_ids)
     qCDebug(KICKER_DEBUG) << "portOldFavorites" << ids;
 
     const QString activityId = QStringLiteral(":global");
-    std::for_each(ids.begin(), ids.end(), [&](const QString &id) {
+    std::ranges::for_each(ids, [&](const QString &id) {
         addFavoriteTo(id, activityId);
     });
 
     // Resetting the model
     auto clientId = d->m_clientId;
     setSourceModel(nullptr);
-    delete d;
-    d = nullptr;
+    delete std::exchange(d, nullptr);
 
     qCDebug(KICKER_DEBUG) << "Save ordering (from portOldFavorites) -->";
     Private::saveOrdering(ids, clientId, m_activities->currentActivity());

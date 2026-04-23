@@ -4,28 +4,30 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15 as QQC2
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.1
+import QtQuick
+import QtQuick.Controls as QQC2
+import QtQuick.Layouts
+import QtQuick.Window
 
 import org.kde.config // KAuthorized
 import org.kde.kcmutils // KCMLauncher
-import org.kde.plasma.components 3.0 as PlasmaComponents3
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.plasma.components as PlasmaComponents3
+import org.kde.plasma.extras as PlasmaExtras
 import org.kde.milou as Milou
 import org.kde.krunner.private.view
-import org.kde.kirigami 2.20 as Kirigami
+import org.kde.kirigami as Kirigami
 
 ColumnLayout {
     id: root
+
+    required property RunnerWindow runnerWindow
     property string query
     property string singleRunner
     property bool showHistory: false
     property string priorSearch: ""
     property alias runnerManager: results.runnerManager
 
-    LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
+    LayoutMirroring.enabled: Application.layoutDirection === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
     function isKeyUp(event) {
@@ -39,16 +41,18 @@ ColumnLayout {
     spacing: 0
 
     Connections {
-        target: runnerWindow
+        target: root.runnerWindow
         function onHistoryBehaviorChanged() {
-            runnerManager.historyEnabled = runnerWindow.historyBehavior !== HistoryBehavior.Disabled
+            root.runnerManager.historyEnabled = root.runnerWindow.historyBehavior !== RunnerWindow.Disabled
         }
         function onActivityChanged(activity) {
-            runnerManager.setHistoryEnvironmentIdentifier(activity)
+            if (activity) {
+                root.runnerManager.setHistoryEnvironmentIdentifier(activity)
+            }
         }
     }
     Component.onCompleted: {
-        runnerManager.historyEnabled = runnerWindow.historyBehavior !== HistoryBehavior.Disabled
+        runnerManager.historyEnabled = runnerWindow.historyBehavior !== RunnerWindow.Disabled
     }
 
     onQueryChanged: {
@@ -56,22 +60,22 @@ ColumnLayout {
     }
 
     Connections {
-        target: runnerWindow
+        target: root.runnerWindow
         function onVisibleChanged() {
-            if (runnerWindow.visible) {
+            if (root.runnerWindow.visible) {
                 queryField.forceActiveFocus();
                 listView.currentIndex = -1
-                if (runnerWindow.retainPriorSearch) {
+                if (root.runnerWindow.retainPriorSearch) {
                     // If we manually specified a query(D-Bus invocation) we don't want to retain the prior search
-                    if (!query) {
-                        queryField.text = priorSearch
+                    if (!root.query) {
+                        queryField.text = root.priorSearch
                         queryField.select(root.query.length, 0)
                         fadedTextCompletion.text = ""
                     }
                 }
             } else {
-                if (runnerWindow.retainPriorSearch) {
-                    priorSearch = root.query
+                if (root.runnerWindow.retainPriorSearch) {
+                    root.priorSearch = root.query
                 }
                 root.singleRunner = ""
                 root.query = ""
@@ -84,9 +88,9 @@ ColumnLayout {
     Connections {
         target: root
         function onShowHistoryChanged() {
-            if (showHistory) {
+            if (root.showHistory) {
                 // we store 50 entries in the history but only show 20 in the UI so it doesn't get too huge
-                listView.model = runnerManager.history.slice(0, 20)
+                listView.model = root.runnerManager.history.slice(0, 20)
             } else {
                 listView.model = []
             }
@@ -98,7 +102,7 @@ ColumnLayout {
         PlasmaComponents3.ToolButton {
             icon.name: "configure"
             onClicked: {
-                runnerWindow.visible = false
+                root.runnerWindow.visible = false
                 KCMLauncher.open("plasma/kcms/desktop/kcm_krunnersettings")
             }
             Accessible.name: i18n("Configure")
@@ -183,23 +187,6 @@ ColumnLayout {
 
                 running: queryTimer.queryDisplay
             }
-            function move_up() {
-                if (length === 0) {
-                    root.showHistory = true;
-                } else if (results.count > 0) {
-                    results.decrementCurrentIndex();
-                }
-                focusCurrentListView()
-            }
-
-            function move_down() {
-                if (length === 0) {
-                    root.showHistory = true;
-                } else if (results.count > 0) {
-                    results.incrementCurrentIndex();
-                }
-                focusCurrentListView()
-            }
 
             function focusCurrentListView() {
                 if (listView.count > 0) {
@@ -213,12 +200,12 @@ ColumnLayout {
                 root.query = queryField.text
                 if (!allowCompletion || !root.query ) { // Clear suggestion in case it was disabled or the query is cleared
                     fadedTextCompletion.text = ""
-                } else if (runnerWindow.historyBehavior === HistoryBehavior.CompletionSuggestion) {
+                } else if (root.runnerWindow.historyBehavior === RunnerWindow.CompletionSuggestion) {
                     // Match the user's exact typed characters to account for case insensitive matches
-                    fadedTextCompletion.text = text + runnerManager.getHistorySuggestion(text).substring(text.length)
-                } else if (length > 0 && runnerWindow.historyBehavior === HistoryBehavior.ImmediateCompletion) {
+                    fadedTextCompletion.text = text + root.runnerManager.getHistorySuggestion(text).substring(text.length)
+                } else if (length > 0 && root.runnerWindow.historyBehavior === RunnerWindow.ImmediateCompletion) {
                     var oldText = text
-                    var suggestedText = runnerManager.getHistorySuggestion(text);
+                    var suggestedText = root.runnerManager.getHistorySuggestion(text);
                     if (suggestedText.length > 0) {
                         text = text + suggestedText.substr(oldText.length)
                         select(text.length, oldText.length)
@@ -233,7 +220,7 @@ ColumnLayout {
                     event.accepted = true;
                     focusCurrentListView()
                 }
-                if (runnerWindow.historyBehavior === HistoryBehavior.CompletionSuggestion
+                if (root.runnerWindow.historyBehavior === RunnerWindow.CompletionSuggestion
                     && fadedTextCompletion.text.length > 0
                     && cursorPosition === text.length
                     && event.key === Qt.Key_Right
@@ -242,7 +229,7 @@ ColumnLayout {
                     fadedTextCompletion.text = ""
                     event.accepted = true
                 }
-                if (queryField.text.length === 0 && (isKeyUp(event) || isKeyDown(event))) {
+                if (queryField.text.length === 0 && (root.isKeyUp(event) || root.isKeyDown(event))) {
                     event.accepted = true
                     root.showHistory = true;
                     focusCurrentListView()
@@ -250,7 +237,7 @@ ColumnLayout {
                 !event.accepted && results.navigationKeyHandler(event)
             }
             Keys.onTabPressed: event => {
-                if (runnerWindow.historyBehavior === HistoryBehavior.CompletionSuggestion) {
+                if (root.runnerWindow.historyBehavior === RunnerWindow.CompletionSuggestion) {
                     if (fadedTextCompletion.text && queryField.text !== fadedTextCompletion.text) {
                         queryField.text = fadedTextCompletion.text
                         fadedTextCompletion.text = ""
@@ -262,7 +249,7 @@ ColumnLayout {
             function closeOrRun(event) {
                 // Close KRunner if no text was typed and enter was pressed, FEATURE: 211225
                 if (!root.query) {
-                    runnerWindow.visible = false
+                    root.runnerWindow.visible = false
                 } else {
                     results.runCurrentIndex(event)
                 }
@@ -271,7 +258,7 @@ ColumnLayout {
             Keys.onReturnPressed: event => closeOrRun(event)
 
             Keys.onEscapePressed: {
-                runnerWindow.visible = false
+                root.runnerWindow.visible = false
             }
 
             Kirigami.Icon {
@@ -284,7 +271,8 @@ ColumnLayout {
                 width: Math.max(parent.height * 0.8, Kirigami.Units.iconSizes.small)
                 height: width
                 source: "expand"
-                visible: queryField.length === 0 && runnerManager.historyEnabled
+                visible: queryField.length === 0 && root.runnerManager.historyEnabled
+                enabled: root.runnerManager.history.length > 0
 
                 MouseArea {
                     anchors.fill: parent
@@ -301,7 +289,7 @@ ColumnLayout {
         }
 
         PlasmaComponents3.ToolButton {
-            visible: runnerWindow.helpEnabled
+            visible: root.runnerWindow.helpEnabled
             checkable: true
             checked: root.query.startsWith("?")
             // Reset if out quers starts with "?", otherwise set it to "?"
@@ -315,8 +303,8 @@ ColumnLayout {
         }
         PlasmaComponents3.ToolButton {
             checkable: true
-            checked: runnerWindow.pinned
-            onToggled: runnerWindow.pinned = checked
+            checked: root.runnerWindow.pinned
+            onToggled: root.runnerWindow.pinned = checked
             icon.name: "window-pin"
             Accessible.name: i18n("Pin")
             Accessible.description: i18n("Pin Search")
@@ -342,12 +330,12 @@ ColumnLayout {
             singleRunner: root.singleRunner
 
             Keys.onEscapePressed: {
-                runnerWindow.visible = false
+                root.runnerWindow.visible = false
             }
 
             onActivated: {
-                if (!runnerWindow.pinned) {
-                    runnerWindow.visible = false
+                if (!root.runnerWindow.pinned) {
+                    root.runnerWindow.visible = false
                 }
             }
 
@@ -379,9 +367,13 @@ ColumnLayout {
             reuseItems: true
             delegate: Milou.ResultDelegate {
                 id: resultDelegate
+
+                required property var modelData
+
                 width: listView.width
                 typeText: index === 0 ? i18n("Recent Queries") : ""
-                additionalActions: [{
+                displayText: modelData
+                actions: [{
                     iconSource: "list-remove-symbolic",
                     text: i18n("Remove")
                 }]
@@ -411,9 +403,9 @@ ColumnLayout {
                 }
             }
             Keys.onPressed: event => {
-                if (isKeyUp(event)) {
+                if (root.isKeyUp(event)) {
                     decrementCurrentIndex();
-                } else if (isKeyDown(event)) {
+                } else if (root.isKeyDown(event)) {
                     incrementCurrentIndex();
                 } else if (event.text !== "" && !event.accepted) {
                     // This prevents unprintable control characters from being inserted
@@ -430,11 +422,11 @@ ColumnLayout {
             Keys.onDownPressed: incrementCurrentIndex()
 
             function runCurrentIndex(event) {
-                var entry = runnerManager.history[currentIndex]
+                var entry = root.runnerManager.history[currentIndex]
                 if (entry) {
                     // If user presses Shift+Return to invoke an action, invoke the first runner action
                     if (event && event.modifiers === Qt.ShiftModifier
-                            && currentItem.additionalActions && currentItem.additionalActions.length > 0) {
+                            && currentItem.actions && currentItem.actions.length > 0) {
                         runAction(0);
                         return
                     }
@@ -448,8 +440,8 @@ ColumnLayout {
                 if (actionIndex === 0) {
                     // QStringList changes just reset the model, so we'll remember the index and set it again
                     var currentIndex = listView.currentIndex
-                    runnerManager.removeFromHistory(currentIndex)
-                    model = runnerManager.history
+                    root.runnerManager.removeFromHistory(currentIndex)
+                    model = root.runnerManager.history
                     listView.currentIndex = currentIndex
                 }
             }

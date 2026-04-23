@@ -30,7 +30,7 @@
 #include <Plasma/Applet>
 #include <Plasma/Containment>
 #include <Plasma/PluginLoader>
-#include <qstandardpaths.h>
+#include <QStandardPaths>
 
 #include <defaultservice.h>
 
@@ -123,9 +123,7 @@ ScriptEngine::V1::V1(ScriptEngine *parent)
 {
 }
 
-ScriptEngine::V1::~V1()
-{
-}
+ScriptEngine::V1::~V1() = default;
 
 QJSValue ScriptEngine::V1::getApiVersion(const QJSValue &param)
 {
@@ -160,7 +158,7 @@ QJSValue ScriptEngine::V1::desktopById(const QJSValue &param) const
         }
     }
 
-    return QJSValue();
+    return {};
 }
 
 QJSValue ScriptEngine::V1::desktopsForActivity(const QJSValue &actId) const
@@ -208,7 +206,7 @@ QJSValue ScriptEngine::V1::screenForConnector(const QJSValue &param) const
     }
 
     const QString connector = param.toString();
-    ShellCorona *sc = qobject_cast<ShellCorona *>(m_engine->m_corona);
+    auto *sc = qobject_cast<ShellCorona *>(m_engine->m_corona);
     if (sc) {
         return m_engine->toScriptValue<int>(sc->screenPool()->idForName(connector));
     }
@@ -235,7 +233,7 @@ QJSValue ScriptEngine::V1::createActivity(const QJSValue &nameParam, const QStri
 
     qDebug() << "Setting default Containment plugin:" << plugin;
 
-    ShellCorona *sc = static_cast<ShellCorona *>(m_engine->m_corona);
+    auto *sc = static_cast<ShellCorona *>(m_engine->m_corona);
 
     if (plugin.isEmpty() || plugin == QLatin1String("undefined")) {
         plugin = sc->defaultContainmentPlugin();
@@ -274,7 +272,7 @@ QJSValue ScriptEngine::V1::setActivityName(const QJSValue &idParam, const QJSVal
 
     QFuture<void> task = controller.setActivityName(id, name);
     awaitFuture(task);
-    return QJSValue();
+    return {};
 }
 
 QJSValue ScriptEngine::V1::activityName(const QJSValue &idParam) const
@@ -425,7 +423,7 @@ QJSValue ScriptEngine::V1::loadSerializedLayout(const QJSValue &data)
         };
     };
 
-    return QJSValue();
+    return {};
 }
 
 QJSValue ScriptEngine::V1::newPanel(const QString &plugin)
@@ -448,7 +446,7 @@ QJSValue ScriptEngine::V1::panelById(const QJSValue &idParam) const
         }
     }
 
-    return QJSValue();
+    return {};
 }
 
 QJSValue ScriptEngine::V1::desktops() const
@@ -521,7 +519,7 @@ bool ScriptEngine::V1::loadTemplate(const QString &layout)
 
     QString path;
     {
-        ShellCorona *sc = qobject_cast<ShellCorona *>(m_engine->m_corona);
+        auto *sc = qobject_cast<ShellCorona *>(m_engine->m_corona);
         if (sc) {
             const QString overridePackagePath = sc->lookAndFeelPackage().path() + QLatin1String("contents/layouts/") + pluginData.pluginId();
 
@@ -569,7 +567,7 @@ bool ScriptEngine::V1::loadTemplate(const QString &layout)
         return false;
     }
 
-    ScriptEngine *engine = new ScriptEngine(m_engine->corona(), this);
+    auto *engine = new ScriptEngine(m_engine->corona(), this);
     engine->globalObject().setProperty(QStringLiteral("templateName"), pluginData.name());
     engine->globalObject().setProperty(QStringLiteral("templateComment"), pluginData.description());
 
@@ -780,7 +778,7 @@ QJSValue ScriptEngine::V1::configFile(const QJSValue &config, const QString &gro
                 file->setGroup(group);
             }
 
-        } else if (ConfigGroup *parent = qobject_cast<ConfigGroup *>(config.toQObject())) {
+        } else if (auto *parent = qobject_cast<ConfigGroup *>(config.toQObject())) {
             file = new ConfigGroup(parent);
 
             if (!group.isEmpty()) {

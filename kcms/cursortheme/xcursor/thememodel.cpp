@@ -65,7 +65,7 @@ void CursorThemeModel::refreshList()
 QVariant CursorThemeModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= list.count())
-        return QVariant();
+        return {};
 
     CursorTheme *theme = list.at(index.row());
 
@@ -90,7 +90,7 @@ QVariant CursorThemeModel::data(const QModelIndex &index, int role) const
         return pendingDeletions.contains(theme);
     }
 
-    return QVariant();
+    return {};
 }
 
 bool CursorThemeModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -141,7 +141,7 @@ QModelIndex CursorThemeModel::findIndex(const QString &name)
             return index(i, 0);
     }
 
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex CursorThemeModel::defaultIndex()
@@ -246,7 +246,7 @@ void CursorThemeModel::processThemeDir(const QDir &themeDir, const QStringList &
         return;
 
     // Create a cursor theme object for the theme dir
-    XCursorTheme *theme = new XCursorTheme(themeDir);
+    auto *theme = new XCursorTheme(themeDir);
 
     // Skip this theme if it's hidden.
     if (theme->isHidden()) {
@@ -295,7 +295,7 @@ void CursorThemeModel::insertThemes()
 
 bool CursorThemeModel::addTheme(const QDir &dir)
 {
-    XCursorTheme *theme = new XCursorTheme(dir);
+    auto *theme = new XCursorTheme(dir);
 
     // Don't add the theme to the list if it's hidden
     if (theme->isHidden()) {

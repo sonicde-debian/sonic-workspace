@@ -1,24 +1,24 @@
 # Translation of plasma_applet_org.kde.plasma.lock_logout.po to Euskara/Basque (eu).
-# Copyright (C) 2010-2024 This file is copyright:
+# Copyright (C) 2010-2025 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 # SPDX-FileCopyrightText: 2023, 2024, 2025 KDE Euskaratzeko proiektuko arduraduna <xalba@ni.eus
 #
 # Translators:
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2010, 2011, 2014, 2017, 2018, 2019, 2020, 2021, 2024.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2010, 2011, 2014, 2017, 2018, 2019, 2020, 2021, 2024, 2025.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-07-23 14:18+0200\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2025-12-07 23:25+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config.qml:13
@@ -26,54 +26,15 @@ msgstr ""
 msgid "General"
 msgstr "Orokorra"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Erakutsi ekintzak:"
+msgid "Unavailable"
+msgstr "Eskuraezina"
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Saioa itxi"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Erakutsi saioa-ixteko pantaila"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Itzali"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Berrabiarazi"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Giltzatu"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Aldatu erabiltzailea"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Hibernatu"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Egin lo"
 
 #: data.js:6
 #, kde-format
@@ -82,8 +43,8 @@ msgstr "Giltzatu pantaila"
 
 #: data.js:12
 #, kde-format
-msgid "Switch user"
-msgstr "Aldatu erabiltzailea"
+msgid "Switch user…"
+msgstr "Aldatu erabiltzailea…"
 
 #: data.js:13
 #, kde-format
@@ -92,8 +53,8 @@ msgstr "Abiatu saio paralelo bat erabiltzaile desberdin bat bezala"
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
-msgstr "Itzali…"
+msgid "Shut down"
+msgstr "Itzali"
 
 #: data.js:20
 #, kde-format
@@ -102,8 +63,8 @@ msgstr "Itzali ordenagailua"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Berrabiarazi…"
+msgid "Restart"
+msgstr "Berrabiarazi"
 
 #: data.js:27
 #, kde-format
@@ -112,8 +73,8 @@ msgstr "Berrabiarazi ordenagailua"
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
-msgstr "Saioa-itxi…"
+msgid "Log out"
+msgstr "Saioa itxi"
 
 #: data.js:34
 #, kde-format
@@ -131,15 +92,61 @@ msgstr "Erakutsi saioa ixteko botoia"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Saioa-itxi, ordenagaiua itzali edo berrabiarazi"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Egin lo"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Egin lo (eseki RAMera)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Hibernatu"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Hibernatu (eseki diskora)"
+
+#, fuzzy
+#~| msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
+#~| msgid "Actions"
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Ekintzak"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Erakutsi ekintzak:"
+
+#~ msgid "Log Out"
+#~ msgstr "Saioa itxi"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Erakutsi saioa-ixteko pantaila"
+
+#~ msgid "Shut Down"
+#~ msgstr "Itzali"
+
+#~ msgid "Switch User"
+#~ msgstr "Aldatu erabiltzailea"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Itzali…"
+
+#~ msgid "Restart…"
+#~ msgstr "Berrabiarazi…"
+
+#~ msgid "Logout…"
+#~ msgstr "Saioa-itxi…"
 
 #~ msgid "Logout"
 #~ msgstr "Saio-itxi"
@@ -170,10 +177,6 @@ msgstr "Hibernatu (eseki diskora)"
 
 #~ msgid "Leave..."
 #~ msgstr "Irten..."
-
-#~ msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
-#~ msgid "Actions"
-#~ msgstr "Ekintzak"
 
 #~ msgid "Suspend"
 #~ msgstr "Egonean utzi"

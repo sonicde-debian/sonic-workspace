@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Yasen Pramatarov <yasen@lindeas.com>, 2010, 2011.
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Mincho Kondarev <mkondarev@yahoo.de>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_lockout\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-06-25 16:57+0200\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
+"PO-Revision-Date: 2025-11-28 19:54+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 25.07.70\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: config.qml:13
@@ -23,54 +23,15 @@ msgstr ""
 msgid "General"
 msgstr "Общи"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Показване на действия:"
+msgid "Unavailable"
+msgstr "Не е налично"
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Излизане от сесия"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Показване на екран за напускане на сесията"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Изключване"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Рестартиране"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Заключване"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Превключване на потребител"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Хибернация"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Приспиване"
 
 #: data.js:6
 #, kde-format
@@ -79,8 +40,8 @@ msgstr "Заключване на екрана"
 
 #: data.js:12
 #, kde-format
-msgid "Switch user"
-msgstr "Превключване на потребител"
+msgid "Switch user…"
+msgstr "Превключване на потребител…"
 
 #: data.js:13
 #, kde-format
@@ -89,8 +50,8 @@ msgstr "Започване на паралелна сесия като разл�
 
 #: data.js:19
 #, kde-format
-msgid "Shutdown…"
-msgstr "Изключване…"
+msgid "Shut down"
+msgstr "Изключване"
 
 #: data.js:20
 #, kde-format
@@ -99,8 +60,8 @@ msgstr "Изключване на компютъра"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Рестартиране…"
+msgid "Restart"
+msgstr "Рестартиране"
 
 #: data.js:27
 #, kde-format
@@ -109,8 +70,8 @@ msgstr "Рестартиране на компютъра"
 
 #: data.js:33
 #, kde-format
-msgid "Logout…"
-msgstr "Излизане от сесия…"
+msgid "Log out"
+msgstr "Излизане от сесия"
 
 #: data.js:34
 #, kde-format
@@ -128,12 +89,55 @@ msgstr "Показване на екран за напускане на сеси
 msgid "Log out, turn off, or restart the computer"
 msgstr "Излизане, изключване или рестартиране на компютъра"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Приспиване"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Приспиване (в паметта)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Хибернация"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Хибернация (записване на диск)"
+
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Действия"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Показване на действия:"
+
+#~ msgid "Log Out"
+#~ msgstr "Излизане от сесия"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Показване на екран за напускане на сесията"
+
+#~ msgid "Shut Down"
+#~ msgstr "Изключване"
+
+#~ msgid "Switch User"
+#~ msgstr "Превключване на потребител"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Изключване…"
+
+#~ msgid "Restart…"
+#~ msgstr "Рестартиране…"
+
+#~ msgid "Logout…"
+#~ msgstr "Излизане от сесия…"

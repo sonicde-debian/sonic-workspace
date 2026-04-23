@@ -15,10 +15,9 @@
 #include <QQuickItem>
 
 #include <KLocalizedString>
-#include <KWayland/Client/plasmashell.h>
-#include <KWayland/Client/surface.h>
 #include <KWindowSystem>
 #include <KX11Extras>
+#include <algorithm>
 
 #include "historymodel.h"
 #include "klipper.h"
@@ -44,18 +43,10 @@ KlipperPopup::KlipperPopup()
 
 void KlipperPopup::show()
 {
-    if (m_plasmashell) {
-        hide();
-    }
     positionOnScreen();
     QMetaObject::invokeMethod(mainItem(), "updateContentSize", Q_ARG(QSizeF, screen()->availableSize().toSizeF()));
     resizePopup();
     setVisible(true);
-}
-
-void KlipperPopup::setPlasmaShell(KWayland::Client::PlasmaShell *plasmashell)
-{
-    m_plasmashell = plasmashell;
 }
 
 void KlipperPopup::editCurrentClipboard()
@@ -66,20 +57,24 @@ void KlipperPopup::editCurrentClipboard()
     QMetaObject::invokeMethod(mainItem(), "editClipboardContent", Q_ARG(int, 0));
 }
 
+void KlipperPopup::showCurrentBarcode()
+{
+    if (!isVisible()) {
+        show();
+    }
+    QMetaObject::invokeMethod(mainItem(), "showBarcode", Q_ARG(int, 0));
+}
+
 void KlipperPopup::hide()
 {
     QWindow::hide();
-    if (m_plasmashell) {
-        destroy(); // Required to recreate wl_surface
-    }
 }
 
 void KlipperPopup::resizePopup()
 {
     // If the popup is off-screen, move it to the closest edge of the screen
     const QSize popupSize = QSize(mainItem()->implicitWidth(), mainItem()->implicitHeight()).grownBy(padding()).boundedTo(screen()->availableSize());
-
-    if (KWindowSystem::isPlatformX11()) {
+    {
         const QRect screenGeometry = screen()->geometry();
         QRect popupGeometry(position(), popupSize);
         if (!screenGeometry.contains(popupGeometry)) {
@@ -87,53 +82,29 @@ void KlipperPopup::resizePopup()
                                  std::clamp(y(), screenGeometry.top(), screenGeometry.bottom() - popupSize.height()));
         }
         setGeometry(popupGeometry);
-    } else {
-        resize(popupSize);
     }
 }
 
 void KlipperPopup::showEvent(QShowEvent *event)
 {
-    if (KWindowSystem::isPlatformX11()) {
-        KX11Extras::setOnAllDesktops(winId(), true);
-    }
+    KX11Extras::setOnAllDesktops(winId(), true);
     PlasmaWindow::showEvent(event); // NET::SkipTaskbar | NET::SkipPager | NET::SkipSwitcher
     requestActivate();
-    if (KWindowSystem::isPlatformX11()) {
-        KX11Extras::forceActiveWindow(winId());
-    }
+    KX11Extras::forceActiveWindow(winId());
 }
 
 void KlipperPopup::positionOnScreen()
 {
     const QList<QScreen *> screens = QGuiApplication::screens();
-    if (KWindowSystem::isPlatformX11()) {
-        auto screenIt = std::find_if(screens.cbegin(), screens.cend(), [](QScreen *screen) {
+
+    {
+        auto screenIt = std::ranges::find_if(screens, [](QScreen *screen) {
             return screen->geometry().contains(QCursor::pos(screen));
         });
         QScreen *const shownOnScreen = screenIt != screens.cend() ? *screenIt : QGuiApplication::primaryScreen();
         setPosition(QCursor::pos(shownOnScreen));
         setScreen(shownOnScreen);
         KX11Extras::setOnDesktop(winId(), KX11Extras::currentDesktop());
-    } else if (m_plasmashell && KWindowSystem::isPlatformWayland()) {
-        auto surface = KWayland::Client::Surface::fromWindow(this);
-        auto plasmaSurface = m_plasmashell->createSurface(surface, this);
-        plasmaSurface->openUnderCursor();
-        plasmaSurface->setSkipTaskbar(true);
-        plasmaSurface->setSkipSwitcher(true);
-        plasmaSurface->setRole(KWayland::Client::PlasmaShellSurface::Role::AppletPopup);
-
-        if (screens.size() > 1) {
-            auto message = QDBusMessage::createMethodCall(u"org.kde.KWin"_s, u"/KWin"_s, u"org.kde.KWin"_s, u"activeOutputName"_s);
-            QDBusReply<QString> reply = QDBusConnection::sessionBus().call(message);
-            if (reply.isValid()) {
-                const QString activeOutputName = reply.value();
-                auto screenIt = std::find_if(screens.cbegin(), screens.cend(), [&activeOutputName](QScreen *screen) {
-                    return screen->name() == activeOutputName;
-                });
-                setScreen(screenIt != screens.cend() ? *screenIt : QGuiApplication::primaryScreen());
-            }
-        }
     }
 }
 

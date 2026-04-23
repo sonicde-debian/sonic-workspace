@@ -26,9 +26,7 @@ namespace TaskManager
 class TASKMANAGER_EXPORT AbstractTasksProxyModelIface : public AbstractTasksModelIface
 {
 public:
-    ~AbstractTasksProxyModelIface() override
-    {
-    }
+    ~AbstractTasksProxyModelIface() override = default;
 
     /**
      * Request activation of the task at the given index. Implementing classes
@@ -153,6 +151,17 @@ public:
      * @since 6.4
      **/
     void requestToggleNoBorder(const QModelIndex &index) override;
+
+    /**
+     * Request toggling the excludeFromCapture state of the task at given index.
+     *
+     * This is meant for tasks that have an associated window, and may be
+     * a no-op when there is no window.
+     *
+     * @param index An index in this tasks model.
+     * @since 6.6
+     **/
+    virtual void requestToggleExcludeFromCapture(const QModelIndex &index) override;
 
     /**
      * Request entering the window at the given index on the specified virtual desktops,

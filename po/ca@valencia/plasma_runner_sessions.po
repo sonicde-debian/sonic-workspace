@@ -9,19 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-02-19 09:21+0100\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-09-25 15:06+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
-#: sessionrunner.cpp:19
+#: sessionrunner.cpp:20
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to log out of the "
@@ -29,25 +29,25 @@ msgctxt ""
 msgid "logout;log out"
 msgstr "eixida;desconnexió"
 
-#: sessionrunner.cpp:22
+#: sessionrunner.cpp:23
 #, kde-format
 msgid "Logs out, exiting the current desktop session"
 msgstr "Ix, desconnectant la sessió actual d'escriptori"
 
-#: sessionrunner.cpp:25
+#: sessionrunner.cpp:27
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to shut down the "
 "computer"
-msgid "shutdown;shut down;power;power off"
-msgstr "parada;parar;energia;apagat;apagar"
+msgid "shutdown;shut down;power;poweroff;power off"
+msgstr "parada;parar;energia;corrent;apagat;apagar"
 
-#: sessionrunner.cpp:28
+#: sessionrunner.cpp:30
 #, kde-format
 msgid "Turns off the computer"
 msgstr "Apaga l'ordinador"
 
-#: sessionrunner.cpp:31
+#: sessionrunner.cpp:33
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to restart the "
@@ -55,24 +55,24 @@ msgctxt ""
 msgid "restart;reboot"
 msgstr "reinici"
 
-#: sessionrunner.cpp:34
+#: sessionrunner.cpp:36
 #, kde-format
 msgid "Reboots the computer"
 msgstr "Torna a arrancar l'ordinador"
 
-#: sessionrunner.cpp:38
+#: sessionrunner.cpp:40
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to lock the screen"
 msgid "lock;lock screen"
 msgstr "bloqueig;bloqueig de la pantalla"
 
-#: sessionrunner.cpp:40
+#: sessionrunner.cpp:42
 #, kde-format
 msgid "Locks the current sessions and starts the screen saver"
 msgstr "Bloqueja les sessions actuals i inicia el salvapantalla"
 
-#: sessionrunner.cpp:43
+#: sessionrunner.cpp:45
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to save the "
@@ -80,12 +80,12 @@ msgctxt ""
 msgid "save;save session"
 msgstr "guarda;guarda la sessió"
 
-#: sessionrunner.cpp:46
+#: sessionrunner.cpp:48
 #, kde-format
 msgid "Saves the current session for session restoration"
 msgstr "Guarda la sessió actual per a la restauració de sessions"
 
-#: sessionrunner.cpp:49
+#: sessionrunner.cpp:51
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to switch user "
@@ -93,41 +93,41 @@ msgctxt ""
 msgid "switch user;new session"
 msgstr "canvia d'usuari;sessió nova"
 
-#: sessionrunner.cpp:52
+#: sessionrunner.cpp:54
 #, kde-format
 msgid "Switch to a session as a different user"
 msgstr "Canvia a una sessió amb un usuari diferent"
 
-#: sessionrunner.cpp:73
+#: sessionrunner.cpp:75
 #, kde-format
 msgctxt "log out command"
 msgid "Log Out"
 msgstr "Ix"
 
-#: sessionrunner.cpp:81
+#: sessionrunner.cpp:83
 #, kde-format
 msgctxt "turn off computer command"
 msgid "Shut Down"
 msgstr "Para"
 
-#: sessionrunner.cpp:88
+#: sessionrunner.cpp:90
 #, kde-format
 msgctxt "restart computer command"
 msgid "Restart"
 msgstr "Reinicia"
 
-#: sessionrunner.cpp:95
+#: sessionrunner.cpp:97
 #, kde-format
 msgctxt "lock screen command"
 msgid "Lock"
 msgstr "Bloqueja"
 
-#: sessionrunner.cpp:102
+#: sessionrunner.cpp:104
 #, kde-format
 msgid "Save Session"
 msgstr "Guarda la sessió"
 
-#: sessionrunner.cpp:109
+#: sessionrunner.cpp:111
 #, kde-format
 msgid "Switch User"
 msgstr "Canvia d'usuari"

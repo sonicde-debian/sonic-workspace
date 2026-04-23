@@ -13,13 +13,14 @@
 #include <QDebug>
 #include <QScreen>
 
+#include "debug.h"
+#include "logoutpromptadaptor.h"
 #include "shutdowndlg.h"
 
-#include "logoutpromptadaptor.h"
-
 #include <KWindowSystem>
-#include <LayerShellQt/Shell>
+#include <algorithm>
 
+using namespace std::chrono_literals;
 using namespace Qt::StringLiterals;
 
 Greeter::Greeter(const KPackage::Package &package)
@@ -36,24 +37,44 @@ Greeter::~Greeter()
     qDeleteAll(m_dialogs);
 }
 
-void Greeter::setupWaylandIntegration()
-{
-    if (!KWindowSystem::isPlatformWayland() || m_windowed) {
-        return;
-    }
-    LayerShellQt::Shell::useLayerShell();
-}
-
 void Greeter::init()
 {
     // If we're already shutting down we don't need another prompt,
     // just reply to the dbus message and exit
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(u"org.kde.Shutdown"_s)) {
+        qCWarning(LOGOUT_GREETER) << "org.kde.Shutdown D-Bus service is already registered; quitting";
         QApplication::quit();
         return;
     }
 
-    setupWaylandIntegration();
+    if (!m_windowed) {
+        // Quit if we lost focus or failed to gain it after 3 seconds
+        auto *quitTimer = new QTimer(this);
+        QObject::connect(quitTimer, &QTimer::timeout, this, [this] {
+            qCWarning(LOGOUT_GREETER) << "Failed to get focus after 3 seconds, quitting";
+            quit();
+        });
+        quitTimer->setInterval(3s);
+        quitTimer->setSingleShot(true);
+        quitTimer->start();
+        QObject::connect(qApp, &QGuiApplication::applicationStateChanged, this, [this, quitTimer = QPointer(quitTimer)](Qt::ApplicationState state) {
+            switch (state) {
+            case Qt::ApplicationActive:
+                if (!quitTimer.isNull()) {
+                    quitTimer->stop();
+                    quitTimer->deleteLater();
+                }
+                break;
+            case Qt::ApplicationInactive:
+                qCWarning(LOGOUT_GREETER) << "Lost focus, quitting";
+                quit();
+                break;
+            default:
+                break;
+            }
+        });
+    }
+
     const auto screens = qApp->screens();
     for (QScreen *screen : screens) {
         adoptScreen(screen);
@@ -74,7 +95,7 @@ void Greeter::adoptScreen(QScreen *screen)
         return;
     }
     // TODO: last argument is the theme, maybe add command line option for it?
-    KSMShutdownDlg *w = new KSMShutdownDlg(nullptr, m_shutdownType, screen);
+    auto *w = new KSMShutdownDlg(nullptr, m_shutdownType, screen);
     w->setWindowed(m_windowed);
     w->installEventFilter(this);
     m_dialogs << w;
@@ -102,8 +123,8 @@ bool Greeter::eventFilter(QObject *watched, QEvent *event)
     if (qobject_cast<KSMShutdownDlg *>(watched)) {
         if (event->type() == QEvent::MouseButtonPress) {
             // check that the position is on no window
-            QMouseEvent *me = static_cast<QMouseEvent *>(event);
-            if (std::any_of(m_dialogs.cbegin(), m_dialogs.cend(), [me](KSMShutdownDlg *dialog) {
+            auto *me = static_cast<QMouseEvent *>(event);
+            if (std::ranges::any_of(m_dialogs, [me](KSMShutdownDlg *dialog) {
                     return dialog->geometry().contains(me->globalPosition().toPoint());
                 })) {
                 return false;
@@ -118,6 +139,7 @@ bool Greeter::eventFilter(QObject *watched, QEvent *event)
 void Greeter::promptLogout()
 {
     if (m_running) {
+        qCWarning(LOGOUT_GREETER) << "promptLogout was called but we were already showing the logout screen; doing nothing";
         return;
     }
     m_shutdownType = KWorkSpace::ShutdownTypeNone;
@@ -127,6 +149,7 @@ void Greeter::promptLogout()
 void Greeter::promptShutDown()
 {
     if (m_running) {
+        qCWarning(LOGOUT_GREETER) << "promptShutDown was called but we were already showing the logout screen; doing nothing";
         return;
     }
     m_shutdownType = KWorkSpace::ShutdownTypeHalt;
@@ -136,6 +159,7 @@ void Greeter::promptShutDown()
 void Greeter::promptReboot()
 {
     if (m_running) {
+        qCWarning(LOGOUT_GREETER) << "promptReboot was called but we were already showing the logout screen; doing nothing";
         return;
     }
     m_shutdownType = KWorkSpace::ShutdownTypeReboot;
@@ -145,6 +169,7 @@ void Greeter::promptReboot()
 void Greeter::promptAll()
 {
     if (m_running) {
+        qCWarning(LOGOUT_GREETER) << "promptAll was called but we were already showing the logout screen; doing nothing";
         return;
     }
     m_shutdownType = KWorkSpace::ShutdownTypeDefault;

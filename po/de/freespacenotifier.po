@@ -1,23 +1,24 @@
-# SPDX-FileCopyrightText: 2009, 2020, 2021 Burkhard Lück <lueck@hube-lueck.de>
-# SPDX-FileCopyrightText: 2010 Markus Slopianka <markus.s@kdemail.net>
-# SPDX-FileCopyrightText: 2010, 2014 Frederik Schwarzer <schwarzer@kde.org>
-# SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2009, 2020-2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2010 Johannes Obermayr <johannesobermayr@gmx.de>
+# SPDX-FileCopyrightText: 2010 Markus Slopianka <markus.s@kdemail.net>
+# SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2010, 2014 Frederik Schwarzer <schwarzer@kde.org>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: freespacenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-22 20:39+0200\n"
-"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-12-04 20:36+0100\n"
+"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #: freespacenotifier.cpp:121
 #, kde-format
@@ -32,7 +33,7 @@ msgstr "In Dateiverwaltung öffnen"
 #: freespacenotifier.cpp:134
 #, kde-format
 msgid "Configure Warning…"
-msgstr "Warnmeldung einrichten ..."
+msgstr "Warnmeldung einrichten …"
 
 #. i18n: ectx: label, entry (minimumSpace), group (General)
 #: freespacenotifier.kcfg:9
@@ -96,7 +97,7 @@ msgstr ""
 "einen angegebenen Wert in MiB und unter einen angegebenen Prozentsatz an "
 "verfügbarem Speicherplatz sinkt."
 
-#: module.cpp:122
+#: module.cpp:121
 #, kde-format
 msgid ""
 "Your %1 partition is running out of disk space; %2 MiB of space remaining "
@@ -105,7 +106,7 @@ msgstr ""
 "Der Speicherplatz auf Partition %1 wird knapp. Es verbleiben noch %2 MiB (%3 "
 "%)."
 
-#: module.cpp:124
+#: module.cpp:123
 #, kde-format
 msgid ""
 "Your Root partition is running out of disk space; %1 MiB of space remaining "
@@ -114,7 +115,7 @@ msgstr ""
 "Der Speicherplatz im Basisordner wird knapp. Es verbleiben noch %1 MiB (%2 "
 "%)."
 
-#: module.cpp:126
+#: module.cpp:125
 #, kde-format
 msgid ""
 "Your Home folder is running out of disk space; %1 MiB of space remaining "
@@ -123,7 +124,7 @@ msgstr ""
 "Der Speicherplatz in Ihrem Persönlichen Ordner wird knapp. Es verbleiben "
 "noch %1 MiB (%2 %)."
 
-#: module.cpp:151
+#: module.cpp:150
 #, kde-format
 msgctxt "The settings dialog main page name, as in 'general settings'"
 msgid "General"

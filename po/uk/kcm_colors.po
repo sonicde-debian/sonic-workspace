@@ -3,15 +3,15 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021, 2022, 2023, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm_colors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-08-29 09:16+0300\n"
-"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-08 17:56+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -880,29 +880,34 @@ msgstr "Потужність підфарбовування:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Тіні рамок і ефекти підсвічування (просторові)"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Контрастність рамок, роздільників та контурів"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Затінювання"
+msgid "Frames and Outlines"
+msgstr "Рамки і контури"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Максимум"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Значення контрастності, які є нижчими за 15%, можуть призвести до "
+"неоковирних візуальних ефектів у поєднанні із певними програмами та схемами "
+"кольорів. Зважайте на це!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Мінімум"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Контрастність"
@@ -1366,6 +1371,18 @@ msgstr "Відкрити схему кольорів"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "файли схем кольорів (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Тіні рамок і ефекти підсвічування (просторові)"
+
+#~ msgid "Shading"
+#~ msgstr "Затінювання"
+
+#~ msgid "Maximum"
+#~ msgstr "Максимум"
+
+#~ msgid "Minimum"
+#~ msgstr "Мінімум"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Виберіть нетиповий колір акценту"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-24 04:31+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-17 03:22+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "არ შემაწუხოს რეჟიმის გადართვა"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "სხვა პროგრამები"
@@ -92,14 +92,14 @@ msgstr "აირჩიეთ ხმის ფაილი"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "სისტემური შეტყობინებები"
+msgid "Configure for System…"
+msgstr "მორგება სისტემისთვის…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "აპლიკაციის მორგება"
+msgid "Configure for Applications…"
+msgstr "მორგება აპლიკაციებისთვის…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -207,8 +207,8 @@ msgstr "გაფრთხილების ხატულასთან"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "ხელით…"
+msgid "Choose…"
+msgstr "არჩევა…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -225,33 +225,40 @@ msgstr "დროის შემდეგ დამალვა:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "დროის ამოწურვის მაჩვენებლის ჩვენება"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "დამატებითი უკუკავშირი"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "შეტყობინებებში ჩვენება"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "აპლიკაციის მიმდინარეობა:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "მხტუნარა ფანჯრების ღია დატოვება"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "გაფრთხილების მხტუნარები:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "ამოცანების მმართველში ჩვენება"
@@ -263,8 +270,10 @@ msgstr "მხტუნარას მდებარეობა"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "აპლიკაციის მორგება"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "აპლიკაციის შეტყობინებები"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -290,6 +299,18 @@ msgstr ""
 "სიიდან აირჩიეთ აპლიკაცია, რომლისთვისაც გაფრთხილების მორგებისა და ქცევის "
 "კონფიგურაციაც გნებავთ"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "სისტემური შეტყობინებები"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "აპლიკაციის მორგება"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "ხელით…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "ნორმალური გაფრთხილებები:"
 
@@ -303,16 +324,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "აპლიკაციის მორგება…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "აპლიკაციის პარამეტრების მორგება…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "აპლიკაციაზე-დამოკიდებული პარამეტრები"
-
-#~ msgid "Configure…"
-#~ msgstr "მორგება…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

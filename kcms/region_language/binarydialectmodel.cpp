@@ -49,11 +49,11 @@ QVariant BinaryDialectModel::data(const QModelIndex &index, int role) const
     case DisplayName:
         switch (dialect) {
         case KFormat::BinaryUnitDialect::IECBinaryDialect: {
-            return i18nc("Binary dialect IEC, with sigle in parentheses", "International Electrotechnical Commission (IEC)");
+            return i18nc("Binary dialect IEC, with single in parentheses", "International Electrotechnical Commission (IEC)");
             break;
         }
         case KFormat::BinaryUnitDialect::JEDECBinaryDialect: {
-            return i18nc("Binary dialect JEDEC, with sigle in parentheses", "Joint Electron Device Engineering Council (JEDEC)");
+            return i18nc("Binary dialect JEDEC, with single in parentheses", "Joint Electron Device Engineering Council (JEDEC)");
             break;
         }
         case KFormat::BinaryUnitDialect::MetricBinaryDialect: {
@@ -72,11 +72,11 @@ QVariant BinaryDialectModel::data(const QModelIndex &index, int role) const
     case Description: {
         switch (dialect) {
         case KFormat::BinaryUnitDialect::IECBinaryDialect:
-            return i18n("Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)");
+            return i18nc("Binary dialect IEC description", "Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)");
         case KFormat::BinaryUnitDialect::JEDECBinaryDialect:
-            return i18n("Binary - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)");
+            return i18nc("Binary dialect JEDEC description", "Binary - Kilobytes (KB), Megabytes (MB), Gigabytes (GB)");
         case KFormat::BinaryUnitDialect::MetricBinaryDialect:
-            return i18n("Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)");
+            return i18nc("Binary dialect Metric description", "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)");
         default:
             break;
         }

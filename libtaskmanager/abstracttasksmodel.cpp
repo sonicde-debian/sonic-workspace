@@ -15,9 +15,7 @@ AbstractTasksModel::AbstractTasksModel(QObject *parent)
 {
 }
 
-AbstractTasksModel::~AbstractTasksModel()
-{
-}
+AbstractTasksModel::~AbstractTasksModel() = default;
 
 QHash<int, QByteArray> AbstractTasksModel::roleNames() const
 {
@@ -38,7 +36,7 @@ QVariant AbstractTasksModel::data(const QModelIndex &, int role) const
     case Qt::DisplayRole:
         return QString();
     case Qt::DecorationRole:
-        return QVariant();
+        return {};
     case AppId:
         return 0;
     case AppName:
@@ -46,13 +44,13 @@ QVariant AbstractTasksModel::data(const QModelIndex &, int role) const
         return QString();
     case LauncherUrl:
     case LauncherUrlWithoutIcon:
-        return QVariant();
+        return {};
     case WinIdList:
         return QVariantList();
     case MimeType:
         return QString();
     case MimeData:
-        return QVariant();
+        return {};
     case IsWindow:
     case IsStartup:
     case IsLauncher:
@@ -84,7 +82,7 @@ QVariant AbstractTasksModel::data(const QModelIndex &, int role) const
         return false;
     case Geometry:
     case ScreenGeometry:
-        return QVariant();
+        return {};
     case Activities:
         return QStringList();
     case IsDemandingAttention:
@@ -95,7 +93,7 @@ QVariant AbstractTasksModel::data(const QModelIndex &, int role) const
         return 0;
     case StackingOrder:
     case LastActivated:
-        return QVariant();
+        return {};
     case ApplicationMenuServiceName:
     case ApplicationMenuObjectPath:
         return QString();
@@ -103,9 +101,10 @@ QVariant AbstractTasksModel::data(const QModelIndex &, int role) const
     case CanLaunchNewInstance:
     case CanSetNoBorder:
     case HasNoBorder:
+    case IsExcludedFromCapture:
         return false;
     default:
-        return QVariant();
+        return {};
     }
     Q_UNREACHABLE();
 }
@@ -177,6 +176,11 @@ void AbstractTasksModel::requestToggleShaded(const QModelIndex &index)
 }
 
 void AbstractTasksModel::requestToggleNoBorder(const QModelIndex &index)
+{
+    Q_UNUSED(index);
+}
+
+void AbstractTasksModel::requestToggleExcludeFromCapture(const QModelIndex &index)
 {
     Q_UNUSED(index);
 }

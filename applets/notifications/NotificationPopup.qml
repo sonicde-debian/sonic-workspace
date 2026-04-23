@@ -8,7 +8,6 @@ import QtQuick
 import QtQuick.Layouts
 
 import org.kde.kquickcontrolsaddons as KQuickAddons
-import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
 
 import org.kde.notificationmanager as NotificationManager
@@ -20,6 +19,7 @@ NotificationsApplet.NotificationWindow {
     id: notificationPopup
 
     property int popupWidth
+    property bool showPopupTimeout
 
     // Maximum width the popup can take to not break out of the screen geometry.
     readonly property int availableWidth: NotificationsApplet.Globals.screenRect.width - NotificationsApplet.Globals.popupEdgeDistance * 2 - leftPadding - rightPadding
@@ -76,14 +76,38 @@ NotificationsApplet.NotificationWindow {
             }
         }
 
+        // Activate default action when dragging a file over the notification.
         DropArea {
+            id: activateDefaultActionDropArea
             anchors.fill: parent
-            onEntered: (drag) => {
+
+            property bool containsAcceptableDrag: false
+            property point lastPosition: Qt.point(-1, -1)
+
+            onEntered: (event) => {
                 if (notificationItem.modelInterface.hasDefaultAction && !notificationItem.dragging) {
-                    dragActivationTimer.start();
+                    dragActivationTimer.restart();
+                    containsAcceptableDrag = true;
+                    lastPosition = Qt.point(drag.x, drag.y);
                 } else {
                     drag.accepted = false;
                 }
+            }
+            onPositionChanged: {
+                if (containsAcceptableDrag) {
+                    const manhattanLength = Math.abs((drag.x - lastPosition.x) + (drag.y - lastPosition.y));
+                    if (manhattanLength > Application.styleHints.startDragDistance) {
+                        dragActivationTimer.restart();
+                        lastPosition = Qt.point(drag.x, drag.y);
+                    }
+                }
+            }
+            onDropped: {
+                containsAcceptableDrag = false;
+            }
+            onExited: {
+                containsAcceptableDrag = false;
+                dragActivationTimer.stop();
             }
         }
 
@@ -125,7 +149,7 @@ NotificationsApplet.NotificationWindow {
                 }
             }
 
-            LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
+            LayoutMirroring.enabled: Application.layoutDirection === Qt.RightToLeft
             LayoutMirroring.childrenInherit: true
 
             Timer {
@@ -141,7 +165,7 @@ NotificationsApplet.NotificationWindow {
                     if (interval <= 0) {
                         return false;
                     }
-                    if (notificationItem.dragging || notificationItem.menuOpen) {
+                    if (notificationItem.dragging || notificationItem.menuOpen || activateDefaultActionDropArea.containsAcceptableDrag) {
                         return false;
                     }
                     if (notificationItem.modelInterface.replying
@@ -165,7 +189,7 @@ NotificationsApplet.NotificationWindow {
                 from: timer.interval
                 to: 0
                 duration: timer.interval
-                running: timer.running && Kirigami.Units.longDuration > 1
+                running: timer.running && Kirigami.Units.longDuration > 1 && notificationPopup.showPopupTimeout
             }
 
             contentItem: Delegates.DelegatePopup {

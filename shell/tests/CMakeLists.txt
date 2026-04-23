@@ -7,26 +7,19 @@ set(screenpoolmanualtest_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/../screenpool-debug.cpp
     )
 add_executable(screenpoolmanualtest)
-qt6_generate_wayland_protocol_client_sources(screenpoolmanualtest FILES
-    ${PLASMA_WAYLAND_PROTOCOLS_DIR}/kde-output-order-v1.xml)
 
 target_sources(screenpoolmanualtest PRIVATE ${screenpoolmanualtest_SRCS})
 target_link_libraries(screenpoolmanualtest
             Qt::Test
             Qt::Gui
             Qt::Widgets
-            Qt::WaylandClient
             KF6::ConfigCore
             KF6::Service
             KF6::WindowSystem
-            Plasma::KWaylandClient
-            Wayland::Client
             PW::KWorkspace
                         )
-if(HAVE_X11)
-    target_link_libraries(screenpoolmanualtest XCB::XCB XCB::RANDR)
-    target_link_libraries(screenpoolmanualtest Qt::GuiPrivate)
-endif()
+target_link_libraries(screenpoolmanualtest XCB::XCB XCB::RANDR)
+target_link_libraries(screenpoolmanualtest Qt::GuiPrivate)
 if(QT_QTOPENGL_FOUND)
     target_link_libraries(screenpoolmanualtest Qt::OpenGL)
 endif()
@@ -42,4 +35,3 @@ target_link_libraries(setwallpapertest
             Qt::Test
             Qt::DBus
     )
-

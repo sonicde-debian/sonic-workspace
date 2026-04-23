@@ -45,16 +45,11 @@ target_link_libraries(klipper
     KF6::WidgetsAddons
     KF6::WindowSystem
     KF6::XmlGui
-    Plasma::KWaylandClient
     Plasma::PlasmaQuick
-    Wayland::Client
-    LayerShellQt::Interface
     ${ZLIB_LIBRARY}
 )
 
-if (HAVE_X11)
-    target_link_libraries(klipper XCB::XCB XCB::AUX)
-endif()
+target_link_libraries(klipper XCB::XCB XCB::AUX)
 
 set_target_properties(klipper PROPERTIES
                       VERSION ${PROJECT_VERSION}
@@ -65,15 +60,6 @@ add_subdirectory(declarative)
 
 install(FILES org.kde.klipper.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
-# Plasma Data Engine
-set(plasma_engine_clipboard_SRCS clipboardengine.cpp clipboardengine.h clipboardservice.cpp clipboardservice.h clipboardjob.cpp clipboardjob.h)
-kcoreaddons_add_plugin(plasma_engine_clipboard SOURCES ${plasma_engine_clipboard_SRCS} INSTALL_NAMESPACE "plasma5support/dataengine")
-target_link_libraries(plasma_engine_clipboard
-    klipper
-    Plasma::Plasma5Support
-)
-
-install(FILES org.kde.plasma.clipboard.operations DESTINATION ${PLASMA5SUPPORT_DATA_INSTALL_DIR}/services)
 if(BUILD_TESTING)
    add_subdirectory(autotests)
 endif()

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-12-05 00:44+0000\n"
 "PO-Revision-Date: 2023-10-27 23:36+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -27,17 +27,17 @@ msgstr ""
 msgid "Failed to copy icon widget desktop file from '%1' to '%2'"
 msgstr ""
 
-#: iconapplet.cpp:356
+#: iconapplet.cpp:355
 #, kde-format
 msgid "Open Containing Folder"
 msgstr ""
 
-#: iconapplet.cpp:579
+#: iconapplet.cpp:578
 #, kde-format
 msgid "Properties for %1"
 msgstr "Propiedaes de: %1"
 
-#: package/contents/ui/main.qml:40
+#: qml/main.qml:40
 #, kde-format
 msgid "Properties"
 msgstr "Propiedaes"

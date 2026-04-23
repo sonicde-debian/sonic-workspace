@@ -18,6 +18,7 @@
 
 #include <KIO/MkdirJob>
 #include <KIO/StoredTransferJob>
+#include <algorithm>
 
 using namespace Qt::StringLiterals;
 
@@ -50,13 +51,20 @@ UpdateDatabaseJob *UpdateDatabaseJob::updateClipboard(QObject *parent,
     }
 
     if (mimeData->hasImage()) {
-        QImage image = mimeData->imageData().value<QImage>();
+        QByteArray data;
+        QImage image;
+        // If png is available directly do not do a needless encoding
+        if (mimeData->hasFormat(QLatin1String("image/png"))) {
+            data = mimeData->data(QLatin1String("image/png"));
+            image = QImage::fromData(data, "PNG");
+        } else {
+            image = mimeData->imageData().value<QImage>();
+            QBuffer buffer(&data);
+            QImageWriter encoder(&buffer, "PNG");
+            encoder.write(image);
+        }
         hash.reset();
         hash.addData(QByteArrayView(reinterpret_cast<const char *>(image.constBits()), image.sizeInBytes()));
-        QByteArray data;
-        QBuffer buffer(&data);
-        QImageWriter encoder(&buffer, "PNG");
-        encoder.write(image);
         mimeDataList.emplace_back(s_imageFormat, std::move(data), QString::fromLatin1(hash.result().toHex()));
     }
 
@@ -69,7 +77,7 @@ UpdateDatabaseJob *UpdateDatabaseJob::updateClipboard(QObject *parent,
             continue; // Already saved
         }
 
-        if (std::none_of(s_acceptableTextFormatPrefixes.begin(), s_acceptableTextFormatPrefixes.end(), [&format](QStringView prefix) {
+        if (std::ranges::none_of(s_acceptableTextFormatPrefixes, [&format](QStringView prefix) {
                 return format.startsWith(prefix);
             })) {
             // Don't create un-asked for DDE links in LibreOffice apps;
@@ -109,9 +117,7 @@ UpdateDatabaseJob::UpdateDatabaseJob(QObject *parent,
 {
 }
 
-UpdateDatabaseJob::~UpdateDatabaseJob()
-{
-}
+UpdateDatabaseJob::~UpdateDatabaseJob() = default;
 
 void UpdateDatabaseJob::start()
 {

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-12-05 00:44+0000\n"
 "PO-Revision-Date: 2024-10-03 20:40+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
@@ -27,17 +27,17 @@ msgstr "Gagal menciptakan folder ikon widget '%1'"
 msgid "Failed to copy icon widget desktop file from '%1' to '%2'"
 msgstr "Gagal menyalin file desktop ikon widget dari '%1' ke '%2'"
 
-#: iconapplet.cpp:356
+#: iconapplet.cpp:355
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "Buka Folder Konten"
 
-#: iconapplet.cpp:579
+#: iconapplet.cpp:578
 #, kde-format
 msgid "Properties for %1"
 msgstr "Properti untuk %1"
 
-#: package/contents/ui/main.qml:40
+#: qml/main.qml:40
 #, kde-format
 msgid "Properties"
 msgstr "Properti"

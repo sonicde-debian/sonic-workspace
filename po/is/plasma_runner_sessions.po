@@ -2,16 +2,16 @@
 # Copyright (C) 2008 This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2008, 2009, 2011.
+# SPDX-FileCopyrightText: 2008, 2009, 2011, 2025 Sveinn í Felli <sv1@fellsnet.is>
 # SPDX-FileCopyrightText: 2022, 2023, 2025 Guðmundur Erlingsson <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_runner_sessions\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-18 13:01+0000\n"
-"Last-Translator: Gummi <gudmundure@gmail.com>\n"
-"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-30 12:08+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "\n"
 "\n"
 
-#: sessionrunner.cpp:19
+#: sessionrunner.cpp:20
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to log out of the "
@@ -29,25 +29,25 @@ msgctxt ""
 msgid "logout;log out"
 msgstr "útskráning;skrá út"
 
-#: sessionrunner.cpp:22
+#: sessionrunner.cpp:23
 #, kde-format
 msgid "Logs out, exiting the current desktop session"
 msgstr "Skráir út, hættir í núverandi skjáborðssetu"
 
-#: sessionrunner.cpp:25
+#: sessionrunner.cpp:27
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to shut down the "
 "computer"
-msgid "shutdown;shut down;power;power off"
-msgstr "slökkva;ganga frá"
+msgid "shutdown;shut down;power;poweroff;power off"
+msgstr "slökkva;ganga frá,gangstýring,orka"
 
-#: sessionrunner.cpp:28
+#: sessionrunner.cpp:30
 #, kde-format
 msgid "Turns off the computer"
 msgstr "Slekkur á tölvunni"
 
-#: sessionrunner.cpp:31
+#: sessionrunner.cpp:33
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to restart the "
@@ -55,24 +55,24 @@ msgctxt ""
 msgid "restart;reboot"
 msgstr "endurræsing;endurræsa"
 
-#: sessionrunner.cpp:34
+#: sessionrunner.cpp:36
 #, kde-format
 msgid "Reboots the computer"
 msgstr "Endurræsir tölvuna"
 
-#: sessionrunner.cpp:38
+#: sessionrunner.cpp:40
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to lock the screen"
 msgid "lock;lock screen"
 msgstr "læsa;læsa skjá"
 
-#: sessionrunner.cpp:40
+#: sessionrunner.cpp:42
 #, kde-format
 msgid "Locks the current sessions and starts the screen saver"
 msgstr "Læsir núverandi skjáborðssetu og opnar skjáhvílu"
 
-#: sessionrunner.cpp:43
+#: sessionrunner.cpp:45
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to save the "
@@ -80,12 +80,12 @@ msgctxt ""
 msgid "save;save session"
 msgstr "vista;vista setu"
 
-#: sessionrunner.cpp:46
+#: sessionrunner.cpp:48
 #, kde-format
 msgid "Saves the current session for session restoration"
 msgstr "Vistar núverandi setu svo hægt sé að endurheimta hana"
 
-#: sessionrunner.cpp:49
+#: sessionrunner.cpp:51
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to switch user "
@@ -93,41 +93,41 @@ msgctxt ""
 msgid "switch user;new session"
 msgstr "skipta um notanda;ný seta"
 
-#: sessionrunner.cpp:52
+#: sessionrunner.cpp:54
 #, kde-format
 msgid "Switch to a session as a different user"
 msgstr "Skipta í nýja setu sem annar notandi"
 
-#: sessionrunner.cpp:73
+#: sessionrunner.cpp:75
 #, kde-format
 msgctxt "log out command"
 msgid "Log Out"
 msgstr "Skrá út"
 
-#: sessionrunner.cpp:81
+#: sessionrunner.cpp:83
 #, kde-format
 msgctxt "turn off computer command"
 msgid "Shut Down"
 msgstr "Slökkva"
 
-#: sessionrunner.cpp:88
+#: sessionrunner.cpp:90
 #, kde-format
 msgctxt "restart computer command"
 msgid "Restart"
 msgstr "Endurræsa"
 
-#: sessionrunner.cpp:95
+#: sessionrunner.cpp:97
 #, kde-format
 msgctxt "lock screen command"
 msgid "Lock"
 msgstr "Læsa"
 
-#: sessionrunner.cpp:102
+#: sessionrunner.cpp:104
 #, kde-format
 msgid "Save Session"
 msgstr "Vista setu"
 
-#: sessionrunner.cpp:109
+#: sessionrunner.cpp:111
 #, kde-format
 msgid "Switch User"
 msgstr "Skipta um notanda"

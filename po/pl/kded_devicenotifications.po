@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-28 02:34+0000\n"
+"POT-Creation-Date: 2026-01-16 03:02+0000\n"
 "PO-Revision-Date: 2025-08-17 12:04+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -18,59 +18,63 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 25.08.0\n"
 
-#: devicenotifications.cpp:396
+#: devicenotifications.cpp:399
 #, kde-format
 msgctxt "@title:notifications"
 msgid "Display Detected"
 msgstr "Wykryto wyświetlacz"
 
-#: devicenotifications.cpp:397
+#: devicenotifications.cpp:400
 #, kde-format
 msgid "A display has been connected."
 msgstr "Podłączono wyświetlacz."
 
-#: devicenotifications.cpp:417
+#: devicenotifications.cpp:420
 #, kde-format
 msgctxt "@title:notifications"
 msgid "Display Removed"
 msgstr "Usunięto wyświetlacz"
 
-#: devicenotifications.cpp:418
+#: devicenotifications.cpp:421
 #, kde-format
 msgid "A display has been disconnected."
 msgstr "Odłączono wyświetlacz."
 
-#: devicenotifications.cpp:464
+#: devicenotifications.cpp:467
 #, kde-format
 msgid "%1 has been connected."
 msgstr "Podłączono %1."
 
-#: devicenotifications.cpp:464
+#: devicenotifications.cpp:467
 #, kde-format
 msgid "A USB device has been connected."
 msgstr "Podłączono urządzenie USB."
 
-#: devicenotifications.cpp:469
+#: devicenotifications.cpp:472
 #, kde-format
 msgctxt "@title:notifications"
 msgid "USB Device Detected"
 msgstr "Wykryto urządzenie USB"
 
-#: devicenotifications.cpp:507
+#: devicenotifications.cpp:510
 #, kde-format
 msgid "%1 has been disconnected."
 msgstr "Odłączono %1."
 
-#: devicenotifications.cpp:507
+#: devicenotifications.cpp:510
 #, kde-format
 msgid "A USB device has been disconnected."
 msgstr "Odłączono urządzenie USB."
 
-#: devicenotifications.cpp:512
+#: devicenotifications.cpp:515
 #, kde-format
 msgctxt "@title:notifications"
-msgid "USB Device Went Away"
-msgstr "Urządzenie USB zniknęło"
+msgid "USB Device Removed"
+msgstr "Usunięto urządzenie USB"
+
+#~ msgctxt "@title:notifications"
+#~ msgid "USB Device Went Away"
+#~ msgstr "Urządzenie USB zniknęło"
 
 #~ msgid "A display has been plugged in."
 #~ msgstr "Podłączono wyświetlacz."
@@ -80,7 +84,3 @@ msgstr "Urządzenie USB zniknęło"
 
 #~ msgid "A USB device has been plugged in."
 #~ msgstr "Podłączono urządzenie USB."
-
-#~ msgctxt "@title:notifications"
-#~ msgid "USB Device Removed"
-#~ msgstr "Usunięto urządzenie USB"

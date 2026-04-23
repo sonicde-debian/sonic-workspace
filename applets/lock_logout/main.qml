@@ -18,6 +18,7 @@ PlasmoidItem {
     id: root
 
     readonly property int minButtonSize: Kirigami.Units.iconSizes.small
+    property bool initialized: false
 
     preferredRepresentation: fullRepresentation
     fullRepresentation: Flow {
@@ -69,13 +70,60 @@ PlasmoidItem {
             id: session
         }
 
+        function buildOrderedModel() {
+            orderedActionsModel.clear();
+
+            var data = Data.data;
+
+            var actionMap = {};
+            for (const item of data) {
+                actionMap[item.configKey] = item;
+            }
+
+            var order = Plasmoid.configuration.actionsOrder || [];
+
+            if (!order.length) {
+                for (const item of data) {
+                    order.push(item.configKey);
+                }
+            }
+
+            for (const key of order) {
+                var item = actionMap[key];
+                if (!item) {
+                    continue;
+                }
+                orderedActionsModel.append(item);
+            }
+        }
+
+        Connections {
+            target: Plasmoid.configuration
+
+            function onActionsOrderChanged() {
+                if (!root.initialized) {
+                    // On first addition to containment for every configuration change, ignore it, 
+                    // otherwise the model is built twice
+                    return;
+                }
+                lockout.buildOrderedModel();
+            }
+        }
+
+        Component.onCompleted: function() {
+            lockout.buildOrderedModel();
+            root.initialized = true;
+        }
+
         Repeater {
             id: items
             property int itemWidth: parent.flow==Flow.LeftToRight ? Math.floor(parent.width/lockout.visibleButtons) : parent.width
             property int itemHeight: parent.flow==Flow.TopToBottom ? Math.floor(parent.height/lockout.visibleButtons) : parent.height
             property int iconSize: Math.min(itemWidth, itemHeight)
 
-            model: Data.data
+            model: ListModel {
+                id: orderedActionsModel
+            }
 
             delegate: PlasmaCore.ToolTipArea {
                 id: iconDelegate
@@ -85,7 +133,7 @@ PlasmoidItem {
                 required property string tooltip_mainText
                 required property string tooltip_subText
                 required property string operation
-                required property string icon
+                required property var model // used to access icon because ToopTipArea already has icon property
 
                 visible: Plasmoid.configuration["show_" + configKey] && (requires !== ""|| session["can" + requires])
                 width: items.itemWidth
@@ -120,7 +168,7 @@ PlasmoidItem {
                     width: items.iconSize
                     height: items.iconSize
                     anchors.centerIn: parent
-                    source: iconDelegate.icon
+                    source: iconDelegate.model.icon
                     scale: tapHandler.pressed ? 0.9 : 1
                     active: iconDelegate.containsMouse
                 }

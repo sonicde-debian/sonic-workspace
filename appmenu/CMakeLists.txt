@@ -22,18 +22,14 @@ pkg_check_modules(XKBCommon REQUIRED IMPORTED_TARGET xkbcommon)
 
 target_link_libraries(appmenu
     Qt::DBus
-    Qt::WaylandClientPrivate
     KF6::DBusAddons
     KF6::KIOCore
-    Plasma::KWaylandClient
     KF6::WindowSystem
-    Wayland::Client
     PkgConfig::XKBCommon
     dbusmenuqt
 )
-if (HAVE_X11)
-    target_link_libraries(appmenu XCB::XCB)
-endif()
+
+target_link_libraries(appmenu XCB::XCB)
 
 ecm_qt_declare_logging_category(appmenu
     HEADER appmenu_debug.h

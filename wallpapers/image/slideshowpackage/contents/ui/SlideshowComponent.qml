@@ -5,14 +5,15 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+pragma ComponentBehavior: Bound
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15 as QQC2
-import QtQuick.Layouts 1.15
+import QtQuick
+import QtQuick.Controls as QQC2
+import QtQuick.Layouts
 
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.wallpapers.image 2.0 as PlasmaWallpaper
+import org.kde.plasma.wallpapers.image as PlasmaWallpaper
 
 /**
  * For proper alignment, an ancestor **MUST** have id "appearanceRoot" and property "parentLayout"
@@ -173,15 +174,11 @@ ColumnLayout {
     }
 
     RowLayout {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
 
         spacing: 0
 
         ColumnLayout {
             spacing: 0
-            Layout.fillHeight: true
-            Layout.preferredWidth: 0.35 * parent.width
             Layout.maximumWidth: Kirigami.Units.gridUnit * 16
 
             Kirigami.Separator {
@@ -285,7 +282,6 @@ ColumnLayout {
         Loader {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            anchors.fill: undefined
 
             Component.onCompleted: () => {
                 this.setSource("ThumbnailsComponent.qml", {"screenSize": slideshowComponent.screenSize});

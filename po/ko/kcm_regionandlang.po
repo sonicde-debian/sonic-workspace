@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-07-20 01:20+0200\n"
+"POT-Creation-Date: 2026-03-08 02:54+0000\n"
+"PO-Revision-Date: 2026-02-03 23:22+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -15,17 +15,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
+
+#, kde-format
+msgid "Inherit Language"
+msgstr "언어에서 상속"
 
 #: binarydialectmodel.cpp:52
 #, kde-format
-msgctxt "Binary dialect IEC, with sigle in parentheses"
+msgctxt "Binary dialect IEC, with single in parentheses"
 msgid "International Electrotechnical Commission (IEC)"
 msgstr "IEC"
 
 #: binarydialectmodel.cpp:56
 #, kde-format
-msgctxt "Binary dialect JEDEC, with sigle in parentheses"
+msgctxt "Binary dialect JEDEC, with single in parentheses"
 msgid "Joint Electron Device Engineering Council (JEDEC)"
 msgstr "JEDEC"
 
@@ -37,16 +41,19 @@ msgstr "미터법(SI)"
 
 #: binarydialectmodel.cpp:75
 #, kde-format
+msgctxt "Binary dialect IEC description"
 msgid "Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)"
 msgstr "이진수 -  키비바이트(KiB), 메비바이트(MiB), 기비바이트(GiB)"
 
 #: binarydialectmodel.cpp:77
 #, kde-format
-msgid "Binary - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
-msgstr "이진수 - 킬로바이트(kB), 메가바이트(MB), 기가바이트(GB)"
+msgctxt "Binary dialect JEDEC description"
+msgid "Binary - Kilobytes (KB), Megabytes (MB), Gigabytes (GB)"
+msgstr "이진수 - 킬로바이트(KB), 메가바이트(MB), 기가바이트(GB)"
 
 #: binarydialectmodel.cpp:79
 #, kde-format
+msgctxt "Binary dialect Metric description"
 msgid "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
 msgstr "십진수 - 킬로바이트(kB), 메가바이트(MB), 기가바이트(GB)"
 
@@ -250,7 +257,7 @@ msgctxt ""
 msgid "Could not find an example for this locale"
 msgstr "이 로캘의 예제를 찾을 수 없음"
 
-#: glibclocaleconstructor.cpp:164
+#: glibclocaleconstructor.cpp:165
 #, kde-kuit-format
 msgctxt "@info this will be shown as an error message"
 msgid ""
@@ -262,13 +269,13 @@ msgstr ""
 "을 수 없습니다. <link>https://bugs.kde.org</link> 사이트에 버그를 보고해 주십"
 "시오."
 
-#: languagelistmodel.cpp:95
+#: languagelistmodel.cpp:97
 #, kde-format
 msgctxt "%1 is language name, %2 is language code name"
 msgid "%1 (%2)"
 msgstr "%1(%2)"
 
-#: languagelistmodel.cpp:101
+#: languagelistmodel.cpp:103
 #, kde-format
 msgctxt ""
 "%1 is português in system locale name, Brazil is to distinguish European "
@@ -447,15 +454,6 @@ msgctxt ""
 "as subtitle, remind user that the format used now is inherited from locale %1"
 msgid " (Standard format for %1)"
 msgstr "(%1의 표준 형식)"
-
-#: regionandlangsettingsbase.kcfg:14 regionandlangsettingsbase.kcfg:17
-#: regionandlangsettingsbase.kcfg:20 regionandlangsettingsbase.kcfg:23
-#: regionandlangsettingsbase.kcfg:26 regionandlangsettingsbase.kcfg:29
-#: regionandlangsettingsbase.kcfg:32 regionandlangsettingsbase.kcfg:35
-#: regionandlangsettingsbase.kcfg:38
-#, kde-format
-msgid "Inherit Language"
-msgstr "언어에서 상속"
 
 #: ui/AdvancedLanguageSelectPage.qml:23
 #, kde-format

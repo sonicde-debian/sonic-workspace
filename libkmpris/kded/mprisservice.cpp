@@ -29,9 +29,7 @@ MprisService::MprisService(QObject *parent, const QList<QVariant> &)
     enableGlobalShortcuts();
 }
 
-MprisService::~MprisService()
-{
-}
+MprisService::~MprisService() = default;
 
 void MprisService::onPlayPause()
 {
@@ -62,6 +60,34 @@ void MprisService::onPrevious()
 {
     if (m_activePlayer && m_activePlayer->canGoPrevious()) {
         m_activePlayer->Previous();
+    }
+}
+
+void MprisService::onSeekForward()
+{
+    if (m_activePlayer && m_activePlayer->canSeek()) {
+        m_activePlayer->Seek(5 * 1000000);
+    }
+}
+
+void MprisService::onSeekBackward()
+{
+    if (m_activePlayer && m_activePlayer->canSeek()) {
+        m_activePlayer->Seek(-5 * 1000000);
+    }
+}
+
+void MprisService::onSeekForwardLong()
+{
+    if (m_activePlayer && m_activePlayer->canSeek()) {
+        m_activePlayer->Seek(30 * 1000000);
+    }
+}
+
+void MprisService::onSeekBackwardLong()
+{
+    if (m_activePlayer && m_activePlayer->canSeek()) {
+        m_activePlayer->Seek(-30 * 1000000);
     }
 }
 
@@ -114,6 +140,22 @@ void MprisService::enableGlobalShortcuts()
     addGlobalShortcut(QStringLiteral("playpausemedia"), i18nc("@title shortcut", "Play/Pause media playback"), Qt::Key_MediaPlay, &MprisService::onPlayPause);
     addGlobalShortcut(QStringLiteral("nextmedia"), i18nc("@title shortcut", "Media playback next"), Qt::Key_MediaNext, &MprisService::onNext);
     addGlobalShortcut(QStringLiteral("previousmedia"), i18nc("@title shortcut", "Media playback previous"), Qt::Key_MediaPrevious, &MprisService::onPrevious);
+    addGlobalShortcut(QStringLiteral("seekforwardmedia"),
+                      i18nc("@title shortcut", "Media playback seek forward 5s"),
+                      Qt::Key_AudioForward,
+                      &MprisService::onSeekForward);
+    addGlobalShortcut(QStringLiteral("seekbackwardmedia"),
+                      i18nc("@title shortcut", "Media playback seek backward 5s"),
+                      Qt::Key_AudioRewind,
+                      &MprisService::onSeekBackward);
+    addGlobalShortcut(QStringLiteral("seekforwardmedialong"),
+                      i18nc("@title shortcut", "Media playback seek forward 30s"),
+                      QKeySequence(),
+                      &MprisService::onSeekForwardLong);
+    addGlobalShortcut(QStringLiteral("seekbackwardmedialong"),
+                      i18nc("@title shortcut", "Media playback seek backward 30s"),
+                      QKeySequence(),
+                      &MprisService::onSeekBackwardLong);
     addGlobalShortcut(QStringLiteral("stopmedia"), i18nc("@title shortcut", "Stop media playback"), Qt::Key_MediaStop, &MprisService::onStop);
     addGlobalShortcut(QStringLiteral("pausemedia"), i18nc("@title shortcut", "Pause media playback"), Qt::Key_MediaPause, &MprisService::onPause);
     addGlobalShortcut(QStringLiteral("playmedia"), i18nc("@title shortcut", "Play media playback"), QKeySequence(), &MprisService::onPlay);

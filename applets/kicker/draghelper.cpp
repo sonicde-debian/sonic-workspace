@@ -19,9 +19,7 @@ DragHelper::DragHelper(QObject *parent)
 {
 }
 
-DragHelper::~DragHelper()
-{
-}
+DragHelper::~DragHelper() = default;
 
 int DragHelper::dragIconSize() const
 {
@@ -66,9 +64,9 @@ void DragHelper::doDrag(QQuickItem *item, const QUrl &url, const QString &icon, 
         item->window()->mouseGrabberItem()->ungrabMouse();
     }
 
-    QDrag *drag = new QDrag(item);
+    auto *drag = new QDrag(item);
 
-    QMimeData *mimeData = new QMimeData();
+    auto *mimeData = new QMimeData();
 
     if (!url.isEmpty()) {
         mimeData->setUrls(QList<QUrl>() << url);

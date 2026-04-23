@@ -8,7 +8,7 @@
 # Guillaume Pujol <guill.p@gmail.com>, 2010.
 # Joëlle Cornavin <jcorn@free.fr>, 2012, 2013.
 # Anne-Marie Mahfouf <annma@kde.org>, 2013.
-# SPDX-FileCopyrightText: 2013, 2024, 2025 Xavier Besnard <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2013, 2024, 2025, 2026 Xavier Besnard <xavier.besnard@kde.org>
 # Thomas Vergnaud <thomas.vergnaud@gmx.fr>, 2014, 2016.
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
 # SPDX-FileCopyrightText: 2020, 2021, 2022, 2023 Xavier Besnard <xavier.besnard@kde.org>
@@ -19,10 +19,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_notifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-07-16 09:27+0200\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
+"PO-Revision-Date: 2026-01-06 16:14+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: French <French <kde-francophone@kde.org>>\n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,47 +30,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Accelerator-Marker: &\n"
 "X-Environment: kde\n"
-"X-Generator: Lokalize 25.07.80\n"
+"X-Generator: Lokalize 25.12.2\n"
 "X-Text-Markup: kde4\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
-msgstr "Vérifier s’il y a des erreurs"
+msgstr "Vérifier s'il y a des erreurs"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Monter sans vérifier"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Monter"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Ouvrir dans le gestionnaire de fichiers"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Essayer de réparer"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Monter et ouvrir"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Éjecter"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Retirer en toute sécurité"
@@ -130,7 +124,7 @@ msgstr "Vous n'êtes pas autorisé à réparer ce périphérique."
 #: devicemessagemonitor_p.cpp:204 devicemessagemonitor_p.cpp:269
 #, kde-format
 msgid "Unknown error type"
-msgstr "Type inconnu d’erreur"
+msgstr "Type inconnu d'erreur"
 
 #: devicemessagemonitor_p.cpp:208
 #, kde-format
@@ -182,7 +176,7 @@ msgstr "Impossible de retirer ce périphérique."
 msgid "Could not repair this device: %1"
 msgstr "Impossible de réparer ce périphérique :%1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -190,7 +184,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Vérification en cours…"
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -198,13 +192,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Réparation en cours…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1 libre sur %2"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -212,7 +206,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Accès en cours..."
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -220,28 +214,28 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Suppression en cours…"
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr ""
-"Ne pas débrancher encore ! Les fichiers sont encore en cours de transfert..."
+"Ne débranchez pas encore ! Les fichiers sont encore en cours de transfert..."
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Tout supprimer"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Cliquez pour retirer l'ensemble des périphériques en toute sécurité"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Aucun périphérique amovible branché"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Aucun disque disponible"
@@ -256,31 +250,35 @@ msgstr "Le périphérique le plus récent"
 msgid "No Devices Available"
 msgstr "Aucun périphérique disponible"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Configurer les périphériques amovibles..."
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Périphériques amovibles"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Périphériques non amovibles"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Tous les périphériques"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Afficher un menu contextuel lorsqu'un nouveau périphérique est branché"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Monter sans vérifier"
 
 #~ msgid "Filesystem is not responding"
 #~ msgstr "Le système de fichiers ne répond pas."

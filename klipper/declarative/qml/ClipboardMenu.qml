@@ -13,14 +13,13 @@ import QtQuick.Layouts
 import QtQml.Models // DelegateChoice for Qt >= 6.9
 import Qt.labs.qmlmodels // DelegateChooser
 
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.components as PlasmaComponents3
 
-import org.kde.kitemmodels 1.0 as KItemModels
-import org.kde.kirigami 2.20 as Kirigami
-import org.kde.ksvg 1.0 as KSvg
-import org.kde.plasma.private.clipboard 0.1 as Private
+import org.kde.kitemmodels as KItemModels
+import org.kde.kirigami as Kirigami
+import org.kde.ksvg as KSvg
+import org.kde.plasma.private.clipboard as Private
 
 PlasmaComponents3.ScrollView {
     id: clipboardMenu
@@ -117,7 +116,7 @@ PlasmaComponents3.ScrollView {
             break;
         }
         case Qt.Key_Backspace: {
-            // filter.text += event.text wil break if the key is backspace
+            // filter.text += event.text will break if the key is backspace
             if (!filter.activeFocus) {
                 // Forward backspace to filter when not focused
                 filter.forceActiveFocus();
@@ -313,6 +312,8 @@ PlasmaComponents3.ScrollView {
                     }
                     event.accepted = true;
                 }
+                Keys.onEnterPressed: event => Keys.returnPressed(event)
+                Keys.onReturnPressed: event => filter.Keys.returnPressed(event) // reuse the logic from search field
 
                 currentIndex: clipboardMenu.model.starredOnly ? 1 : 0
                 onCurrentIndexChanged: {

@@ -12,13 +12,13 @@
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2010.
 # Ozan Çağlayan <ozan@pardus.org.tr>, 2010, 2011, 2013.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014, 2017, 2021, 2022.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-11-08 21:06+0300\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2026-01-31 15:42+0300\n"
 "Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -886,29 +886,33 @@ msgstr "Renklendirme gücü:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Karelerin gölgelemesi ve aydınlatma (“3B”) efektleri"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Çerçevelerin, ayırıcıların ve ana hatların karşıtlığı"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Gölgeleme"
+msgid "Frames and Outlines"
+msgstr "Çerçeveler ve Ana Hatlar"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "En büyük"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Yüzde 15’in altındaki karşıtlık değerleri, bazı uygulama ve renk şemalarıyla "
+"garip görsel efektler üretebilir. Uyarmadık demeyin!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "En küçük"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Karşıtlık"
@@ -1368,7 +1372,19 @@ msgstr "Renk Şeması Aç"
 #: ui/main.qml:376
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
-msgstr "Renk Şeması Dosyaları (*.colors)"
+msgstr "Renk şeması dosyaları (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Karelerin gölgelemesi ve aydınlatma (“3B”) efektleri"
+
+#~ msgid "Shading"
+#~ msgstr "Gölgeleme"
+
+#~ msgid "Maximum"
+#~ msgstr "En büyük"
+
+#~ msgid "Minimum"
+#~ msgstr "En küçük"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Özel vurgu rengi seç"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-05 02:34+0000\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
 "PO-Revision-Date: 2024-10-25 23:31-0500\n"
 "Last-Translator: A S Alam <aman@punlinux.org>\n"
 "Language-Team: pa\n"
@@ -18,147 +18,147 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 24.08.2\n"
 
-#: actionlist.cpp:91
+#: actionlist.cpp:93
 #, kde-format
 msgid "Open with:"
 msgstr "ਇਸ ਨਾਲ ਖੋਲ੍ਹੋ:"
 
-#: actionlist.cpp:104
+#: actionlist.cpp:106
 #, kde-format
 msgid "Properties"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ"
 
-#: actionlist.cpp:151
+#: actionlist.cpp:153
 #, kde-format
 msgid "Add to Desktop"
 msgstr "ਡੈਸਕਟਾਪ ਵਿੱਚ ਜੋੜੋ"
 
-#: actionlist.cpp:158
+#: actionlist.cpp:160
 #, kde-format
 msgid "Pin to Task Manager"
 msgstr "ਟਾਸਕ ਮੈਨੇਜਰ ਵਿੱਚ ਟੰਗੋ"
 
-#: actionlist.cpp:162
+#: actionlist.cpp:164
 #, kde-format
 msgid "Add to Panel (Widget)"
 msgstr "ਪੈਨਲ ਵਿੱਚ ਜੋੜੋ (ਵਿਦਜੈੱਟ)"
 
-#: actionlist.cpp:313 rootmodel.cpp:540
+#: actionlist.cpp:316 rootmodel.cpp:538
 #, kde-format
 msgid "Recent Files"
 msgstr "ਤਾਜ਼ਾ ਫ਼ਾਇਲਾਂ"
 
-#: actionlist.cpp:323
+#: actionlist.cpp:326
 #, kde-format
 msgid "Forget Recent Files"
 msgstr "ਤਾਜ਼ਾ ਫ਼ਾਇਲਾਂ ਨੂੰ ਭੁਲਾਓ"
 
-#: actionlist.cpp:388
+#: actionlist.cpp:393
 #, kde-format
 msgid "Edit Application…"
 msgstr "…ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਸੋਧੋ"
 
-#: actionlist.cpp:420
+#: actionlist.cpp:425
 #, kde-format
 msgctxt "@action opens a software center with the application"
 msgid "Uninstall or Manage Add-Ons…"
 msgstr "…ਐਡ-ਆਨ ਅਣ-ਇੰਸਟਾਲ ਕਰੋ ਜਾਂ ਇੰਤਜ਼ਾਮ ਕਰੋ"
 
-#: appentry.cpp:360
+#: appentry.cpp:361
 #, kde-format
 msgid "Hide Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਓਹਲੇ ਕਰੋ"
 
-#: appentry.cpp:422
+#: appentry.cpp:423
 #, kde-format
 msgctxt "App name (Comment or Generic name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appentry.cpp:424
+#: appentry.cpp:425
 #, kde-format
 msgctxt "Generic name (App name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:97 computermodel.cpp:225
-#: recentusagemodel.cpp:165 recentusagemodel.cpp:228
+#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:219
+#: recentusagemodel.cpp:156 recentusagemodel.cpp:225
 #, kde-format
 msgid "Applications"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ"
 
-#: appsmodel.cpp:169
+#: appsmodel.cpp:171
 #, kde-format
 msgid "Unhide Applications in this Submenu"
 msgstr "ਇਸ ਅਧੀਨ-ਮੇਨੂ ਵਿੱਚ ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਲੁਕਾਓ"
 
-#: appsmodel.cpp:178
+#: appsmodel.cpp:180
 #, kde-format
 msgid "Unhide Applications in '%1'"
 msgstr "'%1' ਵਿੱਚ ਐਪਲੀਕੇਸਨਾਂ ਨੂੰ ਨਾ-ਲੁਕਾਓ"
 
-#: computermodel.cpp:91
+#: computermodel.cpp:87
 #, kde-format
 msgid "Show KRunner"
 msgstr "ਕੇ-ਰਨਰ ਵੇਖਾਓ"
 
-#: computermodel.cpp:95
+#: computermodel.cpp:91
 #, kde-format
 msgid "Search, calculate, or run a command"
 msgstr "ਖੋਜੋ, ਗਿਣਤੀ ਕਰੋ ਜਾਂ ਕਮਾਂਡ ਚਲਾਓ"
 
-#: computermodel.cpp:148
+#: computermodel.cpp:142
 #, kde-format
 msgid "Computer"
 msgstr "ਕੰਪਿਊਟਰ"
 
 #. i18n.
-#: kastatsfavoritesmodel.cpp:557 rootmodel.cpp:533 simplefavoritesmodel.cpp:33
+#: kastatsfavoritesmodel.cpp:548 rootmodel.cpp:531 simplefavoritesmodel.cpp:33
 #, kde-format
 msgid "Favorites"
 msgstr "ਪਸੰਦੀਦਾ"
 
-#: recentusagemodel.cpp:163
+#: recentusagemodel.cpp:154
 #, kde-format
 msgid "Recently Used"
 msgstr "ਤਾਜ਼ਾ ਵਰਤੇ"
 
-#: recentusagemodel.cpp:168 recentusagemodel.cpp:321
+#: recentusagemodel.cpp:159 recentusagemodel.cpp:318
 #, kde-format
 msgid "Files"
 msgstr "ਫਾਇਲ"
 
-#: recentusagemodel.cpp:254
+#: recentusagemodel.cpp:251
 #, kde-format
 msgid "Forget Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਭੁਲਾਓ"
 
-#: recentusagemodel.cpp:319
+#: recentusagemodel.cpp:316
 #, kde-format
 msgid "Folders"
 msgstr ""
 
-#: recentusagemodel.cpp:360
+#: recentusagemodel.cpp:357
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "ਰੱਖਣ ਵਾਲਾ ਫੋਲਡਰ ਖੋਲ੍ਹੋ"
 
-#: recentusagemodel.cpp:363
+#: recentusagemodel.cpp:360
 #, kde-format
 msgid "Forget File"
 msgstr "ਫ਼ਾਇਲ ਨੂੰ ਭੁਲਾਓ"
 
-#: recentusagemodel.cpp:498
+#: recentusagemodel.cpp:504
 #, kde-format
 msgid "Forget All"
 msgstr "ਸਭ ਨੂੰ ਭੁਲਾਓ"
 
-#: recentusagemodel.cpp:500
+#: recentusagemodel.cpp:506
 #, kde-format
 msgid "Forget All Applications"
 msgstr "ਸਾਰੀਆਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਭੁਲਾਓ"
 
-#: recentusagemodel.cpp:503
+#: recentusagemodel.cpp:509
 #, kde-format
 msgid "Forget All Files"
 msgstr "ਸਾਰੀਆਂ ਫਾਇਲ ਭੁਲਾਓ"
@@ -168,123 +168,123 @@ msgstr "ਸਾਰੀਆਂ ਫਾਇਲ ਭੁਲਾਓ"
 msgid "All Applications"
 msgstr "ਸਭ ਐਪਲੀਕੇਸ਼ਨ"
 
-#: rootmodel.cpp:133
+#: rootmodel.cpp:131
 #, kde-format
 msgid "Hide %1"
 msgstr "%1 ਨੂੰ ਲੁਕਾਓ"
 
-#: rootmodel.cpp:527
+#: rootmodel.cpp:525
 #, kde-format
 msgid "This shouldn't be visible! Use KICKER_FAVORITES_MODEL"
 msgstr "ਇਹ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ! ਛੱਡੋ ਪਰ੍ਹਾ"
 
-#: rootmodel.cpp:540
+#: rootmodel.cpp:538
 #, kde-format
 msgid "Often Used Files"
 msgstr "ਅਕਸਰ ਵਰਤੀਆਂ ਫਾਇਲ"
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Recent Applications"
 msgstr "ਤਾਜ਼ਾ ਐਪਲੀਕੇਸ਼ਨ"
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Often Used Applications"
 msgstr "ਅਕਸਰ ਵਰਤੇ ਗਏ ਐਪਲੀਕੇਸ਼ਨ"
 
-#: rootmodel.cpp:564
+#: rootmodel.cpp:562
 #, kde-format
 msgid "Power / Session"
 msgstr "ਪਾਵਰ / ਸ਼ੈਸ਼ਨ"
 
-#: runnermodel.cpp:222
+#: runnermodel.cpp:226
 #, kde-format
 msgid "Search results"
 msgstr "ਖੋਜ ਦੇ ਨਤੀਜੇ"
 
-#: systementry.cpp:194
+#: systementry.cpp:193
 #, kde-format
 msgid "Lock"
 msgstr "ਲਾਕ"
 
-#: systementry.cpp:197
+#: systementry.cpp:196
 #, kde-format
 msgid "Log Out"
 msgstr "ਲਾਗ ਆਉਟ"
 
-#: systementry.cpp:200 systementry.cpp:254
+#: systementry.cpp:199 systementry.cpp:253
 #, kde-format
 msgid "Save Session"
 msgstr "ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
 
-#: systementry.cpp:203
+#: systementry.cpp:202
 #, kde-format
 msgid "Switch User"
 msgstr "ਵਰਤੋਂਕਾਰ ਨੂੰ ਬਦਲੋ"
 
-#: systementry.cpp:206
+#: systementry.cpp:205
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Sleep"
 msgstr "ਸਲੀਪ"
 
-#: systementry.cpp:209
+#: systementry.cpp:208
 #, kde-format
 msgid "Hibernate"
 msgstr "ਹਾਈਬਰਨੇਟ ਕਰੋ"
 
-#: systementry.cpp:212
+#: systementry.cpp:211
 #, kde-format
 msgid "Restart"
 msgstr "ਮੁੜ-ਚਾਲੂ ਕਰੋ"
 
-#: systementry.cpp:215
+#: systementry.cpp:214
 #, kde-format
 msgid "Shut Down"
 msgstr "ਬੰਦ ਕਰੋ"
 
-#: systementry.cpp:231
+#: systementry.cpp:230
 #, kde-format
 msgid "Session"
 msgstr "ਸ਼ੈਸ਼ਨ"
 
-#: systementry.cpp:236
+#: systementry.cpp:235
 #, kde-format
 msgid "System"
 msgstr "ਸਿਸਟਮ"
 
-#: systementry.cpp:248
+#: systementry.cpp:247
 #, kde-format
 msgid "Lock screen"
 msgstr "ਸਕਰੀਨ ਨੂੰ ਲਾਕ ਕਰੋ"
 
-#: systementry.cpp:251
+#: systementry.cpp:250
 #, kde-format
 msgid "End session"
 msgstr "ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰੋ"
 
-#: systementry.cpp:257
+#: systementry.cpp:256
 #, kde-format
 msgid "Start a parallel session as a different user"
 msgstr "ਵੱਖਰੇ ਵਰਤੋਂਕਾਰ ਵਜੋਂ ਸਮਾਂਤਰ ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: systementry.cpp:260
+#: systementry.cpp:259
 #, kde-format
 msgid "Suspend to RAM"
 msgstr "ਰੈਮ ਉੱਤੇ ਸਸਪੈਂਡ ਕਰੋ"
 
-#: systementry.cpp:263
+#: systementry.cpp:262
 #, kde-format
 msgid "Suspend to disk"
 msgstr "ਡਿਸਕ ਉੱਤੇ ਸਸਪੈਂਡ ਕਰੋ"
 
-#: systementry.cpp:266
+#: systementry.cpp:265
 #, kde-format
 msgid "Restart computer"
 msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਮੁੜ ਚਾਲੂ ਕਰੋ"
 
-#: systementry.cpp:269
+#: systementry.cpp:268
 #, kde-format
 msgid "Turn off computer"
 msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਬੰਦ ਕਰੋ"

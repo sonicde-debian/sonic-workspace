@@ -11,7 +11,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.components as PlasmaComponents3
 
 GridLayout {
     id: toolButtonsLayout
@@ -39,7 +39,8 @@ GridLayout {
         {
             role: DelegateToolButtons.ButtonRole.ShowQRCode,
             icon: "view-barcode-qr",
-            text: i18nd("klipper", "Show QR code")
+            text: i18nd("klipper", "Show QR code"),
+            visible: menuItem.type === toolButtonsLayout.textItemType
         },
         {
             role: DelegateToolButtons.ButtonRole.Edit,
@@ -59,8 +60,6 @@ GridLayout {
             enabled: !!menuItem.model
         }
     ]
-
-
 
     readonly property int visibleButtonCount: {
         let count = 0;
@@ -110,7 +109,7 @@ GridLayout {
         PlasmaComponents3.ToolButton {
             required property int index
             required property var modelData
-            
+
             Layout.fillWidth: toolButtonsLayout.shouldUseOverflowButton
             Layout.leftMargin: toolButtonsLayout.shouldUseOverflowButton ? Kirigami.Units.gridUnit : 0
             Layout.rightMargin: toolButtonsLayout.shouldUseOverflowButton ? Kirigami.Units.gridUnit : 0

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.icon\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-12-05 00:44+0000\n"
 "PO-Revision-Date: 2017-01-10 18:49+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -30,17 +30,17 @@ msgstr "Не вдалося створити теку віджетів пікт�
 msgid "Failed to copy icon widget desktop file from '%1' to '%2'"
 msgstr "Не вдалося скопіювати файл desktop віджета піктограм з «%1» до «%2»"
 
-#: iconapplet.cpp:356
+#: iconapplet.cpp:355
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "Відкрити теку, яка містить дані"
 
-#: iconapplet.cpp:579
+#: iconapplet.cpp:578
 #, kde-format
 msgid "Properties for %1"
 msgstr "Властивості %1"
 
-#: package/contents/ui/main.qml:40
+#: qml/main.qml:40
 #, kde-format
 msgid "Properties"
 msgstr "Властивості"

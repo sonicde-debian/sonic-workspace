@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QUrl>
 
+#include "model/abstractimagelistmodel.h"
 #include "model/imageproxymodel.h"
 
 SlideModel::SlideModel(const QBindable<QSize> &bindableTargetSize, const QBindable<bool> &bindableUsedInConfig, QObject *parent)
@@ -32,11 +33,11 @@ QHash<int, QByteArray> SlideModel::roleNames() const
 QVariant SlideModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     if (role == ToggleRole) {
-        return m_checkedTable.value(index.data(PackageNameRole).toString(), true);
+        return m_checkedTable.value(index.data(SourceRole).toUrl().toLocalFile(), true);
     }
 
     return QConcatenateTablesProxyModel::data(index, role);
@@ -49,7 +50,7 @@ bool SlideModel::setData(const QModelIndex &index, const QVariant &value, int ro
     }
 
     if (role == ToggleRole) {
-        m_checkedTable[index.data(PackageNameRole).toString()] = value.toBool();
+        m_checkedTable[index.data(SourceRole).toUrl().toLocalFile()] = value.toBool();
 
         Q_EMIT dataChanged(index, index, {ToggleRole});
         return true;
@@ -71,6 +72,21 @@ int SlideModel::indexOf(const QString &packagePath) const
     }
 
     return idx;
+}
+
+void SlideModel::openContainingFolder(int rowIndex) const
+{
+    const QModelIndex sourceIndex = mapToSource(index(rowIndex, 0));
+    if (!sourceIndex.isValid()) {
+        return;
+    }
+
+    const ImageProxyModel *sourceModel = qobject_cast<const ImageProxyModel *>(sourceIndex.model());
+    if (!sourceModel) {
+        return;
+    }
+
+    sourceModel->openContainingFolder(sourceIndex.row());
 }
 
 QStringList SlideModel::addDirs(const QStringList &dirs)
@@ -118,7 +134,7 @@ QString SlideModel::removeDir(const QString &_dir)
     const QString dir = _dir.endsWith(QDir::separator()) ? _dir : _dir + QDir::separator();
 
     if (!m_models.contains(dir)) {
-        return QString();
+        return {};
     }
 
     auto *m = m_models.take(dir);

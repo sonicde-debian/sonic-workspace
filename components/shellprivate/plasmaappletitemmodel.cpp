@@ -22,6 +22,7 @@
 #include <KRuntimePlatform>
 
 #include <Plasma/PluginLoader>
+#include <algorithm>
 
 using namespace Qt::StringLiterals;
 
@@ -115,7 +116,7 @@ QString PlasmaAppletItem::version() const
 QString PlasmaAppletItem::author() const
 {
     if (m_info.authors().isEmpty()) {
-        return QString();
+        return {};
     }
 
     return m_info.authors().constFirst().name();
@@ -124,7 +125,7 @@ QString PlasmaAppletItem::author() const
 QString PlasmaAppletItem::email() const
 {
     if (m_info.authors().isEmpty()) {
-        return QString();
+        return {};
     }
 
     return m_info.authors().constFirst().emailAddress();
@@ -212,7 +213,7 @@ QString PlasmaAppletItem::unsupportedMessage() const
             versionString);
     }
 
-    return QString();
+    return {};
 }
 
 static bool matchesKeywords(QStringView keywords, const QString &pattern)
@@ -282,7 +283,7 @@ bool PlasmaAppletItem::passesFiltering(const KCategorizedItemsViewModels::Filter
 
 QMimeData *PlasmaAppletItem::mimeData() const
 {
-    QMimeData *data = new QMimeData();
+    auto *data = new QMimeData();
     QByteArray appletName;
     appletName += pluginName().toUtf8();
     data->setData(mimeTypes().at(0), appletName);
@@ -311,7 +312,7 @@ QVariant PlasmaAppletItem::data(int role) const
                 const_cast<PlasmaAppletItem *>(this)->m_screenshot = QString();
             }
         } else if (m_screenshot.isEmpty()) {
-            return QVariant();
+            return {};
         }
         return m_screenshot;
     default:
@@ -358,7 +359,7 @@ void PlasmaAppletItemModel::populateModel()
         const QStringList provides = plugin.value(u"X-Plasma-Provides", QStringList());
 
         if (!m_provides.isEmpty()) {
-            const bool providesFulfilled = std::any_of(m_provides.cbegin(), m_provides.cend(), [&provides](const QString &p) {
+            const bool providesFulfilled = std::ranges::any_of(m_provides, [&provides](const QString &p) {
                 return provides.contains(p);
             });
 
@@ -393,7 +394,7 @@ void PlasmaAppletItemModel::populateModel()
     QList<KPluginMetaData> unfilteredPackages = Plasma::PluginLoader::self()->listAppletMetaData(QString());
 
     QList<KPluginMetaData> packages;
-    std::copy_if(unfilteredPackages.begin(), unfilteredPackages.end(), std::back_inserter(packages), filter);
+    std::ranges::copy_if(unfilteredPackages, std::back_inserter(packages), filter);
 
     // NOTE: Those 2 extra searches are for pure retrocompatibility, to list old plasmoids
     // Just to give the user the possibility to remove them.
@@ -425,7 +426,7 @@ void PlasmaAppletItemModel::setRunningApplets(const QHash<QString, int> &apps)
     // for each item, find that string and set the count
     for (int r = 0; r < rowCount(); ++r) {
         QStandardItem *i = item(r);
-        PlasmaAppletItem *p = dynamic_cast<PlasmaAppletItem *>(i);
+        auto *p = dynamic_cast<PlasmaAppletItem *>(i);
 
         if (p) {
             const int running = apps.value(p->pluginName());
@@ -438,7 +439,7 @@ void PlasmaAppletItemModel::setRunningApplets(const QString &name, int count)
 {
     for (int r = 0; r < rowCount(); ++r) {
         QStandardItem *i = item(r);
-        PlasmaAppletItem *p = dynamic_cast<PlasmaAppletItem *>(i);
+        auto *p = dynamic_cast<PlasmaAppletItem *>(i);
         if (p && p->pluginName() == name) {
             p->setRunning(count);
         }
@@ -464,7 +465,7 @@ QMimeData *PlasmaAppletItemModel::mimeData(const QModelIndexList &indexes) const
         return nullptr;
     }
 
-    QMimeData *data = new QMimeData();
+    auto *data = new QMimeData();
 
     QString format = types.at(0);
 
@@ -476,7 +477,7 @@ QMimeData *PlasmaAppletItemModel::mimeData(const QModelIndexList &indexes) const
         }
 
         lastRow = index.row();
-        PlasmaAppletItem *selectedItem = (PlasmaAppletItem *)itemFromIndex(index);
+        auto *selectedItem = (PlasmaAppletItem *)itemFromIndex(index);
         appletNames += '\n' + selectedItem->pluginName().toUtf8();
         // qDebug() << selectedItem->pluginName() << index.column() << index.row();
     }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-05 02:34+0000\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
 "PO-Revision-Date: 2022-07-08 04:45+0000\n"
 "Last-Translator: Weblate Admin <admin@example.com>\n"
 "Language-Team: Toki Pona <http://weblate.blackquill.cc/projects/ante-toki-pi-"
@@ -19,147 +19,147 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : 3;\n"
 "X-Generator: Weblate 4.10.1\n"
 
-#: actionlist.cpp:91
+#: actionlist.cpp:93
 #, kde-format
 msgid "Open with:"
 msgstr ""
 
-#: actionlist.cpp:104
+#: actionlist.cpp:106
 #, kde-format
 msgid "Properties"
 msgstr "ijo lipu"
 
-#: actionlist.cpp:151
+#: actionlist.cpp:153
 #, kde-format
 msgid "Add to Desktop"
 msgstr ""
 
-#: actionlist.cpp:158
+#: actionlist.cpp:160
 #, kde-format
 msgid "Pin to Task Manager"
 msgstr ""
 
-#: actionlist.cpp:162
+#: actionlist.cpp:164
 #, kde-format
 msgid "Add to Panel (Widget)"
 msgstr ""
 
-#: actionlist.cpp:313 rootmodel.cpp:540
+#: actionlist.cpp:316 rootmodel.cpp:538
 #, kde-format
 msgid "Recent Files"
 msgstr ""
 
-#: actionlist.cpp:323
+#: actionlist.cpp:326
 #, kde-format
 msgid "Forget Recent Files"
 msgstr ""
 
-#: actionlist.cpp:388
+#: actionlist.cpp:393
 #, kde-format
 msgid "Edit Application…"
 msgstr ""
 
-#: actionlist.cpp:420
+#: actionlist.cpp:425
 #, kde-format
 msgctxt "@action opens a software center with the application"
 msgid "Uninstall or Manage Add-Ons…"
 msgstr ""
 
-#: appentry.cpp:360
+#: appentry.cpp:361
 #, kde-format
 msgid "Hide Application"
 msgstr ""
 
-#: appentry.cpp:422
+#: appentry.cpp:423
 #, kde-format
 msgctxt "App name (Comment or Generic name)"
 msgid "%1 (%2)"
 msgstr ""
 
-#: appentry.cpp:424
+#: appentry.cpp:425
 #, kde-format
 msgctxt "Generic name (App name)"
 msgid "%1 (%2)"
 msgstr ""
 
-#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:97 computermodel.cpp:225
-#: recentusagemodel.cpp:165 recentusagemodel.cpp:228
+#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:219
+#: recentusagemodel.cpp:156 recentusagemodel.cpp:225
 #, kde-format
 msgid "Applications"
 msgstr ""
 
-#: appsmodel.cpp:169
+#: appsmodel.cpp:171
 #, kde-format
 msgid "Unhide Applications in this Submenu"
 msgstr ""
 
-#: appsmodel.cpp:178
+#: appsmodel.cpp:180
 #, kde-format
 msgid "Unhide Applications in '%1'"
 msgstr ""
 
-#: computermodel.cpp:91
+#: computermodel.cpp:87
 #, kde-format
 msgid "Show KRunner"
 msgstr ""
 
-#: computermodel.cpp:95
+#: computermodel.cpp:91
 #, kde-format
 msgid "Search, calculate, or run a command"
 msgstr ""
 
-#: computermodel.cpp:148
+#: computermodel.cpp:142
 #, kde-format
 msgid "Computer"
 msgstr ""
 
 #. i18n.
-#: kastatsfavoritesmodel.cpp:557 rootmodel.cpp:533 simplefavoritesmodel.cpp:33
+#: kastatsfavoritesmodel.cpp:548 rootmodel.cpp:531 simplefavoritesmodel.cpp:33
 #, kde-format
 msgid "Favorites"
 msgstr ""
 
-#: recentusagemodel.cpp:163
+#: recentusagemodel.cpp:154
 #, kde-format
 msgid "Recently Used"
 msgstr ""
 
-#: recentusagemodel.cpp:168 recentusagemodel.cpp:321
+#: recentusagemodel.cpp:159 recentusagemodel.cpp:318
 #, kde-format
 msgid "Files"
 msgstr ""
 
-#: recentusagemodel.cpp:254
+#: recentusagemodel.cpp:251
 #, kde-format
 msgid "Forget Application"
 msgstr ""
 
-#: recentusagemodel.cpp:319
+#: recentusagemodel.cpp:316
 #, kde-format
 msgid "Folders"
 msgstr ""
 
-#: recentusagemodel.cpp:360
+#: recentusagemodel.cpp:357
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "o open e poki pi jo lipu ni"
 
-#: recentusagemodel.cpp:363
+#: recentusagemodel.cpp:360
 #, kde-format
 msgid "Forget File"
 msgstr ""
 
-#: recentusagemodel.cpp:498
+#: recentusagemodel.cpp:504
 #, kde-format
 msgid "Forget All"
 msgstr ""
 
-#: recentusagemodel.cpp:500
+#: recentusagemodel.cpp:506
 #, kde-format
 msgid "Forget All Applications"
 msgstr ""
 
-#: recentusagemodel.cpp:503
+#: recentusagemodel.cpp:509
 #, kde-format
 msgid "Forget All Files"
 msgstr ""
@@ -169,123 +169,123 @@ msgstr ""
 msgid "All Applications"
 msgstr ""
 
-#: rootmodel.cpp:133
+#: rootmodel.cpp:131
 #, kde-format
 msgid "Hide %1"
 msgstr ""
 
-#: rootmodel.cpp:527
+#: rootmodel.cpp:525
 #, kde-format
 msgid "This shouldn't be visible! Use KICKER_FAVORITES_MODEL"
 msgstr ""
 
-#: rootmodel.cpp:540
+#: rootmodel.cpp:538
 #, kde-format
 msgid "Often Used Files"
 msgstr ""
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Recent Applications"
 msgstr ""
 
-#: rootmodel.cpp:549
+#: rootmodel.cpp:547
 #, kde-format
 msgid "Often Used Applications"
 msgstr ""
 
-#: rootmodel.cpp:564
+#: rootmodel.cpp:562
 #, kde-format
 msgid "Power / Session"
 msgstr ""
 
-#: runnermodel.cpp:222
+#: runnermodel.cpp:226
 #, kde-format
 msgid "Search results"
 msgstr ""
 
-#: systementry.cpp:194
+#: systementry.cpp:193
 #, kde-format
 msgid "Lock"
 msgstr ""
 
-#: systementry.cpp:197
+#: systementry.cpp:196
 #, kde-format
 msgid "Log Out"
 msgstr ""
 
-#: systementry.cpp:200 systementry.cpp:254
+#: systementry.cpp:199 systementry.cpp:253
 #, kde-format
 msgid "Save Session"
 msgstr ""
 
-#: systementry.cpp:203
+#: systementry.cpp:202
 #, kde-format
 msgid "Switch User"
 msgstr ""
 
-#: systementry.cpp:206
+#: systementry.cpp:205
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Sleep"
 msgstr ""
 
-#: systementry.cpp:209
+#: systementry.cpp:208
 #, kde-format
 msgid "Hibernate"
 msgstr ""
 
-#: systementry.cpp:212
+#: systementry.cpp:211
 #, kde-format
 msgid "Restart"
 msgstr ""
 
-#: systementry.cpp:215
+#: systementry.cpp:214
 #, kde-format
 msgid "Shut Down"
 msgstr ""
 
-#: systementry.cpp:231
+#: systementry.cpp:230
 #, kde-format
 msgid "Session"
 msgstr ""
 
-#: systementry.cpp:236
+#: systementry.cpp:235
 #, kde-format
 msgid "System"
 msgstr ""
 
-#: systementry.cpp:248
+#: systementry.cpp:247
 #, kde-format
 msgid "Lock screen"
 msgstr ""
 
-#: systementry.cpp:251
+#: systementry.cpp:250
 #, kde-format
 msgid "End session"
 msgstr ""
 
-#: systementry.cpp:257
+#: systementry.cpp:256
 #, kde-format
 msgid "Start a parallel session as a different user"
 msgstr ""
 
-#: systementry.cpp:260
+#: systementry.cpp:259
 #, kde-format
 msgid "Suspend to RAM"
 msgstr ""
 
-#: systementry.cpp:263
+#: systementry.cpp:262
 #, kde-format
 msgid "Suspend to disk"
 msgstr ""
 
-#: systementry.cpp:266
+#: systementry.cpp:265
 #, kde-format
 msgid "Restart computer"
 msgstr ""
 
-#: systementry.cpp:269
+#: systementry.cpp:268
 #, kde-format
 msgid "Turn off computer"
 msgstr ""

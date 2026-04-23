@@ -124,7 +124,7 @@ void ConfigGroup::setGroup(const QString &groupname)
 QStringList ConfigGroup::keyList() const
 {
     if (!d->configGroup) {
-        return QStringList();
+        return {};
     }
     return d->configGroup->keyList();
 }
@@ -132,7 +132,7 @@ QStringList ConfigGroup::keyList() const
 QStringList ConfigGroup::groupList() const
 {
     if (!d->configGroup) {
-        return QStringList();
+        return {};
     }
     return d->configGroup->groupList();
 }
@@ -150,8 +150,7 @@ bool ConfigGroup::readConfigFile()
         current = current->parent();
     }
 
-    delete d->configGroup;
-    d->configGroup = nullptr;
+    delete std::exchange(d->configGroup, nullptr);
 
     if (parentGroup) {
         d->configGroup = new KConfigGroup(parentGroup->configGroup(), d->group);
@@ -187,7 +186,7 @@ bool ConfigGroup::writeEntry(const QString &key, const QJSValue &value)
 QVariant ConfigGroup::readEntry(const QString &key)
 {
     if (!d->configGroup) {
-        return QVariant();
+        return {};
     }
     const QVariant value = d->configGroup->readEntry(key, QVariant(QString()));
     // qDebug() << " reading setting: " << key << value;
@@ -204,7 +203,7 @@ void ConfigGroup::deleteEntry(const QString &key)
 void ConfigGroup::sync()
 {
     if (d->configGroup) {
-        // qDebug() << "synching config...";
+        // qDebug() << "syncing config...";
         d->configGroup->sync();
     }
 }

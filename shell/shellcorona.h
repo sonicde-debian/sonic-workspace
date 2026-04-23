@@ -45,15 +45,6 @@ namespace Plasma
 class Applet;
 } // namespace Plasma
 
-namespace KWayland
-{
-namespace Client
-{
-class PlasmaWindow;
-class PlasmaWindowManagement;
-}
-}
-
 class ShellCorona : public Plasma::Corona, QDBusContext
 {
     Q_OBJECT
@@ -254,6 +245,7 @@ private Q_SLOTS:
     void handleContainmentAdded(Plasma::Containment *c);
     void syncAppConfig();
     void checkActivities();
+    void cleanupOldPanelConfig();
     void currentActivityChanged(const QString &newActivity);
     void activityAdded(const QString &id);
     void activityRemoved(const QString &id);
@@ -275,10 +267,11 @@ private:
     void updateStruts();
     void configurationChanged(const QString &path);
     DesktopView *desktopForScreen(QScreen *screen) const;
-    void setupWaylandIntegration();
     void executeSetupPlasmoidScript(Plasma::Containment *containment, Plasma::Applet *applet);
     void checkAllDesktopsUiReady();
     void activateLauncherMenu(const QString &screenName);
+
+    void setupLookAndFeel();
     void handleColorRequestedFromDBus(const QDBusMessage &msg);
 
 #ifndef NDEBUG
@@ -302,15 +295,13 @@ private:
     QHash<const Plasma::Containment *, int> m_pendingScreenChanges;
     KConfigGroup m_desktopDefaultsConfig;
     KConfigGroup m_lnfDefaultsConfig;
-    QList<Plasma::Containment *> m_waitingPanels;
+    QList<QPointer<Plasma::Containment>> m_waitingPanels;
     QHash<QString, QString> m_activityContainmentPlugins;
     QAction *m_addPanelAction;
     std::unique_ptr<QMenu> m_addPanelsMenu;
     KPackage::Package m_lookAndFeelPackage;
 
-#if HAVE_X11
     WId m_previousWId = 0;
-#endif
     bool m_blockRestorePreviousWindow = false;
 
     QTimer m_waitingPanelsTimer;
@@ -319,8 +310,6 @@ private:
     QTimer m_invariantsTimer;
 #endif
     // For getting the active window on Wayland
-    KWayland::Client::PlasmaWindowManagement *m_waylandWindowManagement = nullptr;
-    QPointer<KWayland::Client::PlasmaWindow> m_previousPlasmaWindow;
     bool m_closingDown : 1;
     bool m_screenReorderInProgress = false;
     QString m_testModeLayout;
@@ -330,7 +319,6 @@ private:
     QPointer<ShellContainmentConfig> m_shellContainmentConfig;
     // The set of all the screens which have both the desktop and all panels (if any) fully loaded
     QSet<int> m_screensWithUiReady;
-    friend class ShellTest;
 };
 
 const QDBusArgument &operator>>(const QDBusArgument &argument, QColor &color);

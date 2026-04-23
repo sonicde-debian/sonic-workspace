@@ -1,31 +1,32 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the plasma-desktop package.
-# SPDX-FileCopyrightText: 2019, 2020, 2021 Burkhard Lück <lueck@hube-lueck.de>
-# SPDX-FileCopyrightText: 2023 Jannick Kuhr <opensource@kuhr.org>
+# SPDX-FileCopyrightText: 2019-2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2023 Frederik Schwarzer <schwarzer@kde.org>
+# SPDX-FileCopyrightText: 2023 Jannick Kuhr <opensource@kuhr.org>
 # SPDX-FileCopyrightText: 2024 Flori G <Renner03@protonmail.com>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025-2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm_notifications\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-16 12:47+0200\n"
-"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-18 02:05+0100\n"
+"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "„Nicht stören“ umschalten"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Andere Anwendungen"
@@ -62,7 +63,7 @@ msgid ""
 "This application does not support configuring notifications on a per-event "
 "basis"
 msgstr ""
-"Diese Anwendung unterstützt kein Einrichtung von Benachrichtigungen für "
+"Diese Anwendung unterstützt keine Einrichtung von Benachrichtigungen für "
 "einzelne Ereignisse"
 
 #: ui/ApplicationConfiguration.qml:282
@@ -95,14 +96,14 @@ msgstr "Klangdatei auswählen"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Benachrichtigungen"
+msgid "Configure for System…"
+msgstr "Für das System einrichten …"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Programm-Einstellungen"
+msgid "Configure for Applications…"
+msgstr "Für Anwendungen einrichten …"
 
 #: ui/main.qml:96
 #, kde-format
@@ -214,8 +215,8 @@ msgstr "Neben dem Benachrichtigungssymbol"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Benutzerdefiniert …"
+msgid "Choose…"
+msgstr "Auswählen …"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -232,33 +233,40 @@ msgstr "Ausblenden nach:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Indikator für verbleibende Zeit anzeigen"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Zusätzliche Rückmeldung"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "In Benachrichtigungen anzeigen"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Fortschritt der Anwendung:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Aufklappfenster bei Fortschritt geöffnet lassen"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Benachrichtigungssymbole:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "In Fensterleiste anzeigen"
@@ -270,8 +278,10 @@ msgstr "Position des Aufklappfensters"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Programm-Einstellungen"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Anwendungsbenachrichtigungen"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -297,6 +307,18 @@ msgstr ""
 "Wählen Sie eine Anwendung aus der Liste, um die Einstellungen und das "
 "Verhalten von Benachrichtigungen einzurichten"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Benachrichtigungen"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Programm-Einstellungen"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Benutzerdefiniert …"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Normale Benachrichtigungen:"
 
@@ -312,18 +334,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Programm-Einstellungen"
 
-#, fuzzy
-#~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Programm-Einstellungen"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Anwendungsspezifische Einstellungen"
-
-#~ msgid "Configure…"
-#~ msgstr "Einrichten ..."
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

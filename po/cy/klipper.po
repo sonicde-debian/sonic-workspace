@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: klipper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-23 02:38+0000\n"
+"POT-Creation-Date: 2026-03-12 02:38+0000\n"
 "PO-Revision-Date: 2003-12-27 14:52+0000\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -22,23 +22,13 @@ msgstr ""
 "X-Generator: KBabel 1.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#, kde-format
-msgctxt "NAME OF TRANSLATORS"
-msgid "Your names"
-msgstr "KGyfieithu"
-
-#, kde-format
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
-msgstr "kyfieithu@dotmon.com"
-
-#: configdialog.cpp:85
+#: configdialog.cpp:84
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "Clipboard history:"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: configdialog.cpp:91
+#: configdialog.cpp:90
 #, fuzzy, kde-format
 #| msgid " entry"
 #| msgid_plural " entries"
@@ -48,13 +38,13 @@ msgid_plural "%v entries"
 msgstr[0] "cofnod"
 msgstr[1] "cofnod"
 
-#: configdialog.cpp:100
+#: configdialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "Pre&vent empty clipboard"
 msgid "Selection and Clipboard:"
 msgstr "A&tal gludfwrdd gwag"
 
-#: configdialog.cpp:107
+#: configdialog.cpp:106
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -70,55 +60,55 @@ msgid ""
 "options below), but it can only be pasted using the middle mouse button."
 msgstr ""
 
-#: configdialog.cpp:136 configdialog.cpp:174
+#: configdialog.cpp:135 configdialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "&Replay actions on an item selected from history"
 msgid "Always save in history"
 msgstr "&Ailadrodd gweithredoedd ar eitem wedi'i ddewis o'r hanes"
 
-#: configdialog.cpp:140
+#: configdialog.cpp:139
 #, fuzzy, kde-format
 #| msgid "&Ignore selection"
 msgid "Text selection:"
 msgstr "&Anwybyddu'r dewisiad"
 
-#: configdialog.cpp:142 configdialog.cpp:180
+#: configdialog.cpp:141 configdialog.cpp:179
 #, kde-format
 msgid "Only when explicitly copied"
 msgstr ""
 
-#: configdialog.cpp:147
+#: configdialog.cpp:146
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgid "Whether text selections are saved in the clipboard history."
 msgstr "G&wagio Hanes y Clipfwrdd"
 
-#: configdialog.cpp:178
+#: configdialog.cpp:177
 #, fuzzy, kde-format
 #| msgid "&Ignore selection"
 msgid "Non-text selection:"
 msgstr "&Anwybyddu'r dewisiad"
 
-#: configdialog.cpp:185
+#: configdialog.cpp:184
 #, fuzzy, kde-format
 #| msgid "&Replay actions on an item selected from history"
 msgid "Never save in history"
 msgstr "&Ailadrodd gweithredoedd ar eitem wedi'i ddewis o'r hanes"
 
-#: configdialog.cpp:190
+#: configdialog.cpp:189
 #, kde-format
 msgid ""
 "Whether non-text selections (such as images) are saved in the clipboard "
 "history."
 msgstr ""
 
-#: configdialog.cpp:264
+#: configdialog.cpp:263
 #, fuzzy, kde-format
 #| msgid "Tim&eout for action popups:"
 msgid "Show action popup menu:"
 msgstr "&Goramser naidlenni gweithredoedd:"
 
-#: configdialog.cpp:274
+#: configdialog.cpp:273
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -129,12 +119,7 @@ msgid ""
 "key shortcut."
 msgstr ""
 
-#: configdialog.cpp:283
-#, kde-format
-msgid "Exclude Windows..."
-msgstr ""
-
-#: configdialog.cpp:297
+#: configdialog.cpp:285
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Unit of time"
@@ -143,24 +128,19 @@ msgid_plural "%v seconds"
 msgstr[0] "eil"
 msgstr[1] "eil"
 
-#: configdialog.cpp:298
+#: configdialog.cpp:286
 #, kde-format
 msgctxt "No timeout"
 msgid "None"
 msgstr ""
 
-#: configdialog.cpp:307
+#: configdialog.cpp:295
 #, fuzzy, kde-format
 #| msgid "Ac&tions"
 msgid "Options:"
 msgstr "&Gweithredoedd"
 
-#: configdialog.cpp:334
-#, kde-format
-msgid "Exclude Windows"
-msgstr ""
-
-#: configdialog.cpp:364
+#: configdialog.cpp:320
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -169,38 +149,38 @@ msgid ""
 "be executed."
 msgstr ""
 
-#: configdialog.cpp:373
+#: configdialog.cpp:329
 #, kde-format
 msgctxt "@title:column"
 msgid "Match pattern and commands"
 msgstr ""
 
-#: configdialog.cpp:373
+#: configdialog.cpp:329
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "@title:column"
 msgid "Description"
 msgstr "Disgrifiad"
 
-#: configdialog.cpp:379
+#: configdialog.cpp:335
 #, fuzzy, kde-format
 #| msgid "&Add Action"
 msgid "Add Action..."
 msgstr "&Ychwanegu Gweithred"
 
-#: configdialog.cpp:383
+#: configdialog.cpp:339
 #, fuzzy, kde-format
 #| msgid "&Add Action"
 msgid "Edit Action..."
 msgstr "&Ychwanegu Gweithred"
 
-#: configdialog.cpp:388
+#: configdialog.cpp:344
 #, fuzzy, kde-format
 #| msgid "&Delete Action"
 msgid "Delete Action"
 msgstr "&Dileu Gweithred"
 
-#: configdialog.cpp:395
+#: configdialog.cpp:351
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -208,7 +188,7 @@ msgid ""
 "<interface>Action Menu</interface> page."
 msgstr ""
 
-#: configdialog.cpp:581
+#: configdialog.cpp:546
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -216,84 +196,61 @@ msgid ""
 "commands?"
 msgstr ""
 
-#: configdialog.cpp:582
+#: configdialog.cpp:547
 #, fuzzy, kde-format
 #| msgid "&Delete Action"
 msgid "Confirm Delete Action"
 msgstr "&Dileu Gweithred"
 
-#: configdialog.cpp:611
+#: configdialog.cpp:600
 #, fuzzy, kde-format
 #| msgid "&General"
 msgctxt "General Config"
 msgid "General"
 msgstr "&Cyffredinol"
 
-#: configdialog.cpp:611
+#: configdialog.cpp:600
 #, fuzzy, kde-format
 #| msgid "&General"
 msgid "General Configuration"
 msgstr "&Cyffredinol"
 
-#: configdialog.cpp:612
+#: configdialog.cpp:601
 #, fuzzy, kde-format
 #| msgid "Ac&tions"
 msgctxt "Popup Menu Config"
 msgid "Action Menu"
 msgstr "&Gweithredoedd"
 
-#: configdialog.cpp:612
+#: configdialog.cpp:601
 #, fuzzy, kde-format
 #| msgid "Ac&tions"
 msgid "Action Menu"
 msgstr "&Gweithredoedd"
 
-#: configdialog.cpp:613
+#: configdialog.cpp:602
 #, fuzzy, kde-format
 #| msgid "Ac&tions"
 msgctxt "Actions Config"
 msgid "Actions Configuration"
 msgstr "&Gweithredoedd"
 
-#: configdialog.cpp:613
+#: configdialog.cpp:602
 #, fuzzy, kde-format
 #| msgid "Ac&tions"
 msgid "Actions Configuration"
 msgstr "&Gweithredoedd"
 
-#: configdialog.cpp:616
+#: configdialog.cpp:605
 #, fuzzy, kde-format
 msgctxt "Shortcuts Config"
 msgid "Shortcuts"
 msgstr "B&yrlwybrau Eang"
 
-#: configdialog.cpp:616
+#: configdialog.cpp:605
 #, fuzzy, kde-format
 msgid "Shortcuts Configuration"
 msgstr "B&yrlwybrau Eang"
-
-#: configdialog.cpp:701
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The action popup will not be shown automatically for these windows, even if "
-"it is enabled. This is because, for example, a web browser may highlight a "
-"URL in the address bar while typing, so the menu would show for every "
-"keystroke.<nl/><nl/>If the action menu appears unexpectedly when using a "
-"particular application, then add it to this list. <link>How to find the name "
-"to enter</link>."
-msgstr ""
-
-#: configdialog.cpp:714
-#, kde-kuit-format
-msgctxt "@info:tooltip"
-msgid ""
-"The name that needs to be entered here is the WM_CLASS name of the window to "
-"be excluded. To find the WM_CLASS name for a window, in another terminal "
-"window enter the command:<nl/><nl/>&nbsp;&nbsp;<icode>xprop | grep WM_CLASS</"
-"icode><nl/><nl/>and click on the window that you want to exclude. The first "
-"name that it displays after the equal sign is the one that you need to enter."
-msgstr ""
 
 #: declarative/qml/BarcodePage.qml:32
 #, kde-format
@@ -367,41 +324,41 @@ msgstr ""
 msgid "Creating QR code failed"
 msgstr ""
 
-#: declarative/qml/ClipboardItemDelegate.qml:203
+#: declarative/qml/ClipboardItemDelegate.qml:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Collapse"
 msgstr ""
 
-#: declarative/qml/ClipboardItemDelegate.qml:203
+#: declarative/qml/ClipboardItemDelegate.qml:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Expand"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:276
+#: declarative/qml/ClipboardMenu.qml:275
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "Clear History"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: declarative/qml/ClipboardMenu.qml:328
+#: declarative/qml/ClipboardMenu.qml:329
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "All History"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: declarative/qml/ClipboardMenu.qml:333
+#: declarative/qml/ClipboardMenu.qml:334
 #, kde-format
 msgid "Starred Only"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:440
+#: declarative/qml/ClipboardMenu.qml:441
 #, kde-format
 msgid "No matches"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:440
+#: declarative/qml/ClipboardMenu.qml:441
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "Clipboard is empty"
@@ -418,49 +375,49 @@ msgstr "<gweithred newydd>"
 msgid "Show QR code"
 msgstr ""
 
-#: declarative/qml/DelegateToolButtons.qml:47
+#: declarative/qml/DelegateToolButtons.qml:48
 #, fuzzy, kde-format
 #| msgid "Edit Contents"
 msgid "Edit contents"
 msgstr "Golygu'r Cynnwys"
 
-#: declarative/qml/DelegateToolButtons.qml:53
+#: declarative/qml/DelegateToolButtons.qml:54
 #, fuzzy, kde-format
 #| msgid "&Replay actions on an item selected from history"
 msgid "Remove from history"
 msgstr "&Ailadrodd gweithredoedd ar eitem wedi'i ddewis o'r hanes"
 
-#: declarative/qml/DelegateToolButtons.qml:58
+#: declarative/qml/DelegateToolButtons.qml:59
 #, fuzzy, kde-format
 #| msgid "&Replay actions on an item selected from history"
 msgid "Remove Star"
 msgstr "&Ailadrodd gweithredoedd ar eitem wedi'i ddewis o'r hanes"
 
-#: declarative/qml/DelegateToolButtons.qml:58
+#: declarative/qml/DelegateToolButtons.qml:59
 #, fuzzy, kde-format
 #| msgid "Start"
 msgid "Star"
 msgstr "Dechrau"
 
-#: declarative/qml/EditPage.qml:64
+#: declarative/qml/EditPage.qml:63
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "Text edit area"
 msgstr ""
 
-#: declarative/qml/EditPage.qml:82
+#: declarative/qml/EditPage.qml:81
 #, kde-format
 msgctxt "@action:button"
 msgid "Save"
 msgstr ""
 
-#: declarative/qml/EditPage.qml:90
+#: declarative/qml/EditPage.qml:89
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
 msgstr ""
 
-#: declarative/qml/UrlItemDelegate.qml:97
+#: declarative/qml/UrlItemDelegate.qml:99
 #, kde-format
 msgctxt ""
 "Indicator that there are more urls in the clipboard than previews shown"
@@ -654,127 +611,122 @@ msgstr ""
 msgid "Icon:"
 msgstr ""
 
-#: historymodel.cpp:280
+#: historymodel.cpp:283
 #, kde-format
 msgid "The clipboard history contains starred items. Clear them too?"
 msgstr ""
 
-#: historymodel.cpp:281 historymodel.cpp:301
+#: historymodel.cpp:284 historymodel.cpp:304
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgid "Clear Clipboard History"
 msgstr "G&wagio Hanes y Clipfwrdd"
 
-#: historymodel.cpp:282
+#: historymodel.cpp:285
 #, kde-format
 msgid "Clear Everything"
 msgstr ""
 
-#: historymodel.cpp:283
+#: historymodel.cpp:286
 #, fuzzy, kde-format
 #| msgid "Save clipboard contents on e&xit"
 msgid "Keep Starred Items"
 msgstr "Cadw cynnwys y clipfwrdd ar &adael"
 
-#: historymodel.cpp:300
+#: historymodel.cpp:303
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr "G&wagio Hanes y Clipfwrdd"
 
-#: historymodel.cpp:384
+#: historymodel.cpp:387
 #, kde-format
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr ""
 
-#: historymodel.cpp:564
+#: historymodel.cpp:567
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr ""
 
-#: historymodel.cpp:565
+#: historymodel.cpp:568
 #, kde-format
 msgid "Remove Starred Item"
 msgstr ""
 
-#: klipper.cpp:91
+#: klipper.cpp:78
 #, fuzzy, kde-format
 #| msgid "Tim&eout for action popups:"
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "&Goramser naidlenni gweithredoedd:"
 
-#: klipper.cpp:109
+#: klipper.cpp:96
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "G&wagio Hanes y Clipfwrdd"
 
-#: klipper.cpp:114
+#: klipper.cpp:101
 #, fuzzy, kde-format
 #| msgid "Manually Invoke Action on Current Clipboard"
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr "Achosi Gweithred â Llaw ar y Clipfwrdd Cyfredol"
 
-#: klipper.cpp:122
+#: klipper.cpp:109
 #, fuzzy, kde-format
 #| msgid "Edit Contents"
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr "Golygu'r Cynnwys"
 
-#: klipper.cpp:128
+#: klipper.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr ""
 
-#: klipper.cpp:137
+#: klipper.cpp:122
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: klipper.cpp:142
+#: klipper.cpp:127
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: klipper.cpp:149
+#: klipper.cpp:134
 #, fuzzy, kde-format
 #| msgid "&Popup menu at mouse-cursor position"
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr "&Naidlen wrth leoliad cyrchydd y llygoden"
 
-#: klipper.cpp:437
-#, kde-format
-msgid "Mobile Barcode"
-msgstr ""
-
-#: klipper.cpp:480 klipper.cpp:489
+#: klipper.cpp:402 klipper.cpp:411
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "Clipboard history"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: klipper.cpp:506
+#: klipper.cpp:428
 #, kde-format
 msgid "up"
 msgstr ""
 
-#: klipper.cpp:513
+#: klipper.cpp:435
 #, kde-format
 msgid "current"
 msgstr ""
 
-#: klipper.cpp:520
+#: klipper.cpp:442
 #, kde-format
 msgid "down"
 msgstr ""
@@ -895,54 +847,48 @@ msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
 msgstr ""
 
-#. i18n: ectx: label, entry (NoActionsForWM_CLASS), group (General)
-#: klipper.kcfg:57
-#, kde-format
-msgid "No actions for WM_CLASS"
-msgstr ""
-
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, fuzzy, kde-format
 #| msgid "Tim&eout for action popups:"
 msgid "Automatic action menu time:"
 msgstr "&Goramser naidlenni gweithredoedd:"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:64
+#: klipper.kcfg:60
 #, fuzzy, kde-format
 #| msgid "Tim&eout for action popups:"
 msgid "Display the automatic action popup menu for this time."
 msgstr "&Goramser naidlenni gweithredoedd:"
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "History size:"
 msgstr "Maint hanes y c&lipfwrdd"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:71
+#: klipper.kcfg:67
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr ""
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:74
+#: klipper.kcfg:70
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr ""
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:84
+#: klipper.kcfg:80
 #, fuzzy, kde-format
 #| msgid "Remove whitespace when executing actions"
 msgid "Trim whitespace from selection"
 msgstr "Gwaredu gofod gwyn pan yn gweithredu gweithredoedd"
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:86
+#: klipper.kcfg:82
 #, kde-format
 msgid ""
 "Remove any whitespace from the start and end of selected text, before "
@@ -952,14 +898,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:89
+#: klipper.kcfg:85
 #, fuzzy, kde-format
 #| msgid "&Replay actions on an item selected from history"
 msgid "For an item chosen from history"
 msgstr "&Ailadrodd gweithredoedd ar eitem wedi'i ddewis o'r hanes"
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:91
+#: klipper.kcfg:87
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgid ""
@@ -968,30 +914,38 @@ msgid ""
 msgstr "G&wagio Hanes y Clipfwrdd"
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:94
+#: klipper.kcfg:90
 #, fuzzy, kde-format
 #| msgid "Enable/Disable Clipboard Actions"
 msgid "Include MIME actions"
 msgstr "Galluogi/Analluogi Gweithredoedd Clipfwrdd"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:96
+#: klipper.kcfg:92
 #, kde-format
 msgid ""
 "If a file name or URL is selected, include applications that can accept its "
 "MIME type in the popup menu."
 msgstr ""
 
-#: klipperpopup.cpp:36
+#: klipperpopup.cpp:37
 #, fuzzy, kde-format
 #| msgid "C&lipboard history size:"
 msgid "Clipboard Popup"
 msgstr "Maint hanes y c&lipfwrdd"
 
-#: urlgrabber.cpp:200
+#: urlgrabber.cpp:197
 #, kde-format
 msgid "&Cancel"
 msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "KGyfieithu"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kyfieithu@dotmon.com"
 
 #, fuzzy
 #~| msgid "&Configure Klipper..."

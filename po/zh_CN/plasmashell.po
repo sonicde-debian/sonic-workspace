@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-03-04 02:42+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -28,90 +28,90 @@ msgid "Your emails"
 msgstr ""
 "kde-china@kde.org, CoelacanthusHex@kde.org, i@guoyunhe.me, tds00@qq.com"
 
-#: currentcontainmentactionsmodel.cpp:203
+#: currentcontainmentactionsmodel.cpp:201
 #, kde-format
 msgid "Configure Mouse Actions Plugin"
 msgstr "配置鼠标操作插件"
 
-#: desktopview.cpp:222
+#: desktopview.cpp:223
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Dev"
 msgstr "KDE Plasma 6.0 Dev"
 
-#: desktopview.cpp:225
+#: desktopview.cpp:226
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Alpha"
 msgstr "KDE Plasma 6.0 Alpha"
 
-#: desktopview.cpp:228
+#: desktopview.cpp:229
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 1"
 msgstr "KDE Plasma 6.0 Beta 1"
 
-#: desktopview.cpp:231
+#: desktopview.cpp:232
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma 6.0 Beta 2"
 msgstr "KDE Plasma 6.0 Beta 2"
 
-#: desktopview.cpp:234
+#: desktopview.cpp:235
 #, kde-format
 msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC1"
 msgstr "KDE Plasma 6.0 RC1"
 
-#: desktopview.cpp:237
+#: desktopview.cpp:238
 #, kde-format
 msgctxt "@label %1 is the Plasma version, RC meaning Release Candidate"
 msgid "KDE Plasma 6.0 RC2"
 msgstr "KDE Plasma 6.0 RC2"
 
-#: desktopview.cpp:263
+#: desktopview.cpp:264
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Dev"
 msgstr "KDE Plasma %1 Dev"
 
-#: desktopview.cpp:267
+#: desktopview.cpp:268
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1 Beta"
 msgstr "KDE Plasma %1 Beta"
 
-#: desktopview.cpp:270
+#: desktopview.cpp:271
 #, kde-format
 msgctxt "@label %1 is the Plasma version, %2 is the beta release number"
 msgid "KDE Plasma %1 Beta %2"
 msgstr "KDE Plasma %1 Beta %2"
 
-#: desktopview.cpp:274
+#: desktopview.cpp:275
 #, kde-format
 msgctxt "@label %1 is the Plasma version"
 msgid "KDE Plasma %1"
 msgstr "KDE Plasma %1"
 
-#: desktopview.cpp:280
+#: desktopview.cpp:281
 #, kde-format
 msgctxt "@info:usagetip"
 msgid "Visit bugs.kde.org to report issues"
 msgstr "要报告程序缺陷，请访问 bugs.kde.org 网站"
 
-#: desktopview.cpp:288
+#: desktopview.cpp:289
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy Plasma Version"
 msgstr "复制 Plasma 版本"
 
-#: desktopview.cpp:294
+#: desktopview.cpp:295
 #, kde-format
 msgctxt "@action:button"
 msgid "Report a Bug…"
 msgstr "报告程序缺陷…"
 
-#: desktopview.cpp:304
+#: desktopview.cpp:305
 #, kde-format
 msgctxt "@title:menu"
 msgid "Hide Preview Banner"
@@ -148,52 +148,52 @@ msgctxt "@title:window"
 msgid "Hide Preview Banner?"
 msgstr "隐藏预览横幅？"
 
-#: desktopview.cpp:595 desktopview.cpp:611
+#: desktopview.cpp:557 desktopview.cpp:573
 #, kde-format
 msgid "Enter Edit Mode"
 msgstr "进入编辑模式"
 
-#: desktopview.cpp:609
+#: desktopview.cpp:571
 #, kde-format
 msgid "Exit Edit Mode"
 msgstr "退出编辑模式"
 
-#: main.cpp:86
+#: main.cpp:108
 #, kde-format
 msgid "Plasma Shell"
 msgstr "Plasma 外壳"
 
-#: main.cpp:99
+#: main.cpp:121
 #, kde-format
 msgid "Enable QML Javascript debugger"
 msgstr "启用 QML Javascript 调试器"
 
-#: main.cpp:102
+#: main.cpp:124
 #, kde-format
 msgid "Do not restart plasma-shell automatically after a crash"
 msgstr "plasma-shell 崩溃后不自动重启"
 
-#: main.cpp:105
+#: main.cpp:127
 #, kde-format
 msgid "Force loading the given shell plugin"
 msgstr "强制加载指定的外壳插件"
 
-#: main.cpp:109
+#: main.cpp:131
 #, kde-format
 msgid "Replace an existing instance"
 msgstr "替换现有实例"
 
-#: main.cpp:112
+#: main.cpp:134
 #, kde-format
 msgid "Lists the available options for user feedback"
 msgstr "列出用户反馈的可用选项"
 
-#: main.cpp:174
+#: main.cpp:190
 #, kde-format
 msgid "Plasma Failed To Start"
 msgstr "Plasma 启动失败"
 
-#: main.cpp:175
+#: main.cpp:191
 #, kde-format
 msgid ""
 "Plasma is unable to start as it could not correctly use OpenGL 2 or software "
@@ -203,79 +203,79 @@ msgstr ""
 "Plasma 无法启动，因为无法正常调用 OpenGL 2 或备用的软件渲染器。\n"
 "请检查是否本系统的显卡驱动程序是否已经正确安装。"
 
-#: osd.cpp:65
+#: osd.cpp:63
 #, kde-format
 msgctxt "Brightness OSD: display name and brightness percentage"
 msgid "%1: %2%"
 msgstr "%1：%2%"
 
-#: osd.cpp:93
+#: osd.cpp:91
 #, kde-format
 msgctxt "OSD informing that the system is muted, keep short"
 msgid "Audio Muted"
 msgstr "静音"
 
-#: osd.cpp:116
+#: osd.cpp:114
 #, kde-format
 msgctxt "OSD informing that the microphone is muted, keep short"
 msgid "Microphone Muted"
 msgstr "麦克风静音"
 
-#: osd.cpp:132
+#: osd.cpp:130
 #, kde-format
 msgctxt "OSD informing that some media app is muted, eg. Amarok Muted"
 msgid "%1 Muted"
 msgstr "%1 静音"
 
-#: osd.cpp:154
+#: osd.cpp:152
 #, kde-format
 msgctxt "touchpad was enabled, keep short"
 msgid "Touchpad On"
 msgstr "触摸板打开"
 
-#: osd.cpp:156
+#: osd.cpp:154
 #, kde-format
 msgctxt "touchpad was disabled, keep short"
 msgid "Touchpad Off"
 msgstr "触摸板关闭"
 
-#: osd.cpp:163
+#: osd.cpp:161
 #, kde-format
 msgctxt "wireless lan was enabled, keep short"
 msgid "Wifi On"
 msgstr "无线网络打开"
 
-#: osd.cpp:165
+#: osd.cpp:163
 #, kde-format
 msgctxt "wireless lan was disabled, keep short"
 msgid "Wifi Off"
 msgstr "无线网络关闭"
 
-#: osd.cpp:172
+#: osd.cpp:170
 #, kde-format
 msgctxt "Bluetooth was enabled, keep short"
 msgid "Bluetooth On"
 msgstr "蓝牙打开"
 
-#: osd.cpp:174
+#: osd.cpp:172
 #, kde-format
 msgctxt "Bluetooth was disabled, keep short"
 msgid "Bluetooth Off"
 msgstr "蓝牙关闭"
 
-#: osd.cpp:181
+#: osd.cpp:179
 #, kde-format
 msgctxt "mobile internet was enabled, keep short"
 msgid "Mobile Internet On"
 msgstr "移动互联网打开"
 
-#: osd.cpp:183
+#: osd.cpp:181
 #, kde-format
 msgctxt "mobile internet was disabled, keep short"
 msgid "Mobile Internet Off"
 msgstr "移动互联网关闭"
 
-#: osd.cpp:191
+#: osd.cpp:189
 #, kde-format
 msgctxt ""
 "on screen keyboard was enabled because physical keyboard got unplugged, keep "
@@ -283,7 +283,7 @@ msgctxt ""
 msgid "On-Screen Keyboard Activated"
 msgstr "屏幕键盘激活"
 
-#: osd.cpp:194
+#: osd.cpp:192
 #, kde-format
 msgctxt ""
 "on screen keyboard was disabled because physical keyboard was plugged in, "
@@ -291,31 +291,31 @@ msgctxt ""
 msgid "On-Screen Keyboard Deactivated"
 msgstr "屏幕键盘停用"
 
-#: osd.cpp:201
+#: osd.cpp:199
 #, kde-format
 msgctxt "power management was inhibited, keep short"
 msgid "Sleep and Screen Locking Blocked"
 msgstr "睡眠和锁屏已阻止"
 
-#: osd.cpp:203
+#: osd.cpp:201
 #, kde-format
 msgctxt "power management was uninhibited, keep short"
 msgid "Sleep and Screen Locking Unblocked"
 msgstr "睡眠和锁屏已解除阻止"
 
-#: osd.cpp:213
+#: osd.cpp:211
 #, kde-format
 msgctxt "Power profile was changed to power save mode, keep short"
 msgid "Power Save Mode"
 msgstr "省电模式"
 
-#: osd.cpp:216
+#: osd.cpp:214
 #, kde-format
 msgctxt "Power profile was changed to balanced mode, keep short"
 msgid "Balanced Power Mode"
 msgstr "平衡模式"
 
-#: osd.cpp:219
+#: osd.cpp:217
 #, kde-format
 msgctxt "Power profile was changed to performance mode, keep short"
 msgid "Performance Mode"
@@ -331,13 +331,13 @@ msgstr ""
 "在 X11 环境下使用 NVIDIA GPU 时存在已知问题，会导致浮动样式和自适应不透明度模"
 "式的窗口拖动和缩放性能低下。请考虑使用其他设置。"
 
-#: panelview.cpp:1141
+#: panelview.cpp:1144
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide Panel Configuration"
 msgstr "隐藏面板配置"
 
-#: panelview.cpp:1143
+#: panelview.cpp:1146
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Panel Configuration"
@@ -349,74 +349,74 @@ msgctxt "Percentage value"
 msgid "%1%"
 msgstr "%1%"
 
-#: shellcontainmentconfig.cpp:106
+#: shellcontainmentconfig.cpp:107
 #, kde-format
 msgid "Internal Screen on %1"
 msgstr "位于 %1 的内建屏幕"
 
-#: shellcontainmentconfig.cpp:110
+#: shellcontainmentconfig.cpp:111
 #, kde-format
 msgctxt "Screen manufacturer and model on connector"
 msgid "%1 %2 on %3"
 msgstr "%1 %2，位于 %3"
 
-#: shellcontainmentconfig.cpp:133
+#: shellcontainmentconfig.cpp:134
 #, kde-format
 msgid "Disconnected Screen %1"
 msgstr "已断开连接的屏幕 %1"
 
-#: shellcorona.cpp:213 shellcorona.cpp:215
+#: shellcorona.cpp:180 shellcorona.cpp:182
 #, kde-format
 msgid "Show Desktop"
 msgstr "显示桌面"
 
-#: shellcorona.cpp:215
+#: shellcorona.cpp:182
 #, kde-format
 msgid "Hide Desktop"
 msgstr "隐藏桌面"
 
-#: shellcorona.cpp:230
+#: shellcorona.cpp:197
 #, kde-format
 msgid "Activate Application Launcher"
 msgstr "激活应用程序启动器"
 
-#: shellcorona.cpp:238
+#: shellcorona.cpp:205
 #, kde-format
 msgid "Show Activity Switcher"
 msgstr "显示活动切换器"
 
-#: shellcorona.cpp:247
+#: shellcorona.cpp:214
 #, kde-format
 msgid "Switch to Previous Activity"
 msgstr "切换到上一个活动"
 
-#: shellcorona.cpp:255
+#: shellcorona.cpp:222
 #, kde-format
 msgid "Switch to Next Activity"
 msgstr "切换到下一个活动"
 
-#: shellcorona.cpp:270
+#: shellcorona.cpp:237
 #, kde-format
 msgid "Activate Task Manager Entry %1"
 msgstr "激活任务管理器条目 %1"
 
-#: shellcorona.cpp:302
+#: shellcorona.cpp:272
 #, kde-format
 msgctxt "@action:button"
 msgid "Manage Desktops and Panels…"
 msgstr "管理桌面和面板…"
 
-#: shellcorona.cpp:324
+#: shellcorona.cpp:294
 #, kde-format
 msgid "Move keyboard focus between panels"
 msgstr "在面板之间移动键盘焦点"
 
-#: shellcorona.cpp:2221
+#: shellcorona.cpp:2245
 #, kde-format
 msgid "Add Panel"
 msgstr "添加面板"
 
-#: shellcorona.cpp:2304
+#: shellcorona.cpp:2328
 #, kde-format
 msgctxt "Creates an empty containment (%1 is the containment name)"
 msgid "Empty %1"

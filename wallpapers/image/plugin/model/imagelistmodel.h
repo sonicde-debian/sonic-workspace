@@ -17,11 +17,12 @@ class ImageListModel : public AbstractImageListModel
     Q_OBJECT
 
 public:
-    explicit ImageListModel(const QBindable<QSize> &bindableTargetSize, const QBindable<bool> &bindableUsedInConfig, QObject *parent = nullptr);
+    explicit ImageListModel(const QBindable<bool> &bindableUsedInConfig, QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    QUrl effectiveSource(const QModelIndex &index, const QSize &targetSize) const override;
 
     int indexOf(const QUrl &url) const override;
 
@@ -30,9 +31,6 @@ public:
 public Q_SLOTS:
     QStringList addBackground(const QUrl &url) override;
     QStringList removeBackground(const QUrl &url) override;
-
-protected Q_SLOTS:
-    void slotHandleImageFound(const QStringList &paths);
 
 private:
     QStringList m_data;

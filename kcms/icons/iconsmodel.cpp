@@ -16,6 +16,7 @@
 #include <QFileIconProvider>
 
 #include <KIconTheme>
+#include <algorithm>
 
 #include "iconssettings.h"
 
@@ -47,7 +48,7 @@ int IconsModel::rowCount(const QModelIndex &parent) const
 QVariant IconsModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_data.count()) {
-        return QVariant();
+        return {};
     }
 
     const auto &item = m_data.at(index.row());
@@ -65,7 +66,7 @@ QVariant IconsModel::data(const QModelIndex &index, int role) const
         return item.pendingDeletion;
     }
 
-    return QVariant();
+    return {};
 }
 
 bool IconsModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -144,7 +145,7 @@ void IconsModel::load()
     // Sort case-insensitively
     QCollator collator;
     collator.setCaseSensitivity(Qt::CaseInsensitive);
-    std::sort(m_data.begin(), m_data.end(), [&collator](const IconsModelData &a, const IconsModelData &b) {
+    std::ranges::sort(m_data, [&collator](const IconsModelData &a, const IconsModelData &b) {
         return collator.compare(a.display, b.display) < 0;
     });
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
 "PO-Revision-Date: 2024-06-29 11:30+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -22,54 +22,15 @@ msgstr ""
 msgid "General"
 msgstr "General"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Show actions:"
+msgid "Unavailable"
+msgstr ""
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Log Out"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Show logout screen"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Shut Down"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Restart"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Lock"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "Switch User"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Hibernate"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Sleep"
 
 #: data.js:6
 #, kde-format
@@ -77,8 +38,9 @@ msgid "Lock the screen"
 msgstr "Lock the screen"
 
 #: data.js:12
-#, kde-format
-msgid "Switch user"
+#, fuzzy, kde-format
+#| msgid "Switch user"
+msgid "Switch user…"
 msgstr "Switch user"
 
 #: data.js:13
@@ -87,9 +49,10 @@ msgid "Start a parallel session as a different user"
 msgstr "Start a parallel session as a different user"
 
 #: data.js:19
-#, kde-format
-msgid "Shutdown…"
-msgstr "Shutdown…"
+#, fuzzy, kde-format
+#| msgid "Shut Down"
+msgid "Shut down"
+msgstr "Shut Down"
 
 #: data.js:20
 #, kde-format
@@ -98,8 +61,8 @@ msgstr "Turn off the computer"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Restart…"
+msgid "Restart"
+msgstr "Restart"
 
 #: data.js:27
 #, kde-format
@@ -107,9 +70,10 @@ msgid "Reboot the computer"
 msgstr "Reboot the computer"
 
 #: data.js:33
-#, kde-format
-msgid "Logout…"
-msgstr "Logout…"
+#, fuzzy, kde-format
+#| msgid "Log Out"
+msgid "Log out"
+msgstr "Log Out"
 
 #: data.js:34
 #, kde-format
@@ -127,15 +91,61 @@ msgstr "Show logout screen"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Log out, turn off, or restart the computer"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Sleep"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Sleep (suspend to RAM)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Hibernate"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Hibernate (suspend to disk)"
+
+#, fuzzy
+#~| msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
+#~| msgid "Actions"
+#~ msgctxt "@title:column"
+#~ msgid "Actions"
+#~ msgstr "Actions"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Show actions:"
+
+#~ msgid "Log Out"
+#~ msgstr "Log Out"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Show logout screen"
+
+#~ msgid "Shut Down"
+#~ msgstr "Shut Down"
+
+#~ msgid "Switch User"
+#~ msgstr "Switch User"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Shutdown…"
+
+#~ msgid "Restart…"
+#~ msgstr "Restart…"
+
+#~ msgid "Logout…"
+#~ msgstr "Logout…"
 
 #~ msgid "Logout"
 #~ msgstr "Logout"
@@ -166,10 +176,6 @@ msgstr "Hibernate (suspend to disk)"
 
 #~ msgid "Leave..."
 #~ msgstr "Leave..."
-
-#~ msgctxt "Heading for list of actions (leave, lock, shutdown, ...)"
-#~ msgid "Actions"
-#~ msgstr "Actions"
 
 #~ msgid "Suspend"
 #~ msgstr "Suspend"

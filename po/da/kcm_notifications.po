@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
 "PO-Revision-Date: 2024-10-26 10:54+0200\n"
 "Last-Translator: rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Slå vil ikke forstyrres til/fra"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Andre programmer"
@@ -90,15 +90,17 @@ msgid "Choose sound file"
 msgstr "Vælg lydfil"
 
 #: ui/main.qml:47
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Configure..."
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Systembekendtgørelser"
+msgid "Configure for System…"
+msgstr "Indstil..."
 
 #: ui/main.qml:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Application Settings"
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
+msgid "Configure for Applications…"
 msgstr "Programindstillinger"
 
 #: ui/main.qml:96
@@ -209,7 +211,7 @@ msgstr "Nær bekendtgørelsesikonet"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
+msgid "Choose…"
 msgstr ""
 
 #: ui/main.qml:278 ui/main.qml:294
@@ -226,34 +228,43 @@ msgid "Hide after:"
 msgstr "Skjul efter:"
 
 #: ui/main.qml:306
+#, fuzzy, kde-format
+#| msgctxt "Show application jobs in notification widget"
+#| msgid "Show in notifications"
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Vis i bekendtgørelser"
+
+#: ui/main.qml:318
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Yderligere feedback"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Vis i bekendtgørelser"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Programfremgang:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Hold pop-op åben under fremgang"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Bekendtgørelsesskilte:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Vis i opgavelinje"
@@ -264,8 +275,11 @@ msgid "Popup Position"
 msgstr "Placering af pop-op"
 
 #: ui/SourcesPage.qml:20
-#, kde-format
-msgid "Application Settings"
+#, fuzzy, kde-format
+#| msgid "Application Settings"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
 msgstr "Programindstillinger"
 
 #: ui/SourcesPage.qml:104
@@ -292,6 +306,14 @@ msgstr ""
 "Vælg et program fra listen for at indstille dets "
 "bekendtgørelsesindstillinger og opførsel."
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Systembekendtgørelser"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Programindstillinger"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Normale bekendtgørelser:"
 
@@ -307,20 +329,9 @@ msgstr ""
 
 #, fuzzy
 #~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Programindstillinger"
-
-#, fuzzy
-#~| msgid "Application Settings"
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Programindstillinger"
-
-#, fuzzy
-#~| msgid "Configure..."
-#~ msgid "Configure…"
-#~ msgstr "Indstil..."
 
 #~ msgid "Configure Notifications"
 #~ msgstr "Indstil bekendtgørelser"

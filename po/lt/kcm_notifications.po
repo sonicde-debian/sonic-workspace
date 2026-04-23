@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-27 23:45+0300\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-14 17:28+0200\n"
 "Last-Translator: Moo <<>>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "Perjungti „Netrukdyti“ veikseną"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Kitos programos"
@@ -94,14 +94,14 @@ msgstr "Pasirinkti garso failą"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Sistemos pranešimai"
+msgid "Configure for System…"
+msgstr "Konfigūruoti sistemai…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Programos nuostatos"
+msgid "Configure for Applications…"
+msgstr "Konfigūruoti programoms…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -210,8 +210,8 @@ msgstr "Šalia pranešimų piktogramos"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Tinkinta…"
+msgid "Choose…"
+msgstr "Pasirinkti…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -230,33 +230,40 @@ msgstr "Slėpti po:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Rodyti skirtojo laiko indikatorių"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Papildomas grįžtamasis ryšys"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Rodyti pranešimuose"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Programos eiga:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Išlaikyti iškylantįjį langą atvertą visos eigos metu"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Pranešimų ženkleliai:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Rodyti užduočių tvarkytuvėje"
@@ -268,8 +275,10 @@ msgstr "Iškylančiojo lango vieta"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Programos nuostatos"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Programų pranešimai"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -295,6 +304,18 @@ msgstr ""
 "Pasirinkite programą iš sąrašo, norėdami konfigūruoti jos pranešimų "
 "nuostatas ir elgseną"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Sistemos pranešimai"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Programos nuostatos"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Tinkinta…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Įprasti pranešimai:"
 
@@ -308,16 +329,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Programos nuostatos…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Konfigūruoti programos nuostatas…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Konkrečių programų nuostatos"
-
-#~ msgid "Configure…"
-#~ msgstr "Konfigūruoti…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
 "PO-Revision-Date: 2024-09-19 16:48+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -889,29 +889,31 @@ msgstr "Ισχύς απόχρωσης:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Σκίαση πλαισίων και εφέ φωτισμού («3D»)"
+msgid "Contrast of the frames, separators and outlines"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Σκίαση"
+msgid "Frames and Outlines"
+msgstr ""
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Μέγιστο"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Ελάχιστο"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Αντίθεση"
@@ -1380,6 +1382,18 @@ msgstr "Άνοιγμα θέματος χρωμάτων"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Αρχεία θέματος χρωμάτων (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Σκίαση πλαισίων και εφέ φωτισμού («3D»)"
+
+#~ msgid "Shading"
+#~ msgstr "Σκίαση"
+
+#~ msgid "Maximum"
+#~ msgstr "Μέγιστο"
+
+#~ msgid "Minimum"
+#~ msgstr "Ελάχιστο"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Επιλογή προσαρμοσμένου χρώματος έμφασης"

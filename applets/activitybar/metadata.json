@@ -1,5 +1,4 @@
 {
-    "KPackageStructure": "Plasma/Applet",
     "KPlugin": {
         "Authors": [
             {
@@ -23,6 +22,7 @@
                 "Name[eu]": "Bhushan Shah",
                 "Name[fi]": "Bhushan Shah",
                 "Name[fr]": "Bhushan Shah",
+                "Name[ga]": "Bhushan Shah",
                 "Name[gl]": "Bhushan Shah",
                 "Name[he]": "בושן צ׳ה",
                 "Name[hi]": "भूषण शाह",
@@ -114,7 +114,6 @@
             "desktop"
         ],
         "Icon": "tab-new",
-        "Id": "org.kde.plasma.activitybar",
         "License": "GPL-2.0+",
         "Name": "Activity Bar",
         "Name[ar]": "شريط أنشطة",

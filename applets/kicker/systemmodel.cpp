@@ -34,7 +34,7 @@ QString SystemModel::description() const
 QVariant SystemModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_entries.count()) {
-        return QVariant();
+        return {};
     }
 
     const SystemEntry *entry = m_entries.value(index.row());
@@ -59,7 +59,7 @@ QVariant SystemModel::data(const QModelIndex &index, int role) const
         return !entry->isValid();
     }
 
-    return QVariant();
+    return {};
 }
 
 int SystemModel::rowCount(const QModelIndex &parent) const
@@ -95,7 +95,7 @@ void SystemModel::populate()
     m_invalidEntries.clear();
 
     auto addIfValid = [=, this](const SystemEntry::Action action) {
-        SystemEntry *entry = new SystemEntry(this, action);
+        auto *entry = new SystemEntry(this, action);
         QObject::connect(entry, &SystemEntry::sessionManagementStateChanged, this, &SystemModel::sessionManagementStateChanged);
 
         if (entry->isValid()) {

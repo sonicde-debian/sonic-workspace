@@ -26,9 +26,7 @@ public:
         : QSortFilterProxyModel(parent)
     {
     }
-    ~SortProxyModel() override
-    {
-    }
+    ~SortProxyModel() override = default;
     QHash<int, QByteArray> roleNames() const override;
     inline const CursorTheme *theme(const QModelIndex &index) const;
     inline QModelIndex findIndex(const QString &name) const;
@@ -44,24 +42,24 @@ protected:
 
 const CursorTheme *SortProxyModel::theme(const QModelIndex &index) const
 {
-    CursorThemeModel *model = static_cast<CursorThemeModel *>(sourceModel());
+    auto *model = static_cast<CursorThemeModel *>(sourceModel());
     return model->theme(mapToSource(index));
 }
 
 QModelIndex SortProxyModel::findIndex(const QString &name) const
 {
-    CursorThemeModel *model = static_cast<CursorThemeModel *>(sourceModel());
+    auto *model = static_cast<CursorThemeModel *>(sourceModel());
     return mapFromSource(model->findIndex(name));
 }
 
 QModelIndex SortProxyModel::defaultIndex() const
 {
-    CursorThemeModel *model = static_cast<CursorThemeModel *>(sourceModel());
+    auto *model = static_cast<CursorThemeModel *>(sourceModel());
     return mapFromSource(model->defaultIndex());
 }
 
 void SortProxyModel::removeTheme(const QModelIndex &index)
 {
-    CursorThemeModel *model = static_cast<CursorThemeModel *>(sourceModel());
+    auto *model = static_cast<CursorThemeModel *>(sourceModel());
     model->removeTheme(mapToSource(index));
 }

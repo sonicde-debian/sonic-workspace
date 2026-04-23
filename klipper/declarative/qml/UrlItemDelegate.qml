@@ -7,14 +7,15 @@
 
 pragma ComponentBehavior: Bound
 
-import QtQuick 2.15
+import QtQuick
 
-import org.kde.plasma.components 3.0 as PlasmaComponents3
-import org.kde.kirigami 2.20 as Kirigami
-import org.kde.plasma.private.clipboard 0.1 as Private // image provider
+import org.kde.plasma.components as PlasmaComponents3
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.private.clipboard as Private // image provider
 
 ClipboardItemDelegate {
     id: menuItem
+    property int maximumNumberOfPreviews: Math.floor(width / (Kirigami.Units.gridUnit * 4 + Kirigami.Units.smallSpacing))
     Accessible.name: menuItem.model?.display ?? ""
     mainItem: Item {
         id: previewItem
@@ -24,12 +25,12 @@ ClipboardItemDelegate {
         Drag.dragType: Drag.Automatic
         Drag.supportedActions: Qt.CopyAction
         Drag.mimeData: {
-            "text/uri-list": menuItem.model?.display.split(" ") ?? [],
+            "text/uri-list": menuItem.model?.display?.split(" ") ?? [],
         }
 
         ListView {
             id: previewList
-            model: menuItem.model?.display.split(" ", maximumNumberOfPreviews) ?? 0
+            model: menuItem.model?.display?.split(" ", menuItem.maximumNumberOfPreviews) ?? 0
             property int itemWidth: Kirigami.Units.gridUnit * 4
             property int itemHeight: Kirigami.Units.gridUnit * 4
             interactive: false
@@ -44,9 +45,10 @@ ClipboardItemDelegate {
             }
 
             delegate: Item {
+                id: previewItemDelegate
                 width: previewList.itemWidth
                 height: previewList.itemHeight
-                y: Math.round((parent.height - previewList.itemHeight) / 2)
+                y: Math.round((previewList.height - previewList.itemHeight) / 2)
                 required property string modelData
                 clip: true
 
@@ -55,7 +57,7 @@ ClipboardItemDelegate {
                     anchors.centerIn: parent
                     asynchronous: true
                     sourceSize: Qt.size(previewList.itemWidth * 2, previewList.itemHeight * 2)
-                    source: `image://klipperpreview/${modelData}`
+                    source: `image://klipperpreview/${previewItemDelegate.modelData}`
                 }
                 Rectangle {
                     id: overlay
@@ -82,7 +84,7 @@ ClipboardItemDelegate {
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignHCenter
                     text: {
-                        let u = modelData.split("/");
+                        let u = previewItemDelegate.modelData.split("/");
                         return decodeURIComponent(u[u.length - 1]);
                     }
                     textFormat: Text.PlainText
@@ -91,7 +93,7 @@ ClipboardItemDelegate {
             }
         }
         PlasmaComponents3.Label {
-            property int additionalItems: menuItem.model?.display.split(" ").length ?? 0 - maximumNumberOfPreviews
+            property int additionalItems: menuItem.model?.display.split(" ").length ?? 0 - menuItem.maximumNumberOfPreviews
             visible: additionalItems > 0
             opacity: 0.75
             text: i18ndc("klipper", "Indicator that there are more urls in the clipboard than previews shown", "+%1", additionalItems)
@@ -104,7 +106,7 @@ ClipboardItemDelegate {
 
             }
             verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignCenter
+            horizontalAlignment: Text.AlignHCenter
             font: Kirigami.Theme.smallFont
         }
     }

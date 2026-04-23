@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <QObject>
-#include <QRunnable>
 #include <QSize>
 
 #include <KPackage/Package>
@@ -28,35 +26,17 @@
 class WallpaperPackage
 {
 public:
-    WallpaperPackage(const KPackage::Package &package);
+    WallpaperPackage(const KPackage::Package &package, const QStringList &selectors);
 
-    QString displayName() const;
     KPackage::Package package() const;
     QStringList selectors() const;
+
+    static std::optional<WallpaperPackage> from(const QString &filePath);
+    static std::optional<WallpaperPackage> from(const KPackage::Package &package);
+    static QList<WallpaperPackage> findAll(const QStringList &paths);
+    static void findPreferredImageInPackage(KPackage::Package &package, const QSize &targetSize);
 
 private:
     KPackage::Package m_package;
     QStringList m_selectors;
-};
-
-/**
- * A runnable that finds KPackage wallpapers.
- */
-class PackageFinder : public QObject, public QRunnable
-{
-    Q_OBJECT
-
-public:
-    PackageFinder(const QStringList &paths, const QSize &targetSize, QObject *parent = nullptr);
-
-    void run() override;
-
-    static void findPreferredImageInPackage(KPackage::Package &package, const QSize &targetSize);
-
-Q_SIGNALS:
-    void packageFound(const QList<WallpaperPackage> &packages);
-
-private:
-    QStringList m_paths;
-    QSize m_targetSize;
 };

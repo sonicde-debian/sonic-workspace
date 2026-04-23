@@ -3,13 +3,13 @@
 #
 # SPDX-FileCopyrightText: 2019, 2020, 2021, 2023 Matej Mrenica <matejm98mthw@gmail.com>
 # Ferdinand Galko <galko.ferdinand@gmail.com>, 2023.
-# SPDX-FileCopyrightText: 2025 Lucia Mrenica <lucia.mrenica@gmail.com>
+# SPDX-FileCopyrightText: 2026 Lucia Mrenica <lucia.mrenica@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-09-21 10:59+0200\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-15 20:12+0100\n"
 "Last-Translator: Lucia Mrenica <lucia.mrenica@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "Prepnúť režim Nevyrušovať"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Ostatné aplikácie"
@@ -92,14 +92,14 @@ msgstr "Vyberte zvukový súbor"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Systémové upozornenia"
+msgid "Configure for System…"
+msgstr "Konfigurácia pre systém…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Nastavenia aplikácií"
+msgid "Configure for Applications…"
+msgstr "Konfigurácia pre aplikácie…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -153,7 +153,7 @@ msgctxt ""
 "Automatically enable Do Not Disturb mode while a fullscreen application is "
 "focused"
 msgid "While a fullscreen application is focused"
-msgstr ""
+msgstr "Keď je aplikácia na celú obrazovku je zameraná"
 
 #: ui/main.qml:170
 #, kde-format
@@ -208,8 +208,8 @@ msgstr "Vedľa ikony upozornení"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Vlastné…"
+msgid "Choose…"
+msgstr "Vybrať..."
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -227,33 +227,40 @@ msgstr "Skryť po:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Zobraziť indikátor časového limitu"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Dodatočná odozva"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Zobrazovať v upozorneniach"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Priebeh aplikácií:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Nechať vyskakovacie okno otvorené počas priebehu"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Odznaky aplikácií:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Zobrazovať v správcovi úloh"
@@ -265,8 +272,10 @@ msgstr "Poloha vyskakovacieho okna"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Nastavenia aplikácií"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Upozornenia aplikácií"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -291,6 +300,18 @@ msgid ""
 msgstr ""
 "Vyberte aplikáciu zo zoznamu na zmenu jej nastavení upozornení a správania"
 
+#, fuzzy
+#~| msgid "Notifications"
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Upozornenia"
+
+#, fuzzy
+#~| msgid "Application Settings"
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Nastavenia aplikácií"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Normálne oznámenia:"
 
@@ -306,18 +327,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Nastavenia aplikácií"
 
-#, fuzzy
-#~| msgid "Application Settings"
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Nastavenia aplikácií"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Špecifické nastavenia aplikácií"
-
-#~ msgid "Configure…"
-#~ msgstr "Nastaviť..."
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

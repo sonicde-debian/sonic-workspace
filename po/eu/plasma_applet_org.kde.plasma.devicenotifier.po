@@ -1,16 +1,16 @@
 # Translation for plasma_applet_org.kde.plasma.devicenotifier.po to Euskara/Basque (eu).
-# Copyright (C) 2007-2025 This file is copyright:
+# Copyright (C) 2007-2026 This file is copyright:
 # This file is distributed under the same license as the plasma-workspace package.
 # SPDX-FileCopyrightText: 2023, 2024, 2025 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
 # marcos <marcos@euskalgnu.org>, 2007.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2008, 2010, 2011, 2017, 2018, 2019, 2020, 2021, 2023, 2024, 2025.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2008, 2010, 2011, 2017, 2018, 2019, 2020, 2021, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-01-17 02:39+0000\n"
 "PO-Revision-Date: 2025-07-24 18:14+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -21,44 +21,38 @@ msgstr ""
 "X-Generator: Lokalize 25.04.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: actions/checkaction.cpp:74
+#: actions/checkaction.cpp:72
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr "Egiaztatu errore bila"
 
-#: actions/mountaction.cpp:103
-#, kde-format
-msgctxt "@action:button Mount a disk without verifying for errors"
-msgid "Mount without verifying"
-msgstr "Muntatu egiaztatu gabe"
-
-#: actions/mountaction.cpp:106
+#: actions/mountaction.cpp:97
 #, kde-format
 msgid "Mount"
 msgstr "Muntatu"
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:178
 #, kde-format
 msgid "Open in File Manager"
 msgstr "Ireki fitxategi-kudeatzailean"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Try to Fix"
 msgstr "Saiatu konpontzen"
 
-#: actions/mountandopenaction.cpp:186
+#: actions/mountandopenaction.cpp:181
 #, kde-format
 msgid "Mount and Open"
 msgstr "Muntatu eta ireki"
 
-#: actions/mountandopenaction.cpp:188
+#: actions/mountandopenaction.cpp:183
 #, kde-format
 msgid "Eject"
 msgstr "Egotzi"
 
-#: actions/mountandopenaction.cpp:190
+#: actions/mountandopenaction.cpp:185
 #, kde-format
 msgid "Safely remove"
 msgstr "Kendu arriskurik gabe"
@@ -167,7 +161,7 @@ msgstr "Ezin izan du gailu hori kendu."
 msgid "Could not repair this device: %1"
 msgstr "Ezin izan du gailu hau konpondu: %1"
 
-#: qml/DeviceItem.qml:106
+#: qml/DeviceItem.qml:99
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -175,7 +169,7 @@ msgctxt ""
 msgid "Checking…"
 msgstr "Egiaztatzen…"
 
-#: qml/DeviceItem.qml:108
+#: qml/DeviceItem.qml:101
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -183,13 +177,13 @@ msgctxt ""
 msgid "Repairing…"
 msgstr "Konpontzen…"
 
-#: qml/DeviceItem.qml:111
+#: qml/DeviceItem.qml:104
 #, kde-format
 msgctxt "@info:status Free disk space"
 msgid "%1 free of %2"
 msgstr "%1/%2 hutsik"
 
-#: qml/DeviceItem.qml:115
+#: qml/DeviceItem.qml:108
 #, kde-format
 msgctxt ""
 "Accessing is a less technical word for Mounting; translation should be short "
@@ -197,7 +191,7 @@ msgctxt ""
 msgid "Accessing…"
 msgstr "Atzitzen…"
 
-#: qml/DeviceItem.qml:118
+#: qml/DeviceItem.qml:111
 #, kde-format
 msgctxt ""
 "Removing is a less technical word for Unmounting; translation should be "
@@ -205,27 +199,27 @@ msgctxt ""
 msgid "Removing…"
 msgstr "Kentzen…"
 
-#: qml/DeviceItem.qml:121
+#: qml/DeviceItem.qml:114
 #, kde-format
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr "Oraindik ez deskonektatu! Fitxategiak transferitzen ari dira oraindik…"
 
-#: qml/FullRepresentation.qml:45 qml/main.qml:125
+#: qml/FullRepresentation.qml:47 qml/main.qml:123
 #, kde-format
 msgid "Remove All"
 msgstr "Kendu guztiak"
 
-#: qml/FullRepresentation.qml:46
+#: qml/FullRepresentation.qml:48
 #, kde-format
 msgid "Click to safely remove all devices"
 msgstr "Egin klik gailu guztiak era seguruan kentzeko."
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No removable devices attached"
 msgstr "Ez dago konektatuta gailu eramangarririk"
 
-#: qml/FullRepresentation.qml:153
+#: qml/FullRepresentation.qml:162
 #, kde-format
 msgid "No disks available"
 msgstr "Ez dago disko erabilgarririk"
@@ -240,31 +234,35 @@ msgstr "Konektatutako azken gailua"
 msgid "No Devices Available"
 msgstr "Ez dago gailu eskuragarririk"
 
-#: qml/main.qml:108
+#: qml/main.qml:109
 #, kde-format
 msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Konfiguratu gailu aldagarriak…"
 
-#: qml/main.qml:133
+#: qml/main.qml:131
 #, kde-format
 msgid "Removable Devices"
 msgstr "Gailu aldagarriak"
 
-#: qml/main.qml:148
+#: qml/main.qml:146
 #, kde-format
 msgid "Non Removable Devices"
 msgstr "Gailu ez-aldagarriak"
 
-#: qml/main.qml:163
+#: qml/main.qml:161
 #, kde-format
 msgid "All Devices"
 msgstr "Gailu guztiak"
 
-#: qml/main.qml:180
+#: qml/main.qml:178
 #, kde-format
 msgid "Show popup when new device is plugged in"
 msgstr "Erakutsi laster-leihoa gailu berria konektatzen denean"
+
+#~ msgctxt "@action:button Mount a disk without verifying for errors"
+#~ msgid "Mount without verifying"
+#~ msgstr "Muntatu egiaztatu gabe"
 
 #~ msgid "Filesystem is not responding"
 #~ msgstr "Fitxategi sistemak ez du erantzuten"

@@ -33,6 +33,7 @@
 #include <KWindowSystem>
 
 #include "../kcms-common_p.h"
+#include "devicepixelratiohelper.h"
 #include "krdb.h"
 #include "kxftconfig.h"
 #include "previewimageprovider.h"
@@ -51,10 +52,12 @@ KFonts::KFonts(QObject *parent, const KPluginMetaData &metaData)
     , m_data(new FontsData(this))
     , m_subPixelOptionsModel(new QStandardItemModel(this))
     , m_hintingOptionsModel(new QStandardItemModel(this))
+    , m_imageProviderReady(false)
 {
     qmlRegisterAnonymousType<QStandardItemModel>("QStandardItemModel", 1);
     qmlRegisterAnonymousType<FontsSettings>("FontsSettings", 1);
     qmlRegisterAnonymousType<FontsAASettings>("FontsAASettings", 1);
+    qmlRegisterType<DevicePixelRatioHelper>("org.kde.plasma.kcm.fonts", 1, 0, "DevicePixelRatioHelper");
 
     setButtons(Apply | Default | Help);
 
@@ -72,9 +75,7 @@ KFonts::KFonts(QObject *parent, const KPluginMetaData &metaData)
     connect(fontsAASettings(), &FontsAASettings::subPixelChanged, this, &KFonts::subPixelCurrentIndexChanged);
 }
 
-KFonts::~KFonts()
-{
-}
+KFonts::~KFonts() = default;
 
 FontsSettings *KFonts::fontsSettings() const
 {
@@ -106,18 +107,30 @@ void KFonts::load()
     // otherwise AA settings will be reset in process of loading
     // previews
     engine()->addImageProvider(u"preview"_s, new PreviewImageProvider(fontsSettings()->font()));
-
+    setImageProviderReady(true);
     // KCM expect save state to be false at this point (can be true because if a font setting loaded
     // from the config isn't available on the system, font substitution may take place)
     setNeedsSave(false);
 }
 
+void KFonts::setImageProviderReady(bool ready)
+{
+    if (m_imageProviderReady != ready) {
+        m_imageProviderReady = ready;
+        Q_EMIT imageProviderReadyChanged();
+    }
+}
+
+bool KFonts::imageProviderReady()
+{
+    return m_imageProviderReady;
+}
+
 void KFonts::save()
 {
-#if HAVE_X11
     bool forceFontDPIChanged = false;
 
-    if (KWindowSystem::isPlatformX11()) {
+    {
         auto dpiItem = fontsAASettings()->findItem(u"forceFontDPI"_s);
         auto antiAliasingItem = fontsAASettings()->findItem(u"antiAliasing"_s);
         Q_ASSERT(dpiItem && antiAliasingItem);
@@ -127,14 +140,12 @@ void KFonts::save()
 
         forceFontDPIChanged = dpiItem->isSaveNeeded();
     }
-#endif
 
     KQuickManagedConfigModule::save();
 
-#if HAVE_X11
     // if the setting is reset in the module, remove the dpi value,
     // otherwise don't explicitly remove it and leave any possible system-wide value
-    if (fontsAASettings()->forceFontDPI() == 0 && forceFontDPIChanged && KWindowSystem::isPlatformX11()) {
+    if (fontsAASettings()->forceFontDPI() == 0 && forceFontDPIChanged) {
         QProcess proc;
         proc.setProcessChannelMode(QProcess::ForwardedChannels);
         proc.start(u"xrdb"_s, QStringList{u"-quiet"_s, u"-remove"_s, u"-nocpp"_s});
@@ -144,7 +155,6 @@ void KFonts::save()
             proc.waitForFinished();
         }
     }
-#endif
 
     // Notify the world about the font changes
     if (qEnvironmentVariableIsSet("KDE_FULL_SESSION")) {

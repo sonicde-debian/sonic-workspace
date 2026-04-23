@@ -7,29 +7,17 @@
 
 #include "mediametadatafinder.h"
 
-#include <QFile>
-#include <QImageReader>
-
 #include "config-KExiv2.h"
 #if HAVE_KExiv2
 #include <KExiv2/KExiv2>
 #endif
 
-MediaMetadataFinder::MediaMetadataFinder(const QString &path, QObject *parent)
-    : QObject(parent)
-    , m_path(path)
-{
-}
-
-void MediaMetadataFinder::run()
+MediaMetadata MediaMetadata::read(const QString &path)
 {
     MediaMetadata metadata;
 
-    const QImageReader reader(m_path);
-    metadata.resolution = reader.size();
-
 #if HAVE_KExiv2
-    KExiv2Iface::KExiv2 exivImage(m_path);
+    KExiv2Iface::KExiv2 exivImage(path);
 
     // Extract title from XPTitle
     {
@@ -62,5 +50,5 @@ void MediaMetadataFinder::run()
     }
 #endif
 
-    Q_EMIT metadataFound(m_path, metadata);
+    return metadata;
 }

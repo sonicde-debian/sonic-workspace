@@ -20,7 +20,6 @@
 
 #include <QDBusMessage>
 #include <QDirIterator>
-#include <QFileIconProvider>
 #include <QFileInfo>
 #include <QMimeDatabase>
 #include <QRegularExpression>
@@ -32,6 +31,7 @@
 #include <KLocalizedString>
 #include <KOpenWithDialog>
 #include <KPropertiesDialog>
+#include <algorithm>
 #include <autostartscriptdesktopfile.h>
 
 using namespace Qt::StringLiterals;
@@ -76,7 +76,7 @@ std::optional<AutostartEntry> AutostartModel::loadDesktopEntry(const QString &fi
     const auto kind = AutostartScriptDesktopFile::isAutostartScript(config) ? XdgScripts : XdgAutoStart; // .config/autostart load desktop at startup
     const QString tryCommand = grp.readEntry("TryExec");
 
-    // Try to filter out entries that point to nonexistant programs
+    // Try to filter out entries that point to nonexistent programs
     // If TryExec is either found in $PATH or is an absolute file path that exists
     // This doesn't detect uninstalled Flatpaks for example though
     if (!tryCommand.isEmpty() && QStandardPaths::findExecutable(tryCommand).isEmpty() && !QFile::exists(tryCommand)) {
@@ -105,9 +105,7 @@ AutostartModel::AutostartModel(QObject *parent)
     QDBusConnection::sessionBus().send(message);
 }
 
-AutostartModel::~AutostartModel()
-{
-}
+AutostartModel::~AutostartModel() = default;
 
 void AutostartModel::load()
 {
@@ -244,7 +242,7 @@ bool AutostartModel::reloadEntry(const QModelIndex &index, const QString &fileNa
 QVariant AutostartModel::data(const QModelIndex &index, int role) const
 {
     if (!checkIndex(index)) {
-        return QVariant();
+        return {};
     }
 
     const auto &entry = m_entries.at(index.row());
@@ -268,7 +266,7 @@ QVariant AutostartModel::data(const QModelIndex &index, int role) const
         return QVariant::fromValue(entry.systemdUnit);
     }
 
-    return QVariant();
+    return {};
 }
 
 void AutostartModel::addApplication(const KService::Ptr &service)
@@ -347,7 +345,7 @@ void AutostartModel::addApplication(const KService::Ptr &service)
 
 void AutostartModel::showApplicationDialog(QQuickItem *context)
 {
-    KOpenWithDialog *owdlg = new KOpenWithDialog();
+    auto *owdlg = new KOpenWithDialog();
     owdlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (context && context->window()) {
@@ -467,8 +465,7 @@ void AutostartModel::insertScriptEntry(int index, const QString &name, const QSt
 
     // Plasma shutdown and Plasma env scripts don't have units
     if (kind == AutostartModel::AutostartEntrySource::PlasmaShutdown || kind == AutostartModel::AutostartEntrySource::PlasmaEnvScripts) {
-        delete unit;
-        unit = nullptr;
+        delete std::exchange(unit, nullptr);
     }
 
     AutostartEntry entry = AutostartEntry{name, targetFileDirPath, kind, true, path, false, iconName, unit};
@@ -526,7 +523,7 @@ void AutostartModel::editApplication(int row, QQuickItem *context)
     KFileItem kfi(QUrl::fromLocalFile(fileName));
     kfi.setDelayedMimeTypes(true);
 
-    KPropertiesDialog *dlg = new KPropertiesDialog(kfi, nullptr);
+    auto *dlg = new KPropertiesDialog(kfi, nullptr);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (context && context->window()) {
@@ -623,7 +620,7 @@ QList<AutostartEntry> AutostartModel::sortedEntries(const QList<AutostartEntry> 
     QCollator collator;
     collator.setCaseSensitivity(Qt::CaseInsensitive);
 
-    std::sort(sortedEntries.begin(), sortedEntries.end(), [&collator](const AutostartEntry &a, const AutostartEntry &b) {
+    std::ranges::sort(sortedEntries, [&collator](const AutostartEntry &a, const AutostartEntry &b) {
         if (a.source != b.source) {
             return a.source < b.source;
         }

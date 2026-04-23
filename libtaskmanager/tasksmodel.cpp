@@ -25,6 +25,11 @@
 #include <QTimer>
 #include <QUrl>
 
+#if HAVE_QTTEST
+#include <QAbstractItemModelTester>
+#endif
+
+#include <algorithm>
 #include <numeric>
 #include <optional>
 
@@ -82,6 +87,7 @@ public:
     void forceResort();
     bool lessThan(const QModelIndex &left, const QModelIndex &right, bool sortOnlyLaunchers = false) const;
     std::optional<bool> lessThanByVirtualDesktop(const QModelIndex &left, const QModelIndex &right) const;
+    static void modelTest(QAbstractItemModel *model);
 
 private:
     TasksModel *const q;
@@ -125,10 +131,8 @@ TasksModel::Private::~Private()
     --instanceCount;
 
     if (!instanceCount) {
-        delete windowTasksModel;
-        windowTasksModel = nullptr;
-        delete startupTasksModel;
-        startupTasksModel = nullptr;
+        delete std::exchange(windowTasksModel, nullptr);
+        delete std::exchange(startupTasksModel, nullptr);
     }
 }
 
@@ -143,9 +147,11 @@ void TasksModel::Private::initModels()
     //      -> TasksModel collapses (top-level) items into task lifecycle abstraction; sorts.
 
     concatProxyModel = new ConcatenateTasksProxyModel(q);
+    modelTest(concatProxyModel);
 
     if (!windowTasksModel) {
         windowTasksModel = new WindowTasksModel();
+        modelTest(windowTasksModel);
     }
 
     concatProxyModel->addSourceModel(windowTasksModel);
@@ -196,6 +202,7 @@ void TasksModel::Private::initModels()
 
     if (!startupTasksModel) {
         startupTasksModel = new StartupTasksModel();
+        modelTest(startupTasksModel);
     }
 
     concatProxyModel->addSourceModel(startupTasksModel);
@@ -267,6 +274,8 @@ void TasksModel::Private::initModels()
     });
 
     filterProxyModel = new TaskFilterProxyModel(q);
+    modelTest(filterProxyModel);
+
     filterProxyModel->setSourceModel(concatProxyModel);
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::virtualDesktopChanged, q, &TasksModel::virtualDesktopChanged);
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::screenGeometryChanged, q, &TasksModel::screenGeometryChanged);
@@ -282,6 +291,8 @@ void TasksModel::Private::initModels()
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::filterHiddenChanged, q, &TasksModel::filterHiddenChanged);
 
     groupingProxyModel = new TaskGroupingProxyModel(q);
+    modelTest(groupingProxyModel);
+
     groupingProxyModel->setSourceModel(filterProxyModel);
     QObject::connect(groupingProxyModel, &TaskGroupingProxyModel::groupModeChanged, q, &TasksModel::groupModeChanged);
     QObject::connect(groupingProxyModel, &TaskGroupingProxyModel::blacklistedAppIdsChanged, q, &TasksModel::groupingAppIdBlacklistChanged);
@@ -510,7 +521,7 @@ void TasksModel::Private::updateManualSortMap()
 
         // Full sort.
         TasksModelLessThan lt(concatProxyModel, q, false);
-        std::stable_sort(sortedPreFilterRows.begin(), sortedPreFilterRows.end(), lt);
+        std::ranges::stable_sort(sortedPreFilterRows, lt);
 
         // Consolidate sort map entries for groups.
         if (q->groupMode() != GroupDisabled) {
@@ -530,7 +541,7 @@ void TasksModel::Private::updateManualSortMap()
     if (separateLaunchers) {
         // Sort only launchers.
         TasksModelLessThan lt(concatProxyModel, q, true);
-        std::stable_sort(sortedPreFilterRows.begin(), sortedPreFilterRows.end(), lt);
+        std::ranges::stable_sort(sortedPreFilterRows, lt);
         // Otherwise process any entries in the insert queue and move them intelligently
         // in the sort map.
     } else {
@@ -697,8 +708,7 @@ void TasksModel::Private::updateGroupInline()
         abstractTasksSourceModel = groupingProxyModel;
         q->setSourceModel(groupingProxyModel);
 
-        delete flattenGroupsProxyModel;
-        flattenGroupsProxyModel = nullptr;
+        delete std::exchange(flattenGroupsProxyModel, nullptr);
 
         if (hadSourceModel && sortMode == SortManual) {
             forceResort();
@@ -880,8 +890,8 @@ bool TasksModel::Private::lessThan(const QModelIndex &left, const QModelIndex &r
             return *result;
         }
 
-        const QRect leftGeom = left.data(AbstractTasksModel::Geometry).value<QRect>();
-        const QRect rightGeom = right.data(AbstractTasksModel::Geometry).value<QRect>();
+        const auto leftGeom = left.data(AbstractTasksModel::Geometry).value<QRect>();
+        const auto rightGeom = right.data(AbstractTasksModel::Geometry).value<QRect>();
 
         if (leftGeom.x() != rightGeom.x()) {
             if (QGuiApplication::isRightToLeft()) {
@@ -1004,6 +1014,15 @@ bool TasksModel::Private::lessThan(const QModelIndex &left, const QModelIndex &r
     }
 }
 
+void TasksModel::TasksModel::Private::modelTest(QAbstractItemModel *model)
+{
+#if HAVE_QTTEST
+    new QAbstractItemModelTester(model, model);
+#else
+    Q_UNUSED(model);
+#endif
+}
+
 TasksModel::TasksModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , d(new Private(this))
@@ -1028,9 +1047,7 @@ TasksModel::TasksModel(QObject *parent)
     });
 }
 
-TasksModel::~TasksModel()
-{
-}
+TasksModel::~TasksModel() = default;
 
 QHash<int, QByteArray> TasksModel::roleNames() const
 {
@@ -1038,7 +1055,7 @@ QHash<int, QByteArray> TasksModel::roleNames() const
         return d->windowTasksModel->roleNames();
     }
 
-    return QHash<int, QByteArray>();
+    return {};
 }
 
 int TasksModel::rowCount(const QModelIndex &parent) const
@@ -1383,7 +1400,7 @@ void TasksModel::setGroupingWindowTasksThreshold(int threshold)
 QStringList TasksModel::groupingAppIdBlacklist() const
 {
     if (!d->groupingProxyModel) {
-        return QStringList();
+        return {};
     }
 
     return d->groupingProxyModel->blacklistedAppIds();
@@ -1399,7 +1416,7 @@ void TasksModel::setGroupingAppIdBlacklist(const QStringList &list)
 QStringList TasksModel::groupingLauncherUrlBlacklist() const
 {
     if (!d->groupingProxyModel) {
-        return QStringList();
+        return {};
     }
 
     return d->groupingProxyModel->blacklistedLauncherUrls();
@@ -1430,7 +1447,7 @@ QStringList TasksModel::launcherList() const
         return d->launcherTasksModel->launcherList();
     }
 
-    return QStringList();
+    return {};
 }
 
 void TasksModel::setLauncherList(const QStringList &launchers)
@@ -1618,6 +1635,13 @@ void TasksModel::requestToggleNoBorder(const QModelIndex &index)
 {
     if (index.isValid() && index.model() == this) {
         d->abstractTasksSourceModel->requestToggleNoBorder(mapToSource(index));
+    }
+}
+
+void TasksModel::requestToggleExcludeFromCapture(const QModelIndex &index)
+{
+    if (index.isValid() && index.model() == this) {
+        d->abstractTasksSourceModel->requestToggleExcludeFromCapture(mapToSource(index));
     }
 }
 
@@ -1942,7 +1966,7 @@ void TasksModel::syncLaunchers()
         // We're going to write back launcher model entries in the sort
         // map in concat model order, matching the reordered launcher list
         // we're about to pass down.
-        std::sort(sortMapIndices.begin(), sortMapIndices.end());
+        std::ranges::sort(sortMapIndices);
 
         for (int i = 0; i < sortMapIndices.count(); ++i) {
             d->sortedPreFilterRows.replace(sortMapIndices.at(i), preFilterRows.at(i));
@@ -1978,13 +2002,13 @@ QModelIndex TasksModel::activeTask() const
         }
     }
 
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex TasksModel::makeModelIndex(int row, int childRow) const
 {
     if (row < 0 || row >= rowCount()) {
-        return QModelIndex();
+        return {};
     }
 
     if (childRow == -1) {
@@ -1997,7 +2021,7 @@ QModelIndex TasksModel::makeModelIndex(int row, int childRow) const
         }
     }
 
-    return QModelIndex();
+    return {};
 }
 
 QPersistentModelIndex TasksModel::makePersistentModelIndex(int row, int childCount) const

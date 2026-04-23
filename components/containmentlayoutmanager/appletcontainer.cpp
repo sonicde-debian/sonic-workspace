@@ -31,9 +31,7 @@ AppletContainer::AppletContainer(QQuickItem *parent)
     });
 }
 
-AppletContainer::~AppletContainer()
-{
-}
+AppletContainer::~AppletContainer() = default;
 
 void AppletContainer::componentComplete()
 {
@@ -72,7 +70,8 @@ void AppletContainer::connectBusyIndicator()
 {
     if (m_appletItem && !m_busyIndicatorItem) {
         Q_ASSERT(m_appletItem->applet());
-        connect(m_appletItem->applet(), &Plasma::Applet::busyChanged, this, [this]() {
+
+        auto onBusyChanged = [this]() {
             if (!m_busyIndicatorComponent || !m_appletItem->applet()->isBusy() || m_busyIndicatorItem) {
                 return;
             }
@@ -94,7 +93,9 @@ void AppletContainer::connectBusyIndicator()
             m_busyIndicatorItem->setParentItem(this);
             m_busyIndicatorItem->setZ(999);
             m_busyIndicatorComponent->completeCreate();
-        });
+        };
+        connect(m_appletItem->applet(), &Plasma::Applet::busyChanged, this, onBusyChanged);
+        onBusyChanged();
     }
 }
 

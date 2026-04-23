@@ -8,7 +8,6 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as QQC2
 
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
@@ -99,7 +98,26 @@ Item {
                     configFile: Kirigami.Settings.isMobile ? "wallpaper-mobile.knsrc" : "wallpaper.knsrc"
                     text: i18ndc("plasma_wallpaper_org.kde.image", "@action:button the new things being gotten are wallpapers", "Get New…")
                     Accessible.name: i18ndc("plasma_wallpaper_org.kde.image", "@action:button", "Get New Wallpaper Images…")
+                    displayHint: Kirigami.DisplayHint.KeepVisible
                     viewMode: NewStuff.Page.ViewMode.Preview
+                },
+                Kirigami.Action {
+                    icon.name: "edit-select-all-symbolic"
+                    shortcut: StandardKey.SelectAll
+                    text: i18ndc("plasma_wallpaper_org.kde.image", "@action:button the things being selected are wallpapers", "Select All")
+                    Accessible.name: i18ndc("plasma_wallpaper_org.kde.image", "@action:button", "Select All Slides")
+                    displayHint: Kirigami.DisplayHint.KeepVisible
+                    visible: configDialog.currentWallpaper == "org.kde.slideshow"
+                    onTriggered: thumbnailsComponent.imageModel.selectAllSlides();
+                },
+                Kirigami.Action {
+                    icon.name: "edit-select-none-symbolic"
+                    shortcut: StandardKey.Deselect
+                    text: i18ndc("plasma_wallpaper_org.kde.image", "@action:button the things being unselected are wallpapers", "Select None")
+                    Accessible.name: i18ndc("plasma_wallpaper_org.kde.image", "@action:button", "Unselect All Slides")
+                    displayHint: Kirigami.DisplayHint.KeepVisible
+                    visible: configDialog.currentWallpaper == "org.kde.slideshow"
+                    onTriggered: thumbnailsComponent.imageModel.deselectAllSlides();
                 }
             ]
         }
@@ -145,9 +163,26 @@ Item {
 
                 view.delegate: WallpaperDelegate {
                     color: cfg_Color
-                    // Set minimum image sample size, otherwise it's very blurry
-                    previewSize: Qt.size(Math.max(Kirigami.Units.gridUnit * 22, thumbnailsComponent.screenSize.width / 8),
-                                         Math.max(Kirigami.Units.gridUnit * 22, thumbnailsComponent.screenSize.height / 8))
+                    previewSize: {
+                        // Set minimum image sample size, otherwise it's very blurry
+                        const baseSize = Kirigami.Units.gridUnit * 22;
+                        const preferredSize = Qt.size(thumbnailsComponent.screenSize.width / 8, thumbnailsComponent.screenSize.height / 8);
+                        const aspectRatio = thumbnailsComponent.screenSize.width / thumbnailsComponent.screenSize.height;
+
+                        if (aspectRatio >= 1.0) {
+                            if (preferredSize.width >= baseSize) {
+                                return preferredSize;
+                            } else {
+                                return Qt.size(baseSize, baseSize / aspectRatio);
+                            }
+                        } else {
+                            if (preferredSize.height >= baseSize) {
+                                return preferredSize;
+                            } else {
+                                return Qt.size(baseSize * aspectRatio, baseSize);
+                            }
+                        }
+                    }
                 }
             }
         }

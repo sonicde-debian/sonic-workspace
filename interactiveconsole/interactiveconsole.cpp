@@ -43,6 +43,7 @@
 
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
+#include <algorithm>
 
 using namespace Qt::StringLiterals;
 
@@ -77,10 +78,10 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     // setButtons(QDialog::None);
 
-    QWidget *widget = new QWidget(m_splitter);
-    QVBoxLayout *editorLayout = new QVBoxLayout(widget);
+    auto *widget = new QWidget(m_splitter);
+    auto *editorLayout = new QVBoxLayout(widget);
 
-    QLabel *label = new QLabel(i18n("Editor"), widget);
+    auto *label = new QLabel(i18n("Editor"), widget);
     QFont f = label->font();
     f.setBold(true);
     label->setFont(f);
@@ -88,19 +89,19 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
 
     connect(m_snippetsMenu, &QMenu::aboutToShow, this, &InteractiveConsole::populateTemplatesMenu);
 
-    QToolButton *loadTemplateButton = new QToolButton(this);
+    auto *loadTemplateButton = new QToolButton(this);
     loadTemplateButton->setPopupMode(QToolButton::InstantPopup);
     loadTemplateButton->setMenu(m_snippetsMenu);
     loadTemplateButton->setText(i18n("Load"));
     connect(loadTemplateButton, &QToolButton::triggered, this, &InteractiveConsole::loadTemplate);
 
-    QToolButton *useTemplateButton = new QToolButton(this);
+    auto *useTemplateButton = new QToolButton(this);
     useTemplateButton->setPopupMode(QToolButton::InstantPopup);
     useTemplateButton->setMenu(m_snippetsMenu);
     useTemplateButton->setText(i18n("Use"));
     connect(useTemplateButton, &QToolButton::triggered, this, &InteractiveConsole::useTemplate);
 
-    QActionGroup *modeGroup = new QActionGroup(this);
+    auto *modeGroup = new QActionGroup(this);
     modeGroup->addAction(m_plasmaAction);
     modeGroup->addAction(m_kwinAction);
     m_plasmaAction->setCheckable(true);
@@ -109,7 +110,7 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
     m_plasmaAction->setChecked(mode == PlasmaConsole);
     connect(modeGroup, &QActionGroup::triggered, this, &InteractiveConsole::modeSelectionChanged);
 
-    KToolBar *toolBar = new KToolBar(this, true, false);
+    auto *toolBar = new KToolBar(this, true, false);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolBar->addAction(m_loadAction);
     toolBar->addAction(m_saveAction);
@@ -155,7 +156,7 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
     m_splitter->addWidget(widget);
 
     widget = new QWidget(m_splitter);
-    QVBoxLayout *outputLayout = new QVBoxLayout(widget);
+    auto *outputLayout = new QVBoxLayout(widget);
 
     label = new QLabel(i18n("Output"), widget);
     f = label->font();
@@ -163,7 +164,7 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
     label->setFont(f);
     outputLayout->addWidget(label);
 
-    KToolBar *outputToolBar = new KToolBar(widget, true, false);
+    auto *outputToolBar = new KToolBar(widget, true, false);
     outputToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     QAction *clearOutputAction = KStandardActions::clear(this, &InteractiveConsole::clearOutput, this);
     outputToolBar->addAction(clearOutputAction);
@@ -173,7 +174,7 @@ InteractiveConsole::InteractiveConsole(ConsoleMode mode, QWidget *parent)
     outputLayout->addWidget(m_output);
     m_splitter->addWidget(widget);
 
-    QVBoxLayout *l = new QVBoxLayout(this);
+    auto *l = new QVBoxLayout(this);
     l->addWidget(m_splitter);
 
     // Clean up old values
@@ -373,7 +374,7 @@ void InteractiveConsole::populateTemplatesMenu()
     auto templates = KPackage::PackageLoader::self()->findPackages(QStringLiteral("Plasma/LayoutTemplate"), QString(), [](const KPluginMetaData &metaData) {
         return metaData.value(u"X-Plasma-Shell") == qApp->applicationName();
     });
-    std::sort(templates.begin(), templates.end(), [](const KPluginMetaData &left, const KPluginMetaData &right) {
+    std::ranges::sort(templates, [](const KPluginMetaData &left, const KPluginMetaData &right) {
         return left.name() < right.name();
     });
     KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Plasma/LayoutTemplate"));

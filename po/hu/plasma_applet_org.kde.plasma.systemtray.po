@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-19 02:48+0000\n"
 "PO-Revision-Date: 2025-06-06 21:57+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -19,62 +19,63 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 25.04.1\n"
 
-#: package/contents/config/config.qml:13
+#: qml/config.qml:13
 #, kde-format
 msgid "General"
 msgstr "Általános"
 
-#: package/contents/config/config.qml:18
-#, kde-format
-msgid "Entries"
-msgstr "Bejegyzések"
-
-#: package/contents/ui/ConfigEntries.qml:39
-#, kde-format
-msgid "Shown when relevant"
+#: qml/ConfigGeneral.qml:43
+#, fuzzy, kde-format
+#| msgid "Shown when relevant"
+msgctxt "@item:inlistbox Show this System Tray item when relevant"
+msgid "Show when relevant"
 msgstr "Megjelenítés, ha releváns"
 
-#: package/contents/ui/ConfigEntries.qml:43
-#, kde-format
-msgid "Always shown"
+#: qml/ConfigGeneral.qml:47
+#, fuzzy, kde-format
+#| msgid "Always shown"
+msgctxt "@item:inlistbox Always show this System Tray item"
+msgid "Always show"
 msgstr "Mindig jelenjen meg"
 
-#: package/contents/ui/ConfigEntries.qml:47
+#: qml/ConfigGeneral.qml:51
 #, kde-format
-msgid "Always hidden"
-msgstr "Mindig rejtett"
+msgctxt "@item:inlistbox Show this System Tray item only in the expanded popup"
+msgid "Show only in popup"
+msgstr ""
 
-#: package/contents/ui/ConfigEntries.qml:51
+#: qml/ConfigGeneral.qml:55
 #, kde-format
-msgid "Disabled"
-msgstr "Kikapcsolva"
+msgctxt "@item:inlistbox Never show this System Tray item; disable it"
+msgid "Never show (disabled)"
+msgstr ""
 
-#: package/contents/ui/ConfigEntries.qml:122
+#: qml/ConfigGeneral.qml:126
 #, kde-format
 msgid "Application Status"
 msgstr "Alkalmazásállapot"
 
-#: package/contents/ui/ConfigEntries.qml:124
+#: qml/ConfigGeneral.qml:128
 #, kde-format
 msgid "Communications"
 msgstr "Kommunikáció"
 
-#: package/contents/ui/ConfigEntries.qml:126
+#: qml/ConfigGeneral.qml:130
 #, kde-format
 msgid "System Services"
 msgstr "Rendszerszolgáltatások"
 
-#: package/contents/ui/ConfigEntries.qml:128
+#: qml/ConfigGeneral.qml:132
 #, kde-format
 msgid "Hardware Control"
 msgstr "Hardvervezérlés"
 
-#: package/contents/ui/ConfigEntries.qml:131
+#: qml/ConfigGeneral.qml:135
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Egyéb"
 
-#: package/contents/ui/ConfigEntries.qml:174
+#: qml/ConfigGeneral.qml:172
 #, kde-kuit-format
 msgctxt "@info:usagetip"
 msgid ""
@@ -91,150 +92,184 @@ msgstr ""
 "beállítást, és ne küldjön hibabejelentést a KDE-nek vagy az alkalmazás "
 "szerzőinek."
 
-#: package/contents/ui/ConfigEntries.qml:177
+#: qml/ConfigGeneral.qml:175
 #, kde-format
 msgctxt "@action:button"
 msgid "I understand the risks"
 msgstr "Megértettem a kockázatot"
 
-#: package/contents/ui/ConfigEntries.qml:189
-#, kde-kuit-format
+#: qml/ConfigGeneral.qml:187
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:usagetip"
+#| msgid ""
+#| "Disabling the clipboard is not recommended, as it will cause copied data "
+#| "to be lost when the application it was copied from is closed.<nl/><nl/"
+#| ">Instead consider configuring the clipboard to disable its history, or "
+#| "only remember one item at a time."
 msgctxt "@info:usagetip"
 msgid ""
 "Disabling the clipboard is not recommended, as it will cause copied data to "
-"be lost when the application it was copied from is closed.<nl/><nl/>Instead "
-"consider configuring the clipboard to disable its history, or only remember "
-"one item at a time."
+"be lost when the application it was copied from is closed.<nl/><nl/>Only do "
+"this if you’ve manually added a standalone Clipboard widget somewhere else, "
+"or are using a 3rd-party clipboard manager. Also, instead consider "
+"configuring the clipboard to not save history, or to only remember one item "
+"at a time."
 msgstr ""
 "A vágólap kikapcsolása nem ajánlott, mivel a másolt adatok elvesznek az "
 "adatok forrásául szolgáló alkalmazás bezárásakor.<nl/><nl/>Helyette fontolja "
 "meg a vágólap előzményeinek kikapcsolását, vagy állítsa be, hogy egyszerre "
 "egy elemet tartalmazzon."
 
-#: package/contents/ui/ConfigEntries.qml:217
-#, kde-format
-msgctxt "Name of the system tray entry"
-msgid "Entry"
-msgstr "Bejegyzés"
+#: qml/ConfigGeneral.qml:196
+#, kde-kuit-format
+msgctxt "@info:usagetip"
+msgid ""
+"Disabling the Notifications widget is not recommended, as notifications sent "
+"by apps will no longer be shown.<nl/><nl/>Only do this if you’ve manually "
+"added a standalone Notifications widget somewhere else, or are intentionally "
+"using a 3rd-party notification manager to handle notifications."
+msgstr ""
 
-#: package/contents/ui/ConfigEntries.qml:224
-#, kde-format
-msgid "Visibility"
-msgstr "Láthatóság"
-
-#: package/contents/ui/ConfigEntries.qml:231
-#, kde-format
-msgid "Keyboard Shortcut"
-msgstr "Gyorsbillentyűk"
-
-#: package/contents/ui/ConfigEntries.qml:263
-#, kde-format
-msgid "Always show all entries"
-msgstr "Összes bejegyzés megjelenítése"
-
-#: package/contents/ui/ConfigGeneral.qml:23
-#, kde-format
-msgctxt "The arrangement of system tray icons in the Panel"
-msgid "Panel icon size:"
-msgstr "Panelikonok mérete:"
-
-#: package/contents/ui/ConfigGeneral.qml:25
-#, kde-format
-msgid "Small"
-msgstr "Kicsi"
-
-#: package/contents/ui/ConfigGeneral.qml:32
-#, kde-format
+#: qml/ConfigGeneral.qml:208
+#, fuzzy, kde-format
+#| msgid "Scale with Panel height"
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel height"
 msgstr "Méretezés a panelmagassággal"
 
-#: package/contents/ui/ConfigGeneral.qml:33
-#, kde-format
+#: qml/ConfigGeneral.qml:209
+#, fuzzy, kde-format
+#| msgid "Scale with Panel width"
+msgctxt "@item:inlistbox Icon size"
 msgid "Scale with Panel width"
 msgstr "Méretezés a panelszélességgel"
 
-#: package/contents/ui/ConfigGeneral.qml:39
+#: qml/ConfigGeneral.qml:211
+#, fuzzy, kde-format
+#| msgctxt "The arrangement of system tray icons in the Panel"
+#| msgid "Panel icon size:"
+msgctxt "@label:listbox The spacing between system tray icons in the Panel"
+msgid "Panel icon size:"
+msgstr "Panelikonok mérete:"
+
+#: qml/ConfigGeneral.qml:215 qml/ConfigGeneral.qml:256
+#, kde-format
+msgctxt "@item:inlistbox Icon spacing"
+msgid "Small"
+msgstr "Kicsi"
+
+#: qml/ConfigGeneral.qml:244
 #, kde-format
 msgid "Automatically enabled when in Touch Mode"
 msgstr "Automatikus bekapcsolás Érintés módban"
 
-#: package/contents/ui/ConfigGeneral.qml:49
+#: qml/ConfigGeneral.qml:252
 #, kde-format
 msgctxt "@label:listbox The spacing between system tray icons in the Panel"
 msgid "Panel icon spacing:"
 msgstr "Panelikonok térköze:"
 
-#: package/contents/ui/ConfigGeneral.qml:52
-#, kde-format
-msgctxt "@item:inlistbox Icon spacing"
-msgid "Small"
-msgstr "Kicsi"
-
-#: package/contents/ui/ConfigGeneral.qml:56
+#: qml/ConfigGeneral.qml:260
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Normal"
 msgstr "Normál"
 
-#: package/contents/ui/ConfigGeneral.qml:60
+#: qml/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "@item:inlistbox Icon spacing"
 msgid "Large"
 msgstr "Nagy"
 
-#: package/contents/ui/ConfigGeneral.qml:85
+#: qml/ConfigGeneral.qml:289
 #, kde-format
 msgctxt "@info:usagetip under a combobox when Touch Mode is on"
 msgid "Automatically set to Large when in Touch Mode"
 msgstr "Automatikus nagyra állítás Érintés módban"
 
-#: package/contents/ui/ExpandedRepresentation.qml:59
+#: qml/ConfigGeneral.qml:315
+#, fuzzy, kde-format
+#| msgid "Entries"
+msgctxt "@title:column"
+msgid "Entries"
+msgstr "Bejegyzések"
+
+#: qml/ConfigGeneral.qml:319
+#, fuzzy, kde-format
+#| msgid "Always shown"
+msgctxt "@option:check, This is referring to system tray entries"
+msgid "Always show all"
+msgstr "Mindig jelenjen meg"
+
+#: qml/ExpandedRepresentation.qml:60
 #, kde-format
 msgctxt "@action:button"
 msgid "Go Back"
 msgstr "Vissza"
 
-#: package/contents/ui/ExpandedRepresentation.qml:71
+#: qml/ExpandedRepresentation.qml:72
 #, kde-format
 msgid "Status and Notifications"
 msgstr "Állapot és értesítések"
 
-#: package/contents/ui/ExpandedRepresentation.qml:140
+#: qml/ExpandedRepresentation.qml:169
 #, kde-format
 msgid "More actions"
 msgstr "További műveletek"
 
-#: package/contents/ui/ExpandedRepresentation.qml:240
+#: qml/ExpandedRepresentation.qml:255
 #, kde-format
 msgid "Keep Open"
 msgstr "Tartsa nyitva"
 
-#: package/contents/ui/ExpanderArrow.qml:26
+#: qml/ExpanderArrow.qml:25
 #, kde-format
 msgid "Show all the items in the system tray in a popup"
 msgstr "A paneltálca összes elemének megjelenítése egy felugróban"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Close popup"
 msgstr "Felugró bezárása"
 
-#: package/contents/ui/ExpanderArrow.qml:40
+#: qml/ExpanderArrow.qml:39
 #, kde-format
 msgid "Show hidden icons"
 msgstr "Rejtett ikonok megjelenítése"
 
-#: package/contents/ui/HiddenItemsView.qml:42
+#: qml/HiddenItemsView.qml:37
 #, kde-format
 msgctxt "@info:whatsthis accessible description for popup grid"
 msgid "Grid with %1 items in %2 columns"
 msgstr "Rács %1 elemmel %2 oszlopban"
 
-#: package/contents/ui/HiddenItemsView.qml:46
+#: qml/HiddenItemsView.qml:41
 #, kde-format
 msgctxt "Some letters with tall characters, ascenders, descenders, etc"
 msgid "AILlmyjgGJP"
 msgstr "AILlmyjgGJP"
+
+#~ msgid "Always hidden"
+#~ msgstr "Mindig rejtett"
+
+#~ msgid "Disabled"
+#~ msgstr "Kikapcsolva"
+
+#~ msgid "Small"
+#~ msgstr "Kicsi"
+
+#~ msgctxt "Name of the system tray entry"
+#~ msgid "Entry"
+#~ msgstr "Bejegyzés"
+
+#~ msgid "Visibility"
+#~ msgstr "Láthatóság"
+
+#~ msgid "Keyboard Shortcut"
+#~ msgstr "Gyorsbillentyűk"
+
+#~ msgid "Always show all entries"
+#~ msgstr "Összes bejegyzés megjelenítése"
 
 #~ msgid "Expand System Tray"
 #~ msgstr "Paneltálca kiterjesztése"

@@ -24,9 +24,7 @@ AbstractPlayerContainer::AbstractPlayerContainer(QObject *parent)
 {
 }
 
-AbstractPlayerContainer::~AbstractPlayerContainer()
-{
-}
+AbstractPlayerContainer::~AbstractPlayerContainer() = default;
 
 bool AbstractPlayerContainer::canControl() const
 {
@@ -184,9 +182,7 @@ PlayerContainer::PlayerContainer(const QString &busAddress, QObject *parent)
     refresh();
 }
 
-PlayerContainer::~PlayerContainer()
-{
-}
+PlayerContainer::~PlayerContainer() = default;
 
 void PlayerContainer::setLoopStatus(LoopStatus::Status value)
 {
@@ -609,7 +605,7 @@ void PlayerContainer::updateFromMap(const QVariantMap &map)
             m_position = it->toLongLong();
         } else if (propName == QLatin1String("Metadata")) {
             oldTrackId = m_trackId.value();
-            QDBusArgument arg = it->value<QDBusArgument>();
+            auto arg = it->value<QDBusArgument>();
             if (arg.currentType() != QDBusArgument::MapType || arg.currentSignature() != QLatin1String("a{sv}")) {
                 continue;
             }

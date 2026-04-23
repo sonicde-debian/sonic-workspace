@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-06-29 15:08+0200\n"
+"POT-Creation-Date: 2026-03-08 02:54+0000\n"
+"PO-Revision-Date: 2025-11-16 09:28+0100\n"
 "Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,15 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 25.08.3\n"
 
+#, kde-format
+msgid "Inherit Language"
+msgstr "Eredita lingua"
+
 #: binarydialectmodel.cpp:52
 #, kde-format
-msgctxt "Binary dialect IEC, with sigle in parentheses"
+msgctxt "Binary dialect IEC, with single in parentheses"
 msgid "International Electrotechnical Commission (IEC)"
 msgstr "Commissione elettrotecnica internazionale (IEC)"
 
 #: binarydialectmodel.cpp:56
 #, kde-format
-msgctxt "Binary dialect JEDEC, with sigle in parentheses"
+msgctxt "Binary dialect JEDEC, with single in parentheses"
 msgid "Joint Electron Device Engineering Council (JEDEC)"
 msgstr "Joint Electron Device Engineering Council (JEDEC)"
 
@@ -37,16 +41,19 @@ msgstr "Sistema metrico (SI)"
 
 #: binarydialectmodel.cpp:75
 #, kde-format
+msgctxt "Binary dialect IEC description"
 msgid "Binary -  Kibibytes (KiB), Mebibytes (MiB), Gibibytes (GiB)"
 msgstr "Binario -  Kibibyte (KiB), Mebibyte (MiB), Gibibyte (GiB)"
 
 #: binarydialectmodel.cpp:77
 #, kde-format
-msgid "Binary - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
-msgstr "Binario - Kilobyte (kB), Megabyte (MB), Gigabyte (GB)"
+msgctxt "Binary dialect JEDEC description"
+msgid "Binary - Kilobytes (KB), Megabytes (MB), Gigabytes (GB)"
+msgstr "Binario - Kilobyte (KB), Megabyte (MB), Gigabyte (GB)"
 
 #: binarydialectmodel.cpp:79
 #, kde-format
+msgctxt "Binary dialect Metric description"
 msgid "Decimal - Kilobytes (kB), Megabytes (MB), Gigabytes (GB)"
 msgstr "Decimale - Kilobyte (kB), Megabyte (MB), Gigabyte (GB)"
 
@@ -250,7 +257,7 @@ msgctxt ""
 msgid "Could not find an example for this locale"
 msgstr "Impossibile trovare un esempio in questa lingua"
 
-#: glibclocaleconstructor.cpp:164
+#: glibclocaleconstructor.cpp:165
 #, kde-kuit-format
 msgctxt "@info this will be shown as an error message"
 msgid ""
@@ -262,13 +269,13 @@ msgstr ""
 "strumento <command>localectl</command>. Apri una segnalazione di bug "
 "riguardo a questo su <link>https://bugs.kde.org</link>"
 
-#: languagelistmodel.cpp:95
+#: languagelistmodel.cpp:97
 #, kde-format
 msgctxt "%1 is language name, %2 is language code name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: languagelistmodel.cpp:101
+#: languagelistmodel.cpp:103
 #, kde-format
 msgctxt ""
 "%1 is português in system locale name, Brazil is to distinguish European "
@@ -449,15 +456,6 @@ msgctxt ""
 "as subtitle, remind user that the format used now is inherited from locale %1"
 msgid " (Standard format for %1)"
 msgstr " (Formato standard per %1)"
-
-#: regionandlangsettingsbase.kcfg:14 regionandlangsettingsbase.kcfg:17
-#: regionandlangsettingsbase.kcfg:20 regionandlangsettingsbase.kcfg:23
-#: regionandlangsettingsbase.kcfg:26 regionandlangsettingsbase.kcfg:29
-#: regionandlangsettingsbase.kcfg:32 regionandlangsettingsbase.kcfg:35
-#: regionandlangsettingsbase.kcfg:38
-#, kde-format
-msgid "Inherit Language"
-msgstr "Eredita lingua"
 
 #: ui/AdvancedLanguageSelectPage.qml:23
 #, kde-format

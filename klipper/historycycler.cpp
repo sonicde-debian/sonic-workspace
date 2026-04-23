@@ -51,9 +51,7 @@ HistoryCycler::HistoryCycler(QObject *parent)
     });
 }
 
-HistoryCycler::~HistoryCycler()
-{
-}
+HistoryCycler::~HistoryCycler() = default;
 
 void HistoryCycler::cycleNext()
 {
@@ -89,18 +87,18 @@ HistoryItemConstPtr HistoryCycler::nextInCycle() const
         if (!m_cycleStartUuid.isEmpty()) {
             // check whether we are not at the end
             if (m_cycleStartUuid == m_model->index(1).data(HistoryModel::UuidRole).toByteArray()) {
-                return HistoryItemConstPtr();
+                return {};
             }
         }
         return m_model->index(1).data(HistoryModel::HistoryItemConstPtrRole).value<HistoryItemConstPtr>();
     }
-    return HistoryItemConstPtr();
+    return {};
 }
 
 HistoryItemConstPtr HistoryCycler::prevInCycle() const
 {
     if (m_cycleStartUuid.isEmpty()) {
-        return HistoryItemConstPtr();
+        return {};
     }
     return m_model->index(m_model->rowCount() - 1).data(HistoryModel::HistoryItemConstPtrRole).value<HistoryItemConstPtr>();
 }

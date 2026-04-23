@@ -9,9 +9,7 @@
 #pragma once
 
 #include <config-X11.h>
-#ifdef HAVE_X11
 #include <xcb/xcb.h>
-#endif
 
 #include <kdedmodule.h>
 
@@ -22,13 +20,6 @@ class QDBusServiceWatcher;
 class KDBusMenuImporter;
 class AppmenuDBus;
 class VerticalMenu;
-namespace KWayland
-{
-namespace Client
-{
-class PlasmaShell;
-};
-};
 
 class AppMenuModule : public KDEDModule, protected QDBusContext
 {
@@ -86,8 +77,5 @@ private:
     QDBusServiceWatcher *m_menuViewWatcher;
     QPointer<VerticalMenu> m_menu;
 
-#ifdef HAVE_X11
     xcb_connection_t *m_xcbConn = nullptr;
-#endif
-    KWayland::Client::PlasmaShell *m_plasmashell = nullptr;
 };

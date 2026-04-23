@@ -101,7 +101,7 @@ static QString toStr(EUnicodeCategory cat)
     case UNICODE_SPACE_SEPARATOR:
         return i18n("Separator, Space");
     default:
-        return QString();
+        return {};
     }
 }
 
@@ -113,7 +113,7 @@ CCharTip::CCharTip(CFontPreview *parent)
     m_label = new QLabel(this);
     m_timer = new QTimer(this);
 
-    QBoxLayout *layout = new QBoxLayout(QBoxLayout::LeftToRight, this);
+    auto *layout = new QBoxLayout(QBoxLayout::LeftToRight, this);
     layout->setContentsMargins(8, 8, 8, 8);
     layout->setSpacing(0);
     layout->addWidget(m_pixmapLabel);
@@ -125,9 +125,7 @@ CCharTip::CCharTip(CFontPreview *parent)
     hide();
 }
 
-CCharTip::~CCharTip()
-{
-}
+CCharTip::~CCharTip() = default;
 
 void CCharTip::setItem(const CFcEngine::TChar &ch)
 {

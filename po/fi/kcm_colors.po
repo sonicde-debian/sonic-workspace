@@ -8,7 +8,7 @@
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2010.
-# SPDX-FileCopyrightText: 2011, 2012, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2011, 2012, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016.
 #
 # KDE Finnish translation sprint participants:
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-10-16 18:48+0300\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-30 15:48+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -891,29 +891,33 @@ msgstr "Sävytyksen voimakkuus:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Kehys- ja valotehosteiden (”3D”) varjostus"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Kehysten, erotinten ja ääriviivojen kontrasti"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Varjostus"
+msgid "Frames and Outlines"
+msgstr "Kehykset ja ääriviivat"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Enin"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Alle 15 prosentin kontrastiarvot voivat joissakin sovelluksissa ja "
+"värimalleissa tuottaa oudonnäköisiä tuloksia. Sinua on varoitettu!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Vähin"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr " %"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Kontrasti"
@@ -1371,6 +1375,18 @@ msgstr "Avaa väriteema"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Väriteematiedostot (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Kehys- ja valotehosteiden (”3D”) varjostus"
+
+#~ msgid "Shading"
+#~ msgstr "Varjostus"
+
+#~ msgid "Maximum"
+#~ msgstr "Enin"
+
+#~ msgid "Minimum"
+#~ msgstr "Vähin"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Valitse mukautettu korostusväri"

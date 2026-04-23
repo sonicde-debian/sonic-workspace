@@ -13,25 +13,22 @@
 #include <QDBusMessage>
 #include <QDBusPendingCall>
 #include <QGuiApplication>
+#include <QOpenGLShaderProgram>
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QQuickItem>
 #include <QScreen>
-#include <qopenglshaderprogram.h>
 
 #include <PlasmaQuick/AppletQuickItem>
 
 #include <KAuthorized>
 #include <KStartupInfo>
-#include <KWaylandExtras>
 #include <KX11Extras>
 #include <klocalizedstring.h>
 #include <kwindowsystem.h>
 #include <plasmaactivities/controller.h>
 
 #include <KPackage/Package>
-
-#include <LayerShellQt/Window>
 
 using namespace Qt::StringLiterals;
 
@@ -44,15 +41,7 @@ DesktopView::DesktopView(Plasma::Corona *corona, QScreen *targetScreen)
     setColor(Qt::black);
     setFlags(Qt::Window | Qt::FramelessWindowHint);
 
-    if (KWindowSystem::isPlatformWayland()) {
-        m_layerWindow = LayerShellQt::Window::get(this);
-        m_layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
-        m_layerWindow->setExclusiveZone(-1);
-        m_layerWindow->setLayer(LayerShellQt::Window::LayerBackground);
-        m_layerWindow->setScope(QStringLiteral("desktop"));
-        m_layerWindow->setCloseOnDismissed(false);
-        m_layerWindow->setActivateOnShow(false);
-    } else {
+    {
         KX11Extras::setType(winId(), NET::Desktop);
         KX11Extras::setState(winId(), NET::KeepBelow);
     }
@@ -69,7 +58,7 @@ DesktopView::DesktopView(Plasma::Corona *corona, QScreen *targetScreen)
 
     QObject::connect(corona, &Plasma::Corona::kPackageChanged, this, &DesktopView::coronaPackageChanged);
 
-    KActivities::Controller *m_activityController = new KActivities::Controller(this);
+    auto *m_activityController = new KActivities::Controller(this);
 
     QObject::connect(m_activityController, &KActivities::Controller::activityAdded, this, &DesktopView::candidateContainmentsChanged);
     QObject::connect(m_activityController, &KActivities::Controller::activityRemoved, this, &DesktopView::candidateContainmentsChanged);
@@ -100,9 +89,7 @@ DesktopView::DesktopView(Plasma::Corona *corona, QScreen *targetScreen)
 #endif
 }
 
-DesktopView::~DesktopView()
-{
-}
+DesktopView::~DesktopView() = default;
 
 void DesktopView::showEvent(QShowEvent *e)
 {
@@ -117,22 +104,12 @@ void DesktopView::setScreenToFollow(QScreen *screen)
         return;
     }
 
-    // layer surfaces can't be moved between outputs, so hide and show the window on a new output
-    const bool remap = m_layerWindow && isVisible();
-    if (remap) {
-        setVisible(false);
-    }
-
     if (m_screenToFollow) {
         disconnect(m_screenToFollow.data(), &QScreen::geometryChanged, this, &DesktopView::screenGeometryChanged);
     }
     m_screenToFollow = screen;
     setScreen(screen);
     connect(m_screenToFollow.data(), &QScreen::geometryChanged, this, &DesktopView::screenGeometryChanged);
-
-    if (remap) {
-        setVisible(true);
-    }
 
     QString rectString;
     QDebug(&rectString) << screen->geometry();
@@ -285,13 +262,13 @@ void DesktopView::showPreviewBannerMenu(const QPoint &pos)
     auto menu = new QMenu();
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    QAction *copyVersionAction = new QAction(QIcon::fromTheme(u"edit-copy-symbolic"_s), i18nc("@action:button", "Copy Plasma Version"));
+    auto *copyVersionAction = new QAction(QIcon::fromTheme(u"edit-copy-symbolic"_s), i18nc("@action:button", "Copy Plasma Version"));
     connect(copyVersionAction, &QAction::triggered, [] {
         QGuiApplication::clipboard()->setText(QStringLiteral(WORKSPACE_VERSION_STRING));
     });
     menu->addAction(copyVersionAction);
 
-    QAction *reportBugAction = new QAction(QIcon::fromTheme(u"tools-report-bug-symbolic"_s), i18nc("@action:button", "Report a Bug…"));
+    auto *reportBugAction = new QAction(QIcon::fromTheme(u"tools-report-bug-symbolic"_s), i18nc("@action:button", "Report a Bug…"));
     connect(reportBugAction, &QAction::triggered, [] {
         auto job = new KIO::OpenUrlJob(QUrl(u"https://bugs.kde.org/"_s));
         job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, nullptr));
@@ -303,15 +280,14 @@ void DesktopView::showPreviewBannerMenu(const QPoint &pos)
 
     auto hideMenu = menu->addMenu(QIcon::fromTheme(u"view-hidden-symbolic"_s), i18nc("@title:menu", "Hide Preview Banner"));
 
-    QAction *hidePreviewBannerTemporarilyAction =
-        new QAction(i18nc("@action:button Hide the preview banner until the system is restarted", "Hide Until Restart"));
+    auto *hidePreviewBannerTemporarilyAction = new QAction(i18nc("@action:button Hide the preview banner until the system is restarted", "Hide Until Restart"));
     connect(hidePreviewBannerTemporarilyAction, &QAction::triggered, [&]() {
         m_showPreviewBanner = false;
         Q_EMIT showPreviewBannerChanged();
     });
     hideMenu->addAction(hidePreviewBannerTemporarilyAction);
 
-    QAction *hidePreviewBannerPermenanentlyAction = new QAction(i18nc("@action:button Hide the preview banner permanently", "Hide Permanently…"));
+    auto *hidePreviewBannerPermenanentlyAction = new QAction(i18nc("@action:button Hide the preview banner permanently", "Hide Permanently…"));
     connect(hidePreviewBannerPermenanentlyAction, &QAction::triggered, [&]() {
         if (KMessageBox::warningContinueCancel(
                 nullptr,
@@ -395,44 +371,6 @@ bool DesktopView::event(QEvent *e)
     return PlasmaQuick::ContainmentView::event(e);
 }
 
-class ActivationTokenRequest : public QObject
-{
-    Q_OBJECT
-
-public:
-    explicit ActivationTokenRequest(QWindow *window)
-        : m_serial(KWaylandExtras::lastInputSerial(window))
-    {
-        m_promise.start();
-
-        connect(KWaylandExtras::self(), &KWaylandExtras::xdgActivationTokenArrived, this, [this](int serial, const QString &token) {
-            if (m_serial == serial) {
-                if (!m_promise.isCanceled()) {
-                    m_promise.addResult(token);
-                }
-                m_promise.finish();
-                delete this;
-            }
-        });
-        KWaylandExtras::requestXdgActivationToken(window, m_serial, QString());
-    }
-
-    QFuture<QString> future() const
-    {
-        return m_promise.future();
-    }
-
-private:
-    QPromise<QString> m_promise;
-    int m_serial;
-};
-
-static QFuture<QString> fetchActivationToken(QWindow *window)
-{
-    auto request = new ActivationTokenRequest(window);
-    return request->future();
-}
-
 bool DesktopView::handleKRunnerTextInput(QKeyEvent *e)
 {
     // allow only Shift and GroupSwitch modifiers
@@ -455,28 +393,7 @@ bool DesktopView::handleKRunnerTextInput(QKeyEvent *e)
         if (!KAuthorized::authorize(QStringLiteral("run_command"))) {
             return false;
         }
-        if (KWindowSystem::isPlatformWayland()) {
-            if (!m_krunnerFuture.isCanceled()) {
-                m_krunnerFuture.cancel();
-            }
-            m_krunnerFuture = fetchActivationToken(this);
-            m_krunnerFuture.then(this, [this](const QString &token) {
-                auto message = QDBusMessage::createMethodCall(QStringLiteral("org.kde.krunner"),
-                                                              QStringLiteral("/org/kde/krunner"),
-                                                              QStringLiteral("org.freedesktop.Application"),
-                                                              QStringLiteral("ActivateAction"));
-                message.setArguments({
-                    QStringLiteral("Query"),
-                    QVariantList{
-                        m_krunnerText,
-                    },
-                    QVariantMap{
-                        {QStringLiteral("activation-token"), token},
-                    },
-                });
-                QDBusConnection::sessionBus().asyncCall(message);
-            });
-        } else {
+        {
             auto message = QDBusMessage::createMethodCall(QStringLiteral("org.kde.krunner"),
                                                           QStringLiteral("/org/kde/krunner"),
                                                           QStringLiteral("org.freedesktop.Application"),
@@ -543,7 +460,7 @@ void DesktopView::showConfigurationInterface(Plasma::Applet *applet)
 
     applet->containment()->corona()->setEditMode(false);
 
-    Plasma::Containment *cont = qobject_cast<Plasma::Containment *>(applet);
+    auto *cont = qobject_cast<Plasma::Containment *>(applet);
 
     if (cont && cont->isContainment() && cont->containmentType() == Plasma::Containment::Desktop) {
         m_configView = new ContainmentConfigView(cont);
@@ -592,7 +509,7 @@ void DesktopView::slotContainmentChanged()
         slotScreenChanged(m_containment->screen());
         connect(m_containment, &Plasma::Containment::availableRelativeScreenRectChanged, this, &DesktopView::strictAvailableScreenRectChanged);
 
-        QAction *desktopEditMode = new QAction(QIcon::fromTheme(QStringLiteral("document-edit")), i18n("Enter Edit Mode"), m_containment);
+        auto *desktopEditMode = new QAction(QIcon::fromTheme(QStringLiteral("document-edit")), i18n("Enter Edit Mode"), m_containment);
         QAction *editMode = m_containment->corona()->action(QStringLiteral("edit mode"));
         m_containment->setInternalAction(QStringLiteral("desktop edit mode"), desktopEditMode);
         connect(desktopEditMode, &QAction::triggered, editMode, &QAction::triggered);
@@ -672,5 +589,4 @@ void DesktopView::setAccentColorFromWallpaper(const QColor &accentColor)
     QDBusConnection::sessionBus().send(applyAccentColor);
 }
 
-#include "desktopview.moc"
 #include "moc_desktopview.cpp"

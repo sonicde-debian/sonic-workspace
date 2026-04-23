@@ -26,7 +26,6 @@
 #include <QProcess>
 #include <QQmlDebuggingEnabler>
 #include <QQuickWindow>
-#include <QSessionManager>
 #include <QSurfaceFormat>
 
 #include <KAboutData>
@@ -37,8 +36,34 @@
 
 #include <csignal>
 
+#if __has_include(<malloc.h>)
+#include <malloc.h>
+#include <unistd.h>
+#endif
+
+#if __has_include(<malloc.h>) && defined(__GLIBC__)
+static void setupMalloc()
+{
+    // The default threshold is 128 * 1024, which can result in a large memory usage due to
+    // fragmentation especially if we use the raster graphicssystem. On the other side if the
+    // threshold is too low, free() starts to permanently ask the kernel about shrinking the heap.
+    //
+    // Setting M_TRIM_THRESHOLD also disables dynamic adjustment of M_MMAP_THRESHOLD, which is
+    // important with wallpapers. The average amount of memory necessary to store a 4K wallpaper
+    // is just under 32MB, the upper limit for M_MMAP_THRESHOLD. By disabling dynamic adjustment
+    // of M_MMAP_THRESHOLD, we ensure that memory for wallpapers is allocated with direct mmaps
+    // and released to the system individually without causing further fragmentation.
+    const int pagesize = sysconf(_SC_PAGESIZE);
+    mallopt(M_TRIM_THRESHOLD, 5 * pagesize);
+}
+#endif
+
 int main(int argc, char *argv[])
 {
+#if __has_include(<malloc.h>) && defined(__GLIBC__)
+    setupMalloc();
+#endif
+
 #if QT_CONFIG(qml_debug)
     if (qEnvironmentVariableIsSet("PLASMA_ENABLE_QML_DEBUG")) {
         QQmlDebuggingEnabler::enableDebugging(true);
@@ -49,24 +74,12 @@ int main(int argc, char *argv[])
     format.setOption(QSurfaceFormat::ResetNotification);
     QSurfaceFormat::setDefaultFormat(format);
 
+    QCoreApplication::setAttribute(Qt::AA_DisableSessionManager);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     QQuickWindow::setDefaultAlphaBuffer(true);
 
-    // this works around a bug of Qt and the plasmashell protocol
-    // consider disabling when layer-shell lands
-    qputenv("QT_WAYLAND_DISABLE_FIXED_POSITIONS", {});
-    // this variable controls whether to reconnect or exit if the compositor dies, given plasmashell does a lot of
-    // bespoke wayland code disable for now. consider disabling when layer-shell lands
-    qunsetenv("QT_WAYLAND_RECONNECT");
     QApplication app(argc, argv);
-
-    qunsetenv("QT_WAYLAND_DISABLE_FIXED_POSITIONS");
-    qputenv("QT_WAYLAND_RECONNECT", "1");
-#if QT_VERSION <= QT_VERSION_CHECK(6, 8, 0)
-    // Incremental gc is causing many crashes, disable it until https://bugreports.qt.io/browse/QTBUG-129241 is resolved
-    qputenv("QV4_GC_TIMELIMIT", "0");
-#endif
 
     // Quit on SIGTERM to properly save state. See systemd.kill(5).
     // https://bugs.kde.org/show_bug.cgi?id=470604
@@ -125,12 +138,6 @@ int main(int argc, char *argv[])
 
         // don't let the first KJob terminate us
         QCoreApplication::setQuitLockEnabled(false);
-
-        auto disableSessionManagement = [](QSessionManager &sm) {
-            sm.setRestartHint(QSessionManager::RestartNever);
-        };
-        QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
-        QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
 
         corona.setShell(cliOptions.value(shellPluginOption));
         if (!corona.kPackage().isValid()) {

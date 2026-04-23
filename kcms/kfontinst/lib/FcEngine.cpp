@@ -36,11 +36,7 @@ static Display *xDisplay()
 {
     static Display *s_display = nullptr;
     if (!s_display) {
-        if (QX11Info::isPlatformX11()) {
             s_display = QX11Info::display();
-        } else {
-            s_display = XOpenDisplay(NULL); // TODO close it again
-        }
     }
     return s_display;
 }
@@ -196,7 +192,16 @@ public:
     bool drawString(XftFont *xftFont, const QString &text, int x, int &y, int h) const;
     void drawString(const QString &text, int x, int &y, int h) const;
     bool drawGlyph(XftFont *xftFont, FT_UInt i, int &x, int &y, int w, int h, int fontHeight, bool oneLine, QRect &r) const;
-    bool drawAllGlyphs(XftFont *xftFont, int fontHeight, int &x, int &y, int w, int h, bool oneLine = false, int max = -1, QRect *used = nullptr) const;
+    bool drawAllGlyphs(XftFont *xftFont,
+                       int fontHeight,
+                       int &x,
+                       int &y,
+                       int w,
+                       int h,
+                       QList<TChar> &chars,
+                       bool oneLine = false,
+                       int max = -1,
+                       QRect *used = nullptr) const;
     bool drawAllChars(XftFont *xftFont, int fontHeight, int &x, int &y, int w, int h, bool oneLine = false, int max = -1, QRect *used = nullptr) const;
     QImage toImage(int w, int h) const;
 
@@ -319,11 +324,6 @@ bool CFcEngine::Xft::init(const QColor &txt, const QColor &bnd, int w, int h)
 
 void CFcEngine::Xft::freeColors()
 {
-    // FIXME: no Xft on Wayland
-    if (!xDisplay()) {
-        return;
-    }
-
     XftColorFree(xDisplay(), DefaultVisual(xDisplay(), 0), DefaultColormap(xDisplay(), 0), &m_txtColor);
     XftColorFree(xDisplay(), DefaultVisual(xDisplay(), 0), DefaultColormap(xDisplay(), 0), &m_bgndColor);
     m_txtColor.color.alpha = 0x0000;
@@ -451,7 +451,8 @@ bool CFcEngine::Xft::drawGlyph(XftFont *xftFont, FT_UInt i, int &x, int &y, int 
     return false;
 }
 
-bool CFcEngine::Xft::drawAllGlyphs(XftFont *xftFont, int fontHeight, int &x, int &y, int w, int h, bool oneLine, int max, QRect *used) const
+bool CFcEngine::Xft::drawAllGlyphs(XftFont *xftFont, int fontHeight, int &x, int &y, int w, int h, QList<TChar> &chars, bool oneLine, int max, QRect *used)
+    const
 {
     bool rv(false);
 
@@ -466,6 +467,15 @@ bool CFcEngine::Xft::drawAllGlyphs(XftFont *xftFont, int fontHeight, int &x, int
                 space = 1;
             }
 
+            // Build a map from glyph index to character code
+            QHash<FT_UInt, quint32> glyphToChar;
+            FT_UInt gindex;
+            FT_ULong charcode = FT_Get_First_Char(face, &gindex);
+            while (gindex != 0) {
+                glyphToChar[gindex] = charcode;
+                charcode = FT_Get_Next_Char(face, charcode, &gindex);
+            }
+
             rv = true;
             y += fontHeight;
             for (int i = 1; i < face->num_glyphs && y < h; ++i) {
@@ -477,6 +487,10 @@ bool CFcEngine::Xft::drawAllGlyphs(XftFont *xftFont, int fontHeight, int &x, int
                             } else {
                                 *used = used->united(r);
                             }
+                        }
+                        // Add character info for tooltip
+                        if (!r.isEmpty() && glyphToChar.contains(i)) {
+                            chars.append(TChar(r, glyphToChar[i]));
                         }
                         if (max > 0 && ++drawn >= max) {
                             break;
@@ -567,11 +581,11 @@ QImage CFcEngine::Xft::toImage(int w, int h) const
     Q_UNUSED(h)
 
     if (!XftDrawPicture(m_draw)) {
-        return QImage();
+        return {};
     }
     auto xImage = XGetImage(xDisplay(), m_pix.x11, 0, 0, m_pix.currentW, m_pix.currentH, ~0, ZPixmap);
     if (!xImage) {
-        return QImage();
+        return {};
     }
     if (imageFormat == QImage::Format_RGB32) {
         // the RGB32 format requires data format 0xffRRGGBB, ensure that this fourth byte really is 0xff
@@ -582,7 +596,7 @@ QImage CFcEngine::Xft::toImage(int w, int h) const
             lData[iIter] |= 0xff000000;
         }
     }
-    return QImage((const uchar *)xImage->data, xImage->width, xImage->height, xImage->bytes_per_line, imageFormat, &cleanupXImage, xImage);
+    return {(const uchar *)xImage->data, xImage->width, xImage->height, xImage->bytes_per_line, imageFormat, &cleanupXImage, xImage};
 }
 
 inline int point2Pixel(int point)
@@ -714,8 +728,9 @@ QImage CFcEngine::drawPreview(const QString &name, quint32 style, int faceNo, co
                     } else {
                         int x = constOffset, y = constOffset;
                         QRect used;
+                        QList<TChar> chars;
 
-                        rv = xft()->drawAllGlyphs(xftFont, fSize, x, y, constInitialWidth, h, true, text.length(), &used);
+                        rv = xft()->drawAllGlyphs(xftFont, fSize, x, y, constInitialWidth, h, chars, true, text.length(), &used);
                         if (rv) {
                             usedWidth = used.width();
                         }
@@ -799,8 +814,9 @@ QImage CFcEngine::draw(const QString &name, quint32 style, int faceNo, const QCo
                     } else {
                         int x = 0, y = 0;
                         QRect used;
+                        QList<TChar> chars;
 
-                        rv = xft()->drawAllGlyphs(xftFont, h, x, y, w, h, true, text.length(), &used);
+                        rv = xft()->drawAllGlyphs(xftFont, h, x, y, w, h, chars, true, text.length(), &used);
                     }
 
                     if (rv) {
@@ -997,7 +1013,7 @@ QImage CFcEngine::draw(const QString &name,
                         if ((xftFont = getFont(alphaSize()))) {
                             int fontHeight = xftFont->ascent + xftFont->descent;
 
-                            xft()->drawAllGlyphs(xftFont, fontHeight, x, y, w, h, false);
+                            xft()->drawAllGlyphs(xftFont, fontHeight, x, y, w, h, *chars);
                             rv = true;
                             closeFont(xftFont);
                         }
@@ -1212,9 +1228,7 @@ XftFont *CFcEngine::getFont(int size)
     qDebug() << m_name << ' ' << m_style << ' ' << size;
 #endif
 
-    if (!xDisplay()) {
-        // FIXME: no Xft on Wayland
-    } else if (m_installed) {
+    if (m_installed) {
         int weight, width, slant;
 
         FC::decomposeStyleVal(m_style, weight, width, slant);

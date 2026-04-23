@@ -4,13 +4,13 @@
 # This file is distributed under the same license as the plasma-desktop package.
 #
 # pan93412 <pan93412@gmail.com>, 2019, 2020.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-30 02:21+0900\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-15 01:04+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 26.03.70\n"
 
 #: kcm.cpp:62
 #, kde-format
 msgid "Toggle do not disturb"
 msgstr "切換請勿打擾"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "其他應用程式"
@@ -90,17 +90,19 @@ msgstr "重設"
 msgid "Choose sound file"
 msgstr "選擇音效檔"
 
+# 原文是 implicitly "configure [notifications] for system"，把通知放進去因為「設定系統」沒有同樣效果
+# --Kisaragi
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "系統通知"
+msgid "Configure for System…"
+msgstr "調整系統通知設定…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "應用程式設定"
+msgid "Configure for Applications…"
+msgstr "調整應用程式通知設定…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -208,8 +210,8 @@ msgstr "通知圖示附近"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "自訂…"
+msgid "Choose…"
+msgstr "選擇…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -225,33 +227,40 @@ msgstr "隱藏間隔："
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "顯示逾時指示器"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "額外回饋"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "在通知中顯示"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "應用程式進度："
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "進行時保持彈出視窗為開啟狀態"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "通知徽章："
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "在工作管理員顯示"
@@ -263,8 +272,10 @@ msgstr "彈出通知位置"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "應用程式設定"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "應用程式通知"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -288,6 +299,18 @@ msgid ""
 "and behavior"
 msgstr "從列表選取應用程式以調整其通知設定及行為"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "系統通知"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "應用程式設定"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "自訂…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "一般通知："
 
@@ -301,16 +324,9 @@ msgstr "從列表選取應用程式以調整其通知設定及行為"
 #~ msgid "Application Settings…"
 #~ msgstr "應用程式設定…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "調整應用程式設定…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "特定應用程式的設定"
-
-#~ msgid "Configure…"
-#~ msgstr "設定…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"

@@ -6,17 +6,17 @@
 
 #include "editactiondialog.h"
 
+#include <QCheckBox>
+#include <QCoreApplication>
 #include <QDialogButtonBox>
-#include <qcheckbox.h>
-#include <qcoreapplication.h>
-#include <qformlayout.h>
-#include <qgridlayout.h>
-#include <qheaderview.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qtableview.h>
-#include <qwindow.h>
+#include <QFormLayout>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QTableView>
+#include <QWindow>
 
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
@@ -39,7 +39,7 @@ static QString output2text(ClipCommand::Output output)
     case ClipCommand::ADD:
         return i18n("Add to Clipboard");
     }
-    return QString();
+    return {};
 }
 
 //////////////////////////
@@ -105,7 +105,7 @@ QVariant ActionDetailModel::displayData(ClipCommand *command, ActionDetailModel:
     case DESCRIPTION_COL:
         return command->description;
     }
-    return QVariant();
+    return {};
 }
 
 QVariant ActionDetailModel::decorationData(ClipCommand *command, ActionDetailModel::column_t column) const
@@ -117,7 +117,7 @@ QVariant ActionDetailModel::decorationData(ClipCommand *command, ActionDetailMod
     case DESCRIPTION_COL:
         break;
     }
-    return QVariant();
+    return {};
 }
 
 QVariant ActionDetailModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -146,7 +146,7 @@ QVariant ActionDetailModel::data(const QModelIndex &index, int role) const
     case Qt::DecorationRole:
         return decorationData(&cmd, static_cast<column_t>(column));
     }
-    return QVariant();
+    return {};
 }
 
 void ActionDetailModel::addCommand(const ClipCommand &command)
@@ -184,14 +184,14 @@ EditActionDialog::EditActionDialog(QWidget *parent)
 {
     setWindowTitle(i18n("Action Properties"));
     setWindowModality(Qt::WindowModal);
-    QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     buttons->button(QDialogButtonBox::Ok)->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttons, &QDialogButtonBox::accepted, this, &EditActionDialog::slotAccepted);
     connect(buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     // Upper widget: pattern, description and options
-    QWidget *optionsWidget = new QWidget(this);
-    QFormLayout *optionsLayout = new QFormLayout(optionsWidget);
+    auto *optionsWidget = new QWidget(this);
+    auto *optionsLayout = new QFormLayout(optionsWidget);
 
     // General information label
     QLabel *hint = ConfigDialog::createHintLabel(xi18nc("@info",
@@ -243,8 +243,8 @@ popup is activated manually with the <shortcut>%1</shortcut> key shortcut.",
     optionsLayout->addRow(QString(), new QLabel(optionsWidget));
 
     // Lower widget: command list and action buttons
-    QWidget *listWidget = new QWidget(this);
-    QGridLayout *listLayout = new QGridLayout(listWidget);
+    auto *listWidget = new QWidget(this);
+    auto *listLayout = new QGridLayout(listWidget);
     listLayout->setContentsMargins(0, 0, 0, 0);
 
     // Command list
@@ -285,7 +285,7 @@ popup is activated manually with the <shortcut>%1</shortcut> key shortcut.",
     listLayout->setRowMinimumHeight(2, 16);
 
     // Main dialogue layout
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(optionsWidget);
     mainLayout->addWidget(listWidget);
     mainLayout->setStretch(1, 1);

@@ -7,22 +7,23 @@
 # Aracele Torres <araceletorres@gmail.com>, 2011.
 # SPDX-FileCopyrightText: 2024 Geraldo Simiao <geraldosimiao@fedoraproject.org>
 # SPDX-FileCopyrightText: 2025 Guilherme Marçal Silva <guimarcalsilva@gmail.com>
+# SPDX-FileCopyrightText: 2025 Marcus Gama <marcus.gama@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_runner_sessions\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-02-23 18:46-0300\n"
-"Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-09-25 06:55-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.12.2\n"
+"X-Generator: Lokalize 25.08.1\n"
 
-#: sessionrunner.cpp:19
+#: sessionrunner.cpp:20
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to log out of the "
@@ -30,25 +31,25 @@ msgctxt ""
 msgid "logout;log out"
 msgstr "sair;encerrar"
 
-#: sessionrunner.cpp:22
+#: sessionrunner.cpp:23
 #, kde-format
 msgid "Logs out, exiting the current desktop session"
 msgstr "Sai, fechando a sessão atual da área de trabalho"
 
-#: sessionrunner.cpp:25
+#: sessionrunner.cpp:27
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to shut down the "
 "computer"
-msgid "shutdown;shut down;power;power off"
+msgid "shutdown;shut down;power;poweroff;power off"
 msgstr "desligar;energia;desligar"
 
-#: sessionrunner.cpp:28
+#: sessionrunner.cpp:30
 #, kde-format
 msgid "Turns off the computer"
 msgstr "Desliga o computador"
 
-#: sessionrunner.cpp:31
+#: sessionrunner.cpp:33
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to restart the "
@@ -56,24 +57,24 @@ msgctxt ""
 msgid "restart;reboot"
 msgstr "reiniciar;resetar"
 
-#: sessionrunner.cpp:34
+#: sessionrunner.cpp:36
 #, kde-format
 msgid "Reboots the computer"
 msgstr "Reinicia o computador"
 
-#: sessionrunner.cpp:38
+#: sessionrunner.cpp:40
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to lock the screen"
 msgid "lock;lock screen"
 msgstr "bloquear tela;bloquear;travar"
 
-#: sessionrunner.cpp:40
+#: sessionrunner.cpp:42
 #, kde-format
 msgid "Locks the current sessions and starts the screen saver"
 msgstr "Bloqueia as sessões atuais e inicia o protetor de tela"
 
-#: sessionrunner.cpp:43
+#: sessionrunner.cpp:45
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to save the "
@@ -81,12 +82,12 @@ msgctxt ""
 msgid "save;save session"
 msgstr "salvar sessão;salvar"
 
-#: sessionrunner.cpp:46
+#: sessionrunner.cpp:48
 #, kde-format
 msgid "Saves the current session for session restoration"
 msgstr "Sava a sessão atual para restauração de sessão"
 
-#: sessionrunner.cpp:49
+#: sessionrunner.cpp:51
 #, kde-format
 msgctxt ""
 "KRunner keywords (split by semicolons without whitespace) to switch user "
@@ -94,41 +95,41 @@ msgctxt ""
 msgid "switch user;new session"
 msgstr "trocar usuário;nova sessão"
 
-#: sessionrunner.cpp:52
+#: sessionrunner.cpp:54
 #, kde-format
 msgid "Switch to a session as a different user"
 msgstr "Alternar para uma sessão como usuário diferente"
 
-#: sessionrunner.cpp:73
+#: sessionrunner.cpp:75
 #, kde-format
 msgctxt "log out command"
 msgid "Log Out"
 msgstr "Encerrar sessão"
 
-#: sessionrunner.cpp:81
+#: sessionrunner.cpp:83
 #, kde-format
 msgctxt "turn off computer command"
 msgid "Shut Down"
 msgstr "Desligar"
 
-#: sessionrunner.cpp:88
+#: sessionrunner.cpp:90
 #, kde-format
 msgctxt "restart computer command"
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: sessionrunner.cpp:95
+#: sessionrunner.cpp:97
 #, kde-format
 msgctxt "lock screen command"
 msgid "Lock"
 msgstr "Bloquear"
 
-#: sessionrunner.cpp:102
+#: sessionrunner.cpp:104
 #, kde-format
 msgid "Save Session"
 msgstr "Salvar sessão"
 
-#: sessionrunner.cpp:109
+#: sessionrunner.cpp:111
 #, kde-format
 msgid "Switch User"
 msgstr "Trocar usuário"

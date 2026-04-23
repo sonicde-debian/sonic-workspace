@@ -95,7 +95,11 @@ void AbstractNotificationsModel::Private::onNotificationAdded(const Notification
     // Only set up watchers for notifications with actions, since some apps (e.g. `notify-send`) may just
     // dispatch a notification and then immediately exit
     if (notification.hasDefaultAction() || notification.hasReplyAction() || !notification.actionNames().empty()) {
-        notificationWatcher.addWatchedService(notification.dBusService());
+        const QString service = notification.dBusService();
+        const auto watchedServices = notificationWatcher.watchedServices();
+        if (!watchedServices.contains(service)) {
+            notificationWatcher.addWatchedService(service);
+        }
     }
 
     q->beginInsertRows(QModelIndex(), notifications.count(), notifications.count());
@@ -214,7 +218,7 @@ void AbstractNotificationsModel::Private::removeRows(const QList<int> &rows)
     }
 
     QList<int> rowsToBeRemoved(rows);
-    std::sort(rowsToBeRemoved.begin(), rowsToBeRemoved.end());
+    std::ranges::sort(rowsToBeRemoved);
 
     QList<QPair<int, int>> clearQueue;
 
@@ -310,7 +314,7 @@ void AbstractNotificationsModel::setWindow(QWindow *window)
 QVariant AbstractNotificationsModel::data(const QModelIndex &index, int role) const
 {
     if (!checkIndex(index, QAbstractItemModel::CheckIndexOption::IndexIsValid)) {
-        return QVariant();
+        return {};
     }
 
     const Notification &notification = d->notifications.at(index.row());
@@ -423,7 +427,7 @@ QVariant AbstractNotificationsModel::data(const QModelIndex &index, int role) co
         return notification.resident() && notification.timeout() == 0;
     }
 
-    return QVariant();
+    return {};
 }
 
 bool AbstractNotificationsModel::setData(const QModelIndex &index, const QVariant &value, int role)

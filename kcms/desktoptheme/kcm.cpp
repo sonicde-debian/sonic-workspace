@@ -30,6 +30,7 @@
 #include <QStandardItemModel>
 #include <QStandardPaths>
 #include <QTemporaryFile>
+#include <algorithm>
 
 #include "desktopthemedata.h"
 #include "filterproxymodel.h"
@@ -72,9 +73,7 @@ KCMDesktopTheme::KCMDesktopTheme(QObject *parent, const KPluginMetaData &data)
     m_filteredModel->setSourceModel(m_model);
 }
 
-KCMDesktopTheme::~KCMDesktopTheme()
-{
-}
+KCMDesktopTheme::~KCMDesktopTheme() = default;
 
 DesktopThemeSettings *KCMDesktopTheme::desktopThemeSettings() const
 {
@@ -138,7 +137,7 @@ void KCMDesktopTheme::installTheme(const QString &path)
     const QStringList arguments = {QStringLiteral("--type"), QStringLiteral("Plasma/Theme"), QStringLiteral("--install"), path};
 
     qCDebug(KCM_DESKTOP_THEME) << program << arguments.join(QLatin1Char(' '));
-    QProcess *myProcess = new QProcess(this);
+    auto *myProcess = new QProcess(this);
     connect(myProcess,
             static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
             this,
@@ -237,7 +236,7 @@ void KCMDesktopTheme::processPendingDeletions()
     const auto pendingDeletions = m_model->match(m_model->index(0, 0), ThemesModel::PendingDeletionRole, true, -1 /*all*/);
     QList<QPersistentModelIndex> persistentPendingDeletions;
     // turn into persistent model index so we can delete as we go
-    std::transform(pendingDeletions.begin(), pendingDeletions.end(), std::back_inserter(persistentPendingDeletions), [](const QModelIndex &idx) {
+    std::ranges::transform(pendingDeletions, std::back_inserter(persistentPendingDeletions), [](const QModelIndex &idx) {
         return QPersistentModelIndex(idx);
     });
 

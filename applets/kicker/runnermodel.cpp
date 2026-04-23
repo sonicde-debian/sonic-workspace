@@ -43,9 +43,7 @@ RunnerModel::RunnerModel(QObject *parent)
     readFavorites();
 }
 
-RunnerModel::~RunnerModel()
-{
-}
+RunnerModel::~RunnerModel() = default;
 
 QHash<int, QByteArray> RunnerModel::roleNames() const
 {
@@ -120,14 +118,14 @@ void RunnerModel::setMergeResults(bool merge)
 QVariant RunnerModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() >= m_models.count()) {
-        return QVariant();
+        return {};
     }
 
     if (role == Qt::DisplayRole) {
         return m_models.at(index.row())->name();
     }
 
-    return QVariant();
+    return {};
 }
 
 int RunnerModel::rowCount(const QModelIndex &parent) const
@@ -163,7 +161,7 @@ void RunnerModel::setRunners(const QStringList &runners)
     m_runners = runners;
     Q_EMIT runnersChanged();
 
-    // Update the existing models only, if we have intialized the models
+    // Update the existing models only, if we have initialized the models
     if (!m_models.isEmpty()) {
         if (m_mergeResults) {
             Q_ASSERT(m_models.length() == 1);
@@ -180,6 +178,11 @@ void RunnerModel::setRunners(const QStringList &runners)
 QString RunnerModel::query() const
 {
     return m_query;
+}
+
+bool RunnerModel::querying() const
+{
+    return m_queryingModels > 0;
 }
 
 void RunnerModel::setQuery(const QString &query)
@@ -205,6 +208,7 @@ void RunnerModel::startQuery()
         for (KRunner::ResultsModel *model : std::as_const(m_models)) {
             model->setQueryString(m_query);
         }
+        Q_EMIT queryingChanged();
     }
 }
 
@@ -236,6 +240,7 @@ void RunnerModel::initializeModels()
             Q_EMIT anyRunnerFinished();
             if (--m_queryingModels == 0) {
                 Q_EMIT queryFinished();
+                Q_EMIT queryingChanged();
             }
         });
     }

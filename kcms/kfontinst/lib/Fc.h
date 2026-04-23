@@ -9,6 +9,7 @@
 #include "kfontinst_export.h"
 #include <QUrl>
 #include <fontconfig/fontconfig.h>
+#include <fontconfig/fcfreetype.h>
 
 #include "kfontinst_export.h"
 
@@ -38,9 +39,7 @@
 
 class QString;
 
-namespace KFI
-{
-namespace FC
+namespace KFI::FC
 {
 //
 // Ideally only want this class to contain KFI_FC_NO_WIDTHS
@@ -107,5 +106,4 @@ extern KFONTINST_EXPORT QString widthStr(int w, bool emptyNormal = true);
 extern KFONTINST_EXPORT QString slantStr(int s, bool emptyNormal = true);
 extern KFONTINST_EXPORT QString spacingStr(int s);
 extern KFONTINST_EXPORT bool bitmapsEnabled();
-}
 }

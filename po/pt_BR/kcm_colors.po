@@ -5,7 +5,7 @@
 # Lisiane Sztoltz <lisiane@conectiva.com.br>, 2002, 2003.
 # Henrique Pinto <stampede@coltec.ufmg.br>, 2003.
 # Lisiane Sztoltz Teixeira <lisiane@conectiva.com.br>, 2004.
-# Marcus Gama <marcus_gama@uol.com.br>, 2004.
+# SPDX-FileCopyrightText: 2004, 2025 Marcus Gama <marcus_gama@uol.com.br>
 # Lisiane Sztoltz Teixeira <lisiane@kdemail.net>, 2005.
 # Diniz Bortolotto <diniz.bortolotto@gmail.com>, 2007, 2008.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2009, 2010, 2011, 2012, 2015, 2016, 2019, 2020.
@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
 "PO-Revision-Date: 2025-11-16 02:26-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -900,29 +900,33 @@ msgstr "Força da tonalidade:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Sombreado das molduras e efeitos de iluminação (\"3D\")"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Contraste entre molduras, separadores e contornos."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Sombreado"
+msgid "Frames and Outlines"
+msgstr "Molduras e contornos"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Máximo"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Valores de contraste abaixo de 15% podem produzir efeitos visualmente "
+"estranhos com alguns aplicativos e esquemas de cor. Esteja avisado!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Mínimo"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Contraste"
@@ -1390,6 +1394,18 @@ msgstr "Abrir esquema de cores"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Arquivos de esquema de cores (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Sombreado das molduras e efeitos de iluminação (\"3D\")"
+
+#~ msgid "Shading"
+#~ msgstr "Sombreado"
+
+#~ msgid "Maximum"
+#~ msgstr "Máximo"
+
+#~ msgid "Minimum"
+#~ msgstr "Mínimo"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Escolher cor de destaque personalizada"

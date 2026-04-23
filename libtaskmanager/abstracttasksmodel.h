@@ -29,7 +29,7 @@ class TASKMANAGER_EXPORT AbstractTasksModel : public QAbstractListModel, public 
     Q_OBJECT
 
     // Expose the AbstractTasksModel::AdditionalRoles enum to Qt Quick
-    // for use with the TasksModel::data invokable. TasksModel inherits
+    // for use with the TasksModel::data invocable. TasksModel inherits
     // the data roles from its source model, despite not inheriting from
     // AbstractTasksModel to avoid multiple inheritance from QObject-
     // derived classes.
@@ -90,11 +90,12 @@ public:
                                          May be empty. @since 5.19 */
         ApplicationMenuObjectPath, /**< The DBus object path for the application's menu.
                                         May be empty. @since 5.19 */
-        IsHidden, /**< Task (i.e window) is hidden on screen. A minimzed
+        IsHidden, /**< Task (i.e window) is hidden on screen. A minimized
                        window is not necessarily hidden. */
         CanLaunchNewInstance, /**< A new instance of the task can be launched. @since 5.24 */
         HasNoBorder, /**< Whether the task's window has the no border state set. @since 6.4 */
         CanSetNoBorder, /**< Whether the task can set no border state. @since 6.4 */
+        IsExcludedFromCapture, /**< Whether the task's window has been hidden from screencasts. @since 6.6 */
     };
     Q_ENUM(AdditionalRoles)
 
@@ -255,6 +256,19 @@ public:
      * @since 6.4
      */
     void requestToggleNoBorder(const QModelIndex &index) override;
+
+    /**
+     * Request toggling the excludeFromCapture state of the task at given index.
+     *
+     * This is meant for tasks that have an associated window, and may be
+     * a no-op when there is no window.
+     *
+     * This base implementation does nothing.
+     *
+     * @param index An index in this tasks model.
+     * @since 6.6
+     **/
+    void requestToggleExcludeFromCapture(const QModelIndex &index) override;
 
     /**
      * Request entering the window at the given index on the specified virtual desktops,

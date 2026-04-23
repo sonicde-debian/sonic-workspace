@@ -16,7 +16,7 @@ ResizeHandle::ResizeHandle(QQuickItem *parent)
 
     QQuickItem *candidate = parent;
     while (candidate) {
-        ConfigOverlay *overlay = qobject_cast<ConfigOverlay *>(candidate);
+        auto *overlay = qobject_cast<ConfigOverlay *>(candidate);
         if (overlay) {
             setConfigOverlay(overlay);
             break;
@@ -28,7 +28,7 @@ ResizeHandle::ResizeHandle(QQuickItem *parent)
     connect(this, &QQuickItem::parentChanged, this, [this]() {
         QQuickItem *candidate = parentItem();
         while (candidate) {
-            ConfigOverlay *overlay = qobject_cast<ConfigOverlay *>(candidate);
+            auto *overlay = qobject_cast<ConfigOverlay *>(candidate);
             if (overlay) {
                 setConfigOverlay(overlay);
                 break;
@@ -63,9 +63,7 @@ ResizeHandle::ResizeHandle(QQuickItem *parent)
     connect(this, &ResizeHandle::resizeCornerChanged, this, syncCursor);
 }
 
-ResizeHandle::~ResizeHandle()
-{
-}
+ResizeHandle::~ResizeHandle() = default;
 
 bool ResizeHandle::resizeBlocked() const
 {
@@ -188,7 +186,7 @@ void ResizeHandle::mouseMoveEvent(QMouseEvent *event)
         const qreal y = m_mouseDownGeometry.y() + (m_mouseDownGeometry.height() - height);
 
         // -1 to have a bit of margins around
-        if (layout->isRectAvailable(m_mouseDownGeometry.x(), y - 1, m_mouseDownGeometry.width(), m_mouseDownGeometry.height())) {
+        if (layout->isRectAvailable(m_mouseDownGeometry.x(), y - 1, m_mouseDownGeometry.width(), height)) {
             itemContainer->setY(y);
             itemContainer->setHeight(height);
             setResizeBlocked(m_resizeWidthBlocked, m_mouseDownGeometry.height() + difference.y() < minimumSize.height());

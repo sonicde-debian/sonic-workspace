@@ -7,8 +7,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
-import QtQuick.Dialogs
-import QtQuick.Controls
 
 import QtPositioning
 import QtLocation
@@ -16,7 +14,7 @@ import QtCore
 
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.workspace.timezoneselector as Workspace
-import org.kde.kirigamiaddons.components 1.0 as Components
+import org.kde.kirigamiaddons.components as Components
 
 /**
  * @brief An element that shows all available timezones through a map and comboboxes, and allows you to select one.
@@ -160,9 +158,9 @@ Item {
             zoomLevel: 0
             minimumZoomLevel: 0
             // Weirdly enough, the included offline maps of zoom level 0-4
-            // only work until a zoom level of ~3.90, whereas zoom level
-            // 4 (or even 3.99) would require offline maps for zoom level 5.
-            maximumZoomLevel: 3.90
+            // only work until a zoom level of ~4.90, whereas zoom level
+            // 5 (or even 4.99) would require offline maps for zoom level 5.
+            maximumZoomLevel: 4.90
             maximumTilt: 0
             // No maximumBearing property exists, apparently
             onBearingChanged: {

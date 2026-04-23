@@ -22,11 +22,11 @@ import "../components" as Components
 BaseDelegate {
     id: delegateRoot
 
-    Layout.preferredWidth: footerLoader.item?.implicitWidth ?? -1
+    Layout.preferredWidth: (footerLoader.item as Item)?.implicitWidth ?? -1
 
     body: bodyLabel
     icon: icon
-    footer: footerLoader.item
+    footer: footerLoader.item as Item
     columns: 3
 
     Accessible.role: Accessible.Notification
@@ -63,7 +63,7 @@ BaseDelegate {
         Layout.rightMargin: -delegateRoot.modelInterface.popupRightPadding
         implicitHeight: 2
         implicitWidth: -1
-        visible: !criticalNotificationIndicator.visible
+        visible: !criticalNotificationIndicator.visible && Notifications.Globals.notificationSettings.showPopupTimeout
 
         Rectangle {
             readonly property real completionFraction: delegateRoot.modelInterface.remainingTime / delegateRoot.modelInterface.timeout

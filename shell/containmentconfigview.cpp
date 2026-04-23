@@ -56,9 +56,7 @@ ContainmentConfigView::ContainmentConfigView(Plasma::Containment *cont, QWindow 
     syncWallpaperObjects();
 }
 
-ContainmentConfigView::~ContainmentConfigView()
-{
-}
+ContainmentConfigView::~ContainmentConfigView() = default;
 
 void ContainmentConfigView::init()
 {
@@ -172,8 +170,7 @@ void ContainmentConfigView::setCurrentWallpaper(const QString &wallpaperPlugin)
         return;
     }
 
-    delete m_ownWallpaperConfig;
-    m_ownWallpaperConfig = nullptr;
+    delete std::exchange(m_ownWallpaperConfig, nullptr);
 
     if (m_containment->wallpaperPlugin() == wallpaperPlugin) {
         syncWallpaperObjects();
@@ -221,7 +218,7 @@ void ContainmentConfigView::onWallpaperChanged(uint /*screenIdx*/)
 
 void ContainmentConfigView::syncWallpaperObjects()
 {
-    QObject *wallpaperGraphicsObject = m_containment->property("wallpaperGraphicsObject").value<QObject *>();
+    auto *wallpaperGraphicsObject = m_containment->property("wallpaperGraphicsObject").value<QObject *>();
 
     if (!wallpaperGraphicsObject) {
         return;

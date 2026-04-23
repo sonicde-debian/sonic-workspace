@@ -87,7 +87,8 @@ void SlideFilterModelTest::initTestCase()
 void SlideFilterModelTest::init()
 {
     m_model = new SlideModel(QBindable<QSize>(&m_targetSize), QBindable<bool>(&m_usedInConfig), this);
-    m_filterModel = new SlideFilterModel(QBindable<bool>(&m_usedInConfig), //
+    m_filterModel = new SlideFilterModel(QBindable<QSize>(&m_targetSize), //
+                                         QBindable<bool>(&m_usedInConfig), //
                                          QBindable<SortingMode::Mode>(&m_sortingMode), //
                                          QBindable<bool>(&m_sortingFoldersFirst), //
                                          this);
@@ -144,7 +145,7 @@ void SlideFilterModelTest::testSlideFilterModelSortingOrder()
     QCOMPARE(m_filterModel->rowCount(), 3);
 
     for (int i = 0; i < expected.size(); i++) {
-        QCOMPARE(m_filterModel->index(i, 0).data(ImageRoles::PackageNameRole).toString(), expected.at(i));
+        QCOMPARE(m_filterModel->index(i, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile(), expected.at(i));
     }
 }
 
@@ -158,7 +159,7 @@ void SlideFilterModelTest::testSlideFilterModelSortingRandomOrder()
     m_sortingFoldersFirst = false;
     for (int i = 0; i < 1000; i++) {
         m_filterModel->invalidate();
-        const QString firstElement = m_filterModel->index(0, 0).data(ImageRoles::PackageNameRole).toString();
+        const QString firstElement = m_filterModel->index(0, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile();
 
         if (firstElement == m_pathA) {
             counts[0]++;
@@ -195,7 +196,7 @@ void SlideFilterModelTest::testSlideFilterModelSortingRandomOrderWithFileAddedRe
     qDebug() << "Before adding a new wallpaper";
     QStringList oldPaths;
     for (int i = 0, count = m_filterModel->rowCount(); i < count; ++i) {
-        qDebug() << i << oldPaths.emplace_back(m_filterModel->index(i, 0).data(ImageRoles::PackageNameRole).toString());
+        qDebug() << i << oldPaths.emplace_back(m_filterModel->index(i, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile());
     }
     qDebug() << "Before adding a new wallpaper";
 
@@ -214,15 +215,15 @@ void SlideFilterModelTest::testSlideFilterModelSortingRandomOrderWithFileAddedRe
     qDebug() << "After adding a new wallpaper";
     for (int i = 0, count = oldPaths.size(); i < count; ++i) {
         // Make sure the old order is not changed
-        qDebug() << i << m_filterModel->index(i, 0).data(ImageRoles::PackageNameRole).toString();
-        QCOMPARE(oldPaths[i], m_filterModel->index(i + (usedInConfig ? 1 : 0), 0).data(ImageRoles::PackageNameRole).toString());
+        qDebug() << i << m_filterModel->index(i, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile();
+        QCOMPARE(oldPaths[i], m_filterModel->index(i + (usedInConfig ? 1 : 0), 0).data(ImageRoles::SourceRole).toUrl().toLocalFile());
     }
     qDebug() << "After adding a new wallpaper";
 
     if (usedInConfig) {
-        QCOMPARE(m_filterModel->index(0, 0).data(ImageRoles::PackageNameRole).toString(), newImagePath);
+        QCOMPARE(m_filterModel->index(0, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile(), newImagePath);
     } else {
-        QCOMPARE(m_filterModel->index(m_filterModel->rowCount() - 1, 0).data(ImageRoles::PackageNameRole).toString(), newImagePath);
+        QCOMPARE(m_filterModel->index(m_filterModel->rowCount() - 1, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile(), newImagePath);
     }
 
     // Now remove the wallpaper
@@ -238,8 +239,8 @@ void SlideFilterModelTest::testSlideFilterModelSortingRandomOrderWithFileAddedRe
     qDebug() << "After deleting a wallpaper";
     for (int i = 0, count = oldPaths.size(); i < count; ++i) {
         // Make sure the old order is not changed
-        qDebug() << i << m_filterModel->index(i, 0).data(ImageRoles::PackageNameRole).toString();
-        QCOMPARE(oldPaths[i], m_filterModel->index(i, 0).data(ImageRoles::PackageNameRole).toString());
+        qDebug() << i << m_filterModel->index(i, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile();
+        QCOMPARE(oldPaths[i], m_filterModel->index(i, 0).data(ImageRoles::SourceRole).toUrl().toLocalFile());
     }
     qDebug() << "After deleting a wallpaper";
 }

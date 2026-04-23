@@ -7,22 +7,21 @@
 
 #include "configdialog.h"
 
-#include <qbuttongroup.h>
-#include <qcheckbox.h>
-#include <qfontdatabase.h>
-#include <qformlayout.h>
-#include <qgridlayout.h>
-#include <qheaderview.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qradiobutton.h>
-#include <qspinbox.h>
-#include <qtooltip.h>
-#include <qwindow.h>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QFontDatabase>
+#include <QFormLayout>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QSpinBox>
+#include <QToolTip>
+#include <QWindow>
 
 #include <KActionCollection>
 #include <KConfigSkeleton>
-#include <KEditListWidget>
 #include <KLocalization>
 #include <KShortcutsEditor>
 #include <kconfigskeleton.h>
@@ -42,7 +41,7 @@ using namespace Qt::StringLiterals;
 
 /* static */ QLabel *ConfigDialog::createHintLabel(const QString &text, QWidget *parent)
 {
-    QLabel *hintLabel = new QLabel(text, parent);
+    auto *hintLabel = new QLabel(text, parent);
     hintLabel->setFont(QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont));
     hintLabel->setWordWrap(true);
     hintLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
@@ -75,7 +74,7 @@ using namespace Qt::StringLiterals;
 GeneralWidget::GeneralWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QFormLayout *layout = new QFormLayout(this);
+    auto *layout = new QFormLayout(this);
 
     // Retain clipboard history
     const KConfigSkeletonItem *item = KlipperSettings::self()->keepClipboardContentsItem();
@@ -128,7 +127,7 @@ If it is turned off, the selection may still be saved in the clipboard history (
     // is turned off - in this case the selection is never automatically saved
     // in the clipboard history.
 
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    auto *buttonGroup = new QButtonGroup(this);
 
     // This widget is not managed by KConfigDialogManager, but
     // the other radio button is.  That is sufficient for the
@@ -255,7 +254,7 @@ void GeneralWidget::slotWidgetModified()
 PopupWidget::PopupWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QFormLayout *layout = new QFormLayout(this);
+    auto *layout = new QFormLayout(this);
 
     // Automatic popup
     const KConfigSkeletonItem *item = KlipperSettings::self()->uRLGrabberEnabledItem();
@@ -278,17 +277,6 @@ then it can be shown by using the <shortcut>%1</shortcut> key shortcut.",
                                                         ConfigDialog::manualShortcutString()),
                                                  this);
     layout->addRow(QString(), hint);
-
-    // Exclusions
-    QPushButton *exclusionsButton = new QPushButton(QIcon::fromTheme(QStringLiteral("configure")), i18n("Exclude Windows..."), this);
-    connect(exclusionsButton, &QPushButton::clicked, this, &PopupWidget::onAdvanced);
-
-    // Right align the push button, regardless of the QFormLayout style
-    QHBoxLayout *hb = new QHBoxLayout;
-    hb->setContentsMargins(0, 0, 0, 0);
-    hb->addStretch(1);
-    hb->addWidget(exclusionsButton);
-    layout->addRow(QString(), hb);
 
     // Action popup time
     item = KlipperSettings::self()->timeoutForActionPopupsItem();
@@ -317,38 +305,6 @@ then it can be shown by using the <shortcut>%1</shortcut> key shortcut.",
     layout->addRow(QString(), new QLabel(this));
 }
 
-void PopupWidget::setExcludedWMClasses(const QStringList &excludedWMClasses)
-{
-    m_exclWMClasses = excludedWMClasses;
-}
-
-QStringList PopupWidget::excludedWMClasses() const
-{
-    return m_exclWMClasses;
-}
-
-void PopupWidget::onAdvanced()
-{
-    QDialog dlg(this);
-    dlg.setModal(true);
-    dlg.setWindowTitle(i18n("Exclude Windows"));
-    QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dlg);
-    buttons->button(QDialogButtonBox::Ok)->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttons, &QDialogButtonBox::accepted, &dlg, &QDialog::accept);
-    connect(buttons, &QDialogButtonBox::rejected, &dlg, &QDialog::reject);
-
-    AdvancedWidget *widget = new AdvancedWidget(&dlg);
-    widget->setWMClasses(m_exclWMClasses);
-
-    QVBoxLayout *layout = new QVBoxLayout(&dlg);
-    layout->addWidget(widget);
-    layout->addWidget(buttons);
-
-    if (dlg.exec() == QDialog::Accepted) {
-        m_exclWMClasses = widget->wmClasses();
-    }
-}
-
 //////////////////////////
 //  ActionsWidget	//
 //////////////////////////
@@ -356,7 +312,7 @@ void PopupWidget::onAdvanced()
 ActionsWidget::ActionsWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QGridLayout *layout = new QGridLayout(this);
+    auto *layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     // General information label
@@ -391,10 +347,10 @@ appear in the Klipper popup menu and can be executed."),
 
     // Where to configure the action options
     if (KlipperSettings::actionsInfoMessageShown()) {
-        KMessageWidget *msg = new KMessageWidget(xi18nc("@info",
-                                                        "These actions appear in the popup menu \
+        auto *msg = new KMessageWidget(xi18nc("@info",
+                                              "These actions appear in the popup menu \
 which can be configured on the <interface>Action Menu</interface> page."),
-                                                 this);
+                                       this);
         msg->setMessageType(KMessageWidget::Information);
         msg->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
         msg->setWordWrap(true);
@@ -422,6 +378,7 @@ which can be configured on the <interface>Action Menu</interface> page."),
 
     connect(m_actionsTree, &QTreeWidget::itemSelectionChanged, this, &ActionsWidget::onSelectionChanged);
     connect(m_actionsTree, &QTreeWidget::itemDoubleClicked, this, &ActionsWidget::onEditAction);
+    connect(m_actionsTree, &QTreeWidget::itemChanged, this, &ActionsWidget::onItemChanged);
 
     onSelectionChanged();
 }
@@ -454,7 +411,8 @@ void ActionsWidget::updateActionListView()
             continue;
         }
 
-        QTreeWidgetItem *item = new QTreeWidgetItem;
+        auto *item = new QTreeWidgetItem;
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
         updateActionItem(item, action);
 
         m_actionsTree->addTopLevelItem(item);
@@ -478,11 +436,18 @@ void ActionsWidget::updateActionItem(QTreeWidgetItem *item, const ClipAction *ac
     item->setText(0, action->actionRegexPattern());
     item->setText(1, action->description());
 
+    item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
+    // There is no need to explicitly set the CheckState of the action item,
+    // because with the ItemIsAutoTristate flag it is completely determined
+    // by the state of the child command items.
+
     for (const ClipCommand &command : action->commands()) {
         QStringList cmdProps;
         cmdProps << command.command << command.description;
-        QTreeWidgetItem *child = new QTreeWidgetItem(item, cmdProps);
+        auto *child = new QTreeWidgetItem(item, cmdProps);
         child->setIcon(0, QIcon::fromTheme(command.icon.isEmpty() ? QStringLiteral("system-run") : command.icon));
+        child->setFlags(child->flags() | Qt::ItemIsUserCheckable | Qt::ItemNeverHasChildren);
+        child->setCheckState(0, (command.isEnabled ? Qt::Checked : Qt::Unchecked));
     }
 }
 
@@ -521,13 +486,13 @@ void ActionsWidget::onSelectionChanged()
 void ActionsWidget::onAddAction()
 {
     EditActionDialog dlg(this);
-    ClipAction *newAct = new ClipAction;
+    auto *newAct = new ClipAction;
     dlg.setAction(newAct);
 
     if (dlg.exec() == QDialog::Accepted) {
         m_actionList.append(newAct);
 
-        QTreeWidgetItem *item = new QTreeWidgetItem;
+        auto *item = new QTreeWidgetItem;
         updateActionItem(item, newAct);
         m_actionsTree->addTopLevelItem(item);
         Q_EMIT widgetChanged();
@@ -597,6 +562,30 @@ bool ActionsWidget::hasChanged() const
     return (m_actionsTree->actionsChanged() != -1);
 }
 
+void ActionsWidget::onItemChanged(QTreeWidgetItem *item, int col)
+{
+    QTreeWidgetItem *parentItem = item->parent(); // parent of the command item
+    if (parentItem == nullptr) { // this is a top level action
+        return;
+    }
+
+    int actionIdx = m_actionsTree->indexOfTopLevelItem(parentItem);
+    ClipAction *action = m_actionList.at(actionIdx);
+    int commandIdx = parentItem->indexOfChild(item);
+    ClipCommand command = action->command(commandIdx);
+
+    // Ensure that the change being made really is a check state change.
+    // because this slot is also called for multiple items when they are
+    // updated after the "Edit Action" dialogue is accepted.
+    const bool wasEnabled = command.isEnabled;
+    const bool nowEnabled = (item->checkState(0) == Qt::Checked);
+    if (nowEnabled != wasEnabled) {
+        command.isEnabled = nowEnabled;
+        action->replaceCommand(commandIdx, command);
+        Q_EMIT widgetChanged();
+    }
+}
+
 //////////////////////////
 //  ConfigDialog	//
 //////////////////////////
@@ -617,6 +606,7 @@ ConfigDialog::ConfigDialog(QWidget *parent, KConfigSkeleton *skeleton, Klipper *
 
     connect(m_generalPage, &GeneralWidget::widgetChanged, this, &ConfigDialog::settingsChangedSlot);
     connect(m_actionsPage, &ActionsWidget::widgetChanged, this, &ConfigDialog::settingsChangedSlot);
+
     connect(this, &KConfigDialog::widgetModified, m_generalPage, &GeneralWidget::slotWidgetModified);
     m_generalPage->initWidgetStates();
 
@@ -648,7 +638,6 @@ void ConfigDialog::updateSettings()
 
     m_klipper->setURLGrabberEnabled(KlipperSettings::uRLGrabberEnabled());
     m_klipper->urlGrabber()->setActionList(m_actionsPage->actionList());
-    m_klipper->urlGrabber()->setExcludedWMClasses(m_popupPage->excludedWMClasses());
     m_klipper->saveSettings();
 
     KlipperSettings::self()->save();
@@ -664,7 +653,6 @@ void ConfigDialog::updateWidgets()
 
     if (m_klipper && m_klipper->urlGrabber()) {
         m_actionsPage->setActionList(m_klipper->urlGrabber()->actionList());
-        m_popupPage->setExcludedWMClasses(m_klipper->urlGrabber()->excludedWMClasses());
     } else {
         qCDebug(KLIPPER_LOG) << "Klipper or grabber object is null";
         return;
@@ -677,8 +665,7 @@ void ConfigDialog::updateWidgetsDefault()
 {
     // The user clicked "Defaults".  Restore the default values for
     // widgets which are not managed by KConfigDialogManager.  The
-    // settings of "Actions Configuration" and "Excluded Windows"
-    // are not reset to the default.
+    // settings of "Actions Configuration" are not reset to the default.
 
     m_shortcutsWidget->allDefault();
 }
@@ -686,62 +673,6 @@ void ConfigDialog::updateWidgetsDefault()
 bool ConfigDialog::hasChanged()
 {
     return (m_actionsPage->hasChanged() || m_shortcutsWidget->isModified());
-}
-
-//////////////////////////
-//  AdvancedWidget	//
-//////////////////////////
-
-AdvancedWidget::AdvancedWidget(QWidget *parent)
-    : QWidget(parent)
-{
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-
-    QLabel *hint = ConfigDialog::createHintLabel(xi18nc("@info",
-                                                        "The action popup will not be shown automatically for these windows, \
-even if it is enabled. This is because, for example, a web browser may highlight a URL \
-in the address bar while typing, so the menu would show for every keystroke.\
-<nl/>\
-<nl/>\
-If the action menu appears unexpectedly when using a particular application, then add it to this list. \
-<link>How to find the name to enter</link>."),
-                                                 this);
-
-    mainLayout->addWidget(hint);
-    connect(hint, &QLabel::linkActivated, this, [hint]() {
-        QToolTip::showText(QCursor::pos(),
-                           xi18nc("@info:tooltip",
-                                  "The name that needs to be entered here is the WM_CLASS name of the window to be excluded. \
-To find the WM_CLASS name for a window, in another terminal window enter the command:\
-<nl/>\
-<nl/>\
-&nbsp;&nbsp;<icode>xprop | grep WM_CLASS</icode>\
-<nl/>\
-<nl/>\
-and click on the window that you want to exclude. \
-The first name that it displays after the equal sign is the one that you need to enter."),
-                           hint);
-    });
-
-    mainLayout->addWidget(hint);
-    mainLayout->addWidget(new QLabel(this));
-
-    m_editListBox = new KEditListWidget(this);
-    m_editListBox->setButtons(KEditListWidget::Add | KEditListWidget::Remove);
-    m_editListBox->setCheckAtEntering(true);
-    mainLayout->addWidget(m_editListBox);
-
-    m_editListBox->setFocus();
-}
-
-void AdvancedWidget::setWMClasses(const QStringList &items)
-{
-    m_editListBox->setItems(items);
-}
-
-QStringList AdvancedWidget::wmClasses() const
-{
-    return m_editListBox->items();
 }
 
 #include "moc_configdialog.cpp"

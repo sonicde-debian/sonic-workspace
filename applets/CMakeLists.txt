@@ -1,9 +1,7 @@
-plasma_install_package(activitybar org.kde.plasma.activitybar)
+add_subdirectory(activitybar)
 add_subdirectory(icon)
-
-plasma_install_package(analog-clock org.kde.plasma.analogclock)
-plasma_install_package(manage-inputmethod org.kde.plasma.manage-inputmethod)
-
+add_subdirectory(analog-clock)
+add_subdirectory(manage-inputmethod)
 add_subdirectory(appmenu)
 if (KSysGuard_FOUND)
     add_subdirectory(systemmonitor)
@@ -19,7 +17,7 @@ add_subdirectory(panelspacer)
 if(BUILD_CAMERAINDICATOR)
     add_subdirectory(cameraindicator)
 endif()
-plasma_install_package(clipboard org.kde.plasma.clipboard)
+add_subdirectory(clipboard)
 
 add_subdirectory(notifications)
 add_subdirectory(systemtray)

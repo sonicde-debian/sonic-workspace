@@ -31,14 +31,6 @@ class HistoryModel;
 class KNotification;
 class SystemClipboard;
 
-namespace KWayland
-{
-namespace Client
-{
-class PlasmaShell;
-}
-}
-
 class KLIPPER_EXPORT Klipper : public QObject, public QDBusContext
 {
     Q_OBJECT
@@ -84,8 +76,6 @@ public:
     {
         return m_popup.get();
     }
-
-    void showBarcode(std::shared_ptr<const HistoryItem> item);
 
 public Q_SLOTS:
     void saveSession();
@@ -147,5 +137,4 @@ private:
     KActionCollection *m_collection;
     QMenu *m_actionsPopup;
     QPointer<KNotification> m_notification;
-    KWayland::Client::PlasmaShell *m_plasmashell;
 };

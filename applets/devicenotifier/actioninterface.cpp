@@ -11,8 +11,8 @@
 
 #include <KService>
 
+#include <QLoggingCategory>
 #include <deviceserviceaction.h>
-#include <qloggingcategory.h>
 
 #include <Solid/Device>
 
@@ -22,9 +22,7 @@ ActionInterface::ActionInterface(const QString &udi, QObject *parent)
 {
 }
 
-ActionInterface::~ActionInterface()
-{
-}
+ActionInterface::~ActionInterface() = default;
 
 QString ActionInterface::predicate() const
 {

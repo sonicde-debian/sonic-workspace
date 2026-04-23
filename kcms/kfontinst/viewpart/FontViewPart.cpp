@@ -8,7 +8,6 @@
 #include "FcEngine.h"
 #include "FontInst.h"
 #include "FontInstInterface.h"
-#include "KfiConstants.h"
 #include "PreviewSelectAction.h"
 #include "config-workspace.h"
 #include <KAboutData>
@@ -33,7 +32,6 @@
 #include "config-fontinst.h"
 #include <KPluginFactory>
 #include <KStandardActions>
-#include <KWaylandExtras>
 #include <KWindowSystem>
 #include <KZip>
 #include <QTemporaryDir>
@@ -66,15 +64,15 @@ CFontViewPart::CFontViewPart(QWidget *parentWidget, QObject *parent, const KPlug
 
     m_frame = new QFrame(parentWidget);
 
-    QFrame *previewFrame = new QFrame(m_frame);
-    QWidget *controls = new QWidget(m_frame);
+    auto *previewFrame = new QFrame(m_frame);
+    auto *controls = new QWidget(m_frame);
 
     m_faceWidget = new QWidget(controls);
 
-    QBoxLayout *mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, m_frame);
+    auto *mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, m_frame);
 
-    QBoxLayout *previewLayout = new QBoxLayout(QBoxLayout::LeftToRight, previewFrame), *controlsLayout = new QBoxLayout(QBoxLayout::LeftToRight, controls),
-               *faceLayout = new QBoxLayout(QBoxLayout::LeftToRight, m_faceWidget);
+    auto *previewLayout = new QBoxLayout(QBoxLayout::LeftToRight, previewFrame), *controlsLayout = new QBoxLayout(QBoxLayout::LeftToRight, controls),
+         *faceLayout = new QBoxLayout(QBoxLayout::LeftToRight, m_faceWidget);
     previewLayout->setContentsMargins(0, 0, 0, 0);
     previewLayout->setSpacing(0);
     faceLayout->setContentsMargins(0, 0, 0, 0);
@@ -115,7 +113,7 @@ CFontViewPart::CFontViewPart(QWidget *parentWidget, QObject *parent, const KPlug
     m_changeTextAction->setText(i18n("Change Text…"));
     connect(m_changeTextAction, &QAction::triggered, this, &CFontViewPart::changeText);
 
-    CPreviewSelectAction *displayTypeAction = new CPreviewSelectAction(this, CPreviewSelectAction::BlocksAndScripts);
+    auto *displayTypeAction = new CPreviewSelectAction(this, CPreviewSelectAction::BlocksAndScripts);
     actionCollection()->addAction(u"displayType"_s, displayTypeAction);
     connect(displayTypeAction, &CPreviewSelectAction::range, this, &CFontViewPart::displayType);
 
@@ -136,10 +134,8 @@ CFontViewPart::CFontViewPart(QWidget *parentWidget, QObject *parent, const KPlug
 
 CFontViewPart::~CFontViewPart()
 {
-    delete m_tempDir;
-    m_tempDir = nullptr;
-    delete m_interface;
-    m_interface = nullptr;
+    delete std::exchange(m_tempDir, nullptr);
+    delete std::exchange(m_interface, nullptr);
 }
 
 static inline QUrl mostLocalUrl(const QUrl &url, QWidget *widget)
@@ -201,8 +197,7 @@ void CFontViewPart::timeout()
     int fileIndex(-1);
     QString fontFile;
 
-    delete m_tempDir;
-    m_tempDir = nullptr;
+    delete std::exchange(m_tempDir, nullptr);
 
     m_opening = true;
 
@@ -364,18 +359,7 @@ void CFontViewPart::install()
             m_proc->start(Misc::app(KFI_INSTALLER), args);
             m_installButton->setEnabled(false);
         };
-
-        if (KWindowSystem::isPlatformWayland()) {
-            connect(
-                KWaylandExtras::self(),
-                &KWaylandExtras::windowExported,
-                this,
-                [runFontInst](QWindow * /*window*/, const QString &handle) {
-                    runFontInst(handle);
-                },
-                Qt::SingleShotConnection);
-            KWaylandExtras::exportWindow(m_frame->window()->windowHandle());
-        } else {
+        {
             runFontInst(QStringLiteral("0x%1").arg((unsigned int)m_frame->window()->winId(), 0, 16));
         }
     }

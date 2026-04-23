@@ -8,8 +8,7 @@
 #pragma once
 
 #include "abstractimagelistmodel.h"
-
-class WallpaperPackage;
+#include "finder/packagefinder.h"
 
 /**
  * List KPackage wallpapers, usually in a folder.
@@ -19,11 +18,12 @@ class PackageListModel : public AbstractImageListModel
     Q_OBJECT
 
 public:
-    explicit PackageListModel(const QBindable<QSize> &bindableTargetSize, const QBindable<bool> &bindableUsedInConfig, QObject *parent = nullptr);
+    explicit PackageListModel(const QBindable<bool> &bindableUsedInConfig, QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    QUrl effectiveSource(const QModelIndex &index, const QSize &targetSize) const override;
 
     /**
      * @path Package folder path
@@ -35,9 +35,6 @@ public:
 public Q_SLOTS:
     QStringList addBackground(const QUrl &url) override;
     QStringList removeBackground(const QUrl &url) override;
-
-private Q_SLOTS:
-    void slotHandlePackageFound(const QList<WallpaperPackage> &packages);
 
 private:
     QList<WallpaperPackage> m_packages;

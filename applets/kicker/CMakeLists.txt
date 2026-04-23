@@ -48,7 +48,7 @@ ecm_add_qml_module(kickerplugin
     URI "org.kde.plasma.private.kicker"
     VERSION 0.1
     SOURCES ${kickerplugin_SRCS}
-    DEPENDENCIES QtCore QtQuick
+    DEPENDENCIES QtCore QtQuick org.kde.plasma.core
     GENERATE_PLUGIN_SOURCE
 )
 
@@ -75,17 +75,11 @@ target_link_libraries(kickerplugin PRIVATE
                       KF6::Runner
                       KF6::Service
                       KF6::WindowSystem
-                      Wayland::Client
                       PW::KWorkspace)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL "6.8.0")
     set(private_code_option  "PRIVATE_CODE")
 endif()
-qt_generate_wayland_protocol_client_sources(kickerplugin
-    FILES
-        "${PLASMA_WAYLAND_PROTOCOLS_DIR}/plasma-shell.xml"
-    ${private_code_option}
-)
 
 if (${HAVE_APPSTREAMQT})
 target_link_libraries(kickerplugin PRIVATE AppStreamQt)

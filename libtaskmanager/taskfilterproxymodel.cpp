@@ -10,12 +10,9 @@
 #include "launchertasksmodel_p.h"
 
 #include "config-X11.h"
-#if HAVE_X11
 #include <QGuiApplication>
 #include <QScreen>
-
 #include <KWindowSystem>
-#endif
 
 namespace TaskManager
 {
@@ -55,9 +52,7 @@ TaskFilterProxyModel::TaskFilterProxyModel(QObject *parent)
 {
 }
 
-TaskFilterProxyModel::~TaskFilterProxyModel()
-{
-}
+TaskFilterProxyModel::~TaskFilterProxyModel() = default;
 
 void TaskFilterProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
 {
@@ -365,8 +360,7 @@ bool TaskFilterProxyModel::acceptsRow(int sourceRow) const
         QRect windowGeometry = sourceIdx.data(AbstractTasksModel::Geometry).toRect();
 
         QRect regionGeometry = d->regionGeometry;
-#if HAVE_X11
-        if (static const bool isX11 = KWindowSystem::isPlatformX11(); isX11 && windowGeometry.isValid()) {
+        if (windowGeometry.isValid()) {
             // On X11, in regionGeometry, the original point of the topLeft position belongs to the device coordinate system
             // but the size belongs to the logical coordinate system (which means the reported size is already divided by DPR)
             // Converting regionGeometry to device coordinate system is better than converting windowGeometry to logical
@@ -377,7 +371,6 @@ bool TaskFilterProxyModel::acceptsRow(int sourceRow) const
                 screenTopLeft + QPoint(regionGeometry.x() - screenTopLeft.x(), regionGeometry.y() - screenTopLeft.y()) * devicePixelRatio;
             regionGeometry = QRect(regionTopLeft, regionGeometry.size() * devicePixelRatio);
         }
-#endif
         switch (d->filterByRegion) {
         case RegionFilterMode::Mode::Inside: {
             if (!regionGeometry.contains(windowGeometry)) {

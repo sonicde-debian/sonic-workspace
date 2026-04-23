@@ -2,15 +2,15 @@
 # Copyright (C) 2001, 2002, 2007 Free Software Foundation, Inc.
 # Yu-Chan, Park <super@susekorea.net>, 2001.
 # KIM KyungHeon <tody@teoal.net>, 2002.
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2026 Shinjo Park <kde@peremen.name>
 # JungHee Lee <daemul72@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-11-28 23:26+0100\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2026-02-03 23:18+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -875,29 +875,33 @@ msgstr "섞기 강도:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "프레임 그림자와 반짝이는(\"3D\") 효과"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "프레임, 구분자, 외곽선의 명암"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "그림자"
+msgid "Frames and Outlines"
+msgstr "프레임과 외곽선"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "최대"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"명암을 15% 이하로 지정하면 일부 앱이나 색 구성표에서 보기 좋지 않을 수도 있습"
+"니다. 신중하게 사용하십시오!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "최소"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "명암"
@@ -1345,6 +1349,18 @@ msgstr "색 구성표 열기"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "색 구성표 파일 (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "프레임 그림자와 반짝이는(\"3D\") 효과"
+
+#~ msgid "Shading"
+#~ msgstr "그림자"
+
+#~ msgid "Maximum"
+#~ msgstr "최대"
+
+#~ msgid "Minimum"
+#~ msgstr "최소"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "사용자 정의 강조 색상 선택"

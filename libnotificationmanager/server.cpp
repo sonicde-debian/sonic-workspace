@@ -14,7 +14,6 @@
 #include "debug.h"
 
 #include <KStartupInfo>
-#include <KWaylandExtras>
 #include <KWindowSystem>
 #include <QDebug>
 
@@ -39,7 +38,7 @@ Server::~Server() = default;
 
 Server &Server::self()
 {
-    static Server *s_self = new Server(qApp);
+    static auto *s_self = new Server(qApp);
     return *s_self;
 }
 
@@ -76,25 +75,6 @@ void Server::invokeAction(uint notificationId,
                           Notifications::InvokeBehavior behavior,
                           QWindow *window)
 {
-    if (KWindowSystem::isPlatformWayland()) {
-        const quint32 launchedSerial = KWaylandExtras::lastInputSerial(window);
-        auto conn = std::make_shared<QMetaObject::Connection>();
-        *conn = connect(KWaylandExtras::self(),
-                        &KWaylandExtras::xdgActivationTokenArrived,
-                        this,
-                        [this, actionName, notificationId, launchedSerial, conn, behavior](quint32 serial, const QString &token) {
-                            if (serial == launchedSerial) {
-                                disconnect(*conn);
-                                Q_EMIT d->ActivationToken(notificationId, token);
-                                Q_EMIT d->ActionInvoked(notificationId, actionName);
-
-                                if (behavior & Notifications::Close) {
-                                    Q_EMIT d->CloseNotification(notificationId);
-                                }
-                            }
-                        });
-        KWaylandExtras::requestXdgActivationToken(window, launchedSerial, xdgActivationAppId);
-    } else {
         KStartupInfoId startupId;
         startupId.initId();
 
@@ -104,7 +84,6 @@ void Server::invokeAction(uint notificationId,
         if (behavior & Notifications::Close) {
             Q_EMIT d->CloseNotification(notificationId);
         }
-    }
 }
 
 void Server::reply(const QString &dbusService, uint notificationId, const QString &text, Notifications::InvokeBehavior behavior)

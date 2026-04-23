@@ -1,7 +1,7 @@
 # translation of kcmcolors.po to Slovenian
 # Translation of kcmcolors.po to Slovenian
 # KDEBASE translation to Slovenian language.
-# $Id: kcm_colors.po 1723120 2025-11-17 15:24:07Z scripty $
+# $Id: kcm_colors.po 1723087 2025-11-17 12:44:32Z scripty $
 # $Source$
 #
 # Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2024-08-29 07:12+0200\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-08 07:04+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -888,29 +888,33 @@ msgstr "Moč odtenka:"
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:69
 #, kde-format
-msgid "Shading of frames and lighting (\"3D\") effects"
-msgstr "Senčenje (»3D«) učinkov za okvirje in osvetljevanje"
+msgid "Contrast of the frames, separators and outlines"
+msgstr "Kontrast okvirjev, ločil in obrisov"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: editor/scmeditoroptions.ui:72
 #, kde-format
-msgid "Shading"
-msgstr "Senčenje"
+msgid "Frames and Outlines"
+msgstr "Okvirji in obrisi"
 
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: editor/scmeditoroptions.ui:97
-#, kde-format
-msgid "Maximum"
-msgstr "Največje"
+#. i18n: ectx: property (text), widget (KMessageWidget, contrastValueWarning)
+#: editor/scmeditoroptions.ui:93
+#, no-c-format, kde-format
+msgid ""
+"Contrast values below 15% may produce visually awkward effects with some "
+"applications and color schemes. Consider yourself warned!"
+msgstr ""
+"Vrednosti kontrasta pod 15% lahko pri nekaterih aplikacijah in barvnih "
+"shemah povzročijo vizualno nerodne učinke. Bili ste opozorjeni!"
 
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: editor/scmeditoroptions.ui:117
-#, kde-format
-msgid "Minimum"
-msgstr "Najmanjše"
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, contrastPercentageSpinBox)
+#: editor/scmeditoroptions.ui:109
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: editor/scmeditoroptions.ui:124
+#: editor/scmeditoroptions.ui:138
 #, kde-format
 msgid "Contrast"
 msgstr "Kontrast"
@@ -1375,6 +1379,18 @@ msgstr "Odpri barvno shemo"
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Datoteke barvnih shem (*.colors)"
+
+#~ msgid "Shading of frames and lighting (\"3D\") effects"
+#~ msgstr "Senčenje (»3D«) učinkov za okvirje in osvetljevanje"
+
+#~ msgid "Shading"
+#~ msgstr "Senčenje"
+
+#~ msgid "Maximum"
+#~ msgstr "Največje"
+
+#~ msgid "Minimum"
+#~ msgstr "Najmanjše"
 
 #~ msgid "Choose custom accent color"
 #~ msgstr "Uporabi poudarjeno barvo po meri"

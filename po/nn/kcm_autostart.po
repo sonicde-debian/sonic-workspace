@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcm_autostart\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
 "PO-Revision-Date: 2025-10-26 13:06+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -20,22 +20,22 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: autostartmodel.cpp:383
+#: autostartmodel.cpp:381
 #, kde-format
 msgid "\"%1\" is not an absolute url."
 msgstr "«%1» er ikkje ei absoluttadresse."
 
-#: autostartmodel.cpp:386
+#: autostartmodel.cpp:384
 #, kde-format
 msgid "\"%1\" does not exist."
 msgstr "«%1» finst ikkje."
 
-#: autostartmodel.cpp:389
+#: autostartmodel.cpp:387
 #, kde-format
 msgid "\"%1\" is not a file."
 msgstr "«%1» er ikkje ei fil."
 
-#: autostartmodel.cpp:392
+#: autostartmodel.cpp:390
 #, kde-format
 msgid "\"%1\" is not readable."
 msgstr "«%1» er ikkje lesbar."
@@ -248,12 +248,12 @@ msgctxt "@label Entry has failed (exited with an error)"
 msgid "Failed"
 msgstr "Feil"
 
-#: unit.cpp:83
+#: unit.cpp:81
 #, kde-format
 msgid "Error occurred when receiving reply of GetAll call %1"
 msgstr "Det oppstod ein feil ved mottak av svar etter GetAll-kallet %1"
 
-#: unit.cpp:155
+#: unit.cpp:153
 #, kde-format
 msgid "Failed to open journal"
 msgstr "Klarte ikkje opna journal"

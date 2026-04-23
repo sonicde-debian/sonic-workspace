@@ -69,7 +69,7 @@ std::unique_ptr<icu::Transliterator> getICUTransliterator(const QLocale &locale)
 QString groupName(const QString &name)
 {
     if (name.isEmpty()) {
-        return QString();
+        return {};
     }
 
     const QChar firstChar = name[0];
@@ -160,6 +160,7 @@ void AppEntry::init(NameFormat nameFormat)
 
     switch (nameFormat) {
     case NameOnly:
+        m_description = comment;
     case NameAndGenericName:
         m_compactName = nameFromService(m_service, NameOnly);
         m_description = comment;
@@ -316,7 +317,7 @@ QVariantList AppEntry::actions() const
         actionList << Kicker::createSeparatorActionItem();
     }
 
-    QObject *appletInterface = m_owner->rootModel()->property("appletInterface").value<QObject *>();
+    auto *appletInterface = m_owner->rootModel()->property("appletInterface").value<QObject *>();
 
     bool systemImmutable = false;
     if (appletInterface) {
@@ -351,7 +352,7 @@ QVariantList AppEntry::actions() const
     }
 
     if (appletInterface) {
-        QQmlPropertyMap *appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
+        auto *appletConfig = qobject_cast<QQmlPropertyMap *>(appletInterface->property("configuration").value<QObject *>());
 
         if (appletConfig && appletConfig->contains(QStringLiteral("hiddenApplications")) && qobject_cast<AppsModel *>(m_owner)) {
             const QStringList &hiddenApps = appletConfig->value(QStringLiteral("hiddenApplications")).toStringList();
@@ -382,7 +383,7 @@ bool AppEntry::run(const QString &actionId, const QVariant &argument)
         return true;
     }
 
-    QObject *appletInterface = m_owner->rootModel()->property("appletInterface").value<QObject *>();
+    auto *appletInterface = m_owner->rootModel()->property("appletInterface").value<QObject *>();
 
     if (Kicker::handleAddLauncherAction(actionId, appletInterface, m_service)) {
         return false; // We don't want to close Kicker, BUG: 390585
@@ -431,9 +432,7 @@ KService::Ptr AppEntry::defaultAppByName(const QString &name)
     return DefaultService::browser();
 }
 
-AppEntry::~AppEntry()
-{
-}
+AppEntry::~AppEntry() = default;
 
 AppGroupEntry::AppGroupEntry(AppsModel *parentModel,
                              KServiceGroup::Ptr group,
@@ -446,7 +445,7 @@ AppGroupEntry::AppGroupEntry(AppsModel *parentModel,
     : AbstractGroupEntry(parentModel)
     , m_group(group)
 {
-    AppsModel *model = new AppsModel(group->entryPath(), paginate, pageSize, flat, sorted, separators, parentModel);
+    auto *model = new AppsModel(group->entryPath(), paginate, pageSize, flat, sorted, separators, parentModel);
     model->setAppNameFormat(appNameFormat);
     m_childModel = model;
 

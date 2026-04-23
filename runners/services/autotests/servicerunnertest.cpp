@@ -63,6 +63,9 @@ private Q_SLOTS:
     void testGimpVsImpress();
     void testTerm();
     void testCmd();
+    void testAla();
+    void testVsc();
+    void testEmo();
 };
 
 void ServiceRunnerTest::initTestCase()
@@ -268,6 +271,11 @@ void ServiceRunnerTest::testCodeVsKateVsEmojier()
                  u"Discover ServiceRunnerTest"_s, // fuzzy match... disCO*Er
                  u"Welcome Center ServiceRunnerTest"_s, // nobody knows why this matches, but it is a very poor match
              }));
+
+    // Ensure a decent gap between code and discover. discover requires fuzzying
+    constexpr auto firstIndex = 0;
+    constexpr auto discoverIndex = 2;
+    QVERIFY(matches[firstIndex].relevance() - matches[discoverIndex].relevance() > 1.0);
 }
 
 void ServiceRunnerTest::testDisassociation()
@@ -380,7 +388,8 @@ void ServiceRunnerTest::testTerm()
     qDebug() << texts;
 
     QCOMPARE(texts,
-             QStringList({u"Konsole ServiceRunnerTest"_s,
+             QStringList({u"Alacritty ServiceRunnerTest"_s,
+                          u"Konsole ServiceRunnerTest"_s,
                           u"Yakuake ServiceRunnerTest"_s,
                           u"Welcome Center ServiceRunnerTest"_s,
                           u"System Settings ServiceRunnerTest"_s,
@@ -399,6 +408,44 @@ void ServiceRunnerTest::testCmd()
     QCOMPARE(texts,
              QStringList(
                  {u"Konsole ServiceRunnerTest"_s, u"Code - OSS ServiceRunnerTest"_s, u"Visual Studio Code ServiceRunnerTest"_s, u"Kate ServiceRunnerTest"_s}));
+}
+
+void ServiceRunnerTest::testAla()
+{
+    auto matches = launchQueryAndSort(u"ala"_s);
+
+    QStringList texts;
+    for (const auto &match : matches) {
+        texts.push_back(match.text());
+    }
+
+    QCOMPARE(texts.at(0), u"Alacritty ServiceRunnerTest"_s);
+}
+
+void ServiceRunnerTest::testVsc()
+{
+    auto matches = launchQueryAndSort(u"vsc"_s);
+
+    QStringList texts;
+    for (const auto &match : matches) {
+        texts.push_back(match.text());
+    }
+
+    // We have two variants of vscode. We don't really care which one wins.
+    QVERIFY(QStringList({u"Code - OSS ServiceRunnerTest"_s, u"Visual Studio Code ServiceRunnerTest"_s}).contains(texts.at(0)));
+}
+
+void ServiceRunnerTest::testEmo()
+{
+    auto matches = launchQueryAndSort(u"emo"_s);
+
+    QStringList texts;
+    for (const auto &match : matches) {
+        texts.push_back(match.text());
+    }
+
+    // ASHPD must lose here! It only contains emo, it doesn't start with it.
+    QCOMPARE(u"Emoji Selector ServiceRunnerTest"_s, texts.at(0));
 }
 
 QTEST_MAIN(ServiceRunnerTest)

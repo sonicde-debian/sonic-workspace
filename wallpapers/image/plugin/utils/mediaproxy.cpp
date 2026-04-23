@@ -151,7 +151,7 @@ void MediaProxy::openModelImage()
         return;
     }
 
-    KIO::OpenUrlJob *job = new KIO::OpenUrlJob(url);
+    auto *job = new KIO::OpenUrlJob(url);
     job->setUiDelegate(new KNotificationJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled));
     job->start();
 }
@@ -168,7 +168,7 @@ void MediaProxy::useSingleImageDefaults()
 
     m_source = QUrl::fromLocalFile(package.path());
 
-    PackageFinder::findPreferredImageInPackage(package, m_targetSize);
+    WallpaperPackage::findPreferredImageInPackage(package, m_targetSize);
 
     // Make sure the image can be read, or there will be dead loops.
     if (m_source.isEmpty() || QImage(package.filePath("preferred")).isNull()) {
@@ -227,7 +227,7 @@ QColor MediaProxy::getAccentColorFromMetaData(const KPackage::Package &package)
     const QJsonObject metaData = package.metadata().rawData();
     const auto jsonIt = metaData.constFind(QLatin1String("X-KDE-PlasmaImageWallpaper-AccentColor"));
     if (jsonIt == metaData.constEnd()) {
-        return QColor();
+        return {};
     }
 
     QString colorString = QStringLiteral("transparent");
@@ -356,7 +356,7 @@ QUrl MediaProxy::findPreferredImageInPackage(KPackage::Package &package)
     const bool useDarkColorScheme =
         m_source.fragment().contains(QLatin1StringView("dark")) || (m_isDarkColorScheme && !m_source.fragment().contains(QLatin1StringView("light")));
 
-    PackageFinder::findPreferredImageInPackage(package, m_targetSize);
+    WallpaperPackage::findPreferredImageInPackage(package, m_targetSize);
     url = package.fileUrl("preferred");
 
     if (useDarkColorScheme) {
@@ -403,7 +403,7 @@ void MediaProxy::updateModelImage(KPackage::Package *package, bool doesBlockSign
         if (m_backgroundType != BackgroundType::Type::VectorImage) {
             // Is an animated image
             newRealSource = findPreferredImageInPackage(*package);
-            // This is to convince Image to reload wehn we ask for another size
+            // This is to convince Image to reload when we ask for another size
             newRealSource.setQuery(QString::number(QDateTime::currentSecsSinceEpoch()));
             break;
         }

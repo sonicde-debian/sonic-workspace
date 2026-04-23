@@ -12,6 +12,7 @@
 #include <QDBusConnection>
 #include <QStringMatcher>
 #include <QTimeZone>
+#include <algorithm>
 
 TimeZoneFilterProxy::TimeZoneFilterProxy(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -75,9 +76,7 @@ TimeZoneModel::TimeZoneModel(QObject *parent)
                                           SLOT(slotUpdate()));
 }
 
-TimeZoneModel::~TimeZoneModel()
-{
-}
+TimeZoneModel::~TimeZoneModel() = default;
 
 int TimeZoneModel::rowCount(const QModelIndex &parent) const
 {
@@ -106,7 +105,7 @@ QVariant TimeZoneModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 bool TimeZoneModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -224,9 +223,35 @@ QHash<int, QByteArray> TimeZoneModel::roleNames() const
 
 void TimeZoneModel::sortTimeZones()
 {
-    std::sort(m_selectedTimeZones.begin(), m_selectedTimeZones.end(), [this](const QString &a, const QString &b) {
+    std::ranges::sort(m_selectedTimeZones, [this](const QString &a, const QString &b) {
         return m_offsetData.value(a) < m_offsetData.value(b);
     });
 }
 
+
+QStringList TimeZoneUtils::sortedTimeZones(const QStringList timeZones) const
+{
+    const QDateTime now = QDateTime::currentDateTime();
+    QVector<QPair<int, QString>> offsetIdPairs;
+
+    for (const QString &tzId : timeZones) {
+        QTimeZone timeZone = tzId == QLatin1String("Local") ? QTimeZone(QTimeZone::LocalTime) : QTimeZone(tzId.toUtf8());
+        int offset = timeZone.offsetFromUtc(now); // Offset in seconds
+        offsetIdPairs.append(qMakePair(offset, tzId));
+    }
+
+    std::sort(offsetIdPairs.begin(), offsetIdPairs.end(), [](const QPair<int, QString> &a, const QPair<int, QString> &b) {
+        return a.first < b.first;
+    });
+
+    QStringList sortedIds;
+    sortedIds.reserve(timeZones.count());
+    for (const auto &pair : offsetIdPairs) {
+        sortedIds << pair.second;
+    }
+
+    return sortedIds;
+}
+
 #include "moc_timezonemodel.cpp"
+

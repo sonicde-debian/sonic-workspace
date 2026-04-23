@@ -17,14 +17,10 @@
 // for xid, and all other widgets can use this as their parent...
 static QWidget *createParent(int xid)
 {
-    if (!QX11Info::isPlatformX11()) {
-        return nullptr;
-    }
-
     if (!xid)
         return nullptr;
 
-    QWidget *parent = new QWidget(nullptr, Qt::FramelessWindowHint);
+    auto *parent = new QWidget(nullptr, Qt::FramelessWindowHint);
 
     parent->resize(1, 1);
     parent->show();

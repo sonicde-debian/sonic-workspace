@@ -5,14 +5,14 @@
     SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
 */
 
-import QtQuick 2.6
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.5 as QQC2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
 
 import org.kde.kirigami as Kirigami
-import org.kde.kirigamiaddons.components 1.0 as KirigamiComponents
+import org.kde.kirigamiaddons.components as KirigamiComponents
 import org.kde.kcmutils as KCM
-import org.kde.plasma.kcm.users 1.0 as UsersKCM
+import org.kde.plasma.kcm.users as UsersKCM
 
 KCM.SimpleKCM {
     id: usersDetailPage
@@ -167,12 +167,25 @@ KCM.SimpleKCM {
                 KeyNavigation.down: userNameField
             }
 
-            QQC2.TextField {
-                id: userNameField
-                text: user.name
+            RowLayout {
                 Kirigami.FormData.label: i18n("Username:")
+                Kirigami.FormData.buddyFor: userNameField
+                spacing: Kirigami.Units.smallSpacing
 
-                KeyNavigation.down: usertypeBox
+                QQC2.TextField {
+                    id: userNameField
+                    text: user.name
+                    enabled: !usersDetailPage.user.loggedIn
+
+                    KeyNavigation.down: usertypeBox
+                }
+
+                Kirigami.ContextualHelpButton {
+                    toolTipText: usersDetailPage.user.isCurrentUser
+                        ? i18nc("@label:tooltip", "Cannot change your own username while logged in; log out and then log in as another user to change this account’s username.")
+                        : i18nc("@label:tooltip", "Cannot change the username of a logged-in user; wait until this user logs out first.")
+                    visible: !userNameField.shouldBeEnabled
+                }
             }
 
             RowLayout {
@@ -224,34 +237,43 @@ KCM.SimpleKCM {
                 Layout.preferredHeight: deleteUser.height
             }
 
-            QQC2.Button {
-                id: deleteUser
+            RowLayout {
+                spacing: Kirigami.Units.smallSpacing
 
-                enabled: !usersDetailPage.user.isCurrentUser
+                QQC2.Button {
+                    id: deleteUser
 
-                KeyNavigation.down: fingerprintButton
+                    enabled: !usersDetailPage.user.isCurrentUser
 
-                QQC2.Menu {
-                    id: deleteMenu
-                    modal: true
-                    QQC2.MenuItem {
-                        text: i18n("Delete files")
-                        icon.name: "edit-delete-shred"
-                        onClicked: {
-                            usersDetailPage.deleteUser(usersDetailPage.user.uid, true);
+                    KeyNavigation.down: fingerprintButton
+
+                    QQC2.Menu {
+                        id: deleteMenu
+                        modal: true
+                        QQC2.MenuItem {
+                            text: i18n("Delete files")
+                            icon.name: "edit-delete-shred"
+                            onClicked: {
+                                usersDetailPage.deleteUser(usersDetailPage.user.uid, true);
+                            }
+                        }
+                        QQC2.MenuItem {
+                            text: i18n("Keep files")
+                            icon.name: "document-multiple"
+                            onClicked: {
+                                usersDetailPage.deleteUser(usersDetailPage.user.uid, false);
+                            }
                         }
                     }
-                    QQC2.MenuItem {
-                        text: i18n("Keep files")
-                        icon.name: "document-multiple"
-                        onClicked: {
-                            usersDetailPage.deleteUser(usersDetailPage.user.uid, false);
-                        }
-                    }
+                    text: i18n("Delete User…")
+                    icon.name: "edit-delete"
+                    onClicked: deleteMenu.open()
                 }
-                text: i18n("Delete User…")
-                icon.name: "edit-delete"
-                onClicked: deleteMenu.open()
+
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18nc("@label:tooltip", "Cannot delete yourself! Log out and then log in as another user to delete this user account.")
+                    visible: !usertypeBox.shouldBeEnabled
+                }
             }
         }
 

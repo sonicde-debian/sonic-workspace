@@ -27,12 +27,12 @@ static int positiveMod(int m, int n)
 
 DayNightPhase DayNightPhase::previous() const
 {
-    return DayNightPhase(Kind(positiveMod(int(m_kind) - 1, 4)));
+    return {Kind(positiveMod(int(m_kind) - 1, 4))};
 }
 
 DayNightPhase DayNightPhase::next() const
 {
-    return DayNightPhase(Kind(positiveMod(int(m_kind) + 1, 4)));
+    return {Kind(positiveMod(int(m_kind) + 1, 4))};
 }
 
 DayNightPhase DayNightPhase::from(KDarkLightTransition::Type type)
@@ -72,9 +72,7 @@ DayNightPhase DayNightPhase::from(const QDateTime &dateTime, const KDarkLightTra
     Q_UNREACHABLE();
 }
 
-DayNightSnapshot::DayNightSnapshot()
-{
-}
+DayNightSnapshot::DayNightSnapshot() = default;
 
 DayNightSnapshot::DayNightSnapshot(const QDateTime &timestamp, const QUrl &bottom, const QUrl &top, qreal blendFactor, bool disjoint)
     : m_timestamp(timestamp)

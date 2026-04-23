@@ -360,9 +360,9 @@ public:
      * The state an application job is in.
      */
     enum JobState {
-        JobStateStopped, ///< The job is stopped. It has either finished (error is 0) or failed (error is not 0)
+        JobStateStopped, ///< The job is stopped. It has either finished (error is 0) or failed (error is not 0).
         JobStateRunning, ///< The job is currently running.
-        JobStateSuspended, ///< The job is currentl paused
+        JobStateSuspended, ///< The job is currently paused.
     };
     Q_ENUM(JobState)
 
@@ -574,6 +574,13 @@ public:
      * Shows a notification to report the number of unread inhibited notifications.
      */
     Q_INVOKABLE void showInhibitionSummary(Urgency urgency, const QStringList &blacklistedDesktopEntries, const QStringList &blacklistedNotifyRcNames);
+
+    /**
+     * Hides the notification about the number of unread inhibited notifications.
+     *
+     * Call this when opening the notification history since the user will now be looking at the unread ones.
+     */
+    Q_INVOKABLE void hideInhibitionSummary();
 
     QVariant data(const QModelIndex &index, int role) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;

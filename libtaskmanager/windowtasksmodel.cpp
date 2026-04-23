@@ -8,10 +8,7 @@
 
 #include <config-X11.h>
 
-#include "waylandtasksmodel.h"
-#if HAVE_X11
 #include "xwindowtasksmodel.h"
-#endif
 
 #include <KWindowSystem>
 
@@ -46,22 +43,13 @@ WindowTasksModel::Private::~Private()
     --instanceCount;
 
     if (!instanceCount) {
-        delete sourceTasksModel;
-        sourceTasksModel = nullptr;
+        delete std::exchange(sourceTasksModel, nullptr);
     }
 }
 
 void WindowTasksModel::Private::initSourceTasksModel()
 {
-    if (!sourceTasksModel && KWindowSystem::isPlatformWayland()) {
-        sourceTasksModel = new WaylandTasksModel();
-    }
-
-#if HAVE_X11
-    if (!sourceTasksModel && KWindowSystem::isPlatformX11()) {
-        sourceTasksModel = new XWindowTasksModel();
-    }
-#endif
+    sourceTasksModel = new XWindowTasksModel();
 
     q->setSourceModel(sourceTasksModel);
 }
@@ -73,9 +61,7 @@ WindowTasksModel::WindowTasksModel(QObject *parent)
     d->initSourceTasksModel();
 }
 
-WindowTasksModel::~WindowTasksModel()
-{
-}
+WindowTasksModel::~WindowTasksModel() = default;
 
 QHash<int, QByteArray> WindowTasksModel::roleNames() const
 {
@@ -83,7 +69,7 @@ QHash<int, QByteArray> WindowTasksModel::roleNames() const
         return d->sourceTasksModel->roleNames();
     }
 
-    return QHash<int, QByteArray>();
+    return {};
 }
 
 QModelIndex WindowTasksModel::mapIfaceToSource(const QModelIndex &index) const

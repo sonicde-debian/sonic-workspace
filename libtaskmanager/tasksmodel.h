@@ -109,12 +109,12 @@ public:
 
     QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const override; // Invokable.
+    Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const override; // Invocable.
 
     QVariant data(const QModelIndex &proxyIndex, int role) const override;
 
     /**
-     * The number of launcher tasks in the tast list.
+     * The number of launcher tasks in the task list.
      *
      * @returns the number of launcher tasks in the task list.
      **/
@@ -857,6 +857,17 @@ public:
      * @since 6.4
      */
     Q_INVOKABLE void requestToggleNoBorder(const QModelIndex &index) override;
+
+    /**
+     * Request toggling the excludeFromCapture state of the task at given index.
+     *
+     * This is meant for tasks that have an associated window, and may be
+     * a no-op when there is no window.
+     *
+     * @param index An index in this tasks model.
+     * @since 6.6
+     **/
+    Q_INVOKABLE void requestToggleExcludeFromCapture(const QModelIndex &index) override;
 
     /**
      * Request entering the window at the given index on the specified virtual desktops.

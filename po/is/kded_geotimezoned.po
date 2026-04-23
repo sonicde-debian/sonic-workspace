@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-12-04 10:25+0000\n"
+"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"PO-Revision-Date: 2025-11-22 13:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: geotimezonemodule.cpp:187
+#: geotimezonemodule.cpp:186
 #, kde-format
 msgctxt "OSD, keep short"
 msgid "Time zone changed to %1"
 msgstr "Tímabelti breytt í %1"
 
-#: geotimezonemodule.cpp:190
+#: geotimezonemodule.cpp:189
 #, kde-format
 msgctxt ""
 "System clock was changed due to time zone change OSD, keep short: new time "
@@ -31,12 +31,12 @@ msgctxt ""
 msgid "Clock changed to %1 (%2)"
 msgstr "Klukku breytt í %1 (%2)"
 
-#: geotimezonemodule.cpp:206
+#: geotimezonemodule.cpp:205
 #, kde-format
 msgid "Refresh is already in progress."
 msgstr "Endurlestur er þegar í gangi."
 
-#: geotimezonemodule.cpp:269
+#: geotimezonemodule.cpp:268
 #, kde-format
 msgid "Received no or an invalid time zone."
 msgstr "Fékk ekkert eða ógilt tímabelti ."

@@ -33,6 +33,7 @@
 #include <QTimer>
 #include <QUrlQuery>
 #include <QVBoxLayout>
+#include <algorithm>
 
 #include <private/qtx11extras_p.h>
 
@@ -61,7 +62,7 @@ FontInstInterface *CJobRunner::dbus()
 QString CJobRunner::folderName(bool sys)
 {
     if (!theInterface) {
-        return QString();
+        return {};
     }
 
     QDBusPendingReply<QString> reply = theInterface->folderName(sys);
@@ -115,7 +116,7 @@ enum Response {
 
 static void addIcon(QGridLayout *layout, QFrame *page, const QString &iconName, int iconSize)
 {
-    QLabel *icon = new QLabel(page);
+    auto *icon = new QLabel(page);
     icon->setPixmap(QIcon::fromTheme(iconName).pixmap(iconSize));
     icon->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     layout->addWidget(icon, 0, 0);
@@ -143,7 +144,7 @@ CJobRunner::CJobRunner(QWidget *parent)
     m_autoSkipButton->hide();
 
     m_stack = new QStackedWidget(this);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
+    auto *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
     mainLayout->addWidget(m_stack);
     mainLayout->addWidget(m_buttonBox);
@@ -152,8 +153,8 @@ CJobRunner::CJobRunner(QWidget *parent)
     option.initFrom(this);
     int iconSize = style()->pixelMetric(QStyle::PM_MessageBoxIconSize, &option, this);
 
-    QFrame *page = new QFrame(m_stack);
-    QGridLayout *layout = new QGridLayout(page);
+    auto *page = new QFrame(m_stack);
+    auto *layout = new QGridLayout(page);
     m_statusLabel = new QLabel(page);
     m_progress = new QProgressBar(page);
     //     m_statusLabel->setWordWrap(true);
@@ -183,7 +184,7 @@ CJobRunner::CJobRunner(QWidget *parent)
 
     page = new QFrame(m_stack);
     layout = new QGridLayout(page);
-    QLabel *cancelLabel = new QLabel(i18n("<h3>Cancel?</h3><p>Are you sure you wish to cancel?</p>"), page);
+    auto *cancelLabel = new QLabel(i18n("<h3>Cancel?</h3><p>Are you sure you wish to cancel?</p>"), page);
     cancelLabel->setWordWrap(true);
     addIcon(layout, page, u"dialog-warning"_s, iconSize);
     layout->addWidget(cancelLabel, 0, 1);
@@ -195,10 +196,10 @@ CJobRunner::CJobRunner(QWidget *parent)
     } else {
         page = new QFrame(m_stack);
         layout = new QGridLayout(page);
-        QLabel *finishedLabel = new QLabel(i18n("<h3>Finished</h3>"
-                                                "<p>Please note that any open applications will need to be "
-                                                "restarted in order for any changes to be noticed.</p>"),
-                                           page);
+        auto *finishedLabel = new QLabel(i18n("<h3>Finished</h3>"
+                                              "<p>Please note that any open applications will need to be "
+                                              "restarted in order for any changes to be noticed.</p>"),
+                                         page);
         finishedLabel->setWordWrap(true);
         addIcon(layout, page, u"dialog-information"_s, iconSize);
         layout->addWidget(finishedLabel, 0, 1);
@@ -211,10 +212,10 @@ CJobRunner::CJobRunner(QWidget *parent)
         m_stack->insertWidget(PAGE_COMPLETE, page);
     }
 
-    QDBusServiceWatcher *watcher = new QDBusServiceWatcher(QLatin1String(OrgKdeFontinstInterface::staticInterfaceName()),
-                                                           QDBusConnection::sessionBus(),
-                                                           QDBusServiceWatcher::WatchForOwnerChange,
-                                                           this);
+    auto *watcher = new QDBusServiceWatcher(QLatin1String(OrgKdeFontinstInterface::staticInterfaceName()),
+                                            QDBusConnection::sessionBus(),
+                                            QDBusServiceWatcher::WatchForOwnerChange,
+                                            this);
 
     connect(watcher, &QDBusServiceWatcher::serviceOwnerChanged, this, &CJobRunner::dbusServiceOwnerChanged);
     connect(dbus(), &OrgKdeFontinstInterface::status, this, &CJobRunner::dbusStatus);
@@ -337,7 +338,7 @@ int CJobRunner::exec(ECommand cmd, const ItemList &urls, bool destIsSystem)
     m_destIsSystem = destIsSystem;
     m_urls = urls;
     if (CMD_INSTALL == cmd) {
-        std::sort(m_urls.begin(), m_urls.end()); // Sort list of fonts so that we have type1 fonts followed by their metrics...
+        std::ranges::sort(m_urls); // Sort list of fonts so that we have type1 fonts followed by their metrics...
     } else if (CMD_MOVE == cmd) {
         addEnableActions(m_urls);
     }
@@ -356,8 +357,7 @@ int CJobRunner::exec(ECommand cmd, const ItemList &urls, bool destIsSystem)
     m_actionLabel->startAnimation();
     int rv = QDialog::exec();
     if (m_tempDir) {
-        delete m_tempDir;
-        m_tempDir = nullptr;
+        delete std::exchange(m_tempDir, nullptr);
     }
     return rv;
 }
@@ -619,12 +619,14 @@ void CJobRunner::setPage(int page, const QString &msg)
         m_buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
         m_skipButton->show();
         m_autoSkipButton->show();
+        adjustSize();
         break;
     case PAGE_ERROR:
         m_errorLabel->setText(i18n("<h3>Error</h3>") + QLatin1String("<p>") + msg + QLatin1String("</p>"));
         m_buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
         m_skipButton->hide();
         m_autoSkipButton->hide();
+        adjustSize();
         break;
     case PAGE_CANCEL:
         m_buttonBox->setStandardButtons(QDialogButtonBox::Yes | QDialogButtonBox::No);
@@ -666,7 +668,7 @@ QString CJobRunner::fileName(const QUrl &url)
             if (job->exec()) {
                 return tempName;
             } else {
-                return QString();
+                return {};
             }
         }
     }

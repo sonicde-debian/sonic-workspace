@@ -14,14 +14,12 @@
 #include <QDBusConnection>
 #include <QLoggingCategory>
 #include <QPixmap>
-#include <qscreen.h>
+#include <QScreen>
 
 #include <KWindowSystem>
 
 #include <KConfigGroup>
 #include <KSharedConfig>
-
-#include <LayerShellQt/Shell>
 
 #define TEST_STEP_INTERVAL 2000
 
@@ -31,7 +29,7 @@
  *  - startPlasma (from startplasma)
  *  - kcminit
  *  - ksmserver
- *  - wm (for X11 from KWin, for Wayland from this class)
+ *  - wm (for X11 from KWin)
  *  - desktop (from shellcorona)
  */
 
@@ -64,17 +62,11 @@ SplashApp::SplashApp(int &argc, char **argv)
     dbus.registerObject(QStringLiteral("/KSplash"), this, QDBusConnection::ExportScriptableSlots);
     dbus.registerService(QStringLiteral("org.kde.KSplash"));
 
-    setupWaylandIntegration();
-
-    for (const auto screenList{screens()}; QScreen * screen : screenList) {
+    for (const auto screenList{screens()}; QScreen *screen : screenList) {
         adoptScreen(screen);
     }
 
     setStage(QStringLiteral("initial"));
-
-    if (KWindowSystem::isPlatformWayland()) {
-        setStage(QStringLiteral("wm"));
-    }
 
     if (m_testing) {
         m_timer.start(TEST_STEP_INTERVAL, this);
@@ -126,7 +118,7 @@ void SplashApp::adoptScreen(QScreen *screen)
     if (screen->geometry().isNull()) {
         return;
     }
-    SplashWindow *w = new SplashWindow(m_testing, m_window, m_theme, screen);
+    auto *w = new SplashWindow(m_testing, m_window, m_theme, screen);
     w->setGeometry(screen->geometry());
     w->setStage(m_stage);
     w->setVisible(true);
@@ -137,14 +129,6 @@ void SplashApp::adoptScreen(QScreen *screen)
         m_windows.removeAll(w);
         w->deleteLater();
     });
-}
-
-void SplashApp::setupWaylandIntegration()
-{
-    if (!KWindowSystem::isPlatformWayland()) {
-        return;
-    }
-    LayerShellQt::Shell::useLayerShell();
 }
 
 #include "moc_splashapp.cpp"

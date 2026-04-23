@@ -57,7 +57,6 @@ Dependencies:
     'plasma/libkscreen': '@same'
     'plasma/libksysguard': '@same'
     'plasma/plasma-nano': '@same'
-    'plasma/plasma5support': '@same'
     'plasma/plasma-activities': '@same'
     'plasma/plasma-activities-stats': '@same'
     'plasma/knighttime': '@same'
@@ -88,7 +87,7 @@ RuntimeDependencies:
     'plasma/milou': '@same'
 
 Options:
- ctest-arguments: '--repeat until-pass:5 --parallel 2'
+ ctest-arguments: '--repeat until-pass:5'
  use-ccache: True
  require-passing-tests-on: ['@all']
  clang-format-versions: [14, 18]

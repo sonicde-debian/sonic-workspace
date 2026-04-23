@@ -16,7 +16,7 @@
 static QList<QUrl> extractImagesFromPackage(const QString &filePath, const QSize &targetSize)
 {
     KPackage::Package package = KPackage::PackageLoader::self()->loadPackage(QStringLiteral("Wallpaper/Images"), filePath);
-    PackageFinder::findPreferredImageInPackage(package, targetSize);
+    WallpaperPackage::findPreferredImageInPackage(package, targetSize);
 
     QList<QUrl> result;
 
@@ -121,9 +121,7 @@ void WallpaperPreviewImageResponse::onPreviewFailed(const KFileItem &item)
     Q_EMIT finished();
 }
 
-WallpaperPreviewImageProvider::WallpaperPreviewImageProvider()
-{
-}
+WallpaperPreviewImageProvider::WallpaperPreviewImageProvider() = default;
 
 QQuickImageResponse *WallpaperPreviewImageProvider::requestImageResponse(const QString &id, const QSize &requestedSize)
 {

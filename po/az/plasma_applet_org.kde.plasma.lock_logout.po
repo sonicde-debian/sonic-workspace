@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
+"POT-Creation-Date: 2026-02-10 02:38+0000\n"
 "PO-Revision-Date: 2024-06-25 14:15+0400\n"
 "Last-Translator: Kheyyam Godjayev <xxmn77gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -23,54 +23,15 @@ msgstr ""
 msgid "General"
 msgstr "Əsas"
 
-#: ConfigGeneral.qml:36
+#: ConfigGeneral.qml:119
 #, kde-format
-msgctxt ""
-"Heading for a list of actions (leave, lock, switch user, hibernate, suspend)"
-msgid "Show actions:"
-msgstr "Əməlləri göstərmək:"
+msgid "Unavailable"
+msgstr ""
 
-#: ConfigGeneral.qml:37
-#, kde-format
-msgid "Log Out"
-msgstr "Sessiyadan çıxış"
-
-#: ConfigGeneral.qml:44
-#, kde-format
-msgctxt "@option:check"
-msgid "Show logout screen"
-msgstr "Çıxış ekranını göstərmək"
-
-#: ConfigGeneral.qml:50
-#, kde-format
-msgid "Shut Down"
-msgstr "Söndürmək"
-
-#: ConfigGeneral.qml:56
-#, kde-format
-msgid "Restart"
-msgstr "Yenidən başlatmaq"
-
-#: ConfigGeneral.qml:62 data.js:5
+#: data.js:5
 #, kde-format
 msgid "Lock"
 msgstr "Kilidləmək"
-
-#: ConfigGeneral.qml:68
-#, kde-format
-msgid "Switch User"
-msgstr "İstifadəçini dəyişmək"
-
-#: ConfigGeneral.qml:74 data.js:54
-#, kde-format
-msgid "Hibernate"
-msgstr "Gözləmə"
-
-#: ConfigGeneral.qml:80 data.js:47
-#, kde-format
-msgctxt "Suspend to RAM"
-msgid "Sleep"
-msgstr "Yuxu"
 
 #: data.js:6
 #, kde-format
@@ -78,8 +39,9 @@ msgid "Lock the screen"
 msgstr "Ekranı kilidləmək"
 
 #: data.js:12
-#, kde-format
-msgid "Switch user"
+#, fuzzy, kde-format
+#| msgid "Switch user"
+msgid "Switch user…"
 msgstr "İstifadəçini dəyişmək"
 
 #: data.js:13
@@ -88,8 +50,9 @@ msgid "Start a parallel session as a different user"
 msgstr "Paralel sesiyanı başqa istiadəçi adından başlatmaq"
 
 #: data.js:19
-#, kde-format
-msgid "Shutdown…"
+#, fuzzy, kde-format
+#| msgid "Shut Down"
+msgid "Shut down"
 msgstr "Söndürmək"
 
 #: data.js:20
@@ -99,8 +62,8 @@ msgstr "Komputeri söndürmək"
 
 #: data.js:26
 #, kde-format
-msgid "Restart…"
-msgstr "Yenidən başlatmaq..."
+msgid "Restart"
+msgstr "Yenidən başlatmaq"
 
 #: data.js:27
 #, kde-format
@@ -108,9 +71,10 @@ msgid "Reboot the computer"
 msgstr "Komputeri yenidən başlatmaq"
 
 #: data.js:33
-#, kde-format
-msgid "Logout…"
-msgstr "Sistemdən Çıxış"
+#, fuzzy, kde-format
+#| msgid "Log Out"
+msgid "Log out"
+msgstr "Sessiyadan çıxış"
 
 #: data.js:34
 #, kde-format
@@ -128,15 +92,54 @@ msgstr "Çıxış ekranını göstərmək"
 msgid "Log out, turn off, or restart the computer"
 msgstr "Sistemdən çıxış, söndürmək və ya komputeri yenidən başlatmaq"
 
+#: data.js:47
+#, kde-format
+msgctxt "Suspend to RAM"
+msgid "Sleep"
+msgstr "Yuxu"
+
 #: data.js:48
 #, kde-format
 msgid "Sleep (suspend to RAM)"
 msgstr "Yuxu rejimi (RAM-da saxlamaqla)"
 
+#: data.js:54
+#, kde-format
+msgid "Hibernate"
+msgstr "Gözləmə"
+
 #: data.js:55
 #, kde-format
 msgid "Hibernate (suspend to disk)"
 msgstr "Gözləmə rejimi (diskdə saxlamaqla)"
+
+#~ msgctxt ""
+#~ "Heading for a list of actions (leave, lock, switch user, hibernate, "
+#~ "suspend)"
+#~ msgid "Show actions:"
+#~ msgstr "Əməlləri göstərmək:"
+
+#~ msgid "Log Out"
+#~ msgstr "Sessiyadan çıxış"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show logout screen"
+#~ msgstr "Çıxış ekranını göstərmək"
+
+#~ msgid "Shut Down"
+#~ msgstr "Söndürmək"
+
+#~ msgid "Switch User"
+#~ msgstr "İstifadəçini dəyişmək"
+
+#~ msgid "Shutdown…"
+#~ msgstr "Söndürmək"
+
+#~ msgid "Restart…"
+#~ msgstr "Yenidən başlatmaq..."
+
+#~ msgid "Logout…"
+#~ msgstr "Sistemdən Çıxış"
 
 #~ msgid "Logout"
 #~ msgstr "Sistemdən Çıxış"

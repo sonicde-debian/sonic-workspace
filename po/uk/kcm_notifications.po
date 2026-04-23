@@ -3,13 +3,13 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Yuri Chornoivan <yurchor@ukr.net>, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcm_notifications\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 14:42+0000\n"
-"PO-Revision-Date: 2025-04-24 12:00+0300\n"
+"POT-Creation-Date: 2026-01-13 08:43+0000\n"
+"PO-Revision-Date: 2026-01-14 04:25+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Toggle do not disturb"
 msgstr "Перемкнути стан «Не турбувати»"
 
-#: sourcesmodel.cpp:407
+#: sourcesmodel.cpp:406
 #, kde-format
 msgid "Other Applications"
 msgstr "Інші програми"
@@ -95,14 +95,14 @@ msgstr "Виберіть звуковий файл"
 #: ui/main.qml:47
 #, kde-format
 msgctxt "@action:button Plasma-specific notifications"
-msgid "System Notifications"
-msgstr "Системні сповіщення"
+msgid "Configure for System…"
+msgstr "Налаштувати для системи…"
 
 #: ui/main.qml:53
 #, kde-format
 msgctxt "@action:button Application-specific notifications"
-msgid "Application Settings"
-msgstr "Параметри програм"
+msgid "Configure for Applications…"
+msgstr "Налаштувати для програм…"
 
 #: ui/main.qml:96
 #, kde-format
@@ -211,8 +211,8 @@ msgstr "Поруч із піктограмою сповіщень"
 #: ui/main.qml:269
 #, kde-format
 msgctxt "@action:button choose custom notification position"
-msgid "Custom…"
-msgstr "Нетипове…"
+msgid "Choose…"
+msgstr "Вибрати…"
 
 #: ui/main.qml:278 ui/main.qml:294
 #, kde-format
@@ -231,33 +231,40 @@ msgstr "Приховати за:"
 
 #: ui/main.qml:306
 #, kde-format
+msgctxt ""
+"@option:check Show progress bar on notifications indicating when it will hide"
+msgid "Show timeout indicator"
+msgstr "Показувати індикатор часу очікування"
+
+#: ui/main.qml:318
+#, kde-format
 msgctxt "@title:group"
 msgid "Additional feedback"
 msgstr "Додатковий відгук"
 
-#: ui/main.qml:312
+#: ui/main.qml:324
 #, kde-format
 msgctxt "Show application jobs in notification widget"
 msgid "Show in notifications"
 msgstr "Показувати у сповіщеннях"
 
-#: ui/main.qml:313
+#: ui/main.qml:325
 #, kde-format
 msgid "Application progress:"
 msgstr "Поступ програми:"
 
-#: ui/main.qml:327
+#: ui/main.qml:339
 #, kde-format
 msgctxt "Keep application job popup open for entire duration of job"
 msgid "Keep popup open during progress"
 msgstr "Не закривати контекстну панель протягом поступу"
 
-#: ui/main.qml:340
+#: ui/main.qml:352
 #, kde-format
 msgid "Notification badges:"
 msgstr "Пункти сповіщень:"
 
-#: ui/main.qml:341
+#: ui/main.qml:353
 #, kde-format
 msgid "Show in task manager"
 msgstr "Показувати у вікні задач"
@@ -269,8 +276,10 @@ msgstr "Розташування контекстного вікна"
 
 #: ui/SourcesPage.qml:20
 #, kde-format
-msgid "Application Settings"
-msgstr "Параметри програм"
+msgctxt ""
+"@title:window kcm page title, configure app-specific notification settings"
+msgid "Application Notifications"
+msgstr "Сповіщення програм"
 
 #: ui/SourcesPage.qml:104
 #, kde-format
@@ -296,6 +305,18 @@ msgstr ""
 "Виберіть програму зі списку, щоб налаштувати параметри та поведінку для її "
 "сповіщень"
 
+#~ msgctxt "@action:button Plasma-specific notifications"
+#~ msgid "System Notifications"
+#~ msgstr "Системні сповіщення"
+
+#~ msgctxt "@action:button Application-specific notifications"
+#~ msgid "Application Settings"
+#~ msgstr "Параметри програм"
+
+#~ msgctxt "@action:button choose custom notification position"
+#~ msgid "Custom…"
+#~ msgstr "Нетипове…"
+
 #~ msgid "Normal notifications:"
 #~ msgstr "Звичайні сповіщення:"
 
@@ -309,16 +330,9 @@ msgstr ""
 #~ msgid "Application Settings…"
 #~ msgstr "Параметри програм…"
 
-#~ msgctxt "@action:button Application-specific notifications"
-#~ msgid "Configure Application Settings…"
-#~ msgstr "Налаштувати параметри програми…"
-
 #~ msgctxt "@title:group"
 #~ msgid "Application-specific settings"
 #~ msgstr "Параметри окремих програм"
-
-#~ msgid "Configure…"
-#~ msgstr "Налаштувати…"
 
 #~ msgctxt "Enable Do Not Disturb mode when screens are mirrored"
 #~ msgid "Enable:"
