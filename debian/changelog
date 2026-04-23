@@ -1,3 +1,9 @@
+sonic-win (4:6.6.3-1) unstable; urgency=medium
+
+  * Upstream version 6.6.3
+
+ -- NexusSfan <nexussfan@duck.com>  Wed, 22 Apr 2026 21:37:03 -0800
+
 sonic-workspace (4:6.5.4-1) unstable; urgency=medium
 
   * Initial packaging
