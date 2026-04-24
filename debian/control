@@ -124,7 +124,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libbatterycontrol6
+Conflicts: libbatterycontrol6
 Provides: libbatterycontrol6 (= ${binary:Version})
 Description: Plasma Workspace battery control library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -138,7 +138,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libklipper6
+Conflicts: libklipper6
 Provides: libklipper6 (= ${binary:Version})
 Recommends: plasma-workspace-doc (>= ${source:Version}),
 Description: Plasma Workspaces Klipper library
@@ -157,7 +157,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libklookandfeel6
+Conflicts: libklookandfeel6
 Provides: libklookandfeel6 (= ${binary:Version})
 Description: Plasma Workspace look and feel helper library
  This tiny library provides shared helpers for determining whether a global
@@ -174,7 +174,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libkmpris6
+Conflicts: libkmpris6
 Provides: libkmpris6 (= ${binary:Version})
 Description: Plasma Workspace MPRIS library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -191,7 +191,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libkfontinst6
+Conflicts: libkfontinst6
 Provides: libkfontinst6 (= ${binary:Version})
 Description: Plasma Workspace fonts installation library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -205,7 +205,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libkfontinstui6
+Conflicts: libkfontinstui6
 Provides: libkfontinstui6 (= ${binary:Version})
 Description: Plasma Workspace UI components for fonts installation
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -223,7 +223,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libkworkspace6-6
+Conflicts: libkworkspace6-6
 Provides: libkworkspace6-6 (= ${binary:Version})
 Description: Plasma Workspace library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -240,7 +240,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libnotificationmanager1
+Conflicts: libnotificationmanager1
 Provides: libnotificationmanager1 (= ${binary:Version})
 Description: Plasma Workspace notification manager library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -257,7 +257,7 @@ Architecture: any
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Breaks: libtaskmanager6
+Conflicts: libtaskmanager6
 Provides: libtaskmanager6 (= ${binary:Version})
 Description: Plasma Workspace task manager library
  Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
@@ -306,7 +306,7 @@ Recommends: kde-cli-tools (>= 4:6.2.90~),
             plasma-workspace-doc (>= ${source:Version}),
             powerdevil (>= 4:6.2.90~),
             systemsettings,
-Breaks: breeze (<< 4:5.23.90~),
+Conflicts: breeze (<< 4:5.23.90~),
         plasma-desktop (<< 4:6.4.90~),
         plasma-desktop-data (<< 4:5.22.90),
         plasma-workspace-data (<< 4:6.5.2-2),
@@ -325,7 +325,7 @@ Description: base for Plasma Desktop, Mobile, and Bigscreen graphical environmen
 Package: sonic-workspace-data
 Architecture: all
 Depends: ${misc:Depends},
-Breaks: breeze (<< 4:5.23.90~),
+Conflicts: breeze (<< 4:5.23.90~),
         plasma-desktop (<< 4:5.24.0),
         plasma-desktop-data (<< 4:6.4.90~),
         xdg-desktop-portal-kde (<< 6.2.0~),
@@ -346,7 +346,7 @@ Package: sonic-workspace-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends},
-Breaks: plasma-desktop-doc (<< 4:6.4.90~),
+Conflicts: plasma-desktop-doc (<< 4:6.4.90~),
         plasma-workspace-data (<< 4:6.1.90~),
         plasma-workspace-doc,
 Provides: plasma-workspace-doc (= ${binary:Version})
@@ -369,7 +369,7 @@ Depends: libkf6itemmodels-dev (>= 6.18.0~),
          qt6-declarative-dev (>= 6.9.0~),
          ${misc:Depends},
          ${so:Depends},
-Breaks: plasma-desktop-dev (<< 4:5.20),
+Conflicts: plasma-desktop-dev (<< 4:5.20),
         plasma-workspace-dev,
 Provides: plasma-workspace-dev (= ${binary:Version})
 Replaces: plasma-desktop-dev (<< 4:5.20),
