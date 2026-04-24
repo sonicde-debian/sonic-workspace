@@ -14,7 +14,7 @@ Build-Depends: debhelper-compat (= 13),
                kded6-dev (>= 6.18.0~),
                kirigami-addons-dev (>= 1.0.0~),
                knighttime-dev (>= 6.5.4~),
-               kscreenlocker-dev (>= 6.5.4~),
+               sonic-screenlocker-dev (>= 6.5.4~),
                kwayland-dev (>= 4:6.5.4~),
                sonic-win-dev (>= 4:6.4.91~),
                libappstreamqt-dev (>= 1.0.0~),
@@ -61,7 +61,7 @@ Build-Depends: debhelper-compat (= 13),
                libkf6wallet-dev (>= 6.18.0~),
                libkirigami-dev (>= 6.18.0~),
                libkpipewire-dev (>= 6.4.91~),
-               libkscreen-dev (>= 4:6.5.4~),
+               sonic-screen-library-dev (>= 4:6.5.4~),
                libksysguard-dev (>= 4:6.5.4~),
                liblayershellqtinterface-dev (>= 6.5.4~),
                libpackagekitqt6-dev,
@@ -126,8 +126,8 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libbatterycontrol6
 Provides: libbatterycontrol6 (= ${binary:Version})
-Description: Plasma Workspace battery control library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace battery control library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
@@ -141,12 +141,12 @@ Depends: ${misc:Depends},
 Conflicts: libklipper6
 Provides: libklipper6 (= ${binary:Version})
 Recommends: plasma-workspace-doc (>= ${source:Version}),
-Description: Plasma Workspaces Klipper library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspaces Klipper library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
- Klipper is the Plasma clipboard utility. It stores clipboard
+ Klipper is the Sonic clipboard utility. It stores clipboard
  history, and allows you to link clipboard contents to application
  actions.
  .
@@ -159,7 +159,7 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libklookandfeel6
 Provides: libklookandfeel6 (= ${binary:Version})
-Description: Plasma Workspace look and feel helper library
+Description: Sonic Workspace look and feel helper library
  This tiny library provides shared helpers for determining whether a global
  theme is light or dark. It is used by the look and feel and landing page
  configuration modules.
@@ -167,7 +167,7 @@ Description: Plasma Workspace look and feel helper library
  In the future, the library can include other global theme related features.
  For example, perhaps the look and feel manager could live in it too.
  .
- This package contains Plasma Workspace libklookandfeel library files.
+ This package contains Sonic Workspace libklookandfeel library files.
 
 Package: sonic-libkmpris6
 Architecture: any
@@ -176,15 +176,15 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libkmpris6
 Provides: libkmpris6 (= ${binary:Version})
-Description: Plasma Workspace MPRIS library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace MPRIS library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
  This library can be used to control Media Player Remote Interfacing
  Specification-compatible media players.
  .
- This package contains Plasma Workspace MPRIS library files.
+ This package contains Sonic Workspace MPRIS library files.
 
 Package: sonic-libkfontinst6
 Architecture: any
@@ -193,8 +193,8 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libkfontinst6
 Provides: libkfontinst6 (= ${binary:Version})
-Description: Plasma Workspace fonts installation library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace fonts installation library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
@@ -207,8 +207,8 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libkfontinstui6
 Provides: libkfontinstui6 (= ${binary:Version})
-Description: Plasma Workspace UI components for fonts installation
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace UI components for fonts installation
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
@@ -225,15 +225,15 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libkworkspace6-6
 Provides: libkworkspace6-6 (= ${binary:Version})
-Description: Plasma Workspace library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
- This library provides the core features of Plasma Workspace like
+ This library provides the core features of Sonic Workspace like
  display, login and session management.
  .
- This package contains the main Plasma Workspace library files.
+ This package contains the main Sonic Workspace library files.
 
 Package: sonic-libnotificationmanager1
 Architecture: any
@@ -242,13 +242,13 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libnotificationmanager1
 Provides: libnotificationmanager1 (= ${binary:Version})
-Description: Plasma Workspace notification manager library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace notification manager library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
  This library is responsible for listing notifications, closing them
- and interacting with them in Plasma.
+ and interacting with them in Sonic.
  .
  This package contains the notification manager library files.
 
@@ -259,8 +259,8 @@ Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libtaskmanager6
 Provides: libtaskmanager6 (= ${binary:Version})
-Description: Plasma Workspace task manager library
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace task manager library
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
@@ -317,8 +317,8 @@ Replaces: breeze (<< 4:5.23.90~),
           plasma-desktop-data (<< 4:5.22.90),
           plasma-workspace-data (<< 4:6.5.2-2),
           plasma-workspace-wayland,
-Description: base for Plasma Desktop, Mobile, and Bigscreen graphical environments
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: base for Sonic Desktop, Mobile, and Bigscreen graphical environments
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
 
@@ -335,12 +335,12 @@ Replaces: breeze (<< 4:5.23.90~),
           plasma-desktop (<< 4:5.24.0),
           plasma-desktop-data (<< 4:6.4.90~),
           xdg-desktop-portal-kde (<< 6.2.0~),
-Description: Plasma Workspace data files
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace data files
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
- This contains the data files for Plasma Workspace.
+ This contains the data files for Sonic Workspace.
 
 Package: sonic-workspace-doc
 Architecture: all
@@ -352,12 +352,12 @@ Conflicts: plasma-desktop-doc (<< 4:6.4.90~),
 Provides: plasma-workspace-doc (= ${binary:Version})
 Replaces: plasma-desktop-doc (<< 4:6.4.90~),
           plasma-workspace-data (<< 4:6.1.90~),
-Description: Plasma Workspace documentation
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace documentation
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
- This package contains the documentation for Plasma Workspace
+ This package contains the documentation for Sonic Workspace
  components and libraries
 
 Package: sonic-workspace-dev
@@ -373,9 +373,9 @@ Conflicts: plasma-desktop-dev (<< 4:5.20),
         plasma-workspace-dev,
 Provides: plasma-workspace-dev (= ${binary:Version})
 Replaces: plasma-desktop-dev (<< 4:5.20),
-Description: Plasma Workspace development files
- Plasma Workspace is used as the base for Plasma Desktop, Mobile, and
+Description: Sonic Workspace development files
+ Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
  well as multiple libraries.
  .
- This package contains the development files for Plasma Workspace.
+ This package contains the development files for Sonic Workspace.
