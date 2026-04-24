@@ -68,7 +68,7 @@ Build-Depends: debhelper-compat (= 13),
                libphonon4qt6-dev (>= 4:4.6.60~),
                libphonon4qt6experimental-dev,
                libpipewire-0.3-dev,
-               libplasma-dev (>= 6.5.4~),
+               libsonicinterface-dev (>= 6.5.4~),
                libplasma5support-dev (>= 4:6.5.4~),
                libplasmaactivities-dev (>= 6.5.4~),
                libplasmaactivitiesstats-dev (>= 6.5.4~),
@@ -364,7 +364,7 @@ Package: sonic-workspace-dev
 Architecture: any
 Section: libdevel
 Depends: libkf6itemmodels-dev (>= 6.18.0~),
-         libplasma-dev (>= 6.5.4~),
+         libsonicinterface-dev (>= 6.5.4~),
          qt6-base-dev (>= 6.9.0~),
          qt6-declarative-dev (>= 6.9.0~),
          ${misc:Depends},
