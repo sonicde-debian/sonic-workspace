@@ -5,7 +5,6 @@ etc/xdg/autostart/org.kde.plasmashell.desktop
 etc/xdg/autostart/xembedsniproxy.desktop
 etc/xdg/menus/plasma-applications.menu
 etc/xdg/plasmanotifyrc
-etc/xdg/taskmanagerrulesrc
 usr/bin/gmenudbusmenuproxy
 usr/bin/kcminit
 usr/bin/kcminit_startup
@@ -29,7 +28,6 @@ usr/bin/plasma_session
 usr/bin/plasma_waitforname
 usr/bin/plasmashell
 usr/bin/plasmawindowed
-usr/bin/startplasma-wayland
 usr/bin/startplasma-x11
 usr/bin/xembedsniproxy
 usr/lib/*/kconf_update_bin/plasma6.0-remove-dpi-settings
@@ -80,3 +78,4 @@ usr/share/plasma/wallpapers/
 usr/share/solid/actions/openWithFileManager.desktop
 usr/share/wayland-sessions/plasma.desktop
 usr/share/xsessions/plasmax11.desktop
+usr/lib/*/libexec/ksecretprompter

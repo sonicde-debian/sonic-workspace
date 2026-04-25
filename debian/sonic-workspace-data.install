@@ -14,7 +14,6 @@ usr/share/konqsidebartng/virtual_folders/services/fonts.desktop
 usr/share/kstyle/
 usr/share/kxmlgui5/
 usr/share/locale/
-usr/share/plasma5support/services/
 usr/share/plasma/avatars/
 usr/share/polkit-1/actions/org.kde.fontinst.policy
 usr/share/polkit-1/actions/org.kde.localegenhelper.policy
