@@ -61,6 +61,7 @@ usr/lib/*/qt6/qml/org/kde/plasma/workspace/osd/
 usr/lib/*/qt6/qml/org/kde/plasma/workspace/timezoneselector/
 usr/lib/*/qt6/qml/org/kde/plasma/workspace/trianglemousefilter/
 usr/lib/*/qt6/qml/org/kde/taskmanager/
+usr/lib/*/qt6/qml/org/kde/plasma/clock/
 usr/lib/kf6/kauth/libexec/fontinst
 usr/lib/kf6/kauth/libexec/fontinst_helper
 usr/lib/kf6/kauth/libexec/fontinst_x11
