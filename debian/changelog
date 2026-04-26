@@ -1,3 +1,9 @@
+sonic-workspace (4:6.6.3-5) unstable; urgency=medium
+
+  * Hopefully fix QML issues
+
+ -- NexusSfan <nexussfan@duck.com>  Sun, 26 Apr 2026 13:57:28 -0800
+
 sonic-workspace (4:6.6.3-1) unstable; urgency=medium
 
   * Upstream version 6.6.3

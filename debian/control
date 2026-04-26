@@ -1,6 +1,5 @@
 Source: sonic-workspace
 Section: kde
-Priority: optional
 Maintainer: NexusSfan <nexussfan@duck.com>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-kf6,
@@ -8,15 +7,14 @@ Build-Depends: debhelper-compat (= 13),
                dh-sequence-qmldeps,
                dh-sequence-sodeps,
                appmenu-gtk3-module,
-               breeze-dev (>= 4:6.5.4~),
+               breeze-dev (>= 4:6.6.4~),
                cmake (>= 3.16~),
-               extra-cmake-modules (>= 6.18.0~),
-               kded6-dev (>= 6.18.0~),
+               extra-cmake-modules (>= 6.22.0~),
+               kded6-dev (>= 6.22.0~),
                kirigami-addons-dev (>= 1.0.0~),
-               knighttime-dev (>= 6.5.4~),
-               sonic-screenlocker-dev (>= 6.5.4~),
-               kwayland-dev (>= 4:6.5.4~),
-               sonic-win-dev (>= 4:6.4.91~),
+               knighttime-dev (>= 6.6.4~),
+               sonic-screenlocker-dev (>= 6.6.4~),
+               sonic-win-dev (>= 4:6.6~),
                libappstreamqt-dev (>= 1.0.0~),
                libcanberra-dev,
                libcrypt-dev,
@@ -26,55 +24,55 @@ Build-Depends: debhelper-compat (= 13),
                libice-dev,
                libicu-dev,
                libkexiv2qt6-dev,
-               libkf6archive-dev (>= 6.18.0~),
-               libkf6auth-dev (>= 6.18.0~),
+               libkf6archive-dev (>= 6.22.0~),
+               libkf6auth-dev (>= 6.22.0~),
                libkf6baloo-dev (>= 6.2.0~),
-               libkf6colorscheme-dev (>= 6.18.0~),
-               libkf6coreaddons-dev (>= 6.18.0~),
-               libkf6crash-dev (>= 6.18.0~),
-               libkf6dbusaddons-dev (>= 6.18.0~),
-               libkf6declarative-dev (>= 6.18.0~),
-               libkf6doctools-dev (>= 6.18.0~),
-               libkf6globalaccel-dev (>= 6.18.0~),
-               libkf6guiaddons-dev (>= 6.18.0~),
-               libkf6holidays-dev (>= 6.18.0~),
-               libkf6i18n-dev (>= 6.18.0~),
-               libkf6iconthemes-dev (>= 6.18.0~),
-               libkf6idletime-dev (>= 6.18.0~),
-               libkf6itemmodels-dev (>= 6.18.0~),
-               libkf6kcmutils-dev (>= 6.18.0~),
-               libkf6kio-dev (>= 6.18.0~),
-               libkf6networkmanagerqt-dev (>= 6.18.0~),
-               libkf6newstuff-dev (>= 6.18.0~),
-               libkf6notifications-dev (>= 6.18.0~),
+               libkf6colorscheme-dev (>= 6.22.0~),
+               libkf6coreaddons-dev (>= 6.22.0~),
+               libkf6crash-dev (>= 6.22.0~),
+               libkf6dbusaddons-dev (>= 6.22.0~),
+               libkf6declarative-dev (>= 6.22.0~),
+               libkf6doctools-dev (>= 6.22.0~),
+               libkf6globalaccel-dev (>= 6.22.0~),
+               libkf6guiaddons-dev (>= 6.22.0~),
+               libkf6holidays-dev (>= 6.22.0~),
+               libkf6i18n-dev (>= 6.22.0~),
+               libkf6iconthemes-dev (>= 6.22.0~),
+               libkf6idletime-dev (>= 6.22.0~),
+               libkf6itemmodels-dev (>= 6.22.0~),
+               libkf6kcmutils-dev (>= 6.22.0~),
+               libkf6kio-dev (>= 6.22.0~),
+               libkf6networkmanagerqt-dev (>= 6.22.0~),
+               libkf6newstuff-dev (>= 6.22.0~),
+               libkf6notifications-dev (>= 6.22.0~),
                libkf6notifyconfig-dev (>= 6.18.0~),
-               libkf6package-dev (>= 6.18.0~),
-               libkf6parts-dev (>= 6.18.0~),
-               libkf6prison-dev (>= 6.18.0~),
-               libkf6runner-dev (>= 6.18.0~),
-               libkf6statusnotifieritem-dev (>= 6.18.0~),
-               libkf6svg-dev (>= 6.18.0~),
-               libkf6texteditor-dev (>= 6.18.0~),
-               libkf6textwidgets-dev (>= 6.18.0~),
+               libkf6package-dev (>= 6.22.0~),
+               libkf6parts-dev (>= 6.22.0~),
+               libkf6prison-dev (>= 6.22.0~),
+               libkf6runner-dev (>= 6.22.0~),
+               libkf6statusnotifieritem-dev (>= 6.22.0~),
+               libkf6svg-dev (>= 6.22.0~),
+               libkf6texteditor-dev (>= 6.22.0~),
+               libkf6textwidgets-dev (>= 6.22.0~),
                libkf6unitconversion-dev (>= 6.10.0~),
                libkf6userfeedback-dev (>= 6.2.0~),
-               libkf6wallet-dev (>= 6.18.0~),
-               libkirigami-dev (>= 6.18.0~),
-               libkpipewire-dev (>= 6.4.91~),
-               sonic-screen-library-dev (>= 4:6.5.4~),
-               libksysguard-dev (>= 4:6.5.4~),
-               liblayershellqtinterface-dev (>= 6.5.4~),
+               libkf6wallet-dev (>= 6.22.0~),
+               libkirigami-dev (>= 6.22.0~),
+               libkpipewire-dev (>= 6.6~),
+               sonic-screen-library-dev (>= 4:6.6.4~),
+               libksysguard-dev (>= 4:6.6.4~),
+               liblayershellqtinterface-dev (>= 6.6.4~),
                libpackagekitqt6-dev,
                libphonon4qt6-dev (>= 4:4.6.60~),
                libphonon4qt6experimental-dev,
                libpipewire-0.3-dev,
-               libsonicinterface-dev (>= 6.5.4~),
-               libplasma5support-dev (>= 4:6.5.4~),
-               libplasmaactivities-dev (>= 6.5.4~),
-               libplasmaactivitiesstats-dev (>= 6.5.4~),
+               libsonicinterface-dev (>= 6.6.4~),
+               libplasma5support-dev (>= 4:6.6~),
+               libplasmaactivities-dev (>= 6.6.4~),
+               libplasmaactivitiesstats-dev (>= 6.6.4~),
                libpolkit-qt6-1-dev,
                libqalculate-dev (>= 2.0~),
-               libquickcharts-dev (>= 6.18.0~),
+               libquickcharts-dev (>= 6.22.0~),
                libsm-dev,
                libsystemd-dev,
                libudev-dev,
@@ -98,29 +96,28 @@ Build-Depends: debhelper-compat (= 13),
                pkgconf,
                plasma-wayland-protocols (>= 1.6~),
                qcoro-qt6-dev,
-               qml6-module-org-kde-prison,
                qml6-module-qtquick-virtualkeyboard,
                qt6-5compat-dev (>= 6.9.0~),
-               qt6-base-dev (>= 6.9.0~),
+               qt6-base-dev (>= 6.10.0~),
                qt6-base-private-dev,
-               qt6-declarative-dev (>= 6.9.0~),
+               qt6-declarative-dev (>= 6.10.0~),
                qt6-declarative-private-dev,
-               qt6-location-dev (>= 6.9.0~),
-               qt6-positioning-dev (>= 6.9.0~),
-               qt6-shadertools-dev (>= 6.9.0~),
-               qt6-svg-dev (>= 6.9.0~),
+               qt6-location-dev (>= 6.10.0~),
+               qt6-positioning-dev (>= 6.10.0~),
+               qt6-shadertools-dev (>= 6.10.0~),
+               qt6-svg-dev (>= 6.10.0~),
                qt6-wayland-dev (>= 6.6.0~),
                qt6-wayland-private-dev (>= 6.6.0~),
                systemd-dev,
                zlib1g-dev,
-               quilt,
-Standards-Version: 4.7.2
-Homepage: https://github.com/Sonic-DE/sonic-workspace
-Vcs-Browser: https://github.com/sonicde-debian/sonic-workspace
-Vcs-Git: https://github.com/sonicde-debian/sonic-workspace.git
+Standards-Version: 4.7.4
+Homepage: https://invent.kde.org/plasma/plasma-workspace
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/kde/plasma-workspace
+Vcs-Git: https://salsa.debian.org/qt-kde-team/kde/plasma-workspace.git
 
 Package: sonic-libbatterycontrol6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -135,12 +132,13 @@ Description: Sonic Workspace battery control library
 
 Package: sonic-libklipper6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
 Conflicts: libklipper6
 Provides: libklipper6 (= ${binary:Version})
-Recommends: plasma-workspace-doc (>= ${source:Version}),
+Recommends: sonic-workspace-doc (>= ${source:Version}),
 Description: Sonic Workspaces Klipper library
  Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
  Bigscreen. It contains shared KCM configuration screens, applets as
@@ -154,6 +152,7 @@ Description: Sonic Workspaces Klipper library
 
 Package: sonic-libklookandfeel6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -171,6 +170,7 @@ Description: Sonic Workspace look and feel helper library
 
 Package: sonic-libkmpris6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -188,6 +188,7 @@ Description: Sonic Workspace MPRIS library
 
 Package: sonic-libkfontinst6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -202,6 +203,7 @@ Description: Sonic Workspace fonts installation library
 
 Package: sonic-libkfontinstui6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -220,6 +222,7 @@ Description: Sonic Workspace UI components for fonts installation
 
 Package: sonic-libkworkspace6-6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -237,6 +240,7 @@ Description: Sonic Workspace library
 
 Package: sonic-libnotificationmanager1
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -254,6 +258,7 @@ Description: Sonic Workspace notification manager library
 
 Package: sonic-libtaskmanager6
 Architecture: any
+Multi-Arch: same
 Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends},
@@ -279,7 +284,7 @@ Depends: default-dbus-session-bus | dbus-session-bus,
          kactivitymanagerd (>= 6.2.90~),
          kded6,
          kglobalacceld (>= 6.2.90~),
-         knighttime (>= 6.4.90~),
+         knighttime (>= 6.6~),
          sonic-win (>= 4:6.2.90~),
          libkf6config-bin,
          milou (>= 4:6.2.90~),
@@ -324,7 +329,9 @@ Description: base for Sonic Desktop, Mobile, and Bigscreen graphical environment
 
 Package: sonic-workspace-data
 Architecture: all
-Depends: ${misc:Depends},
+Multi-Arch: foreign
+Depends: qtpaths6,
+         ${misc:Depends},
 Conflicts: breeze (<< 4:5.23.90~),
         plasma-desktop (<< 4:5.24.0),
         plasma-desktop-data (<< 4:6.4.90~),
@@ -344,6 +351,7 @@ Description: Sonic Workspace data files
 
 Package: sonic-workspace-doc
 Architecture: all
+Multi-Arch: foreign
 Section: doc
 Depends: ${misc:Depends},
 Conflicts: plasma-desktop-doc (<< 4:6.4.90~),
@@ -363,15 +371,27 @@ Description: Sonic Workspace documentation
 Package: sonic-workspace-dev
 Architecture: any
 Section: libdevel
-Depends: libkf6itemmodels-dev (>= 6.18.0~),
-         libsonicinterface-dev (>= 6.5.4~),
-         qt6-base-dev (>= 6.9.0~),
-         qt6-declarative-dev (>= 6.9.0~),
+Depends: libkf6itemmodels-dev (>= 6.22.0~),
+         libsonicinterface-dev,
+         qt6-base-dev (>= 6.10.0~),
+         qt6-declarative-dev (>= 6.10.0~),
          ${misc:Depends},
          ${so:Depends},
 Conflicts: plasma-desktop-dev (<< 4:5.20),
-        plasma-workspace-dev,
-Provides: plasma-workspace-dev (= ${binary:Version})
+           plasma-workspace-dev,
+           qml6-module-org-kde-breeze-components,
+           qml6-module-org-kde-notificationmanager,
+           qml6-module-org-kde-plasma-clock,
+           qml6-module-org-kde-plasma-lookandfeel,
+           qml6-module-org-kde-plasma-workspace,
+           qml6-module-org-kde-taskmanager,
+Provides: plasma-workspace-dev,
+          qml6-module-org-kde-breeze-components (= ${binary:Version}),
+          qml6-module-org-kde-notificationmanager (= ${binary:Version}),
+          qml6-module-org-kde-plasma-clock (= ${binary:Version}),
+          qml6-module-org-kde-plasma-lookandfeel (= ${binary:Version}),
+          qml6-module-org-kde-plasma-workspace (= ${binary:Version}),
+          qml6-module-org-kde-taskmanager (= ${binary:Version}),
 Replaces: plasma-desktop-dev (<< 4:5.20),
 Description: Sonic Workspace development files
  Sonic Workspace is used as the base for Sonic Desktop, Mobile, and
