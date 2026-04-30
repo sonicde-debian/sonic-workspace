@@ -3,6 +3,7 @@ Section: kde
 Maintainer: NexusSfan <nexussfan@duck.com>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-kf6,
+               quilt,
                dh-sequence-sodeps,
                appmenu-gtk3-module,
                breeze-dev,
