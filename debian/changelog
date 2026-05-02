@@ -1,3 +1,9 @@
+sonic-workspace (4:6.6.3-6) unstable; urgency=medium
+
+  * Fix missing dependency
+
+ -- NexusSfan <nexussfan@duck.com>  Sat, 02 May 2026 09:32:15 -0800
+
 sonic-workspace (4:6.6.3-5) unstable; urgency=medium
 
   * Hopefully fix QML issues
