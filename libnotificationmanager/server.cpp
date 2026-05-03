@@ -16,6 +16,7 @@
 #include <KStartupInfo>
 #include <KWindowSystem>
 #include <QDebug>
+#include <QtGlobal>
 
 using namespace NotificationManager;
 
@@ -75,15 +76,18 @@ void Server::invokeAction(uint notificationId,
                           Notifications::InvokeBehavior behavior,
                           QWindow *window)
 {
-        KStartupInfoId startupId;
-        startupId.initId();
+    Q_UNUSED(xdgActivationAppId);
+    Q_UNUSED(window);
 
-        Q_EMIT d->ActivationToken(notificationId, QString::fromUtf8(startupId.id()));
+    KStartupInfoId startupId;
+    startupId.initId();
 
-        Q_EMIT d->ActionInvoked(notificationId, actionName);
-        if (behavior & Notifications::Close) {
-            Q_EMIT d->CloseNotification(notificationId);
-        }
+    Q_EMIT d->ActivationToken(notificationId, QString::fromUtf8(startupId.id()));
+
+    Q_EMIT d->ActionInvoked(notificationId, actionName);
+    if (behavior & Notifications::Close) {
+        Q_EMIT d->CloseNotification(notificationId);
+    }
 }
 
 void Server::reply(const QString &dbusService, uint notificationId, const QString &text, Notifications::InvokeBehavior behavior)
