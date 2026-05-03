@@ -123,7 +123,6 @@ void SystemTray::migrateFromSystrayContainer()
     }
 
     // Delete the the old systray
-    bool oldSystrayInstantiated = false;
     for (Plasma::Containment *cont : corona()->containments()) {
         if (cont->id() == oldSystrayId) {
             delete cont;
@@ -186,6 +185,10 @@ void SystemTray::showPlasmoidMenu(QQuickItem *appletInterface, int x, int y)
     }
 
     auto *desktopMenu = new QMenu;
+    // Breeze and Oxygen have rounded corners on menus. They set this attribute
+    // in polish() but at that time the underlying surface has already been
+    // created so setting this flag makes no difference anymore (Bug 385311)
+    desktopMenu->setAttribute(Qt::WA_TranslucentBackground);
     connect(this, &QObject::destroyed, desktopMenu, &QMenu::close);
     desktopMenu->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -406,6 +409,11 @@ void SystemTray::activate(const QString &service, QPoint pos, QQuickItem *status
 {
     const auto source = StatusNotifierItemHost::self()->itemForService(service);
 
+    if (!source) {
+        qCWarning(SYSTEM_TRAY) << "activate: Could not find item for service" << service;
+        return;
+    }
+
     connect(
         source,
         &StatusNotifierItemSource::activateResult,
@@ -419,7 +427,6 @@ void SystemTray::activate(const QString &service, QPoint pos, QQuickItem *status
         },
         Qt::SingleShotConnection);
 
-    QWindow *window = nullptr;
     source->activate(pos.x(), pos.y());
 }
 
@@ -427,13 +434,22 @@ void SystemTray::secondaryActivate(const QString &service, QPoint pos)
 {
     const auto source = StatusNotifierItemHost::self()->itemForService(service);
 
-    QWindow *window = nullptr;
+    if (!source) {
+        qCWarning(SYSTEM_TRAY) << "secondaryActivate: Could not find item for service" << service;
+        return;
+    }
+
     source->secondaryActivate(pos.x(), pos.y());
 }
 
 void SystemTray::openContextMenu(const QString &service, QPoint pos, QQuickItem *statusNotifierIcon)
 {
     const auto source = StatusNotifierItemHost::self()->itemForService(service);
+
+    if (!source) {
+        qCWarning(SYSTEM_TRAY) << "openContextMenu: Could not find item for service" << service;
+        return;
+    }
 
     connect(
         source,
@@ -493,13 +509,18 @@ void SystemTray::openContextMenu(const QString &service, QPoint pos, QQuickItem 
         },
         Qt::SingleShotConnection);
 
-    QWindow *window = nullptr;
     source->contextMenu(pos.x(), pos.y());
 }
 
 void SystemTray::scroll(const QString &service, int delta, const QString &direction)
 {
     const auto source = StatusNotifierItemHost::self()->itemForService(service);
+
+    if (!source) {
+        qCWarning(SYSTEM_TRAY) << "scroll: Could not find item for service" << service;
+        return;
+    }
+
     source->scroll(delta, direction);
 }
 

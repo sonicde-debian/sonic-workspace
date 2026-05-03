@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(plasma-workspace)
-set(PROJECT_VERSION "6.6.3")
+set(PROJECT_VERSION "6.6.4")
 string(REPLACE "." ";" VERSION_LIST ${PROJECT_VERSION})
 list(GET VERSION_LIST 0 PROJECT_VERSION_MAJOR)
 list(GET VERSION_LIST 1 PROJECT_VERSION_MINOR)
 list(GET VERSION_LIST 2 PROJECT_VERSION_PATCH)
 
-set(PROJECT_DEP_VERSION "6.6.3")
+set(PROJECT_DEP_VERSION "6.6.4")
 set(QT_MIN_VERSION "6.10.0")
 set(KF6_MIN_VERSION "6.22.0")
 
@@ -155,16 +155,6 @@ set_package_properties(Fontconfig PROPERTIES DESCRIPTION "Font access configurat
                        PURPOSE "Needed to build font configuration and installation tools"
                       )
 
-find_package(PackageKitQt6)
-set_package_properties(PackageKitQt6
-        PROPERTIES DESCRIPTION "Software Manager integration"
-        TYPE OPTIONAL
-        PURPOSE "Used to install additional language packages on demand and integrate for offline updates"
-)
-option(PACKAGEKIT_OFFLINE_UPDATES "Integrate with PackageKit for offline updates" OFF)
-add_feature_info(PACKAGEKIT_OFFLINE_UPDATES PackageKitQt6_FOUND "Integrate with PackageKit for offline updates")
-set(PACKAGEKIT_OFFLINE_UPDATES ${PackageKitQt6_FOUND})
-
     find_package(X11)
     set_package_properties(X11 PROPERTIES DESCRIPTION "X11 libraries"
                             URL "https://www.x.org"
@@ -226,16 +216,13 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     # notes for packager:
     # This is the macro definition part of Region & Language KCM
     # Depending on your distributions, the KCM behaves differently
-    # For Ubuntu based systems, this KCM uses "check-language-support" and PackageKit
-    # to install relevant fonts and packages
-    # You should enable option UBUNTU_PACKAGEKIT (it's auto detected though)
     #
     # For Glibc systems that don't come with pre-generated locales, such as ArchLinux
     # This KCM uses "/etc/locale.gen" and "locale-gen" to generate configured locales
     # and display a note to let user install fonts themselves if required
     # You shouldn't required to do anything in this case
     #
-    # For Glibc systems that come with pre-generated locales, such as Fedora and openSUSE
+    # For Glibc systems that come with pre-generated locales, such as Ubuntu, Fedora and openSUSE
     # a note to let user install fonts themselves if required is displayed
     # You should enable GLIBC_LOCALE_PREGENERATED option
     #
@@ -264,26 +251,14 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         find_program(LANGUAGE_SELECTOR_COMMON "check-language-support" DOC "Required for ubuntu-based distros to generate locale")
     endif()
 
-    set(UBUNTU_LOCALE FALSE)
-    option(UBUNTU_PACKAGEKIT "Install required package for language on Ubuntu Based systems, PackageKitQt6 required" ${SYSTEM_UBUNTU_BASED})
-    if(UBUNTU_PACKAGEKIT)
-        set(UBUNTU_LOCALE ${PackageKitQt6_FOUND})
-    endif()
-
     set(GLIBC_LOCALE_GEN_DEFAULT ON)
-    if(UBUNTU_LOCALE)
-        set(GLIBC_LOCALE_GEN_DEFAULT OFF)
-    endif()
 
     option(GLIBC_LOCALE_GEN "Auto generate Glibc locale with locale-gen and /etc/locale.gen" ${GLIBC_LOCALE_GEN_DEFAULT})
-    if(GLIBC_LOCALE_GEN AND UBUNTU_LOCALE)
-        message(FATAL_ERROR "UBUNTU_PACKAGEKIT and GLIBC_LOCALE_GEN both enabled, only UBUNTU_PACKEGKIT will be used")
-    endif()
     if(GLIBC_LOCALE_GEN)
         set(GLIBC_LOCALE_AUTO TRUE)
     endif()
     set(REGION_LANG_GENERATE_LOCALE_HELPER FALSE)
-    if(UBUNTU_LOCALE OR GLIBC_LOCALE_GEN)
+    if(GLIBC_LOCALE_GEN)
         set(REGION_LANG_GENERATE_LOCALE_HELPER TRUE)
     endif()
 
@@ -292,12 +267,11 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         set(GLIBC_LOCALE_GENERATED TRUE)
     endif()
     if(REGION_LANG_GENERATE_LOCALE_HELPER AND GLIBC_LOCALE_PREGENERATED)
-        message(FATAL_ERROR "(UBUNTU_PACKAGEKIT || GLIBC_LOCALE_GEN) and GLIBC_LOCALE_PREGENERATED both enabled")
+        message(FATAL_ERROR "GLIBC_LOCALE_GEN and GLIBC_LOCALE_PREGENERATED both enabled")
     endif()
 
     option(GLIBC_LOCALE "Build with glibc-compatible locale infrastructure" ON)
     add_feature_info(GLIBC_LOCALE GLIBC_LOCALE "Locale support is glibc based")
-    add_feature_info(UBUNTU_LOCALE UBUNTU_LOCALE "Install language packages on Ubuntu-like systems")
     add_feature_info(GLIBC_LOCALE_GEN GLIBC_LOCALE_GEN "Generate glibc locales")
     add_feature_info(GLIBC_LOCALE_PREGENERATED GLIBC_LOCALE_PREGENERATED "glibc locales are pregenerated")
     ################## Find libraries ###################

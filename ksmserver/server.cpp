@@ -172,8 +172,6 @@ void KSMServer::executeCommand(const QStringList &command)
 
 IceAuthDataEntry *authDataEntries = nullptr;
 
-static QTemporaryFile *remTempFile = nullptr;
-
 static IceListenObj *listenObjs = nullptr;
 int numTransports = 0;
 
@@ -303,18 +301,6 @@ public:
     inline static size_t count = 0;
 };
 
-/* for printing hex digits */
-static void fprintfhex(FILE *fp, unsigned int len, char *cp)
-{
-    static const char hexchars[] = "0123456789abcdef";
-
-    for (; len > 0; len--, cp++) {
-        unsigned char s = *cp;
-        putc(hexchars[s >> 4], fp);
-        putc(hexchars[s & 0x0f], fp);
-    }
-}
-
 #define MAGIC_COOKIE_LEN 16
 
 Status SetAuthentication(int count, IceListenObj *listenObjs, IceAuthDataEntry **authDataEntries)
@@ -358,7 +344,7 @@ Status SetAuthentication(int count, IceListenObj *listenObjs, IceAuthDataEntry *
             file_entry->protocol_data_length = 0;
             file_entry->network_id = IceGetListenConnectionString(listenObjs[i / 2]);
             file_entry->auth_name = strdup("MIT-MAGIC-COOKIE-1");
-            if (file_entry->auth_data = (char *)malloc(MAGIC_COOKIE_LEN)) {
+            if ((file_entry->auth_data = (char *)malloc(MAGIC_COOKIE_LEN))) {
                 memcpy(file_entry->auth_data, (*authDataEntries)[i].auth_data, MAGIC_COOKIE_LEN);
             }
             file_entry->auth_data_length = MAGIC_COOKIE_LEN;
@@ -384,7 +370,7 @@ Status SetAuthentication(int count, IceListenObj *listenObjs, IceAuthDataEntry *
             file_entry->protocol_data_length = 0;
             file_entry->network_id = IceGetListenConnectionString(listenObjs[i / 2]);
             file_entry->auth_name = strdup("MIT-MAGIC-COOKIE-1");
-            if (file_entry->auth_data = (char *)malloc(MAGIC_COOKIE_LEN)) {
+            if ((file_entry->auth_data = (char *)malloc(MAGIC_COOKIE_LEN))) {
                 memcpy(file_entry->auth_data, (*authDataEntries)[i + 1].auth_data, MAGIC_COOKIE_LEN);
             }
             file_entry->auth_data_length = MAGIC_COOKIE_LEN;

@@ -97,6 +97,9 @@ PanelView::PanelView(ShellCorona *corona, QScreen *targetScreen, QWindow *parent
         case Plasma::Types::TopEdge:
         case Plasma::Types::BottomEdge:
             containment()->setFormFactor(Plasma::Types::Horizontal);
+            break;
+        default:
+            break;
         }
         restore();
     });
@@ -1513,6 +1516,7 @@ void PanelView::refreshContainment()
     restore();
     Plasma::Containment *const cont = containment();
     connect(m_corona, &Plasma::Corona::editModeChanged, this, [this](bool edit) {
+        Q_UNUSED(edit)
         updateExclusiveZone();
     });
     updateExclusiveZone();
