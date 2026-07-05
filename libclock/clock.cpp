@@ -136,6 +136,7 @@ void Clock::componentComplete()
         setupTimeZone(QTimeZone(QTimeZone::systemTimeZoneId()));
     }
     setupTickConnections();
+    Q_EMIT timeChanged();
 }
 
 void Clock::update()
@@ -170,8 +171,8 @@ void Clock::setupTickConnections()
 void Clock::setupTimeZone(const QTimeZone &timeZone)
 {
     const QDateTime nowUtc = QDateTime::currentDateTimeUtc();
-    m_nextTimezoneTransition = m_timeZone.nextTransition(nowUtc).atUtc;
-    m_prevTimezoneTransition = m_timeZone.previousTransition(nowUtc).atUtc;
+    m_nextTimezoneTransition = timeZone.nextTransition(nowUtc).atUtc;
+    m_prevTimezoneTransition = timeZone.previousTransition(nowUtc).atUtc;
 
     m_timeZone = timeZone;
     Q_EMIT timeZoneChanged();

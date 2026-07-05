@@ -106,7 +106,6 @@ ShellCorona::ShellCorona(QObject *parent)
     , m_activityController(new KActivities::Controller(this))
     , m_addPanelAction(nullptr)
     , m_addPanelsMenu(nullptr)
-    , m_closingDown(false)
     , m_strutManager(new StrutManager(this))
     , m_shellContainmentConfig(nullptr)
 {
@@ -162,7 +161,6 @@ void ShellCorona::init()
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, [this]() {
         // saveLayout is a slot but arguments not compatible
-        m_closingDown = true;
         saveLayout();
     });
 
@@ -313,6 +311,9 @@ void ShellCorona::init()
 
 ShellCorona::~ShellCorona()
 {
+    m_closingDown = true;
+    destroyDesktopsAndPanels();
+
     while (!containments().isEmpty()) {
         // Deleting a containment will remove it from the list due to QObject::destroyed connect in Corona
         // Deleting a containment in turn also kills any panel views
@@ -950,17 +951,7 @@ void ShellCorona::unload()
         return;
     }
 
-    // Make double sure that we do not access the members while we are in the process of deleting them.
-    // Most notably destroying PanelViews may issue signals that in turn cause iteration upon the m_panelViews.
-    // First clear the members, then delete them.
-    auto desktopViewForScreen = std::move(m_desktopViewForScreen);
-    qDeleteAll(desktopViewForScreen);
-    for (const auto panelViews = std::move(m_panelViews); auto panelView : panelViews) {
-        panelView->disconnect(this);
-        delete panelView;
-    }
-
-    m_waitingPanels.clear();
+    destroyDesktopsAndPanels();
     m_activityContainmentPlugins.clear();
 
     // iterate with a for on a copy of the list making sure this loop will end
@@ -978,6 +969,21 @@ void ShellCorona::unload()
             cont->destroy();
         }
     }
+}
+
+void ShellCorona::destroyDesktopsAndPanels()
+{
+    // Make double sure that we do not access the members while we are in the process of deleting them.
+    // Most notably destroying PanelViews may issue signals that in turn cause iteration upon the m_panelViews.
+    // First clear the members, then delete them.
+    auto desktopViewForScreen = std::move(m_desktopViewForScreen);
+    qDeleteAll(desktopViewForScreen);
+    for (const auto panelViews = std::move(m_panelViews); auto panelView : panelViews) {
+        panelView->disconnect(this);
+        delete panelView;
+    }
+
+    m_waitingPanels.clear();
 }
 
 KSharedConfig::Ptr ShellCorona::applicationConfig()
@@ -1643,8 +1649,7 @@ void ShellCorona::panelContainmentDestroyed(QObject *obj)
         delete view;
     }
     // don't make things relayout when the application is quitting
-    // NOTE: qApp->closingDown() is still false here
-    if (!m_closingDown && !m_screenReorderInProgress) {
+    if (!m_screenReorderInProgress) {
         Q_EMIT availableScreenRectChanged(screen);
     }
 }
@@ -1726,7 +1731,6 @@ void ShellCorona::executeSetupPlasmoidScript(Plasma::Containment *containment, P
 void ShellCorona::toggleWidgetExplorer()
 {
     setEditMode(true);
-    // FIXME: This does not work on wayland
     const QPoint cursorPos = QCursor::pos();
     for (DesktopView *view : std::as_const(m_desktopViewForScreen)) {
         if (view->screen()->geometry().contains(cursorPos)) {
@@ -2439,6 +2443,7 @@ void ShellCorona::clonePanelTo(PanelView *oldPanelView, Plasma::Types::Location 
             }
         }
         oldAppletConfig.deleteGroup();
+        newApplet->configChanged();
     }
 
     targetGeneralConfig.writeEntry("AppletOrder", appletsOrderList.join(QStringLiteral(";")));
@@ -2778,12 +2783,11 @@ void ShellCorona::previousActivity()
  * menus, etc.
  *
  * If user clicks outside a popup window, it's expected that the popup window
- * will be closed.  On X11, it's achieved by establishing both a keyboard grab
- * and a pointer grab. But on Wayland, you can't grab keyboard or pointer. If
- * user clicks a surface of another app, the compositor will dismiss the popup
- * surface.  However, if user clicks some surface of the same application, the
- * popup surface won't be dismissed, it's up to the application to decide
- * whether the popup must be closed. In 99% cases, it must.
+ * will be closed.  It's achieved by establishing both a keyboard grab and
+ * a pointer grab. If user clicks a surface of another app, the compositor will
+ * dismiss the popup surface.  However, if user clicks some surface of the same
+ * application, the popup surface won't be dismissed, it's up to the application
+ * to decide whether the popup must be closed. In 99% cases, it must.
  *
  * Qt has some code that dismisses the active popup widget if another window
  * of the same app has been clicked. But, that code works only if the
