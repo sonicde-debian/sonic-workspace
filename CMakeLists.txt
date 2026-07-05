@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(plasma-workspace)
-set(PROJECT_VERSION "6.6.4")
+set(PROJECT_VERSION "6.6.5")
 string(REPLACE "." ";" VERSION_LIST ${PROJECT_VERSION})
 list(GET VERSION_LIST 0 PROJECT_VERSION_MAJOR)
 list(GET VERSION_LIST 1 PROJECT_VERSION_MINOR)
 list(GET VERSION_LIST 2 PROJECT_VERSION_PATCH)
 
-set(PROJECT_DEP_VERSION "6.6.4")
+set(PROJECT_DEP_VERSION "6.6.5")
 set(QT_MIN_VERSION "6.10.0")
 set(KF6_MIN_VERSION "6.22.0")
 
@@ -42,7 +42,7 @@ include(ECMQmlModule)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PipeWire QUIET IMPORTED_TARGET libpipewire-0.3)
-add_feature_info(PipeWire PipeWire_FOUND "Required for camera indicator applet and Wayland screencasting testing")
+add_feature_info(PipeWire PipeWire_FOUND "Required for camera indicator applet testing")
 set(BUILD_CAMERAINDICATOR_DEFAULT OFF)
 if(PipeWire_FOUND)
     set(BUILD_CAMERAINDICATOR_DEFAULT ON)

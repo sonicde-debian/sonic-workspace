@@ -111,13 +111,15 @@ SNIProxy::SNIProxy(xcb_window_t wid, QObject *parent)
     // create a container window
     auto screen = xcb_setup_roots_iterator(xcb_get_setup(c)).data;
     m_containerWid = xcb_generate_id(c);
-    uint32_t values[3];
-    uint32_t mask = XCB_CW_BACK_PIXEL | XCB_CW_OVERRIDE_REDIRECT | XCB_CW_EVENT_MASK;
-    values[0] = screen->black_pixel; // draw a solid background so the embedded icon doesn't get garbage in it
-    values[1] = true; // bypass wM
-    values[2] = XCB_EVENT_MASK_STRUCTURE_NOTIFY | XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY | XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT;
+    uint32_t values[5];
+    uint32_t mask = XCB_CW_BACK_PIXEL | XCB_CW_BORDER_PIXEL | XCB_CW_OVERRIDE_REDIRECT | XCB_CW_EVENT_MASK | XCB_CW_COLORMAP;
+    values[0] = Xcb::trayVisual->blackPixel; // draw a solid background so the embedded icon doesn't get garbage in it
+    values[1] = Xcb::trayVisual->blackPixel; // required when visual is diffrent from parent
+    values[2] = true; // bypass wM
+    values[3] = XCB_EVENT_MASK_STRUCTURE_NOTIFY | XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY | XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT;
+    values[4] = Xcb::trayVisual->colormap; // required when visual is diffrent from parent
     xcb_create_window(c, /* connection    */
-                      XCB_COPY_FROM_PARENT, /* depth         */
+                      Xcb::trayVisual->visualDepth, /* depth         */
                       m_containerWid, /* window Id     */
                       screen->root, /* parent window */
                       0,
@@ -126,7 +128,7 @@ SNIProxy::SNIProxy(xcb_window_t wid, QObject *parent)
                       s_embedSize, /* width, height */
                       0, /* border_width  */
                       XCB_WINDOW_CLASS_INPUT_OUTPUT, /* class         */
-                      screen->root_visual, /* visual        */
+                      Xcb::trayVisual->visualId, /* visual        */
                       mask,
                       values); /* masks         */
 
@@ -518,7 +520,7 @@ void SNIProxy::ContextMenu(int x, int y)
 
 void SNIProxy::Scroll(int delta, const QString &orientation)
 {
-    if (orientation == QLatin1String("vertical")) {
+    if (orientation.compare(QLatin1String("vertical"), Qt::CaseInsensitive) == 0) {
         sendClick(delta > 0 ? XCB_BUTTON_INDEX_4 : XCB_BUTTON_INDEX_5, 0, 0);
     } else {
         sendClick(delta > 0 ? 6 : 7, 0, 0);
@@ -568,10 +570,6 @@ void SNIProxy::sendClick(uint8_t mouseButton, int x, int y)
 
     setActiveForInput(true);
 
-    if (qgetenv("XDG_SESSION_TYPE") == "wayland") {
-        xcb_warp_pointer(c, XCB_NONE, m_windowId, 0, 0, 0, 0, clickPoint.x(), clickPoint.y());
-    }
-
     // mouse down
     if (m_injectMode == Direct) {
         auto *event = new xcb_button_press_event_t;
@@ -618,18 +616,5 @@ void SNIProxy::sendClick(uint8_t mouseButton, int x, int y)
         sendXTestReleased(m_x11Interface->display(), mouseButton);
     }
 
-    if (m_injectMode == Direct) {
-        setActiveForInput(false);
-    } else {
-        // delayed because on xwayland with the new libei path it will go to XWayland
-        // then kwin, then back to X
-        // we need to delay slightly until that happens
-        if (qgetenv("XDG_SESSION_TYPE") == QByteArrayLiteral("wayland")) {
-            QTimer::singleShot(300, this, [this]() {
-                setActiveForInput(false);
-            });
-        } else {
-            setActiveForInput(false);
-        }
-    }
+    setActiveForInput(false);
 }

@@ -264,6 +264,7 @@ private Q_SLOTS:
 
 private:
     void sanitizeScreenLayout(const QString &configFileName);
+    void destroyDesktopsAndPanels();
     void updateStruts();
     void configurationChanged(const QString &path);
     DesktopView *desktopForScreen(QScreen *screen) const;
@@ -309,9 +310,9 @@ private:
 #ifndef NDEBUG
     QTimer m_invariantsTimer;
 #endif
-    // For getting the active window on Wayland
-    bool m_closingDown : 1;
+
     bool m_screenReorderInProgress = false;
+    bool m_closingDown = false;
     QString m_testModeLayout;
     Plasma::Applet *m_showingAlternatives = nullptr;
 

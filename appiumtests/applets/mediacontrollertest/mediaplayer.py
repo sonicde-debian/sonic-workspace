@@ -15,6 +15,7 @@ import os
 import signal
 import sys
 import threading
+import time
 from os import getpid
 from typing import Any, Final
 
@@ -128,8 +129,26 @@ class Mpris2:
         self.connection.unregister_object(self.__base_reg_id)
         self.__base_reg_id = 0
         Gio.bus_unown_name(self.__owner_id)
-        self.connection.flush_sync(None)  # Otherwise flaky
+        self.connection.flush_sync(None)
+        GLibMainLoopThread.process_events()
+        self._wait_for_dbus_name_released()
         logging.info("Player exit")
+
+    def _wait_for_dbus_name_released(self, timeout: float = 5.0) -> None:
+        """Wait for a D-Bus name to be released."""
+        bus_name = self.APP_INTERFACE
+        session_bus = Gio.bus_get_sync(Gio.BusType.SESSION)
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            result = session_bus.call_sync(
+                "org.freedesktop.DBus", "/org/freedesktop/DBus",
+                "org.freedesktop.DBus", "NameHasOwner",
+                GLib.Variant("(s)", (bus_name,)), None,
+                Gio.DBusSendMessageFlags.NONE, 100, None
+            )
+            if not result[0]:
+                return
+            time.sleep(0.1)
 
     def on_bus_acquired(self, connection: Gio.DBusConnection, name: str, *args) -> None:
         """
@@ -178,8 +197,7 @@ class Mpris2:
                 assert False, f"Unknown interface {interface}"
 
             print(f"Get: {interface} {property_name} {ret}", file=sys.stderr, flush=True)
-            # https://bugzilla.gnome.org/show_bug.cgi?id=765603
-            invocation.return_value(GLib.Variant.new_tuple(ret))
+            invocation.return_value(GLib.Variant.new_tuple(GLib.Variant('v', ret)))
 
         elif method_name == "GetAll":
             interface = parameters[0]
