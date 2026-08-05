@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
 "PO-Revision-Date: 2021-09-07 22:06-0700\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik Language Support\n"
@@ -69,14 +69,22 @@ msgstr[1] ""
 "хомӯш кунед ё аз нав оғоз намоед, фаъолиятии ҷории он корбарон метавонад "
 "қатъ карда шавад."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, fuzzy, kde-format
+#| msgid "When restarted, the computer will enter the firmware setup screen."
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr ""
+"Вақте ки низом аз нав оғоз карда мешавад, компютер ба экрани танзимоти "
+"миёнафзор ворид карда мешавад."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr ""
 "Вақте ки низом аз нав оғоз карда мешавад, компютер ба экрани танзимоти "
 "миёнафзор ворид карда мешавад."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, fuzzy, kde-format
 #| msgid "When restarted, the computer will enter the firmware setup screen."
 msgid "When restarted, the computer will enter the boot loader menu."
@@ -84,7 +92,7 @@ msgstr ""
 "Вақте ки низом аз нав оғоз карда мешавад, компютер ба экрани танзимоти "
 "миёнафзор ворид карда мешавад."
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, fuzzy, kde-format
 #| msgid "When restarted, the computer will enter the firmware setup screen."
 msgctxt "%1 is a boot loader entry"
@@ -93,7 +101,7 @@ msgstr ""
 "Вақте ки низом аз нав оғоз карда мешавад, компютер ба экрани танзимоти "
 "миёнафзор ворид карда мешавад."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, fuzzy, kde-format
 #| msgctxt "Suspend to RAM"
 #| msgid "Sleep"
@@ -101,7 +109,7 @@ msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "Ба хоб равондан"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, fuzzy, kde-format
 #| msgctxt "Suspend to RAM"
 #| msgid "Sleep"
@@ -109,67 +117,67 @@ msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "Ба хоб равондан"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, fuzzy, kde-format
 #| msgid "Hibernate"
 msgid "&Hibernate"
 msgstr "Дар ҳолати ҷорӣ нигоҳ доштан"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, fuzzy, kde-format
 #| msgid "Hibernate"
 msgid "&Hibernate Now"
 msgstr "Дар ҳолати ҷорӣ нигоҳ доштан"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr ""
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, fuzzy, kde-format
 #| msgid "Restart"
 msgid "&Restart"
 msgstr "Аз нав оғоз кардани низом"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, fuzzy, kde-format
 #| msgid "Restart"
 msgid "&Restart Now"
 msgstr "Аз нав оғоз кардани низом"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr ""
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, fuzzy, kde-format
 #| msgid "Shut Down"
 msgid "&Shut Down"
 msgstr "Хомӯш кардани низом"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, fuzzy, kde-format
 #| msgid "Shut Down"
 msgid "&Shut Down Now"
 msgstr "Хомӯш кардани низом"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, fuzzy, kde-format
 #| msgid "Log Out"
 msgid "&Log Out"
 msgstr "Баромадан аз низом"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, fuzzy, kde-format
 #| msgid "Log Out"
 msgid "&Log Out Now"
 msgstr "Баромадан аз низом"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgid "&Cancel"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
 "PO-Revision-Date: 2009-01-06 14:36+0200\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@nospam.gmail.com>\n"
 "Language-Team: Kurdish <kde-i18n-doc@lists.kde.org>\n"
@@ -731,7 +731,8 @@ msgstr ""
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
-msgid "You do not have permission to overwrite that scheme"
+msgid ""
+"This scheme is read-only. Please save the modifications with another name."
 msgstr ""
 
 #: editor/scmeditordialog.cpp:178
@@ -739,7 +740,7 @@ msgstr ""
 msgid "Error"
 msgstr "Çewtî"
 
-#: editor/scmeditordialog.cpp:193
+#: editor/scmeditordialog.cpp:194
 #, fuzzy, kde-format
 #| msgid "Inactive"
 msgid "Inactive"
@@ -1317,121 +1318,139 @@ msgctxt "@item:inlistbox User-chosen custom accent color"
 msgid "Custom accent color"
 msgstr "Rengê neçalak"
 
-#: ui/main.qml:90
+#: ui/main.qml:94
 #, kde-format
 msgid ""
 "The color scheme '%1' is not installed. Selecting the default theme instead."
 msgstr ""
 
-#: ui/main.qml:123
+#: ui/main.qml:127
 #, fuzzy, kde-format
 #| msgid "Import Scheme..."
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "All schemes"
 msgstr "Dirb Bîne Nava Xwe..."
 
-#: ui/main.qml:124
+#: ui/main.qml:128
 #, fuzzy, kde-format
 #| msgid "&Scheme"
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Light schemes"
 msgstr "&Dirb"
 
-#: ui/main.qml:125
+#: ui/main.qml:129
 #, fuzzy, kde-format
 #| msgid "Save Scheme..."
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Dark schemes"
 msgstr "Dirbê Tomar Bike..."
 
-#: ui/main.qml:152
+#: ui/main.qml:140
 #, kde-format
 msgid "Install from File…"
 msgstr ""
 
-#: ui/main.qml:157
+#: ui/main.qml:145
 #, kde-format
 msgid "Get New…"
 msgstr ""
 
-#: ui/main.qml:204
+#: ui/main.qml:192
 #, fuzzy, kde-format
 #| msgid "Window Text"
 msgid "Window Title"
 msgstr "Nivîsara Paceyê"
 
-#: ui/main.qml:227
+#: ui/main.qml:215
 #, fuzzy, kde-format
 #| msgid "Window text"
 msgid "Window text"
 msgstr "Nivîsara paceyê"
 
-#: ui/main.qml:235
+#: ui/main.qml:223
 #, fuzzy, kde-format
 #| msgid "Button"
 msgid "Button"
 msgstr "Bişkoj"
 
-#: ui/main.qml:275
+#: ui/main.qml:263
 #, fuzzy, kde-format
 #| msgid "link"
 msgctxt "Hyperlink"
 msgid "link"
 msgstr "lînk"
 
-#: ui/main.qml:277
+#: ui/main.qml:265
 #, fuzzy, kde-format
 #| msgid "visited"
 msgctxt "Visited hyperlink"
 msgid "visited"
 msgstr "ziyaretkirî"
 
-#: ui/main.qml:285
+#: ui/main.qml:273
 #, fuzzy, kde-format
 #| msgid "Normal text"
 msgid "Normal text"
 msgstr "Nivîsara normal"
 
-#: ui/main.qml:292
+#: ui/main.qml:280
 #, fuzzy, kde-format
 #| msgid "Visited Text"
 msgid "Highlighted text"
 msgstr "Nivîsa Ziyaretkirî"
 
-#: ui/main.qml:299
+#: ui/main.qml:287
 #, fuzzy, kde-format
 #| msgid "Disabled"
 msgid "Disabled text"
 msgstr "Neçalakkirî"
 
-#: ui/main.qml:317
+#: ui/main.qml:305
 #, fuzzy, kde-format
 #| msgid "Import Scheme..."
 msgid "Edit Color Scheme…"
 msgstr "Dirb Bîne Nava Xwe..."
 
-#: ui/main.qml:323
+#: ui/main.qml:312
 #, fuzzy, kde-format
 #| msgid "Save Color Scheme"
-msgid "Remove Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Remove color scheme"
 msgstr "Dirba Rengê Tomar Bike"
 
-#: ui/main.qml:330
+#: ui/main.qml:314
 #, fuzzy, kde-format
-#| msgid "Import Color Scheme"
-msgid "Restore Color Scheme"
-msgstr "Dirba Rengê Bîne Nava Xwe"
+#| msgid "Save Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active color scheme"
+msgstr "Dirba Rengê Tomar Bike"
 
-#: ui/main.qml:374
+#: ui/main.qml:316
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed color schemes"
+msgstr ""
+
+#: ui/main.qml:324
+#, kde-format
+msgid "Don’t delete this color scheme"
+msgstr ""
+
+#: ui/main.qml:368
 #, fuzzy, kde-format
 #| msgid "Save Color Scheme"
 msgid "Open Color Scheme"
 msgstr "Dirba Rengê Tomar Bike"
 
-#: ui/main.qml:376
+#: ui/main.qml:370
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Import Color Scheme"
+#~ msgid "Restore Color Scheme"
+#~ msgstr "Dirba Rengê Bîne Nava Xwe"
 
 #, fuzzy
 #~| msgid "Shade"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcminput\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2023-08-06 22:35+0200\n"
+"POT-Creation-Date: 2026-03-21 00:47+0000\n"
+"PO-Revision-Date: 2026-04-26 20:42+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -21,14 +21,14 @@ msgstr ""
 #. i18n: ectx: label, entry (cursorTheme), group (Mouse)
 #: cursorthemesettings.kcfg:9
 #, kde-format
-msgid "Name of the current cursor theme"
-msgstr "현재 커서 테마 이름"
+msgid "Name of the current pointer theme"
+msgstr "현재 포인터 테마 이름"
 
 #. i18n: ectx: label, entry (cursorSize), group (Mouse)
 #: cursorthemesettings.kcfg:13
 #, kde-format
-msgid "Current cursor size"
-msgstr "현재 커서 크기"
+msgid "Current pointer size"
+msgstr "현재 포인터 크기"
 
 #: kcmcursortheme.cpp:312
 #, kde-format
@@ -88,21 +88,22 @@ msgstr "요청한 '%1' 크기를 사용할 수 없으므로 %2 크기를 대신 
 #: plasma-apply-cursortheme.cpp:65
 #, kde-format
 msgid ""
-"This tool allows you to set the mouse cursor theme for the current Plasma "
+"This tool allows you to set the mouse pointer theme for the current Plasma "
 "session, without accidentally setting it to one that is either not "
 "available, or which is already set."
 msgstr ""
-"이 도구를 사용하여 사용할 수 없는 마우스 커서 테마를 실수로 선택하거나 이미 "
-"선택된 마우스 커서 테마를 다시 선택하지 않고 현재 Plasma 세션의 마우스 커서 "
-"테마를 설정할 수 있습니다."
+"이 도구를 사용하여 사용할 수 없는 마우스 포인터 테마를 실수로 선택하거나 이"
+"미 선택된 마우스 포인터 테마를 다시 선택하지 않고 현재 Plasma 세션의 마우스 "
+"포인터 테마를 설정할 수 있습니다."
 
 #: plasma-apply-cursortheme.cpp:69
 #, kde-format
 msgid ""
-"The name of the cursor theme you wish to set for your current Plasma session "
-"(passing a full path will only use the last part of the path)"
+"The name of the pointer theme you wish to set for your current Plasma "
+"session (passing a full path will only use the last part of the path)"
 msgstr ""
-"현재 Plasma 세션에 적용할 커서 테마(전체 경로를 지정하면 마지막 부분만 사용)"
+"현재 Plasma 세션에 적용할 포인터 테마(전체 경로를 지정하면 마지막 부분만 사"
+"용)"
 
 #: plasma-apply-cursortheme.cpp:70
 #, kde-format
@@ -118,50 +119,64 @@ msgstr "테마 기본 크기 대신 지정한 크기 사용"
 #: plasma-apply-cursortheme.cpp:92
 #, kde-format
 msgid ""
-"The requested theme \"%1\" is already set as the theme for the current "
-"Plasma session."
+"The requested theme “%1” is already set as the theme for the current Plasma "
+"session."
 msgstr "요청한 \"%1\" 테마는 현재 Plasma 세션의 테마로 설정되어 있습니다."
 
 #: plasma-apply-cursortheme.cpp:103
 #, kde-format
 msgid ""
-"Successfully applied the mouse cursor theme %1 to your current Plasma session"
-msgstr "현재 Plasma 세션 마우스 커서 테마를 %1(으)로 설정함"
+"Successfully applied the mouse pointer theme %1 to your current Plasma "
+"session"
+msgstr "현재 Plasma 세션 마우스 포인터 테마를 %1(으)로 설정함"
 
 #: plasma-apply-cursortheme.cpp:105
 #, kde-format
 msgid ""
-"You have to restart the Plasma session for your newly applied mouse cursor "
+"You have to restart the Plasma session for your newly applied mouse pointer "
 "theme to display correctly."
 msgstr ""
-"마우스 커서 테마 변경 사항을 적용하려면 Plasma 세션을 다시 시작해야 합니다."
+"마우스 포인터 테마 변경 사항을 적용하려면 Plasma 세션을 다시 시작해야 합니다."
 
 #: plasma-apply-cursortheme.cpp:115
 #, kde-format
 msgid ""
-"Could not find theme \"%1\". The theme should be one of the following "
-"options: %2"
+"Could not find theme “%1”. The theme should be one of the following options: "
+"%2"
 msgstr "테마 \"%1\"을(를) 찾을 수 없습니다. 다음 중 하나여야 합니다: %2"
 
 #: plasma-apply-cursortheme.cpp:123
 #, kde-format
-msgid "You have the following mouse cursor themes on your system:"
-msgstr "시스템에 다음 마우스 커서 테마가 설치되어 있습니다:"
+msgid "You have the following mouse pointer themes on your system:"
+msgstr "시스템에 다음 마우스 포인터 테마가 설치되어 있습니다:"
 
 #: plasma-apply-cursortheme.cpp:128
 #, kde-format
 msgid "(Current theme for this Plasma session)"
 msgstr "(이 Plasma 세션의 현재 테마)"
 
-#: ui/Delegate.qml:43
+#: ui/Delegate.qml:48
 #, kde-format
-msgid "Remove Theme"
-msgstr "테마 삭제"
+msgctxt "@info:tooltip"
+msgid "Remove pointer theme"
+msgstr "포인터 테마 삭제"
 
 #: ui/Delegate.qml:50
 #, kde-format
-msgid "Restore Cursor Theme"
-msgstr "커서 테마 복원"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active pointer theme"
+msgstr "활성 포인터 테마를 삭제할 수 없음"
+
+#: ui/Delegate.qml:52
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed pointer themes"
+msgstr "시스템에서 설치한 포인터 테마를 삭제할 수 없음"
+
+#: ui/Delegate.qml:60
+#, kde-format
+msgid "Don’t delete this pointer theme"
+msgstr "이 포인터 테마를 삭제하지 마십시오"
 
 #: ui/LaunchFeedbackDialog.qml:16
 #, kde-format
@@ -178,12 +193,12 @@ msgstr "앱이 실행되는 중에 표시할 애니메이션을 설정합니다.
 #: ui/LaunchFeedbackDialog.qml:49
 #, kde-format
 msgctxt "@label"
-msgid "Cursor feedback:"
-msgstr "커서 피드백:"
+msgid "Pointer feedback:"
+msgstr "포인터 피드백:"
 
 #: ui/LaunchFeedbackDialog.qml:50
 #, kde-format
-msgctxt "@option:radio No cursor feedback when launching apps"
+msgctxt "@option:radio No pointer feedback when launching apps"
 msgid "None"
 msgstr "없음"
 
@@ -229,36 +244,36 @@ msgid "%1 second"
 msgid_plural "%1 seconds"
 msgstr[0] "%1초"
 
-#: ui/main.qml:91 ui/main.qml:129
+#: ui/main.qml:109 ui/main.qml:147
 #, kde-format
 msgid "Size: %1"
 msgstr "크기: %1"
 
-#: ui/main.qml:144
+#: ui/main.qml:162
 #, kde-format
 msgctxt "@action:button"
 msgid "&Configure Launch Feedback…"
 msgstr "실행 피드백 설정(&C)…"
 
-#: ui/main.qml:159
+#: ui/main.qml:177
 #, kde-format
 msgid "&Install from File…"
 msgstr "파일에서 설치(&I)…"
 
-#: ui/main.qml:165
+#: ui/main.qml:183
 #, kde-format
 msgid "&Get New…"
 msgstr "새 항목 가져오기(&G)…"
 
-#: ui/main.qml:179
+#: ui/main.qml:197
 #, kde-format
 msgid "Open Theme"
 msgstr "테마 열기"
 
-#: ui/main.qml:181
+#: ui/main.qml:199
 #, kde-format
-msgid "Cursor Theme Files (*.tar.gz *.tar.bz2)"
-msgstr "커서 테마 파일 (*.tar.gz *.tar.bz2)"
+msgid "Pointer Theme Files (*.tar.gz *.tar.bz2)"
+msgstr "포인터 테마 파일 (*.tar.gz *.tar.bz2)"
 
 #: xcursor/xcursortheme.cpp:59
 #, kde-format
@@ -267,6 +282,9 @@ msgctxt ""
 "'Available sizes: 24' or 'Available sizes: 24, 36, 48'"
 msgid "(Available sizes: %1)"
 msgstr "(사용 가능한 크기: %1)"
+
+#~ msgid "Remove Theme"
+#~ msgstr "테마 삭제"
 
 #~ msgid "This module lets you choose the mouse cursor theme."
 #~ msgstr "이 모듈에서 사용할 마우스 커서 테마를 설정할 수 있습니다."

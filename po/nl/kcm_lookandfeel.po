@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-05 00:45+0000\n"
-"PO-Revision-Date: 2026-01-05 11:48+0100\n"
+"POT-Creation-Date: 2026-03-21 00:47+0000\n"
+"PO-Revision-Date: 2026-03-21 11:08+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.12.0\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -381,8 +381,8 @@ msgstr "Plasma-stijl"
 
 #: ui/MoreOptions.qml:76
 #, kde-format
-msgid "Cursors"
-msgstr "Cursors"
+msgid "Pointers"
+msgstr "Aanwijzers"
 
 #: ui/MoreOptions.qml:77
 #, kde-format
@@ -458,6 +458,9 @@ msgstr "Kies wat toe te passen…"
 #, kde-format
 msgid "Show fewer options…"
 msgstr "Minder opties tonen…"
+
+#~ msgid "Cursors"
+#~ msgstr "Cursors"
 
 #~ msgid ""
 #~ "You have to restart the Plasma session for these changes to take effect."

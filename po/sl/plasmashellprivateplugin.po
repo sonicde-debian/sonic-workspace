@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-17 02:42+0000\n"
-"PO-Revision-Date: 2025-11-08 07:04+0100\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-04-24 07:11+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -148,7 +148,7 @@ msgctxt "@info:tooltip"
 msgid "Keep Open"
 msgstr "Ohranjaj odprto"
 
-#: containmentlayoutmanager/qml/BasicAppletContainer.qml:286
+#: containmentlayoutmanager/qml/BasicAppletContainer.qml:287
 #, kde-format
 msgid "Configure…"
 msgstr "Nastavi …"
@@ -190,7 +190,7 @@ msgstr "Filtri"
 #: shellprivate/plasmaappletitemmodel.cpp:199
 #, kde-format
 msgid ""
-"This Widget was written for an unknown older version of Plasma and is not "
+"This widget was written for an unknown older version of Plasma and is not "
 "compatible with Plasma %1. Please contact the widget's author for an updated "
 "version."
 msgstr ""
@@ -201,7 +201,7 @@ msgstr ""
 #: shellprivate/plasmaappletitemmodel.cpp:203
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
+"This widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please contact the widget's author for an updated version."
 msgstr ""
 "Ta gradnik je bil napisan za Plasmo %1 in ni združljiv s Plasmo %2. Obrnite "
@@ -210,7 +210,7 @@ msgstr ""
 #: shellprivate/plasmaappletitemmodel.cpp:207
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
+"This widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please update Plasma in order to use the widget."
 msgstr ""
 "Ta gradnik je bil napisan za Plasmo %1 in ni združljiv s Plasmo %2. "
@@ -219,11 +219,13 @@ msgstr ""
 #: shellprivate/plasmaappletitemmodel.cpp:212
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with the latest "
-"version of Plasma. Please update Plasma in order to use the widget."
+"This widget was written for Plasma %1 and is not compatible with the older "
+"version of Plasma installed on this system. Please update Plasma in order to "
+"use the widget."
 msgstr ""
-"Ta gradnik je bil napisan za Plasmo %1 in ni združljiv z najnovejšo "
-"različico Plasme. Posodobite Plasmo, če želite uporabljati gradnik."
+"Ta gradnik je bil napisan za Plasmo %1 in ni združljiv s starejšo različico "
+"Plasme nameščeno na tem sistemu. Posodobite Plasmo, če želite uporabljati "
+"gradnik."
 
 #: shellprivate/widgetexplorer.cpp:110
 msgctxt "applet category"
@@ -404,7 +406,7 @@ msgstr "Nameščanje paketa %1 ni uspelo: %2."
 msgid "Installation Failure"
 msgstr "Spodletela namestitev"
 
-#: timezoneselector/TimezoneSelector.qml:104
+#: timezoneselector/TimezoneSelector.qml:107
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -413,42 +415,45 @@ msgid ""
 msgstr ""
 "Trenutno izbrani časovni pas ni na voljo za vizualizacijo na tem zemljevidu"
 
-#: timezoneselector/TimezoneSelector.qml:194
-#, kde-format
-msgctxt "@action:button"
-msgid "Zoom in"
-msgstr "Približaj"
-
-#: timezoneselector/TimezoneSelector.qml:210
-#, kde-format
-msgctxt "@action:button"
-msgid "Zoom out"
-msgstr "Oddalji"
-
-#: timezoneselector/TimezoneSelector.qml:239
-#, kde-format
-msgctxt "@label:listbox In the context of time zone selection"
-msgid "Region:"
-msgstr "Regija:"
-
-#: timezoneselector/TimezoneSelector.qml:246
+#: timezoneselector/TimezoneSelector.qml:122
+#: timezoneselector/TimezoneSelector.qml:301
 #, kde-format
 msgctxt "Placeholder for empty time zone combobox selector"
 msgid "Choose…"
 msgstr "Izberi…"
 
-#: timezoneselector/TimezoneSelector.qml:250
+#: timezoneselector/TimezoneSelector.qml:124
+#: timezoneselector/TimezoneSelector.qml:293
 #, kde-format
-msgid "Timezone region selector"
-msgstr "Izbirnik regije časovnega pasu"
+msgctxt "@label:listbox In the context of time zone selection"
+msgid "Region:"
+msgstr "Regija:"
 
-#: timezoneselector/TimezoneSelector.qml:271
+#: timezoneselector/TimezoneSelector.qml:146
+#: timezoneselector/TimezoneSelector.qml:326
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Time zone:"
 msgstr "Časovni pas:"
 
-#: timezoneselector/TimezoneSelector.qml:281
+#: timezoneselector/TimezoneSelector.qml:248
+#, kde-format
+msgctxt "@action:button"
+msgid "Zoom in"
+msgstr "Približaj"
+
+#: timezoneselector/TimezoneSelector.qml:264
+#, kde-format
+msgctxt "@action:button"
+msgid "Zoom out"
+msgstr "Oddalji"
+
+#: timezoneselector/TimezoneSelector.qml:305
+#, kde-format
+msgid "Timezone region selector"
+msgstr "Izbirnik regije časovnega pasu"
+
+#: timezoneselector/TimezoneSelector.qml:337
 #, kde-format
 msgid "Timezone location selector"
 msgstr "Izbirnik lokacije časovnega pasu"

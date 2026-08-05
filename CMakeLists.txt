@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(plasma-workspace)
-set(PROJECT_VERSION "6.6.5")
+set(PROJECT_VERSION "6.7.2")
 string(REPLACE "." ";" VERSION_LIST ${PROJECT_VERSION})
 list(GET VERSION_LIST 0 PROJECT_VERSION_MAJOR)
 list(GET VERSION_LIST 1 PROJECT_VERSION_MINOR)
 list(GET VERSION_LIST 2 PROJECT_VERSION_PATCH)
 
-set(PROJECT_DEP_VERSION "6.6.5")
+set(PROJECT_DEP_VERSION "6.7.0")
 set(QT_MIN_VERSION "6.10.0")
-set(KF6_MIN_VERSION "6.22.0")
+set(KF6_MIN_VERSION "6.26.0")
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -36,11 +36,11 @@ include(ECMConfiguredInstall)
 include(ECMGenerateDBusServiceFile)
 include(ECMFindQmlModule)
 include(ECMGenerateExportHeader)
-include(ECMGenerateQmlTypes)
 include(ECMDeprecationSettings)
 include(ECMQmlModule)
 
 find_package(PkgConfig REQUIRED)
+pkg_check_modules(Flatpak IMPORTED_TARGET flatpak>=0.11.8)
 pkg_check_modules(PipeWire QUIET IMPORTED_TARGET libpipewire-0.3)
 add_feature_info(PipeWire PipeWire_FOUND "Required for camera indicator applet testing")
 set(BUILD_CAMERAINDICATOR_DEFAULT OFF)
@@ -93,12 +93,10 @@ set_package_properties(KF6KirigamiAddons PROPERTIES
     TYPE RUNTIME
 )
 
-find_package(KF6NetworkManagerQt ${KF6_MIN_VERSION} CONFIG)
-set_package_properties(KF6NetworkManagerQt PROPERTIES
-    DESCRIPTION "Qt wrapper for NetworkManager API"
-    PURPOSE "Needed for location-based time zone changes."
-    TYPE OPTIONAL
-)
+# there's no NetworkManager on FreeBSD'
+if (LINUX)
+    find_package(KF6NetworkManagerQt ${KF6_MIN_VERSION} CONFIG REQUIRED)
+endif()
 
 find_package(KF6QuickCharts ${KF6_MIN_VERSION} CONFIG)
 set_package_properties(KF6QuickCharts PROPERTIES
@@ -358,7 +356,7 @@ add_subdirectory(libklookandfeel)
 add_subdirectory(libkworkspace)
 add_subdirectory(libdbusmenuqt)
 add_subdirectory(appmenu)
-add_subdirectory(oom-notifier)
+add_subdirectory(oom_notifier)
 
 add_subdirectory(libclock)
 add_subdirectory(libtaskmanager)

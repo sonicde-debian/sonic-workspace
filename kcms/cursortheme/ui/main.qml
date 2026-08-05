@@ -19,16 +19,34 @@ import org.kde.private.kcm_cursortheme
 KCM.GridViewKCM {
     id: root
 
+    readonly property int previewCursorsPerRow: 4
+    readonly property int previewCursorRows: 2
+    readonly property int previewPadding: kcm.cursorThemeSettings.cursorSize / 2
+    // Especially at smaller sizes, the theme might not provide cursors that small,
+    // enforce a minimum spacing so they don't overlap.
+    readonly property int previewSpacing: Math.max(16, kcm.cursorThemeSettings.cursorSize / 2)
+
     property LaunchFeedbackDialog launchFeedbackDialog: null as LaunchFeedbackDialog
 
     view.model: kcm.cursorsModel
-    view.delegate: Delegate {}
+    view.delegate: Delegate {
+        previewPadding: root.previewPadding
+        previewSpacing: root.previewSpacing
+        maximumPreviewCount: root.previewCursorRows * root.previewCursorsPerRow
+    }
     view.currentIndex: kcm.cursorThemeIndex(kcm.cursorThemeSettings.cursorTheme);
 
     view.onCurrentIndexChanged: {
         kcm.cursorThemeSettings.cursorTheme = kcm.cursorThemeFromIndex(view.currentIndex)
         view.positionViewAtIndex(view.currentIndex, view.GridView.Beginning);
     }
+
+    view.implicitCellWidth: kcm.cursorThemeSettings.cursorSize * root.previewCursorsPerRow
+                            + root.previewSpacing * (root.previewCursorsPerRow - 1)
+                            + 2 * root.previewPadding + Kirigami.Units.gridUnit
+    view.implicitCellHeight: kcm.cursorThemeSettings.cursorSize * root.previewCursorRows
+                             + root.previewSpacing * (root.previewCursorRows - 1)
+                             + 2 * root.previewPadding + 4 * Kirigami.Units.gridUnit
 
     Component.onCompleted: {
         view.positionViewAtIndex(view.currentIndex, GridView.Beginning);
@@ -69,12 +87,12 @@ KCM.GridViewKCM {
 
     DropArea {
         anchors.fill: parent
-        onEntered: {
+        onEntered: drag => {
             if (!drag.hasUrls) {
                 drag.accepted = false;
             }
         }
-        onDropped: kcm.installThemeFromFile(drop.urls[0])
+        onDropped: drop => kcm.installThemeFromFile(drop.urls[0])
     }
 
     actions: [
@@ -177,7 +195,7 @@ KCM.GridViewKCM {
         sourceComponent: QtDialogs.FileDialog {
             title: i18n("Open Theme")
             currentFolder: StandardPaths.standardLocations(StandardPaths.HomeLocation)[0]
-            nameFilters: [ i18n("Cursor Theme Files (*.tar.gz *.tar.bz2)") ]
+            nameFilters: [ i18n("Pointer Theme Files (*.tar.gz *.tar.bz2)") ]
             Component.onCompleted: open()
             onAccepted: {
                 kcm.installThemeFromFile(selectedFile)

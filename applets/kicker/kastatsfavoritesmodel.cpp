@@ -29,6 +29,7 @@
 #include <PlasmaActivities/Stats/Terms>
 #include <algorithm>
 #include <qnamespace.h>
+#include <qurl.h>
 
 #include "config-KDECI_BUILD.h"
 
@@ -84,7 +85,7 @@ public:
             }
 
             if (!entry || !entry->isValid()) {
-                qCWarning(KICKER_DEBUG) << "Entry is not valid" << id << entry.get();
+                qCDebug(KICKER_DEBUG) << "Entry is not valid" << id << entry.get();
                 m_id = id;
                 return;
             }
@@ -185,29 +186,6 @@ public:
         connect(&m_watcher, &ResultWatcher::resultUnlinked, parent, [this](const QString &resource) {
             removeResult(resource);
         });
-        connect(
-            KSycoca::self(),
-            &KSycoca::databaseChanged,
-            this,
-            [this]() {
-                QStringList keys;
-                // ResultWatcher can emit resultUnlinked when AppEntry::reload() is reparsing configuration which will modify m_itemEntries
-                // https://crash-reports.kde.org/organizations/kde/issues/23450/
-                const auto itemEntries = m_itemEntries;
-                for (auto it = itemEntries.cbegin(); it != itemEntries.cend(); it = std::next(it)) {
-                    it->second->reload();
-                    if (!it->second->isValid()) {
-                        keys << it->first;
-                    }
-                }
-                if (!keys.isEmpty()) {
-                    for (const QString &key : keys) {
-                        removeResult(key);
-                    }
-                }
-                Q_EMIT layoutChanged();
-            },
-            Qt::QueuedConnection);
 
         // Loading the items order
         const auto cfg = KSharedConfig::openConfig(QStringLiteral("kactivitymanagerd-statsrc"));
@@ -525,6 +503,18 @@ KAStatsFavoritesModel::KAStatsFavoritesModel(QObject *parent)
             initForClient(clientId);
         }
     });
+
+    connect(
+        KSycoca::self(),
+        &KSycoca::databaseChanged,
+        this,
+        [this]() {
+            if (d && m_activities->serviceStatus() == KActivities::Consumer::Running) {
+                auto clientId = d->m_clientId;
+                initForClient(clientId);
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 KAStatsFavoritesModel::~KAStatsFavoritesModel()
@@ -673,6 +663,7 @@ void KAStatsFavoritesModel::addFavoriteTo(const QString &id, const Activity &act
     QStringList matchers{d->m_activities.currentActivity(), QStringLiteral(":global"), QStringLiteral(":current")};
     if (std::find_first_of(activity.values.cbegin(), activity.values.cend(), matchers.cbegin(), matchers.cend()) != activity.values.cend()) {
         d->addResult(id, index);
+        Q_EMIT favoriteAdded(id);
     }
 
     const auto url = d->normalizedId(id).value();
@@ -698,7 +689,23 @@ void KAStatsFavoritesModel::removeFavoriteFrom(const QString &id, const Activity
         return;
     }
 
+    // both the url from the direct id and the url from the normalized id can fail:
+    // - direct breaks on malformed .desktop file names, in particular ones that
+    //   contain parts misinterpreted as url schemes and where case folding causes
+    //   a mismatch, like "Test: 1.desktop" which is converted to "test: 1.desktop"
+    //   with a QString -> QUrl -> QString round trip
+    // - normalized url breaks on files/folders that were favorited and then deleted,
+    //   see bug: 474120
+    // So we take the normalized id only if the regular id url toString()ed differs
+    // only in case from the regular id and it's not already application scheme nor
+    // a local file url, and take and the regular id otherwise - a bit hacky, but
+    // should handle both cases and hopefully not affect anything else.
+
     QUrl url = QUrl(id);
+    if (url.toString().compare(id, Qt::CaseInsensitive) == 0 && url.toString().compare(id, Qt::CaseSensitive) != 0 && !url.isLocalFile()
+        && url.scheme() != QStringLiteral("applications")) {
+        url = QUrl(d->normalizedId(id).value());
+    }
 
     d->m_watcher.unlinkFromActivity(url, activity, Agent(agentForUrl(id)));
 }

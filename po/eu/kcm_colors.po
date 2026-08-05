@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2025-12-07 23:13+0100\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-03-08 16:12+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -697,15 +697,18 @@ msgstr ""
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
-msgid "You do not have permission to overwrite that scheme"
-msgstr "Ez duzu baimenik antolaera hori gainidazteko"
+msgid ""
+"This scheme is read-only. Please save the modifications with another name."
+msgstr ""
+"Antolaera hau soilik irakurtzeko da. Mesedez, gorde aldaketa beste izen "
+"batekin."
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
 msgid "Error"
 msgstr "Akatsa"
 
-#: editor/scmeditordialog.cpp:193
+#: editor/scmeditordialog.cpp:194
 #, kde-format
 msgid "Inactive"
 msgstr "Ez-aktiboa"
@@ -1274,7 +1277,7 @@ msgctxt "@item:inlistbox User-chosen custom accent color"
 msgid "Custom accent color"
 msgstr "Neurrira ipinitako azentu-kolorea"
 
-#: ui/main.qml:90
+#: ui/main.qml:94
 #, kde-format
 msgid ""
 "The color scheme '%1' is not installed. Selecting the default theme instead."
@@ -1282,100 +1285,119 @@ msgstr ""
 "«%1» kolore-antolaera ez dago instalatuta. Horren ordez lehenetsitako gaia "
 "hautatuko da."
 
-#: ui/main.qml:123
+#: ui/main.qml:127
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "All schemes"
 msgstr "Antolaera guztiak"
 
-#: ui/main.qml:124
+#: ui/main.qml:128
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Light schemes"
 msgstr "Antolaera argiak"
 
-#: ui/main.qml:125
+#: ui/main.qml:129
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Dark schemes"
 msgstr "Antolaera ilunak"
 
-#: ui/main.qml:152
+#: ui/main.qml:140
 #, kde-format
 msgid "Install from File…"
 msgstr "Instalatu fitxategitik…"
 
-#: ui/main.qml:157
+#: ui/main.qml:145
 #, kde-format
 msgid "Get New…"
 msgstr "Eskuratu … berria"
 
-#: ui/main.qml:204
+#: ui/main.qml:192
 #, kde-format
 msgid "Window Title"
 msgstr "Leihoaren titulua"
 
-#: ui/main.qml:227
+#: ui/main.qml:215
 #, kde-format
 msgid "Window text"
 msgstr "Leihoko testua"
 
-#: ui/main.qml:235
+#: ui/main.qml:223
 #, kde-format
 msgid "Button"
 msgstr "Botoia"
 
-#: ui/main.qml:275
+#: ui/main.qml:263
 #, kde-format
 msgctxt "Hyperlink"
 msgid "link"
 msgstr "esteka"
 
-#: ui/main.qml:277
+#: ui/main.qml:265
 #, kde-format
 msgctxt "Visited hyperlink"
 msgid "visited"
 msgstr "bisitatua"
 
-#: ui/main.qml:285
+#: ui/main.qml:273
 #, kde-format
 msgid "Normal text"
 msgstr "Testu arrunta"
 
-#: ui/main.qml:292
+#: ui/main.qml:280
 #, kde-format
 msgid "Highlighted text"
 msgstr "Nabarmendutako testua"
 
-#: ui/main.qml:299
+#: ui/main.qml:287
 #, kde-format
 msgid "Disabled text"
 msgstr "Desgaitutako testua"
 
-#: ui/main.qml:317
+#: ui/main.qml:305
 #, kde-format
 msgid "Edit Color Scheme…"
 msgstr "Editatu kolore-antolaera…"
 
-#: ui/main.qml:323
+#: ui/main.qml:312
 #, kde-format
-msgid "Remove Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Remove color scheme"
 msgstr "Kendu kolore-antolaera"
 
-#: ui/main.qml:330
+#: ui/main.qml:314
 #, kde-format
-msgid "Restore Color Scheme"
-msgstr "Leheneratu kolore-antolaera"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active color scheme"
+msgstr "Ezin da aktibo dagoen kolore-antolaera ezabatu"
 
-#: ui/main.qml:374
+#: ui/main.qml:316
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed color schemes"
+msgstr "Ezin dira sistemarekin instalatutako kolore-antolaerak ezabatu"
+
+#: ui/main.qml:324
+#, kde-format
+msgid "Don’t delete this color scheme"
+msgstr "Ez ezabatu kolore-antolaera hau"
+
+#: ui/main.qml:368
 #, kde-format
 msgid "Open Color Scheme"
 msgstr "Ireki kolore-antolaera"
 
-#: ui/main.qml:376
+#: ui/main.qml:370
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Kolore-antolaera fitxategiak (*.colors)"
+
+#~ msgid "You do not have permission to overwrite that scheme"
+#~ msgstr "Ez duzu baimenik antolaera hori gainidazteko"
+
+#~ msgid "Restore Color Scheme"
+#~ msgstr "Leheneratu kolore-antolaera"
 
 #~ msgid "Shading of frames and lighting (\"3D\") effects"
 #~ msgstr "Markoen itzaldura eta argiztapen (\"3D\") efektuak"

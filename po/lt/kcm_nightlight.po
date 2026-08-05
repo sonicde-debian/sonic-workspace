@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2025-08-05 16:02+0300\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
+"PO-Revision-Date: 2026-03-27 21:34+0200\n"
 "Last-Translator: Moo <<>>\n"
 "Language-Team: lt\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: ui/DayNightView.qml:154
 #, kde-format
@@ -58,8 +58,8 @@ msgstr "Visada išjungta"
 #: ui/main.qml:59
 #, kde-format
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "Visada įjungta naktinė šviesa"
+msgid "Always on"
+msgstr "Visada įjungta"
 
 #: ui/main.qml:60
 #, kde-format
@@ -76,8 +76,8 @@ msgstr "Konfigūruoti…"
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
-msgstr "%1K"
+msgid "%1 K"
+msgstr "%1 K"
 
 #: ui/main.qml:123
 #, kde-format
@@ -102,6 +102,14 @@ msgstr "Šilta"
 msgctxt "@label:slider"
 msgid "Night light temperature:"
 msgstr "Naktinės šviesos temperatūra:"
+
+#~ msgctxt "@item:inlistbox switching times"
+#~ msgid "Always on night light"
+#~ msgstr "Visada įjungta naktinė šviesa"
+
+#~ msgctxt "Color temperature in Kelvin"
+#~ msgid "%1K"
+#~ msgstr "%1K"
 
 #~ msgctxt ""
 #~ "@label:chooser Tap should be translated to mean touching using a "

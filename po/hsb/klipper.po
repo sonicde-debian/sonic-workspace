@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop_kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-12 02:38+0000\n"
+"POT-Creation-Date: 2026-06-16 02:41+0000\n"
 "PO-Revision-Date: 2008-11-06 22:08+0100\n"
 "Last-Translator: Eduard Werner <edi.werner@gmx.de>\n"
 "Language-Team: en_US <kde-i18n-doc@lists.kde.org>\n"
@@ -245,74 +245,43 @@ msgstr "Skrótšenki"
 msgid "Shortcuts Configuration"
 msgstr "Připrawjenje skótšenkow"
 
-#: declarative/qml/BarcodePage.qml:32
-#, kde-format
-msgid "QR Code"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:33
-#, kde-format
-msgid "Data Matrix"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:34
-#, kde-format
-msgctxt "Aztec barcode"
-msgid "Aztec"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:35
-#, kde-format
-msgid "Code 39"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:36
-#, kde-format
-msgid "Code 93"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:37
-#, kde-format
-msgid "Code 128"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:53
+#: declarative/qml/BarcodePage.qml:48
 #, fuzzy, kde-format
 #| msgid "Add to Clipboard"
 msgid "Return to Clipboard"
 msgstr "K zapisnikej dodać"
 
-#: declarative/qml/BarcodePage.qml:89
+#: declarative/qml/BarcodePage.qml:69
 #, kde-format
 msgctxt "@action:button Copy to clipboard"
 msgid "Copy"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:95
+#: declarative/qml/BarcodePage.qml:75
 #, kde-format
 msgctxt "@info:status"
 msgid "An image of the QR code has been copied to clipboard"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:101
+#: declarative/qml/BarcodePage.qml:78
 #, fuzzy, kde-format
 #| msgid "Add to Clipboard"
 msgctxt "@info:tooltip"
 msgid "Copy QR code image to clipboard"
 msgstr "K zapisnikej dodać"
 
-#: declarative/qml/BarcodePage.qml:112
+#: declarative/qml/BarcodePage.qml:113
 #, kde-format
-msgid "Change the QR code type"
+msgid "QR Code"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid ""
 "There is not enough space to display the QR code. Try resizing this applet."
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid "Creating QR code failed"
 msgstr ""
@@ -329,29 +298,29 @@ msgctxt "@action:button"
 msgid "Expand"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:275
+#: declarative/qml/ClipboardMenu.qml:285
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "Clear History"
 msgstr "Wobsah zapisnika"
 
-#: declarative/qml/ClipboardMenu.qml:329
+#: declarative/qml/ClipboardMenu.qml:339
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "All History"
 msgstr "Wobsah zapisnika"
 
-#: declarative/qml/ClipboardMenu.qml:334
+#: declarative/qml/ClipboardMenu.qml:344
 #, kde-format
 msgid "Starred Only"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "No matches"
 msgstr "Ničo njenamakał"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "Clipboard is empty"
 msgstr "Zapisnik je prózdny"
@@ -597,82 +566,66 @@ msgstr ""
 msgid "Icon:"
 msgstr ""
 
-#: historymodel.cpp:283
+#: historymodel.cpp:281
 #, kde-format
-msgid "The clipboard history contains starred items. Clear them too?"
+msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr ""
 
-#: historymodel.cpp:284 historymodel.cpp:304
+#: historymodel.cpp:282
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgid "Clear Clipboard History"
 msgstr "Zapisnik wuprózdnić"
 
-#: historymodel.cpp:285
-#, kde-format
-msgid "Clear Everything"
-msgstr ""
-
-#: historymodel.cpp:286
-#, fuzzy, kde-format
-#| msgid "Clipboard Contents"
-msgid "Keep Starred Items"
-msgstr "Wobsah zapisnika &zasunyć"
-
-#: historymodel.cpp:303
-#, kde-format
-msgid "Do you really want to clear and delete the entire clipboard history?"
-msgstr ""
-
-#: historymodel.cpp:387
+#: historymodel.cpp:363
 #, kde-format
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr ""
 
-#: historymodel.cpp:567
+#: historymodel.cpp:543
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr ""
 
-#: historymodel.cpp:568
+#: historymodel.cpp:544
 #, kde-format
 msgid "Remove Starred Item"
 msgstr ""
 
-#: klipper.cpp:78
+#: klipper.cpp:77
 #, fuzzy, kde-format
 #| msgid "Action properties:"
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "Swójstwa přikaza:"
 
-#: klipper.cpp:96
+#: klipper.cpp:95
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "Zapisnik wuprózdnić"
 
-#: klipper.cpp:101
+#: klipper.cpp:100
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr ""
 
-#: klipper.cpp:109
+#: klipper.cpp:108
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr ""
 
-#: klipper.cpp:115
+#: klipper.cpp:114
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr ""
 
-#: klipper.cpp:122
+#: klipper.cpp:121
 #, fuzzy, kde-format
 #| msgctxt "GenericName"
 #| msgid "Clipboard Viewer"
@@ -680,7 +633,7 @@ msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "Přehladowar za clipboard"
 
-#: klipper.cpp:127
+#: klipper.cpp:126
 #, fuzzy, kde-format
 #| msgctxt "GenericName"
 #| msgid "Clipboard Viewer"
@@ -688,28 +641,28 @@ msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "Přehladowar za clipboard"
 
-#: klipper.cpp:134
+#: klipper.cpp:133
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr ""
 
-#: klipper.cpp:402 klipper.cpp:411
+#: klipper.cpp:404 klipper.cpp:413
 #, kde-format
 msgid "Clipboard history"
 msgstr "Wobsah zapisnika"
 
-#: klipper.cpp:428
+#: klipper.cpp:430
 #, kde-format
 msgid "up"
 msgstr ""
 
-#: klipper.cpp:435
+#: klipper.cpp:437
 #, kde-format
 msgid "current"
 msgstr ""
 
-#: klipper.cpp:442
+#: klipper.cpp:444
 #, kde-format
 msgid "down"
 msgstr ""
@@ -810,67 +763,61 @@ msgid ""
 "Do not store images in the clipboard history, even if explicitly copied."
 msgstr ""
 
-#. i18n: ectx: label, entry (UseGUIRegExpEditor), group (General)
-#: klipper.kcfg:47
-#, kde-format
-msgid "Use graphical regexp editor"
-msgstr ""
-
 #. i18n: ectx: label, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:51
+#: klipper.kcfg:47
 #, fuzzy, kde-format
 #| msgid "Language Selection"
 msgid "Immediately on selection"
 msgstr "Wuběr rěče"
 
 #. i18n: ectx: tooltip, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:52
+#: klipper.kcfg:48
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
 msgstr ""
 
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:56
+#: klipper.kcfg:52
 #, fuzzy, kde-format
 #| msgid "Action properties:"
 msgid "Automatic action menu time:"
 msgstr "Swójstwa přikaza:"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, fuzzy, kde-format
 #| msgid "Action properties:"
 msgid "Display the automatic action popup menu for this time."
 msgstr "Swójstwa přikaza:"
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:63
+#: klipper.kcfg:59
 #, fuzzy, kde-format
 #| msgid "Clipboard history size:"
 msgid "History size:"
 msgstr "Wulkosć zapisnika:"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr ""
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:70
+#: klipper.kcfg:66
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr ""
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:80
+#: klipper.kcfg:76
 #, kde-format
 msgid "Trim whitespace from selection"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:82
+#: klipper.kcfg:78
 #, kde-format
 msgid ""
 "Remove any whitespace from the start and end of selected text, before "
@@ -880,13 +827,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:85
+#: klipper.kcfg:81
 #, kde-format
 msgid "For an item chosen from history"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:87
+#: klipper.kcfg:83
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions if an entry is chosen from the "
@@ -894,21 +841,21 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:90
+#: klipper.kcfg:86
 #, fuzzy, kde-format
 #| msgid "&Paste Clipboard Contents"
 msgid "Include MIME actions"
 msgstr "Wobsah clipboarda &zasunyć"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:92
+#: klipper.kcfg:88
 #, kde-format
 msgid ""
 "If a file name or URL is selected, include applications that can accept its "
 "MIME type in the popup menu."
 msgstr ""
 
-#: klipperpopup.cpp:37
+#: klipperpopup.cpp:40
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "Clipboard Popup"
@@ -918,6 +865,11 @@ msgstr "Wobsah zapisnika"
 #, kde-format
 msgid "&Cancel"
 msgstr "&Přetorhnyć"
+
+#, fuzzy
+#~| msgid "Clipboard Contents"
+#~ msgid "Keep Starred Items"
+#~ msgstr "Wobsah zapisnika &zasunyć"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

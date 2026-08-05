@@ -25,10 +25,6 @@
 #include <QTimer>
 #include <QUrl>
 
-#if HAVE_QTTEST
-#include <QAbstractItemModelTester>
-#endif
-
 #include <algorithm>
 #include <numeric>
 #include <optional>
@@ -87,7 +83,6 @@ public:
     void forceResort();
     bool lessThan(const QModelIndex &left, const QModelIndex &right, bool sortOnlyLaunchers = false) const;
     std::optional<bool> lessThanByVirtualDesktop(const QModelIndex &left, const QModelIndex &right) const;
-    static void modelTest(QAbstractItemModel *model);
 
 private:
     TasksModel *const q;
@@ -147,11 +142,9 @@ void TasksModel::Private::initModels()
     //      -> TasksModel collapses (top-level) items into task lifecycle abstraction; sorts.
 
     concatProxyModel = new ConcatenateTasksProxyModel(q);
-    modelTest(concatProxyModel);
 
     if (!windowTasksModel) {
         windowTasksModel = new WindowTasksModel();
-        modelTest(windowTasksModel);
     }
 
     concatProxyModel->addSourceModel(windowTasksModel);
@@ -202,7 +195,6 @@ void TasksModel::Private::initModels()
 
     if (!startupTasksModel) {
         startupTasksModel = new StartupTasksModel();
-        modelTest(startupTasksModel);
     }
 
     concatProxyModel->addSourceModel(startupTasksModel);
@@ -274,8 +266,6 @@ void TasksModel::Private::initModels()
     });
 
     filterProxyModel = new TaskFilterProxyModel(q);
-    modelTest(filterProxyModel);
-
     filterProxyModel->setSourceModel(concatProxyModel);
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::virtualDesktopChanged, q, &TasksModel::virtualDesktopChanged);
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::screenGeometryChanged, q, &TasksModel::screenGeometryChanged);
@@ -291,8 +281,6 @@ void TasksModel::Private::initModels()
     QObject::connect(filterProxyModel, &TaskFilterProxyModel::filterHiddenChanged, q, &TasksModel::filterHiddenChanged);
 
     groupingProxyModel = new TaskGroupingProxyModel(q);
-    modelTest(groupingProxyModel);
-
     groupingProxyModel->setSourceModel(filterProxyModel);
     QObject::connect(groupingProxyModel, &TaskGroupingProxyModel::groupModeChanged, q, &TasksModel::groupModeChanged);
     QObject::connect(groupingProxyModel, &TaskGroupingProxyModel::blacklistedAppIdsChanged, q, &TasksModel::groupingAppIdBlacklistChanged);
@@ -317,40 +305,11 @@ void TasksModel::Private::initModels()
             if (sourceIndex.data(AbstractTasksModel::IsDemandingAttention).toBool()) {
                 demandsAttentionUpdateNeeded = true;
             }
-
-            // When we get a window we have a startup for, cause the startup to be re-filtered.
-            if (sourceIndex.data(AbstractTasksModel::IsWindow).toBool()) {
-                const QString &appName = sourceIndex.data(AbstractTasksModel::AppName).toString();
-
-                for (int j = 0; j < filterProxyModel->rowCount(); ++j) {
-                    QModelIndex filterIndex = filterProxyModel->index(j, 0);
-
-                    if (!filterIndex.data(AbstractTasksModel::IsStartup).toBool()) {
-                        continue;
-                    }
-
-                    if ((!appId.isEmpty() && appId == filterIndex.data(AbstractTasksModel::AppId).toString())
-                        || (!appName.isEmpty() && appName == filterIndex.data(AbstractTasksModel::AppName).toString())) {
-                        Q_EMIT filterProxyModel->dataChanged(filterIndex, filterIndex);
-                    }
-                }
-            }
-
-            // When we get a window or startup we have a launcher for, cause the launcher to be re-filtered.
-            if (sourceIndex.data(AbstractTasksModel::IsWindow).toBool() || sourceIndex.data(AbstractTasksModel::IsStartup).toBool()) {
-                for (int j = 0; j < filterProxyModel->rowCount(); ++j) {
-                    const QModelIndex &filterIndex = filterProxyModel->index(j, 0);
-
-                    if (!filterIndex.data(AbstractTasksModel::IsLauncher).toBool()) {
-                        continue;
-                    }
-
-                    if (appsMatch(sourceIndex, filterIndex)) {
-                        Q_EMIT filterProxyModel->dataChanged(filterIndex, filterIndex);
-                    }
-                }
-            }
         }
+
+        // If there were launchers or startup tasks related to the new window,
+        // filter them out.
+        q->invalidateFilter();
 
         if (!anyTaskDemandsAttention && demandsAttentionUpdateNeeded) {
             updateAnyTaskDemandsAttention();
@@ -885,6 +844,17 @@ bool TasksModel::Private::lessThan(const QModelIndex &left, const QModelIndex &r
     }
 
     case SortWindowPositionHorizontal: {
+        const bool leftIsStartup = left.data(AbstractTasksModel::IsStartup).toBool();
+        const bool rightIsStartup = right.data(AbstractTasksModel::IsStartup).toBool();
+
+        if (leftIsStartup && rightIsStartup) {
+            return (left.row() < right.row());
+        } else if (leftIsStartup && !rightIsStartup) {
+            return false;
+        } else if (!leftIsStartup && rightIsStartup) {
+            return true;
+        }
+
         if (auto result = lessThanByVirtualDesktop(left, right)) {
             return *result;
         }
@@ -1010,15 +980,6 @@ bool TasksModel::Private::lessThan(const QModelIndex &left, const QModelIndex &r
         return (sortResult < 0);
     }
     }
-}
-
-void TasksModel::TasksModel::Private::modelTest(QAbstractItemModel *model)
-{
-#if HAVE_QTTEST
-    new QAbstractItemModelTester(model, model);
-#else
-    Q_UNUSED(model);
-#endif
 }
 
 TasksModel::TasksModel(QObject *parent)
@@ -2127,3 +2088,4 @@ std::shared_ptr<ActivityInfo> TasksModel::activityInfo() const
 }
 
 #include "moc_tasksmodel.cpp"
+

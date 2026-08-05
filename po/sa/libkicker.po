@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 02:41+0000\n"
+"POT-Creation-Date: 2026-06-23 02:42+0000\n"
 "PO-Revision-Date: 2025-03-02 14:52+0530\n"
 "Last-Translator: Shreekant Kalwar <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -44,7 +44,7 @@ msgstr "कार्यप्रबन्धकं प्रति पिन क
 msgid "Add to Panel (Widget)"
 msgstr "फलक (विजेट्) मध्ये योजयतु ."
 
-#: actionlist.cpp:316 rootmodel.cpp:538
+#: actionlist.cpp:316 rootmodel.cpp:587
 #, kde-format
 msgid "Recent Files"
 msgstr "अद्यतनसञ्चिकाः"
@@ -65,25 +65,25 @@ msgctxt "@action opens a software center with the application"
 msgid "Uninstall or Manage Add-Ons…"
 msgstr "Add-Ons विस्थापयन्तु अथवा प्रबन्धयन्तु..."
 
-#: appentry.cpp:361
+#: appentry.cpp:400
 #, kde-format
 msgid "Hide Application"
 msgstr "अनुप्रयोगं गोपयन्तु"
 
-#: appentry.cpp:423
+#: appentry.cpp:462
 #, kde-format
 msgctxt "App name (Comment or Generic name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appentry.cpp:425
+#: appentry.cpp:464
 #, kde-format
 msgctxt "Generic name (App name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:219
-#: recentusagemodel.cpp:156 recentusagemodel.cpp:225
+#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:220
+#: recentusagemodel.cpp:158 recentusagemodel.cpp:229
 #, kde-format
 msgid "Applications"
 msgstr "अनुप्रयोगाः"
@@ -114,52 +114,69 @@ msgid "Computer"
 msgstr "संगणक"
 
 #. i18n.
-#: kastatsfavoritesmodel.cpp:548 rootmodel.cpp:531 simplefavoritesmodel.cpp:33
+#: kastatsfavoritesmodel.cpp:538 rootmodel.cpp:571 simplefavoritesmodel.cpp:33
 #, kde-format
 msgid "Favorites"
 msgstr "प्रियाः"
 
-#: recentusagemodel.cpp:154
+#: recentusagemodel.cpp:156
 #, kde-format
 msgid "Recently Used"
 msgstr "सद्यः प्रयुक्तः"
 
-#: recentusagemodel.cpp:159 recentusagemodel.cpp:326
+#: recentusagemodel.cpp:160
+#, kde-format
+msgid "Places"
+msgstr ""
+
+#: recentusagemodel.cpp:163 recentusagemodel.cpp:330
 #, kde-format
 msgid "Files"
 msgstr "सञ्चिकाः"
 
-#: recentusagemodel.cpp:259
+#: recentusagemodel.cpp:263
 #, kde-format
 msgid "Forget Application"
 msgstr "आवेदनं विस्मरतु"
 
-#: recentusagemodel.cpp:324
+#: recentusagemodel.cpp:328
 #, kde-format
 msgid "Folders"
 msgstr "सञ्चयाः"
 
-#: recentusagemodel.cpp:371
+#: recentusagemodel.cpp:375
 #, kde-format
 msgid "Open Containing Folder"
 msgstr "Containing Folder उद्घाटयन्तु"
 
-#: recentusagemodel.cpp:374
+#: recentusagemodel.cpp:380
+#, fuzzy, kde-format
+#| msgid "Forget File"
+msgid "Forget Folder"
+msgstr "सञ्चिकां विस्मरतु"
+
+#: recentusagemodel.cpp:380
 #, kde-format
 msgid "Forget File"
 msgstr "सञ्चिकां विस्मरतु"
 
-#: recentusagemodel.cpp:518
+#: recentusagemodel.cpp:526
 #, kde-format
 msgid "Forget All"
 msgstr "सर्वं विस्मरतु"
 
-#: recentusagemodel.cpp:520
+#: recentusagemodel.cpp:528
 #, kde-format
 msgid "Forget All Applications"
 msgstr "सर्वाणि अनुप्रयोगाः विस्मरन्तु"
 
-#: recentusagemodel.cpp:523
+#: recentusagemodel.cpp:530
+#, fuzzy, kde-format
+#| msgid "Forget All Files"
+msgid "Forget All Folders"
+msgstr "सर्वाणि सञ्चिकाः विस्मरन्तु"
+
+#: recentusagemodel.cpp:533
 #, kde-format
 msgid "Forget All Files"
 msgstr "सर्वाणि सञ्चिकाः विस्मरन्तु"
@@ -169,37 +186,49 @@ msgstr "सर्वाणि सञ्चिकाः विस्मरन्�
 msgid "All Applications"
 msgstr "सर्वे अनुप्रयोगाः"
 
-#: rootmodel.cpp:131
+#: rootmodel.cpp:134
 #, kde-format
 msgid "Hide %1"
 msgstr "%1 गोपयन्तु"
 
-#: rootmodel.cpp:525
+#: rootmodel.cpp:565
 #, kde-format
 msgid "This shouldn't be visible! Use KICKER_FAVORITES_MODEL"
 msgstr "एतत् दृश्यमानं न भवितुमर्हति! KICKER_FAVORITES_MODEL इत्यस्य उपयोगं कुर्वन्तु"
 
-#: rootmodel.cpp:538
+#: rootmodel.cpp:578
+#, fuzzy, kde-format
+#| msgid "Recent Files"
+msgid "Recent Places"
+msgstr "अद्यतनसञ्चिकाः"
+
+#: rootmodel.cpp:578
+#, fuzzy, kde-format
+#| msgid "Often Used Files"
+msgid "Often Used Places"
+msgstr "प्रायः प्रयुक्ताः सञ्चिकाः"
+
+#: rootmodel.cpp:587
 #, kde-format
 msgid "Often Used Files"
 msgstr "प्रायः प्रयुक्ताः सञ्चिकाः"
 
-#: rootmodel.cpp:547
+#: rootmodel.cpp:596
 #, kde-format
 msgid "Recent Applications"
 msgstr "हाल के आवेदन"
 
-#: rootmodel.cpp:547
+#: rootmodel.cpp:596
 #, kde-format
 msgid "Often Used Applications"
 msgstr "प्रायः प्रयुक्ताः अनुप्रयोगाः"
 
-#: rootmodel.cpp:562
+#: rootmodel.cpp:611
 #, kde-format
 msgid "Power / Session"
 msgstr "शक्ति / सत्र"
 
-#: runnermodel.cpp:226
+#: runnermodel.cpp:303
 #, kde-format
 msgid "Search results"
 msgstr "अन्वेषणफलम्"

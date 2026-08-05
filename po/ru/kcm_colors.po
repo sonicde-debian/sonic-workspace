@@ -18,15 +18,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2026-01-28 16:57+0200\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-03-08 08:35+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.12.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -702,15 +702,17 @@ msgstr ""
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
-msgid "You do not have permission to overwrite that scheme"
-msgstr "Недостаточно прав, чтобы заменить эту схему"
+msgid ""
+"This scheme is read-only. Please save the modifications with another name."
+msgstr ""
+"Эта схема доступна только для чтения. Сохраните изменения под другим именем."
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
 msgid "Error"
 msgstr "Ошибка"
 
-#: editor/scmeditordialog.cpp:193
+#: editor/scmeditordialog.cpp:194
 #, kde-format
 msgid "Inactive"
 msgstr "Неактивные"
@@ -1274,7 +1276,7 @@ msgctxt "@item:inlistbox User-chosen custom accent color"
 msgid "Custom accent color"
 msgstr "Использовать собственный цвет выделения"
 
-#: ui/main.qml:90
+#: ui/main.qml:94
 #, kde-format
 msgid ""
 "The color scheme '%1' is not installed. Selecting the default theme instead."
@@ -1282,100 +1284,119 @@ msgstr ""
 "Цветовая схема «%1» не установлена, вместо неё будет использована цветовая "
 "схема по умолчанию."
 
-#: ui/main.qml:123
+#: ui/main.qml:127
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "All schemes"
 msgstr "Все схемы"
 
-#: ui/main.qml:124
+#: ui/main.qml:128
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Light schemes"
 msgstr "Светлые схемы"
 
-#: ui/main.qml:125
+#: ui/main.qml:129
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Dark schemes"
 msgstr "Тёмные схемы"
 
-#: ui/main.qml:152
+#: ui/main.qml:140
 #, kde-format
 msgid "Install from File…"
 msgstr "Установить из файла..."
 
-#: ui/main.qml:157
+#: ui/main.qml:145
 #, kde-format
 msgid "Get New…"
 msgstr "Загрузить…"
 
-#: ui/main.qml:204
+#: ui/main.qml:192
 #, kde-format
 msgid "Window Title"
 msgstr "Заголовок окна"
 
-#: ui/main.qml:227
+#: ui/main.qml:215
 #, kde-format
 msgid "Window text"
 msgstr "Текст в окне"
 
-#: ui/main.qml:235
+#: ui/main.qml:223
 #, kde-format
 msgid "Button"
 msgstr "Кнопка"
 
-#: ui/main.qml:275
+#: ui/main.qml:263
 #, kde-format
 msgctxt "Hyperlink"
 msgid "link"
 msgstr "ссылка"
 
-#: ui/main.qml:277
+#: ui/main.qml:265
 #, kde-format
 msgctxt "Visited hyperlink"
 msgid "visited"
 msgstr "посещённая ссылка"
 
-#: ui/main.qml:285
+#: ui/main.qml:273
 #, kde-format
 msgid "Normal text"
 msgstr "Обычный текст"
 
-#: ui/main.qml:292
+#: ui/main.qml:280
 #, kde-format
 msgid "Highlighted text"
 msgstr "Подсвеченный текст"
 
-#: ui/main.qml:299
+#: ui/main.qml:287
 #, kde-format
 msgid "Disabled text"
 msgstr "Недоступный текст"
 
-#: ui/main.qml:317
+#: ui/main.qml:305
 #, kde-format
 msgid "Edit Color Scheme…"
 msgstr "Изменить цветовую схему..."
 
-#: ui/main.qml:323
+#: ui/main.qml:312
 #, kde-format
-msgid "Remove Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Remove color scheme"
 msgstr "Удалить цветовую схему"
 
-#: ui/main.qml:330
+#: ui/main.qml:314
 #, kde-format
-msgid "Restore Color Scheme"
-msgstr "Восстановить цветовую схему"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active color scheme"
+msgstr "Активная цветовая схема не может быть удалена"
 
-#: ui/main.qml:374
+#: ui/main.qml:316
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed color schemes"
+msgstr "Цветовая схема, встроенная в систему, не может быть удалена"
+
+#: ui/main.qml:324
+#, kde-format
+msgid "Don’t delete this color scheme"
+msgstr "Не удаляйте эту цветовую схему"
+
+#: ui/main.qml:368
 #, kde-format
 msgid "Open Color Scheme"
 msgstr "Открыть цветовую схему"
 
-#: ui/main.qml:376
+#: ui/main.qml:370
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Файлы цветовых схем (*.colors)"
+
+#~ msgid "You do not have permission to overwrite that scheme"
+#~ msgstr "Недостаточно прав, чтобы заменить эту схему"
+
+#~ msgid "Restore Color Scheme"
+#~ msgstr "Восстановить цветовую схему"
 
 #~ msgid "Shading of frames and lighting (\"3D\") effects"
 #~ msgstr "Отрисовка рамок и рельефных эффектов элементов интерфейса"

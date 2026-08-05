@@ -1,6 +1,6 @@
 # translation of kcmcolors.po to Polish
 # translation of kcmcolors.po to
-# Version: $Revision: 1730402 $
+# Version: $Revision: 1735226 $
 # SPDX-FileCopyrightText: 2011, 2012, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Norbert Popiołek <norbert@kde.com.pl>\n"
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2026-02-21 08:47+0100\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-03-14 06:57+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -693,15 +693,16 @@ msgstr ""
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
-msgid "You do not have permission to overwrite that scheme"
-msgstr "Nie masz uprawnień do zastąpienia tego zestawu"
+msgid ""
+"This scheme is read-only. Please save the modifications with another name."
+msgstr "Ten zestaw jest tylko do odczytu. Zapisz swoje zmiany pod inną nazwą."
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
 msgid "Error"
 msgstr "Błąd"
 
-#: editor/scmeditordialog.cpp:193
+#: editor/scmeditordialog.cpp:194
 #, kde-format
 msgid "Inactive"
 msgstr "Nieaktywne"
@@ -1274,106 +1275,125 @@ msgctxt "@item:inlistbox User-chosen custom accent color"
 msgid "Custom accent color"
 msgstr "Własny kolor akcentu"
 
-#: ui/main.qml:90
+#: ui/main.qml:94
 #, kde-format
 msgid ""
 "The color scheme '%1' is not installed. Selecting the default theme instead."
 msgstr "Zestaw kolorów '%1' nie został wgrany. Wybrano domyślny zestaw."
 
-#: ui/main.qml:123
+#: ui/main.qml:127
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "All schemes"
 msgstr "Wszystkie zestawy"
 
-#: ui/main.qml:124
+#: ui/main.qml:128
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Light schemes"
 msgstr "Jasne zestawy"
 
-#: ui/main.qml:125
+#: ui/main.qml:129
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Dark schemes"
 msgstr "Ciemne zestawy"
 
-#: ui/main.qml:152
+#: ui/main.qml:140
 #, kde-format
 msgid "Install from File…"
 msgstr "Wgraj z pliku..."
 
-#: ui/main.qml:157
+#: ui/main.qml:145
 #, kde-format
 msgid "Get New…"
 msgstr "Pobierz nowe…"
 
-#: ui/main.qml:204
+#: ui/main.qml:192
 #, kde-format
 msgid "Window Title"
 msgstr "Tytuł okna"
 
-#: ui/main.qml:227
+#: ui/main.qml:215
 #, kde-format
 msgid "Window text"
 msgstr "Tekst okna"
 
-#: ui/main.qml:235
+#: ui/main.qml:223
 #, kde-format
 msgid "Button"
 msgstr "Przycisk"
 
-#: ui/main.qml:275
+#: ui/main.qml:263
 #, kde-format
 msgctxt "Hyperlink"
 msgid "link"
 msgstr "odnośnik"
 
-#: ui/main.qml:277
+#: ui/main.qml:265
 #, kde-format
 msgctxt "Visited hyperlink"
 msgid "visited"
 msgstr "odwiedzony"
 
-#: ui/main.qml:285
+#: ui/main.qml:273
 #, kde-format
 msgid "Normal text"
 msgstr "Zwykły tekst"
 
-#: ui/main.qml:292
+#: ui/main.qml:280
 #, kde-format
 msgid "Highlighted text"
 msgstr "Podświetlony tekst"
 
-#: ui/main.qml:299
+#: ui/main.qml:287
 #, kde-format
 msgid "Disabled text"
 msgstr "Wyłączony tekst"
 
-#: ui/main.qml:317
+#: ui/main.qml:305
 #, kde-format
 msgid "Edit Color Scheme…"
 msgstr "Edytuj zestaw kolorów..."
 
-#: ui/main.qml:323
+#: ui/main.qml:312
 #, kde-format
-msgid "Remove Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Remove color scheme"
 msgstr "Usuń zestaw kolorów"
 
-#: ui/main.qml:330
+#: ui/main.qml:314
 #, kde-format
-msgid "Restore Color Scheme"
-msgstr "Przywróć zestaw kolorów"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active color scheme"
+msgstr "Nie można usunąć używanego zestawów kolorów"
 
-#: ui/main.qml:374
+#: ui/main.qml:316
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed color schemes"
+msgstr "Nie można usunąć zestawu kolorów wgranych na całym systemie"
+
+#: ui/main.qml:324
+#, kde-format
+msgid "Don’t delete this color scheme"
+msgstr "Nie usuwaj tego zestawu kolorów"
+
+#: ui/main.qml:368
 #, kde-format
 msgid "Open Color Scheme"
 msgstr "Otwórz zestaw kolorów"
 
-#: ui/main.qml:376
+#: ui/main.qml:370
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "Pliki zestawu kolorów (*.colors)"
+
+#~ msgid "You do not have permission to overwrite that scheme"
+#~ msgstr "Nie masz uprawnień do zastąpienia tego zestawu"
+
+#~ msgid "Restore Color Scheme"
+#~ msgstr "Przywróć zestaw kolorów"
 
 #~ msgid "Shading of frames and lighting (\"3D\") effects"
 #~ msgstr "Cieniowanie obramowań i efekty świetlne (3D)"

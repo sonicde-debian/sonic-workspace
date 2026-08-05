@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
 "PO-Revision-Date: 2024-12-28 17:41+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -61,10 +61,10 @@ msgstr "Ĉiam for"
 
 #: ui/main.qml:59
 #, fuzzy, kde-format
-#| msgid "Always on night light"
+#| msgid "Always off"
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "Ĉiam sur nokta koloro"
+msgid "Always on"
+msgstr "Ĉiam for"
 
 #: ui/main.qml:60
 #, kde-format
@@ -81,8 +81,8 @@ msgstr ""
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
-msgstr "%1K"
+msgid "%1 K"
+msgstr ""
 
 #: ui/main.qml:123
 #, fuzzy, kde-format
@@ -109,6 +109,16 @@ msgstr "Varma"
 msgctxt "@label:slider"
 msgid "Night light temperature:"
 msgstr "Nokta lumtemperaturo:"
+
+#, fuzzy
+#~| msgid "Always on night light"
+#~ msgctxt "@item:inlistbox switching times"
+#~ msgid "Always on night light"
+#~ msgstr "Ĉiam sur nokta koloro"
+
+#~ msgctxt "Color temperature in Kelvin"
+#~ msgid "%1K"
+#~ msgstr "%1K"
 
 #~ msgctxt ""
 #~ "@label:chooser Tap should be translated to mean touching using a "

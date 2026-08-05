@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.devicenotifier\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-17 02:39+0000\n"
+"POT-Creation-Date: 2026-05-24 02:37+0000\n"
 "PO-Revision-Date: 2016-07-10 19:45+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -19,116 +19,116 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: actions/checkaction.cpp:72
+#: actions/checkaction.cpp:71
 #, kde-format
 msgctxt "@action:button check a storageAccess (i.e disk) for error"
 msgid "Check for Errors"
 msgstr ""
 
-#: actions/mountaction.cpp:97
+#: actions/mountaction.cpp:93
 #, kde-format
 msgid "Mount"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:178
+#: actions/mountandopenaction.cpp:177
 #, kde-format
 msgid "Open in File Manager"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:181
+#: actions/mountandopenaction.cpp:180
 #, kde-format
 msgid "Try to Fix"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:181
+#: actions/mountandopenaction.cpp:180
 #, kde-format
 msgid "Mount and Open"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:183
+#: actions/mountandopenaction.cpp:182
 #, kde-format
 msgid "Eject"
 msgstr ""
 
-#: actions/mountandopenaction.cpp:185
+#: actions/mountandopenaction.cpp:184
 #, kde-format
 msgid "Safely remove"
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:171
+#: messageinfo.cpp:108
 #, kde-format
 msgid "This device has file system errors."
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:173
+#: messageinfo.cpp:110
 #, fuzzy, kde-format
 #| msgid "This device is not currently accessible."
 msgctxt "@label device is a storage disk"
 msgid "This device has no errors"
 msgstr "Ovom uređaju se trenutno ne može pristupiti."
 
-#: devicemessagemonitor_p.cpp:176
+#: messageinfo.cpp:113
 #, kde-format
 msgid "Successfully repaired!"
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:180
+#: messageinfo.cpp:117
 #, kde-format
 msgid "Device Status"
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:181
+#: messageinfo.cpp:118
 #, kde-format
 msgid "A device can now be safely removed"
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:185
+#: messageinfo.cpp:122
 #, kde-format
 msgid "This device can now be safely removed."
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:192
+#: messageinfo.cpp:129
 #, fuzzy, kde-format
 #| msgid "It is currently safe to remove this device."
 msgid "You are not authorized to mount this device."
 msgstr "Trenutno je bezbedno ukloniti ovaj uređaj."
 
-#: devicemessagemonitor_p.cpp:196
+#: messageinfo.cpp:133
 #, fuzzy, kde-format
 #| msgid "Click to eject this disc."
 msgid "You are not authorized to eject this disc."
 msgstr "Kliknite za izbacivanje ovog diska."
 
-#: devicemessagemonitor_p.cpp:199
+#: messageinfo.cpp:136
 #, fuzzy, kde-format
 #| msgid "It is currently safe to remove this device."
 msgctxt "Remove is less technical for unmount"
 msgid "You are not authorized to remove this device."
 msgstr "Trenutno je bezbedno ukloniti ovaj uređaj."
 
-#: devicemessagemonitor_p.cpp:202
+#: messageinfo.cpp:139
 #, fuzzy, kde-format
 #| msgid "It is currently safe to remove this device."
 msgid "You are not authorized to repair this device."
 msgstr "Trenutno je bezbedno ukloniti ovaj uređaj."
 
-#: devicemessagemonitor_p.cpp:204 devicemessagemonitor_p.cpp:269
+#: messageinfo.cpp:141 messageinfo.cpp:208
 #, kde-format
 msgid "Unknown error type"
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:208
+#: messageinfo.cpp:145
 #, kde-format
 msgid "Could not mount this device as it is busy."
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:235
+#: messageinfo.cpp:173
 #, fuzzy, kde-format
 #| msgid "Click to access this device from other applications."
 msgid "One or more files on this device are open within an application."
 msgstr "Kliknite da pristupite ovom uređaju iz drugih programa."
 
-#: devicemessagemonitor_p.cpp:237
+#: messageinfo.cpp:175
 #, fuzzy, kde-format
 #| msgid "Click to access this device from other applications."
 msgid "One or more files on this device are opened in application \"%2\"."
@@ -139,32 +139,32 @@ msgstr[1] "Kliknite da pristupite ovom uređaju iz drugih programa."
 msgstr[2] "Kliknite da pristupite ovom uređaju iz drugih programa."
 msgstr[3] "Kliknite da pristupite ovom uređaju iz drugih programa."
 
-#: devicemessagemonitor_p.cpp:240
+#: messageinfo.cpp:178
 #, kde-format
 msgctxt "separator in list of apps blocking device unmount"
 msgid ", "
 msgstr ""
 
-#: devicemessagemonitor_p.cpp:258
+#: messageinfo.cpp:197
 #, fuzzy, kde-format
 #| msgid "Click to safely remove this device."
 msgid "Could not mount this device."
 msgstr "Kliknite da bezbedno uklonite ovaj uređaj."
 
-#: devicemessagemonitor_p.cpp:262
+#: messageinfo.cpp:201
 #, fuzzy, kde-format
 #| msgid "Click to eject this disc."
 msgid "Could not eject this disc."
 msgstr "Kliknite za izbacivanje ovog diska."
 
-#: devicemessagemonitor_p.cpp:264
+#: messageinfo.cpp:203
 #, fuzzy, kde-format
 #| msgid "Click to safely remove this device."
 msgctxt "Remove is less technical for unmount"
 msgid "Could not remove this device."
 msgstr "Kliknite da bezbedno uklonite ovaj uređaj."
 
-#: devicemessagemonitor_p.cpp:267
+#: messageinfo.cpp:206
 #, fuzzy, kde-format
 #| msgid "Click to safely remove this device."
 msgid "Could not repair this device: %1"
@@ -177,8 +177,8 @@ msgstr "Kliknite da bezbedno uklonite ovaj uređaj."
 #| "short and mean 'Currently unmounting this device'"
 #| msgid "Removing..."
 msgctxt ""
-"Accessing is a less technical word for Mounting; translation should be short "
-"and mean 'Currently mounting this device'"
+"Translation should be short and mean 'Currently checking the device for "
+"filesystem errors'"
 msgid "Checking…"
 msgstr "Uklanjam..."
 
@@ -189,8 +189,8 @@ msgstr "Uklanjam..."
 #| "short and mean 'Currently unmounting this device'"
 #| msgid "Removing..."
 msgctxt ""
-"Accessing is a less technical word for Mounting; translation should be short "
-"and mean 'Currently mounting this device'"
+"Translation should be short and mean 'The storage device contains filesystem "
+"errors and is being repaired'"
 msgid "Repairing…"
 msgstr "Uklanjam..."
 
@@ -231,7 +231,7 @@ msgstr "Uklanjam..."
 msgid "Don't unplug yet! Files are still being transferred…"
 msgstr ""
 
-#: qml/FullRepresentation.qml:47 qml/main.qml:123
+#: qml/FullRepresentation.qml:47 qml/main.qml:127
 #, kde-format
 msgid "Remove All"
 msgstr ""
@@ -254,17 +254,17 @@ msgstr "samo neuklonjive uređaje"
 msgid "No disks available"
 msgstr "Nema dostupnih uređaja"
 
-#: qml/main.qml:72
+#: qml/main.qml:76
 #, kde-format
 msgid "Most Recent Device"
 msgstr "Poslednji uređaj"
 
-#: qml/main.qml:72
+#: qml/main.qml:76
 #, kde-format
 msgid "No Devices Available"
 msgstr "Nema dostupnih uređaja"
 
-#: qml/main.qml:109
+#: qml/main.qml:113
 #, fuzzy, kde-format
 #| msgctxt "Open auto mounter kcm"
 #| msgid "Configure Removable Devices"
@@ -272,26 +272,26 @@ msgctxt "Open auto mounter kcm"
 msgid "Configure Removable Devices…"
 msgstr "Podesi uklonjive uređaje"
 
-#: qml/main.qml:131
+#: qml/main.qml:135
 #, fuzzy, kde-format
 #| msgid "Removable devices only"
 msgid "Removable Devices"
 msgstr "samo uklonjive uređaje"
 
-#: qml/main.qml:146
+#: qml/main.qml:150
 #, fuzzy, kde-format
 #| msgctxt "Open auto mounter kcm"
 #| msgid "Configure Removable Devices"
 msgid "Non Removable Devices"
 msgstr "Podesi uklonjive uređaje"
 
-#: qml/main.qml:161
+#: qml/main.qml:165
 #, fuzzy, kde-format
 #| msgid "All devices"
 msgid "All Devices"
 msgstr "sve uređaje"
 
-#: qml/main.qml:178
+#: qml/main.qml:182
 #, fuzzy, kde-format
 #| msgid "Open popup when new device is plugged in"
 msgid "Show popup when new device is plugged in"

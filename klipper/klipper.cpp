@@ -125,6 +125,7 @@ Klipper::Klipper(QObject *parent)
     m_showOnMousePos = m_collection->addAction(QStringLiteral("show-on-mouse-pos"));
     m_showOnMousePos->setText(i18nc("@action:inmenu", "Show Clipboard Items at Mouse Position"));
     m_showOnMousePos->setIcon(QIcon::fromTheme(QStringLiteral("view-list-text")));
+    m_showOnMousePos->setAutoRepeat(false);
     KGlobalAccel::setGlobalShortcut(m_showOnMousePos, QKeySequence(Qt::META | Qt::Key_V));
     connect(m_showOnMousePos, &QAction::triggered, this, &Klipper::slotPopupMenu);
 
@@ -210,8 +211,6 @@ void Klipper::slotStartShowTimer()
 void Klipper::loadSettings()
 {
     m_bReplayActionInHistory = KlipperSettings::replayActionInHistory();
-    // NOTE: not used atm - kregexpeditor is not ported to kde4
-    m_bUseGUIRegExpEditor = KlipperSettings::useGUIRegExpEditor();
 
     m_bURLGrabber = KlipperSettings::uRLGrabberEnabled();
     // this will cause it to loadSettings too
@@ -279,7 +278,11 @@ void Klipper::slotConfigure()
 
 void Klipper::slotPopupMenu()
 {
-    m_popup->show();
+    if (m_popup->isVisible()) {
+        m_popup->hide();
+    } else {
+        m_popup->show();
+    }
 }
 
 void Klipper::slotRepeatAction()

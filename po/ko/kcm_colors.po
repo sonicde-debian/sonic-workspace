@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmcolors\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2026-02-03 23:18+0100\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-04-26 20:42+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -686,15 +686,18 @@ msgstr ""
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
-msgid "You do not have permission to overwrite that scheme"
-msgstr "색 구성표를 덮어쓸 권한이 없습니다."
+msgid ""
+"This scheme is read-only. Please save the modifications with another name."
+msgstr ""
+"이 색 구성표는 읽기 전용입니다. 변경 사항을 저장하려면 다른 이름으로 저장하십"
+"시오."
 
 #: editor/scmeditordialog.cpp:178
 #, kde-format
 msgid "Error"
 msgstr "오류"
 
-#: editor/scmeditordialog.cpp:193
+#: editor/scmeditordialog.cpp:194
 #, kde-format
 msgid "Inactive"
 msgstr "비활성"
@@ -1249,106 +1252,125 @@ msgctxt "@item:inlistbox User-chosen custom accent color"
 msgid "Custom accent color"
 msgstr "사용자 정의 강조 색상"
 
-#: ui/main.qml:90
+#: ui/main.qml:94
 #, kde-format
 msgid ""
 "The color scheme '%1' is not installed. Selecting the default theme instead."
 msgstr "색 구성표 '%1'이(가) 설치되어 있지 않습니다. 기본 테마를 사용합니다."
 
-#: ui/main.qml:123
+#: ui/main.qml:127
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "All schemes"
 msgstr "모든 색 구성표"
 
-#: ui/main.qml:124
+#: ui/main.qml:128
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Light schemes"
 msgstr "밝은 색 구성표"
 
-#: ui/main.qml:125
+#: ui/main.qml:129
 #, kde-format
 msgctxt "@item:inlistbox filter displayed schemes"
 msgid "Dark schemes"
 msgstr "어두운 색 구성표"
 
-#: ui/main.qml:152
+#: ui/main.qml:140
 #, kde-format
 msgid "Install from File…"
 msgstr "파일에서 설치…"
 
-#: ui/main.qml:157
+#: ui/main.qml:145
 #, kde-format
 msgid "Get New…"
 msgstr "새 항목 가져오기…"
 
-#: ui/main.qml:204
+#: ui/main.qml:192
 #, kde-format
 msgid "Window Title"
 msgstr "창 제목"
 
-#: ui/main.qml:227
+#: ui/main.qml:215
 #, kde-format
 msgid "Window text"
 msgstr "창 텍스트"
 
-#: ui/main.qml:235
+#: ui/main.qml:223
 #, kde-format
 msgid "Button"
 msgstr "단추"
 
-#: ui/main.qml:275
+#: ui/main.qml:263
 #, kde-format
 msgctxt "Hyperlink"
 msgid "link"
 msgstr "링크"
 
-#: ui/main.qml:277
+#: ui/main.qml:265
 #, kde-format
 msgctxt "Visited hyperlink"
 msgid "visited"
 msgstr "방문함"
 
-#: ui/main.qml:285
+#: ui/main.qml:273
 #, kde-format
 msgid "Normal text"
 msgstr "일반 텍스트"
 
-#: ui/main.qml:292
+#: ui/main.qml:280
 #, kde-format
 msgid "Highlighted text"
 msgstr "방문한 링크 텍스트"
 
-#: ui/main.qml:299
+#: ui/main.qml:287
 #, kde-format
 msgid "Disabled text"
 msgstr "비활성화된 텍스트"
 
-#: ui/main.qml:317
+#: ui/main.qml:305
 #, kde-format
 msgid "Edit Color Scheme…"
 msgstr "색 구성표 편집…"
 
-#: ui/main.qml:323
+#: ui/main.qml:312
 #, kde-format
-msgid "Remove Color Scheme"
+msgctxt "@info:tooltip"
+msgid "Remove color scheme"
 msgstr "색 구성표 삭제"
 
-#: ui/main.qml:330
+#: ui/main.qml:314
 #, kde-format
-msgid "Restore Color Scheme"
-msgstr "색 구성표 복원"
+msgctxt "@info:tooltip"
+msgid "Cannot delete the active color scheme"
+msgstr "활성 색 구성표를 삭제할 수 없음"
 
-#: ui/main.qml:374
+#: ui/main.qml:316
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Cannot delete system-installed color schemes"
+msgstr "시스템에서 설치한 색 구성표를 삭제할 수 없음"
+
+#: ui/main.qml:324
+#, kde-format
+msgid "Don’t delete this color scheme"
+msgstr "이 색 구성표를 삭제하지 마십시오"
+
+#: ui/main.qml:368
 #, kde-format
 msgid "Open Color Scheme"
 msgstr "색 구성표 열기"
 
-#: ui/main.qml:376
+#: ui/main.qml:370
 #, kde-format
 msgid "Color Scheme Files (*.colors)"
 msgstr "색 구성표 파일 (*.colors)"
+
+#~ msgid "You do not have permission to overwrite that scheme"
+#~ msgstr "색 구성표를 덮어쓸 권한이 없습니다."
+
+#~ msgid "Restore Color Scheme"
+#~ msgstr "색 구성표 복원"
 
 #~ msgid "Shading of frames and lighting (\"3D\") effects"
 #~ msgstr "프레임 그림자와 반짝이는(\"3D\") 효과"

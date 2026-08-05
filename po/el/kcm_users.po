@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"POT-Creation-Date: 2026-05-31 02:39+0000\n"
 "PO-Revision-Date: 2024-09-21 13:07+0300\n"
 "Last-Translator: Δημήτρης Μηλιάτης <demetresmeliates+i18n@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -375,27 +375,22 @@ msgstr "Διαμόρφωση αποτυπωμάτων"
 msgid "Add"
 msgstr "Προσθήκη"
 
-#: src/ui/FingerprintDialog.qml:51
-#, kde-format
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-#: src/ui/FingerprintDialog.qml:59
+#: src/ui/FingerprintDialog.qml:52
 #, kde-format
 msgid "Done"
 msgstr "Έγινε"
 
-#: src/ui/FingerprintList.qml:46
+#: src/ui/FingerprintList.qml:47
 #, kde-format
 msgid "Re-enroll finger"
 msgstr "Επανεγγραφή δακτύλου"
 
-#: src/ui/FingerprintList.qml:58
+#: src/ui/FingerprintList.qml:59
 #, kde-format
 msgid "Delete fingerprint"
 msgstr "Διαγραφή αποτυπώματος"
 
-#: src/ui/FingerprintList.qml:74
+#: src/ui/FingerprintList.qml:75
 #, kde-format
 msgid "No fingerprints added"
 msgstr "Δεν έχουν προστεθεί δακτυλικά αποτυπώματα"
@@ -741,3 +736,6 @@ msgstr "Ο λογαριασμός σας"
 #, kde-format
 msgid "Other Accounts"
 msgstr "Άλλοι λογαριασμοί"
+
+#~ msgid "Cancel"
+#~ msgstr "Ακύρωση"

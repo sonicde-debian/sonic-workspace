@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-20 03:19+0000\n"
+"POT-Creation-Date: 2026-05-31 02:39+0000\n"
 "PO-Revision-Date: 2025-12-16 20:11+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -331,27 +331,22 @@ msgstr "Настроить использование отпечатков па�
 msgid "Add"
 msgstr "Добавить"
 
-#: src/ui/FingerprintDialog.qml:51
-#, kde-format
-msgid "Cancel"
-msgstr "Отмена"
-
-#: src/ui/FingerprintDialog.qml:59
+#: src/ui/FingerprintDialog.qml:52
 #, kde-format
 msgid "Done"
 msgstr "Готово"
 
-#: src/ui/FingerprintList.qml:46
+#: src/ui/FingerprintList.qml:47
 #, kde-format
 msgid "Re-enroll finger"
 msgstr "Повторно считать отпечаток пальца"
 
-#: src/ui/FingerprintList.qml:58
+#: src/ui/FingerprintList.qml:59
 #, kde-format
 msgid "Delete fingerprint"
 msgstr "Удалить отпечаток пальца"
 
-#: src/ui/FingerprintList.qml:74
+#: src/ui/FingerprintList.qml:75
 #, kde-format
 msgid "No fingerprints added"
 msgstr "Нет ни одного сохранённого отпечатка пальца"
@@ -717,6 +712,9 @@ msgstr "Ваша учётная запись"
 #, kde-format
 msgid "Other Accounts"
 msgstr "Другие учётные записи"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
 
 #~ msgid "Enrolling Fingerprint"
 #~ msgstr "Считывание отпечатка пальца"

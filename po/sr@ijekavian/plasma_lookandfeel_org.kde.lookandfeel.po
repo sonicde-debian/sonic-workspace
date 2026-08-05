@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_lookandfeel_org.kde.lookandfeel\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
 "PO-Revision-Date: 2017-09-25 19:53+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -79,93 +79,98 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, kde-format
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr ""
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr ""
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, kde-format
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr ""
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, kde-format
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
 msgstr ""
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr ""
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr ""
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, kde-format
 msgid "&Hibernate"
 msgstr ""
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, kde-format
 msgid "&Hibernate Now"
 msgstr ""
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr ""
 
 # rewrite-msgid: /Restart/Reset/
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, fuzzy, kde-format
 #| msgid "Restart"
 msgid "&Restart"
 msgstr "Ресетуј"
 
 # rewrite-msgid: /Restart/Reset/
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, fuzzy, kde-format
 #| msgid "Restart"
 msgid "&Restart Now"
 msgstr "Ресетуј"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr ""
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, fuzzy, kde-format
 #| msgid "Shutdown"
 msgid "&Shut Down"
 msgstr "Угаси"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, fuzzy, kde-format
 #| msgid "Shutdown"
 msgid "&Shut Down Now"
 msgstr "Угаси"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, kde-format
 msgid "&Log Out"
 msgstr ""
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, kde-format
 msgid "&Log Out Now"
 msgstr ""
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgid "&Cancel"

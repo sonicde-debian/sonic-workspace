@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: klipper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-12 02:38+0000\n"
+"POT-Creation-Date: 2026-06-16 02:41+0000\n"
 "PO-Revision-Date: 2026-04-02 14:51+0200\n"
 "Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -257,66 +257,35 @@ msgstr "Kurzbefehle"
 msgid "Shortcuts Configuration"
 msgstr "Kurzbefehl-Einstellungen"
 
-#: declarative/qml/BarcodePage.qml:32
-#, kde-format
-msgid "QR Code"
-msgstr "QR-Code"
-
-#: declarative/qml/BarcodePage.qml:33
-#, kde-format
-msgid "Data Matrix"
-msgstr "Datenmatrix"
-
-#: declarative/qml/BarcodePage.qml:34
-#, kde-format
-msgctxt "Aztec barcode"
-msgid "Aztec"
-msgstr "Aztec"
-
-#: declarative/qml/BarcodePage.qml:35
-#, kde-format
-msgid "Code 39"
-msgstr "Code 39"
-
-#: declarative/qml/BarcodePage.qml:36
-#, kde-format
-msgid "Code 93"
-msgstr "Code 93"
-
-#: declarative/qml/BarcodePage.qml:37
-#, kde-format
-msgid "Code 128"
-msgstr "Code 128"
-
-#: declarative/qml/BarcodePage.qml:53
+#: declarative/qml/BarcodePage.qml:48
 #, kde-format
 msgid "Return to Clipboard"
 msgstr "Zurück zur Zwischenablage"
 
-#: declarative/qml/BarcodePage.qml:89
+#: declarative/qml/BarcodePage.qml:69
 #, kde-format
 msgctxt "@action:button Copy to clipboard"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: declarative/qml/BarcodePage.qml:95
+#: declarative/qml/BarcodePage.qml:75
 #, kde-format
 msgctxt "@info:status"
 msgid "An image of the QR code has been copied to clipboard"
 msgstr "Ein Bild des QR-Codes wurde in die Zwischenablage kopiert"
 
-#: declarative/qml/BarcodePage.qml:101
+#: declarative/qml/BarcodePage.qml:78
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy QR code image to clipboard"
 msgstr "QR-Code in die Zwischenablage kopieren"
 
-#: declarative/qml/BarcodePage.qml:112
+#: declarative/qml/BarcodePage.qml:113
 #, kde-format
-msgid "Change the QR code type"
-msgstr "Den QR-Code-Typ ändern"
+msgid "QR Code"
+msgstr "QR-Code"
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid ""
 "There is not enough space to display the QR code. Try resizing this applet."
@@ -324,7 +293,7 @@ msgstr ""
 "Es gibt nicht genug Platz zum Anzeigen des QR-Codes. Versuchen Sie, das "
 "Miniprogramm zu vergrößern."
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid "Creating QR code failed"
 msgstr "Das Erstellen des QR-Codes ist fehlgeschlagen"
@@ -341,27 +310,27 @@ msgctxt "@action:button"
 msgid "Expand"
 msgstr "Ausklappen"
 
-#: declarative/qml/ClipboardMenu.qml:275
+#: declarative/qml/ClipboardMenu.qml:285
 #, kde-format
 msgid "Clear History"
 msgstr "Verlauf leeren"
 
-#: declarative/qml/ClipboardMenu.qml:329
+#: declarative/qml/ClipboardMenu.qml:339
 #, kde-format
 msgid "All History"
 msgstr "Gesamter Verlauf"
 
-#: declarative/qml/ClipboardMenu.qml:334
+#: declarative/qml/ClipboardMenu.qml:344
 #, kde-format
 msgid "Starred Only"
 msgstr "Nur Favoriten"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "No matches"
 msgstr "Keine Übereinstimmungen"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "Clipboard is empty"
 msgstr "Die Zwischenablage ist leer"
@@ -614,115 +583,98 @@ msgstr "Symbol des Befehls auf Standard zurücksetzen"
 msgid "Icon:"
 msgstr "Symbol:"
 
-#: historymodel.cpp:283
-#, kde-format
-msgid "The clipboard history contains starred items. Clear them too?"
-msgstr ""
-"Der Verlauf der Zwischenablage enthält favorisierte Elemente. Auch diese "
-"leeren?"
-
-#: historymodel.cpp:284 historymodel.cpp:304
-#, kde-format
-msgid "Clear Clipboard History"
-msgstr "Verlauf der Zwischenablage leeren"
-
-#: historymodel.cpp:285
-#, kde-format
-msgid "Clear Everything"
-msgstr "Alles leeren"
-
-#: historymodel.cpp:286
-#, kde-format
-msgid "Keep Starred Items"
-msgstr "Favorisierte Elemente behalten"
-
-#: historymodel.cpp:303
+#: historymodel.cpp:281
 #, kde-format
 msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr "Möchten Sie wirklich den gesamten Verlauf der Zwischenablage löschen?"
 
-#: historymodel.cpp:387
+#: historymodel.cpp:282
+#, kde-format
+msgid "Clear Clipboard History"
+msgstr "Verlauf der Zwischenablage leeren"
+
+#: historymodel.cpp:363
 #, kde-format
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr "%1×%2"
 
-#: historymodel.cpp:567
+#: historymodel.cpp:543
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr ""
 "Dieses Element ist favorisiert. Möchten Sie es wirklich aus dem Verlauf "
 "entfernen?"
 
-#: historymodel.cpp:568
+#: historymodel.cpp:544
 #, kde-format
 msgid "Remove Starred Item"
 msgstr "Favorisiertes Element entfernen"
 
-#: klipper.cpp:78
+#: klipper.cpp:77
 #, kde-format
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "Automatisches Aufklappmenü für Aktionen"
 
-#: klipper.cpp:96
+#: klipper.cpp:95
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "Ver&lauf der Zwischenablage leeren"
 
-#: klipper.cpp:101
+#: klipper.cpp:100
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr "Aktionen der aktuellen Zwischenablage manuell aufrufen"
 
-#: klipper.cpp:109
+#: klipper.cpp:108
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr "&Inhalt bearbeiten …"
 
-#: klipper.cpp:115
+#: klipper.cpp:114
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr "&Strichcode anzeigen …"
 
-#: klipper.cpp:122
+#: klipper.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "Nächstes Element im Verlauf"
 
-#: klipper.cpp:127
+#: klipper.cpp:126
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "Vorheriges Element im Verlauf"
 
-#: klipper.cpp:134
+#: klipper.cpp:133
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr "Elemente der Zwischenablage an Mausposition anzeigen"
 
-#: klipper.cpp:402 klipper.cpp:411
+#: klipper.cpp:404 klipper.cpp:413
 #, kde-format
 msgid "Clipboard history"
 msgstr "Verlauf der Zwischenablage"
 
-#: klipper.cpp:428
+#: klipper.cpp:430
 #, kde-format
 msgid "up"
 msgstr "nach oben"
 
-#: klipper.cpp:435
+#: klipper.cpp:437
 #, kde-format
 msgid "current"
 msgstr "aktuelle"
 
-#: klipper.cpp:442
+#: klipper.cpp:444
 #, kde-format
 msgid "down"
 msgstr "nach unten"
@@ -833,20 +785,14 @@ msgstr ""
 "Keine Bilder in der Zwischenablage speichern, auch wenn diese explizit "
 "kopiert wurden."
 
-#. i18n: ectx: label, entry (UseGUIRegExpEditor), group (General)
-#: klipper.kcfg:47
-#, kde-format
-msgid "Use graphical regexp editor"
-msgstr "Grafischen Editor für reguläre Ausdrücke verwenden"
-
 #. i18n: ectx: label, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:51
+#: klipper.kcfg:47
 #, kde-format
 msgid "Immediately on selection"
 msgstr "Sofort bei der Auswahl"
 
 #. i18n: ectx: tooltip, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:52
+#: klipper.kcfg:48
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
@@ -855,43 +801,43 @@ msgstr ""
 "ist."
 
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:56
+#: klipper.kcfg:52
 #, kde-format
 msgid "Automatic action menu time:"
 msgstr "Zeitlimit für Aktionen-Menüs:"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, kde-format
 msgid "Display the automatic action popup menu for this time."
 msgstr "Das automatische Aktionen-Menü für diese Dauer anzeigen."
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:63
+#: klipper.kcfg:59
 #, kde-format
 msgid "History size:"
 msgstr "Größe des Verlaufs:"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr "Der Verlauf der Zwischenablage speichert diese Anzahl an Elementen."
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:70
+#: klipper.kcfg:66
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr "Pseudo-Eintrag zum Anzeigen von Änderungen im Baumelement einer Aktion"
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:80
+#: klipper.kcfg:76
 #, kde-format
 msgid "Trim whitespace from selection"
 msgstr "Leerräume aus Auswahl entfernen"
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:82
+#: klipper.kcfg:78
 #, kde-format
 msgid ""
 "Remove any whitespace from the start and end of selected text, before "
@@ -905,13 +851,13 @@ msgstr ""
 "Zwischenablage gespeicherte Text ist davon nicht betroffen."
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:85
+#: klipper.kcfg:81
 #, kde-format
 msgid "For an item chosen from history"
 msgstr "Für ein Element aus dem Verlauf"
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:87
+#: klipper.kcfg:83
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions if an entry is chosen from the "
@@ -921,13 +867,13 @@ msgstr ""
 "Verlauf der Zwischenablage ausgewählt wird."
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:90
+#: klipper.kcfg:86
 #, kde-format
 msgid "Include MIME actions"
 msgstr "MIME-Aktionen einschließen"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:92
+#: klipper.kcfg:88
 #, kde-format
 msgid ""
 "If a file name or URL is selected, include applications that can accept its "
@@ -936,7 +882,7 @@ msgstr ""
 "Bei Auswahl eines Dateinamen oder einer Adresse Anwendungen, die den "
 "entsprechenden MIME-Typ akzeptieren, in das Aufklappmenü einschließen."
 
-#: klipperpopup.cpp:37
+#: klipperpopup.cpp:40
 #, kde-format
 msgid "Clipboard Popup"
 msgstr "Aufklappfenster der Zwischenablage"
@@ -945,6 +891,39 @@ msgstr "Aufklappfenster der Zwischenablage"
 #, kde-format
 msgid "&Cancel"
 msgstr "&Abbrechen"
+
+#~ msgid "The clipboard history contains starred items. Clear them too?"
+#~ msgstr ""
+#~ "Der Verlauf der Zwischenablage enthält favorisierte Elemente. Auch diese "
+#~ "leeren?"
+
+#~ msgid "Clear Everything"
+#~ msgstr "Alles leeren"
+
+#~ msgid "Keep Starred Items"
+#~ msgstr "Favorisierte Elemente behalten"
+
+#~ msgid "Use graphical regexp editor"
+#~ msgstr "Grafischen Editor für reguläre Ausdrücke verwenden"
+
+#~ msgid "Data Matrix"
+#~ msgstr "Datenmatrix"
+
+#~ msgctxt "Aztec barcode"
+#~ msgid "Aztec"
+#~ msgstr "Aztec"
+
+#~ msgid "Code 39"
+#~ msgstr "Code 39"
+
+#~ msgid "Code 93"
+#~ msgstr "Code 93"
+
+#~ msgid "Code 128"
+#~ msgstr "Code 128"
+
+#~ msgid "Change the QR code type"
+#~ msgstr "Den QR-Code-Typ ändern"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

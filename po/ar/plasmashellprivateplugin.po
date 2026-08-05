@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-17 02:42+0000\n"
-"PO-Revision-Date: 2025-11-12 18:55+0400\n"
+"POT-Creation-Date: 2026-04-24 00:46+0000\n"
+"PO-Revision-Date: 2026-04-30 08:59+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -148,7 +148,7 @@ msgctxt "@info:tooltip"
 msgid "Keep Open"
 msgstr "أبقه مفتوحاً"
 
-#: containmentlayoutmanager/qml/BasicAppletContainer.qml:286
+#: containmentlayoutmanager/qml/BasicAppletContainer.qml:287
 #, kde-format
 msgid "Configure…"
 msgstr "اضبط…"
@@ -190,26 +190,26 @@ msgstr "المرشّحات"
 #: shellprivate/plasmaappletitemmodel.cpp:199
 #, kde-format
 msgid ""
-"This Widget was written for an unknown older version of Plasma and is not "
+"This widget was written for an unknown older version of Plasma and is not "
 "compatible with Plasma %1. Please contact the widget's author for an updated "
 "version."
 msgstr ""
-"كُتبته هذه الأداة لإصدار أقدم غير معروف من بلازما وهي غير متوافقة مع بلازما "
+"كُتبت هذه الأداة لإصدار أقدم غير معروف من بلازما وهي غير متوافقة مع بلازما "
 "%1. يرجى الاتصال بمؤلف الودجة للحصول على نسخة محدثة."
 
 #: shellprivate/plasmaappletitemmodel.cpp:203
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
+"This widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please contact the widget's author for an updated version."
 msgstr ""
-"كُتبته هذه الأداة لإصدار بلازما %1 وهي غير متوافقة مع بلازما %2. يرجى الاتصال "
-"بمؤلف الودجة للحصول على نسخة محدثة."
+"كُتبت هذه الأداة لإصدار بلازما %1 وهي غير متوافقة مع بلازما  %2.  . يرجى "
+"الاتصال بمؤلف الودجة للحصول على نسخة محدثة."
 
 #: shellprivate/plasmaappletitemmodel.cpp:207
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with Plasma %2. "
+"This widget was written for Plasma %1 and is not compatible with Plasma %2. "
 "Please update Plasma in order to use the widget."
 msgstr ""
 "كُتبت هذه الأداة لإصدار بلازما %1 وهي غير متوافقة مع بلازما %2. يرجى تحديث "
@@ -218,11 +218,12 @@ msgstr ""
 #: shellprivate/plasmaappletitemmodel.cpp:212
 #, kde-format
 msgid ""
-"This Widget was written for Plasma %1 and is not compatible with the latest "
-"version of Plasma. Please update Plasma in order to use the widget."
+"This widget was written for Plasma %1 and is not compatible with the older "
+"version of Plasma installed on this system. Please update Plasma in order to "
+"use the widget."
 msgstr ""
-"كُتبت هذه الأداة لإصدار بلازما %1 وهي غير متوافقة مع أخر إصدارة لبلازما . "
-"يرجى تحديث بلازما لتستخدم هذه الودجة."
+"كُتبت هذه الأداة لإصدار بلازما %1 وهي غير متوافقة مع إصدارة بلازما القديمة "
+"المثبتة على هذا النظام . يرجى تحديث بلازما لتستخدم هذه الودجة."
 
 #: shellprivate/widgetexplorer.cpp:110
 msgctxt "applet category"
@@ -403,7 +404,7 @@ msgstr "فشل تثبيت الحزمة %1: %2."
 msgid "Installation Failure"
 msgstr "فشل التّثبيت"
 
-#: timezoneselector/TimezoneSelector.qml:104
+#: timezoneselector/TimezoneSelector.qml:107
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -411,42 +412,45 @@ msgid ""
 "map"
 msgstr "المنطقة الزمنية المحددة حاليًا غير متاحة للتوضيح على هذه الخريطة"
 
-#: timezoneselector/TimezoneSelector.qml:194
-#, kde-format
-msgctxt "@action:button"
-msgid "Zoom in"
-msgstr "قرّب"
-
-#: timezoneselector/TimezoneSelector.qml:210
-#, kde-format
-msgctxt "@action:button"
-msgid "Zoom out"
-msgstr "بعّد"
-
-#: timezoneselector/TimezoneSelector.qml:239
-#, kde-format
-msgctxt "@label:listbox In the context of time zone selection"
-msgid "Region:"
-msgstr "المنطقة:"
-
-#: timezoneselector/TimezoneSelector.qml:246
+#: timezoneselector/TimezoneSelector.qml:122
+#: timezoneselector/TimezoneSelector.qml:301
 #, kde-format
 msgctxt "Placeholder for empty time zone combobox selector"
 msgid "Choose…"
 msgstr "اختر..."
 
-#: timezoneselector/TimezoneSelector.qml:250
+#: timezoneselector/TimezoneSelector.qml:124
+#: timezoneselector/TimezoneSelector.qml:293
 #, kde-format
-msgid "Timezone region selector"
-msgstr "محدد المنطقة الزمنية"
+msgctxt "@label:listbox In the context of time zone selection"
+msgid "Region:"
+msgstr "المنطقة:"
 
-#: timezoneselector/TimezoneSelector.qml:271
+#: timezoneselector/TimezoneSelector.qml:146
+#: timezoneselector/TimezoneSelector.qml:326
 #, kde-format
 msgctxt "@label:listbox In the context of time zone selection"
 msgid "Time zone:"
 msgstr "المنطقة الزمنية:"
 
-#: timezoneselector/TimezoneSelector.qml:281
+#: timezoneselector/TimezoneSelector.qml:248
+#, kde-format
+msgctxt "@action:button"
+msgid "Zoom in"
+msgstr "قرّب"
+
+#: timezoneselector/TimezoneSelector.qml:264
+#, kde-format
+msgctxt "@action:button"
+msgid "Zoom out"
+msgstr "بعّد"
+
+#: timezoneselector/TimezoneSelector.qml:305
+#, kde-format
+msgid "Timezone region selector"
+msgstr "محدد المنطقة الزمنية"
+
+#: timezoneselector/TimezoneSelector.qml:337
 #, kde-format
 msgid "Timezone location selector"
 msgstr "محدد موقع المنطقة الزمنية"
