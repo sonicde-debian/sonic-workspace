@@ -1,3 +1,9 @@
+sonic-workspace (4:6.7.2-1) unstable; urgency=medium
+
+  * Upstream version 6.7.2
+
+ -- NexusSfan <nexussfan@duck.com>  Tue, 04 Aug 2026 18:54:37 -0800
+
 sonic-workspace (4:6.6.5-2) unstable; urgency=medium
 
   * Try to fix unstable for now
