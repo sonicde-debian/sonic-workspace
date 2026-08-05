@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-workspace\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
-"PO-Revision-Date: 2026-01-31 18:17+0530\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
+"PO-Revision-Date: 2026-02-27 21:30+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
-"Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
+"Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.12.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: contents/logout/Logout.qml:152
 #, kde-format
@@ -67,87 +67,92 @@ msgstr[1] ""
 "இன்னும் %1 பயனர்களின் அமர்வுகள் இயங்குகின்றன. கணினி நிறுத்தப்பட்டாலோ மீள்துவக்கப்பட்டாலோ "
 "அப்பயனர்கள் அவர்தம் தரவை இழக்க கூடும்."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, kde-format
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr "மீள்துவக்கப்படும்போது கணினி சாதனநிரல் (UEFI) அமைப்புகளில் நுழையும்."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr "மீள்துவக்கப்படும்போது கணினி சாதனநிரல் அமைப்புகளில் நுழையும்."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, kde-format
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr "மீள்துவக்கப்படும்போது கணினி துவக்குநிரல் அமைப்புகளில் நுழையும்."
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, kde-format
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
 msgstr "மீள்துவக்கப்படும்போது கணினி %1-க்குள் நுழையும்."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "தூங்கு"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "இப்போதே தூங்கு"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, kde-format
 msgid "&Hibernate"
 msgstr "ஆழுறங்கு"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, kde-format
 msgid "&Hibernate Now"
 msgstr "இப்போதே ஆழுறங்கு"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr "புதுப்பித்து மீள்துவக்கு"
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, kde-format
 msgid "&Restart"
 msgstr "மீள்துவக்கு"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, kde-format
 msgid "&Restart Now"
 msgstr "இப்போதே மீள்துவக்கு"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr "புதுப்பித்து கணினியை நிறுத்து"
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, kde-format
 msgid "&Shut Down"
 msgstr "கணினியை நிறுத்து"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, kde-format
 msgid "&Shut Down Now"
 msgstr "கணினியை இப்போதே நிறுத்து"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, kde-format
 msgid "&Log Out"
 msgstr "அமர்விலிருந்து வெளியேறு"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, kde-format
 msgid "&Log Out Now"
 msgstr "அமர்விலிருந்து இப்போதே வெளியேறு"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, kde-format
 msgid "&Cancel"
 msgstr "ரத்து செய்"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: klipper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-12 02:38+0000\n"
+"POT-Creation-Date: 2026-06-16 02:41+0000\n"
 "PO-Revision-Date: 2024-12-15 19:31+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Hindi <kde-i18n-doc@kde.org>\n"
@@ -253,74 +253,43 @@ msgstr "शॉर्टकट्स"
 msgid "Shortcuts Configuration"
 msgstr "शॉर्टकट्स विन्यास"
 
-#: declarative/qml/BarcodePage.qml:32
-#, kde-format
-msgid "QR Code"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:33
-#, kde-format
-msgid "Data Matrix"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:34
-#, kde-format
-msgctxt "Aztec barcode"
-msgid "Aztec"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:35
-#, kde-format
-msgid "Code 39"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:36
-#, kde-format
-msgid "Code 93"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:37
-#, kde-format
-msgid "Code 128"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:53
+#: declarative/qml/BarcodePage.qml:48
 #, fuzzy, kde-format
 #| msgid "Add to Clipboard"
 msgid "Return to Clipboard"
 msgstr "क्लिपबोर्ड में जोडें"
 
-#: declarative/qml/BarcodePage.qml:89
+#: declarative/qml/BarcodePage.qml:69
 #, kde-format
 msgctxt "@action:button Copy to clipboard"
 msgid "Copy"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:95
+#: declarative/qml/BarcodePage.qml:75
 #, kde-format
 msgctxt "@info:status"
 msgid "An image of the QR code has been copied to clipboard"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:101
+#: declarative/qml/BarcodePage.qml:78
 #, fuzzy, kde-format
 #| msgid "Add to Clipboard"
 msgctxt "@info:tooltip"
 msgid "Copy QR code image to clipboard"
 msgstr "क्लिपबोर्ड में जोडें"
 
-#: declarative/qml/BarcodePage.qml:112
+#: declarative/qml/BarcodePage.qml:113
 #, kde-format
-msgid "Change the QR code type"
+msgid "QR Code"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid ""
 "There is not enough space to display the QR code. Try resizing this applet."
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid "Creating QR code failed"
 msgstr ""
@@ -337,29 +306,29 @@ msgctxt "@action:button"
 msgid "Expand"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:275
+#: declarative/qml/ClipboardMenu.qml:285
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "Clear History"
 msgstr "क्लिपबोर्ड इतिहास"
 
-#: declarative/qml/ClipboardMenu.qml:329
+#: declarative/qml/ClipboardMenu.qml:339
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "All History"
 msgstr "क्लिपबोर्ड इतिहास"
 
-#: declarative/qml/ClipboardMenu.qml:334
+#: declarative/qml/ClipboardMenu.qml:344
 #, kde-format
 msgid "Starred Only"
 msgstr ""
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "No matches"
 msgstr "कोई मेल नहीं"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "Clipboard is empty"
 msgstr "क्लिपबोर्ड खाली है"
@@ -609,124 +578,107 @@ msgstr ""
 msgid "Icon:"
 msgstr ""
 
-#: historymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "The clipboard history will store up to this many items."
-msgid "The clipboard history contains starred items. Clear them too?"
-msgstr "क्लिपबोर्ड इतिहास इतने सारे वस्तुओं को संग्रहीत करेगा।"
-
-#: historymodel.cpp:284 historymodel.cpp:304
-#, fuzzy, kde-format
-#| msgid "C&lear Clipboard History"
-msgid "Clear Clipboard History"
-msgstr "क्लिपबोर्ड इतिहास साफ करें (&l)"
-
-#: historymodel.cpp:285
-#, kde-format
-msgid "Clear Everything"
-msgstr ""
-
-#: historymodel.cpp:286
-#, fuzzy, kde-format
-#| msgid "Clipboard Contents"
-msgid "Keep Starred Items"
-msgstr "क्लिपबोर्ड की वस्तुएँ"
-
-#: historymodel.cpp:303
+#: historymodel.cpp:281
 #, fuzzy, kde-format
 #| msgid "Really delete entire clipboard history?"
 msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr "वास्तव में संपूर्ण क्लिपबोर्ड इतिहास हटाएं ?"
 
-#: historymodel.cpp:387
+#: historymodel.cpp:282
+#, fuzzy, kde-format
+#| msgid "C&lear Clipboard History"
+msgid "Clear Clipboard History"
+msgstr "क्लिपबोर्ड इतिहास साफ करें (&l)"
+
+#: historymodel.cpp:363
 #, fuzzy, kde-format
 #| msgid "%1x%2 %3bpp"
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr "%1x%2 %3बीपीपी"
 
-#: historymodel.cpp:567
+#: historymodel.cpp:543
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr ""
 
-#: historymodel.cpp:568
+#: historymodel.cpp:544
 #, kde-format
 msgid "Remove Starred Item"
 msgstr ""
 
-#: klipper.cpp:78
+#: klipper.cpp:77
 #, fuzzy, kde-format
 #| msgid "Automatic action popup time:"
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "स्वचालित कार्रवाई पॉपअप समय :"
 
-#: klipper.cpp:96
+#: klipper.cpp:95
 #, fuzzy, kde-format
 #| msgid "C&lear Clipboard History"
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "क्लिपबोर्ड इतिहास साफ करें (&l)"
 
-#: klipper.cpp:101
+#: klipper.cpp:100
 #, fuzzy, kde-format
 #| msgid "Manually Invoke Action on Current Clipboard"
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr "मौज़ूदा क्लिपबोर्ड पर क्रिया हाथों से इन्वोक करें"
 
-#: klipper.cpp:109
+#: klipper.cpp:108
 #, fuzzy, kde-format
 #| msgid "&Edit Contents…"
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr "विषय-वस्तु का संपादन करें… (&E)"
 
-#: klipper.cpp:115
+#: klipper.cpp:114
 #, fuzzy, kde-format
 #| msgid "&Show Barcode…"
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr "बारकोड दिखाएँ… (&S)"
 
-#: klipper.cpp:122
+#: klipper.cpp:121
 #, fuzzy, kde-format
 #| msgid "Next History Item"
 msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "अगली इतिहास वस्तु"
 
-#: klipper.cpp:127
+#: klipper.cpp:126
 #, fuzzy, kde-format
 #| msgid "Previous History Item"
 msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "पिछली इतिहास वस्तु"
 
-#: klipper.cpp:134
+#: klipper.cpp:133
 #, fuzzy, kde-format
 #| msgid "Open Klipper at Mouse Position"
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr "माउस संकेतक स्थान पर क्लिपर खोलें"
 
-#: klipper.cpp:402 klipper.cpp:411
+#: klipper.cpp:404 klipper.cpp:413
 #, kde-format
 msgid "Clipboard history"
 msgstr "क्लिपबोर्ड इतिहास"
 
-#: klipper.cpp:428
+#: klipper.cpp:430
 #, kde-format
 msgid "up"
 msgstr "ऊपर"
 
-#: klipper.cpp:435
+#: klipper.cpp:437
 #, kde-format
 msgid "current"
 msgstr "वर्तमान"
 
-#: klipper.cpp:442
+#: klipper.cpp:444
 #, kde-format
 msgid "down"
 msgstr "नीचे"
@@ -835,68 +787,62 @@ msgid ""
 msgstr ""
 "क्लिपबोर्ड इतिहास में छवियों को संग्रहीत न करें, भले ही स्पष्ट रूप से कॉपी किया गया हो।"
 
-#. i18n: ectx: label, entry (UseGUIRegExpEditor), group (General)
-#: klipper.kcfg:47
-#, kde-format
-msgid "Use graphical regexp editor"
-msgstr "ग्राफिकल रेगेक्सपी संपादक का प्रयोग करें"
-
 #. i18n: ectx: label, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:51
+#: klipper.kcfg:47
 #, fuzzy, kde-format
 #| msgid "Ignore the selection"
 msgid "Immediately on selection"
 msgstr "चयन अनदेखा करें"
 
 #. i18n: ectx: tooltip, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:52
+#: klipper.kcfg:48
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
 msgstr ""
 
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:56
+#: klipper.kcfg:52
 #, fuzzy, kde-format
 #| msgid "Automatic action popup time:"
 msgid "Automatic action menu time:"
 msgstr "स्वचालित कार्रवाई पॉपअप समय :"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, fuzzy, kde-format
 #| msgid "Display the automatic action popup for this time."
 msgid "Display the automatic action popup menu for this time."
 msgstr "इस समय के लिए स्वचालित क्रिया पॉपअप प्रदर्शित करें।"
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:63
+#: klipper.kcfg:59
 #, fuzzy, kde-format
 #| msgid "Clipboard history size:"
 msgid "History size:"
 msgstr "क्लिपबोर्ड इतिहास आकार :"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr "क्लिपबोर्ड इतिहास इतने सारे वस्तुओं को संग्रहीत करेगा।"
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:70
+#: klipper.kcfg:66
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr "किसी क्रिया के ट्री विजेट में परिवर्तनों को इंगित करने के लिए बनावटी प्रविष्टि"
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:80
+#: klipper.kcfg:76
 #, fuzzy, kde-format
 #| msgid "Strip whitespace when executing an action"
 msgid "Trim whitespace from selection"
 msgstr "जब क्रियाओं को चलाया जाए तो व्हाइटस्पेसेस हटाएँ"
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:82
+#: klipper.kcfg:78
 #, fuzzy, kde-format
 #| msgid ""
 #| "Remove white space from the start and end of clipboard text before "
@@ -914,14 +860,14 @@ msgstr ""
 "गई है।<br/><br/>क्लिपबोर्ड पर सहेजा गया पाठ प्रभावित नहीं होता है।"
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:85
+#: klipper.kcfg:81
 #, fuzzy, kde-format
 #| msgid "Replay actions on an item selected from history"
 msgid "For an item chosen from history"
 msgstr "इतिहास से चुने गए आइटम पर क्रियाएँ दोबारा चलाएं"
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:87
+#: klipper.kcfg:83
 #, fuzzy, kde-format
 #| msgid "Whether text selections are saved in the clipboard history."
 msgid ""
@@ -930,14 +876,14 @@ msgid ""
 msgstr "क्या पाठ चयन क्लिपबोर्ड इतिहास में सहेजे गए हैं।"
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:90
+#: klipper.kcfg:86
 #, fuzzy, kde-format
 #| msgid "Enable MIME-based actions"
 msgid "Include MIME actions"
 msgstr "माइम-आधारित क्रियाएँ सक्षम करें"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:92
+#: klipper.kcfg:88
 #, fuzzy, kde-format
 #| msgid ""
 #| "If this option is set, and a file name or URL is selected, include "
@@ -949,7 +895,7 @@ msgstr ""
 "यदि यह विकल्प नियत है, और एक फ़ाइल नाम या यूआरएल चुना गया है, तो ऐसे अनुप्रयोग शामिल "
 "करें जो इसके MIME प्रकार को क्रिया पॉपअप में संभाल सकें।"
 
-#: klipperpopup.cpp:37
+#: klipperpopup.cpp:40
 #, fuzzy, kde-format
 #| msgid "Clipboard history"
 msgid "Clipboard Popup"
@@ -959,6 +905,19 @@ msgstr "क्लिपबोर्ड इतिहास"
 #, kde-format
 msgid "&Cancel"
 msgstr "रद्द करें (&C)"
+
+#, fuzzy
+#~| msgid "The clipboard history will store up to this many items."
+#~ msgid "The clipboard history contains starred items. Clear them too?"
+#~ msgstr "क्लिपबोर्ड इतिहास इतने सारे वस्तुओं को संग्रहीत करेगा।"
+
+#, fuzzy
+#~| msgid "Clipboard Contents"
+#~ msgid "Keep Starred Items"
+#~ msgstr "क्लिपबोर्ड की वस्तुएँ"
+
+#~ msgid "Use graphical regexp editor"
+#~ msgstr "ग्राफिकल रेगेक्सपी संपादक का प्रयोग करें"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

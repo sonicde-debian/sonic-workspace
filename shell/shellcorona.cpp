@@ -141,12 +141,6 @@ void ShellCorona::init()
         }
     });
 
-#ifndef NDEBUG
-    m_invariantsTimer.setSingleShot(true);
-    m_invariantsTimer.setInterval(qEnvironmentVariableIsSet("KDECI_BUILD") > 0 ? 30000ms : 1s);
-    connect(&m_invariantsTimer, &QTimer::timeout, this, &ShellCorona::screenInvariants);
-#endif
-
     m_desktopDefaultsConfig = KConfigGroup(KSharedConfig::openConfig(kPackage().filePath("defaults")), u"Desktop"_s);
     m_lnfDefaultsConfig = KConfigGroup(KSharedConfig::openConfig(m_lookAndFeelPackage.filePath("defaults")), u"Desktop"_s);
     m_lnfDefaultsConfig = KConfigGroup(&m_lnfDefaultsConfig, QStringLiteral("org.kde.plasma.desktop"));
@@ -178,6 +172,7 @@ void ShellCorona::init()
     dashboardAction->setAutoRepeat(true);
     dashboardAction->setCheckable(true);
     dashboardAction->setIcon(QIcon::fromTheme(QStringLiteral("dashboard-show")));
+    // TODO Plasma 7: Remove Ctrl keybinding in favor Meta+D in KWin
     KGlobalAccel::self()->setGlobalShortcut(dashboardAction, Qt::CTRL | Qt::Key_F12);
 
     checkAddPanelAction();
@@ -495,7 +490,7 @@ QByteArray ShellCorona::dumpCurrentLayoutJS() const
 
         const qreal height =
             // If we do not have a panel, fallback to 4 units
-            !view ? 4 : (qreal)view->totalThickness() / gridUnit;
+            !view ? 4 : (qreal)view->thickness() / gridUnit;
 
         panelJson.insert(u"height", height);
         if (view) {
@@ -504,6 +499,7 @@ QByteArray ShellCorona::dumpCurrentLayoutJS() const
             panelJson.insert(u"minimumLength", (qreal)view->minimumLength() / gridUnit);
             panelJson.insert(u"offset", (qreal)view->offset() / gridUnit);
             panelJson.insert(u"alignment", alignment == Qt::AlignRight ? u"right"_s : alignment == Qt::AlignCenter ? u"center"_s : u"left"_s);
+
             switch (view->visibilityMode()) {
             case PanelView::AutoHide:
                 panelJson.insert(u"hiding", u"autohide"_s);
@@ -517,6 +513,36 @@ QByteArray ShellCorona::dumpCurrentLayoutJS() const
             case PanelView::NormalPanel:
             default:
                 panelJson.insert(u"hiding", u"normal"_s);
+                break;
+            }
+
+            switch (view->opacityMode()) {
+            case PanelView::OpacityMode::Adaptive:
+                panelJson.insert(u"opacity"_s, u"adaptive"_s);
+                break;
+            case PanelView::OpacityMode::Opaque:
+                panelJson.insert(u"opacity"_s, u"opaque"_s);
+                break;
+            case PanelView::OpacityMode::Translucent:
+                panelJson.insert(u"opacity"_s, u"translucent"_s);
+                break;
+            default:
+                panelJson.insert(u"opacity"_s, u"adaptive"_s);
+                break;
+            }
+
+            switch (view->lengthMode()) {
+            case PanelView::LengthMode::FillAvailable:
+                panelJson.insert(u"lengthMode"_s, u"fill"_s);
+                break;
+            case PanelView::LengthMode::FitContent:
+                panelJson.insert(u"lengthMode"_s, u"fit"_s);
+                break;
+            case PanelView::LengthMode::Custom:
+                panelJson.insert(u"lengthMode"_s, u"custom"_s);
+                break;
+            default:
+                panelJson.insert(u"lengthMode"_s, u"fill"_s);
                 break;
             }
         }
@@ -725,10 +751,11 @@ void ShellCorona::sanitizeScreenLayout(const QString &configFileName)
     QHash<int, int> screenMapping;
 
     // Ensure desktops screens are progressive
-    for (auto activityIt = savedContainmentScreens.begin(); activityIt != savedContainmentScreens.end(); activityIt++) {
+    for (auto activityIt = savedContainmentScreens.cbegin(); activityIt != savedContainmentScreens.cend(); activityIt = std::next(activityIt)) {
         const QString &activity = activityIt.key();
         int progressiveScreen = 0;
-        for (auto originalScreenIt = activityIt.value().begin(); originalScreenIt != activityIt.value().end(); originalScreenIt++) {
+        for (auto originalScreenIt = activityIt.value().cbegin(); originalScreenIt != activityIt.value().cend();
+             originalScreenIt = std::next(originalScreenIt)) {
             KConfigGroup contCg(&cg, originalScreenIt.value());
             screenMapping[originalScreenIt.key()] = progressiveScreen;
             contCg.writeEntry(QStringLiteral("lastScreen"), progressiveScreen++);
@@ -847,8 +874,11 @@ void ShellCorona::screenInvariants() const
         return;
     }
 
+    Q_ASSERT(!m_screenReorderInProgress);
+
     QSet<QScreen *> managedScreens;
     for (auto *desk : m_desktopViewForScreen) {
+        Q_ASSERT_X(desk->screenToFollow(), Q_FUNC_INFO, qUtf8Printable(debugMessage()));
         managedScreens.insert(desk->screenToFollow());
     }
 
@@ -1005,7 +1035,7 @@ void ShellCorona::slotCyclePanelFocus()
     auto *activePanel = qobject_cast<PanelView *>(qGuiApp->focusWindow());
     if (!activePanel) {
         // Activate the first panel and save the previous window
-        activePanel = m_panelViews.begin().value();
+        activePanel = m_panelViews.cbegin().value();
     }
 
     if (activePanel->containment()->status() != Plasma::Types::AcceptingInputStatus) {
@@ -1013,7 +1043,7 @@ void ShellCorona::slotCyclePanelFocus()
     } else {
         // Cancel focus on the current panel
         // Block focus on the panel if it's not the last panel
-        if (activePanel != m_panelViews.last()) {
+        if (activePanel != std::as_const(m_panelViews).last()) {
             m_blockRestorePreviousWindow = true;
         }
         activePanel->containment()->setStatus(Plasma::Types::PassiveStatus);
@@ -1021,8 +1051,8 @@ void ShellCorona::slotCyclePanelFocus()
 
         // More than one panel and the current panel is not the last panel,
         // move focus to next panel.
-        if (activePanel != m_panelViews.last()) {
-            auto viewIt = std::ranges::find_if(m_panelViews, [activePanel](const PanelView *panel) {
+        if (activePanel != std::as_const(m_panelViews).last()) {
+            auto viewIt = std::ranges::find_if(std::as_const(m_panelViews), [activePanel](const PanelView *panel) {
                 return activePanel == panel;
             });
 
@@ -1371,14 +1401,14 @@ void ShellCorona::handleScreenRemoved(QScreen *screen)
     // There can't be a containment that has for instance screen 0 and another 2 but nothing on 1
     // It's size() - 1 because at this point screenpool didn't remove it from screenOrder() yet
     Q_EMIT screenRemoved(m_screenPool->screenOrder().size() - 1);
-#ifndef NDEBUG
-    m_invariantsTimer.start();
-#endif
 }
 
 void ShellCorona::handleScreenOrderChanged(QList<QScreen *> screens)
 {
+    Q_ASSERT(!m_screenReorderInProgress);
+
     m_screenReorderInProgress = true;
+
     // First: reassign existing views if applicable, otherwise remove them
     auto allDesktops = m_desktopViewForScreen.values();
     m_desktopViewForScreen.clear();
@@ -1436,9 +1466,7 @@ void ShellCorona::addOutput(QScreen *screen)
         return;
     }
     Q_ASSERT(!screen->geometry().isNull());
-#ifndef NDEBUG
-    connect(screen, &QScreen::geometryChanged, &m_invariantsTimer, qOverload<>(&QTimer::start), Qt::UniqueConnection);
-#endif
+
     int insertPosition = m_screenPool->idForScreen(screen);
     Q_ASSERT(insertPosition >= 0);
 
@@ -1480,9 +1508,6 @@ void ShellCorona::addOutput(QScreen *screen)
         Q_EMIT availableScreenRectChanged(m_screenPool->idForScreen(screen));
     }
     Q_EMIT screenAdded(m_screenPool->idForScreen(screen));
-#ifndef NDEBUG
-    m_invariantsTimer.start();
-#endif
 }
 
 void ShellCorona::checkAllDesktopsUiReady()
@@ -1993,6 +2018,11 @@ void ShellCorona::cleanupOldPanelConfig()
 
         if (auto match = reg.match(groupName); match.hasMatch()) {
             const uint id = match.captured(1).toInt();
+            const KConfigGroup panelConfig = applicationConfig()->group(u"PlasmaViews"_s).group(groupName);
+            const QString panelShell = panelConfig.readEntry("shell", QString());
+            if (panelShell.isEmpty() || panelShell != m_shell) {
+                continue;
+            }
 
             const auto conts = containments();
             const bool exists = std::any_of(conts.begin(), conts.end(), [id](Plasma::Containment *c) {
@@ -2526,7 +2556,7 @@ Plasma::Containment *ShellCorona::addPanel(const QString &plugin)
     if (availableLocations.isEmpty()) {
         loc = Plasma::Types::TopEdge;
     } else {
-        loc = availableLocations.first();
+        loc = availableLocations.constFirst();
     }
 
     panel->setLocation(loc);
@@ -3027,6 +3057,57 @@ void ShellCorona::refreshCurrentShell()
     KSharedConfig::openConfig(QStringLiteral("plasmashellrc"))->reparseConfiguration();
     //  FIXME:   setShell(defaultShell());
     QProcess::startDetached(u"plasmashell"_s, {u"--replace"_s});
+}
+
+bool ShellCorona::grabContainmentImage(const QString &name, int width, int height, const QString &targetPath)
+{
+    Q_ASSERT(calledFromDBus());
+
+    auto screenId = m_screenPool->idForName(name);
+    if (screenId < 0) {
+        qCWarning(PLASMASHELL) << "grabContainmentImage: unknown screen name" << name;
+        sendErrorReply(QDBusError::InvalidArgs, QStringLiteral("Unknown screen name"));
+        return false;
+    }
+
+    auto currentActivity = m_activityController->currentActivity();
+    currentActivity = QUuid::fromString(currentActivity).isNull() ? QString() : currentActivity;
+
+    auto containment = containmentForScreen(screenId, currentActivity, QString());
+    if (!containment) {
+        qCWarning(PLASMASHELL) << "grabContainmentImage: containment not found for screen" << name << currentActivity;
+        sendErrorReply(QDBusError::InvalidArgs, QStringLiteral("Containment not found for screen"));
+        return false;
+    }
+
+    auto item = PlasmaQuick::AppletQuickItem::itemForApplet(containment);
+    if (!item) {
+        qCWarning(PLASMASHELL) << "grabContainmentImage: could not find quick item for containment on screen" << name << currentActivity;
+        sendErrorReply(QDBusError::InternalError, QStringLiteral("Could not find quick item for containment"));
+        return false;
+    }
+
+    setDelayedReply(true);
+
+    auto result = item->grabToImage(QSize(width, height));
+    connect(
+        result.get(),
+        &QQuickItemGrabResult::ready,
+        this,
+        [callerContext = message(), result, targetPath]() {
+            if (!result->saveToFile(targetPath)) {
+                qCWarning(PLASMASHELL) << "grabContainmentImage: failed to save grab result to file";
+                auto reply = callerContext.createErrorReply(QDBusError::InternalError, QStringLiteral("Failed to save grab result to file"));
+                QDBusConnection::sessionBus().send(reply);
+                return;
+            }
+
+            auto reply = callerContext.createReply(true);
+            QDBusConnection::sessionBus().send(reply);
+        },
+        Qt::SingleShotConnection);
+
+    return false; // Unused - delayed reply.
 }
 
 // Desktop corona handler

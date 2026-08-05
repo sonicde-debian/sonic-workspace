@@ -17,6 +17,8 @@
 #include "lookandfeelsettings.h"
 #include "screenshotmaker.h"
 
+#include <qqml.h>
+
 #include <KPackage/PackageLoader>
 
 #include <QCollator>
@@ -465,7 +467,7 @@ void KCMLookandFeel::apply()
     save();
 
     if (!settings()->automaticLookAndFeel()) {
-        m_lnf->save(package, m_selectedContents);
+        m_lnf->save(package, m_selectedContents | KLookAndFeelManager::BlendChanges);
     }
 }
 

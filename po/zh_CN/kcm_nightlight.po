@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -52,8 +52,8 @@ msgstr "总是关闭"
 #: ui/main.qml:59
 #, kde-format
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "总是使用夜间色温"
+msgid "Always on"
+msgstr "始终开启"
 
 #: ui/main.qml:60
 #, kde-format
@@ -70,8 +70,8 @@ msgstr "配置…"
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
-msgstr "%1K"
+msgid "%1 K"
+msgstr "%1 K"
 
 #: ui/main.qml:123
 #, kde-format

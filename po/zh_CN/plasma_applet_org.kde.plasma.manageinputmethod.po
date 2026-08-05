@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-05 00:44+0000\n"
+"POT-Creation-Date: 2026-05-14 00:46+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -44,7 +44,12 @@ msgstr "显示虚拟键盘"
 msgid "Virtual Keyboard: visible"
 msgstr "虚拟键盘：可见"
 
-#: qml/main.qml:129
+#: qml/main.qml:128
 #, kde-format
-msgid "Virtual Keyboard: enabled"
-msgstr "虚拟键盘：已启用"
+msgid "Virtual Keyboard: Show on non-mouse input"
+msgstr "虚拟键盘：在非鼠标输入时显示"
+
+#: qml/main.qml:137
+#, kde-format
+msgid "Virtual Keyboard: Show with all input devices"
+msgstr "虚拟键盘：使用所有输入设备时显示"

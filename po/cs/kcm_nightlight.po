@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2025-10-17 13:20+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
+"PO-Revision-Date: 2026-03-30 12:56+0200\n"
+"Last-Translator:  Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -52,8 +52,8 @@ msgstr "Vždy vypnuto"
 #: ui/main.qml:59
 #, kde-format
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "Vždy noční světlo"
+msgid "Always on"
+msgstr "Vždy zapnuto"
 
 #: ui/main.qml:60
 #, kde-format
@@ -70,8 +70,8 @@ msgstr "Nastavit…"
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
-msgstr "%1K"
+msgid "%1 K"
+msgstr "%1 K"
 
 #: ui/main.qml:123
 #, kde-format
@@ -96,3 +96,11 @@ msgstr "Teplá"
 msgctxt "@label:slider"
 msgid "Night light temperature:"
 msgstr "Teplota nočního světla:"
+
+#~ msgctxt "@item:inlistbox switching times"
+#~ msgid "Always on night light"
+#~ msgstr "Vždy noční světlo"
+
+#~ msgctxt "Color temperature in Kelvin"
+#~ msgid "%1K"
+#~ msgstr "%1K"

@@ -3,13 +3,13 @@
 #
 # Elkana Bardugo <ttv200@gmail.com>, 2016.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023, 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_lookandfeel_org.kde.lookandfeel\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
-"PO-Revision-Date: 2026-01-08 13:58+0200\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
+"PO-Revision-Date: 2026-02-19 09:39+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.12.0\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: contents/logout/Logout.qml:152
 #, kde-format
@@ -86,87 +86,92 @@ msgstr[3] ""
 "יש עוד %1 משתמשים במערכת. אם המחשב יכבה או יופעל מחדש זה עלול להוביל לאובדן "
 "מידע שלהם."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, kde-format
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr "לאחר הפעלה מחדש, המחשב ייכנס להגדרות קושחת ה־UEFI."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr "לאחר הפעלה מחדש, המחשב ייכנס למסך הגדרת הקושחה."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, kde-format
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr "לאחר הפעלה מחדש, המחשב ייכנס לתפריט בחירת אמצעי טעינה."
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, kde-format
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
 msgstr "לאחר הפעלה מחדש, המחשב יעבור למצב %1."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "&שינה"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "שי&נה עכשיו"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, kde-format
 msgid "&Hibernate"
 msgstr "&תרדמת"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, kde-format
 msgid "&Hibernate Now"
 msgstr "ת&רדמת עכשיו"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr "התקנת עדכונים והפעלה מחדש"
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, kde-format
 msgid "&Restart"
 msgstr "ה&פעלה מחדש"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, kde-format
 msgid "&Restart Now"
 msgstr "הפעלה מ&חדש עכשיו"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr "התקנת עדכונים וכיבוי"
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, kde-format
 msgid "&Shut Down"
 msgstr "&כיבוי"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, kde-format
 msgid "&Shut Down Now"
 msgstr "כי&בוי עכשיו"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, kde-format
 msgid "&Log Out"
 msgstr "י&ציאה"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, kde-format
 msgid "&Log Out Now"
 msgstr "יציאה עכ&שיו"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, kde-format
 msgid "&Cancel"
 msgstr "&ביטול"

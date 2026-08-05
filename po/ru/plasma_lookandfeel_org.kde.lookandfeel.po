@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
 "PO-Revision-Date: 2026-02-17 20:34+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -88,89 +88,94 @@ msgstr[3] ""
 "В системе активен сеанс работы другого пользователя. При выключении или "
 "перезагрузке компьютера он может потерять результаты своей работы."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, kde-format
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr "После перезагрузки компьютер перейдёт в настройки прошивки UEFI."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr ""
 "После перезагрузки будет открыт экран настройки встроенной микропрограммы "
 "компьютера."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, kde-format
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr "После перезагрузки компьютера будет показан экран загрузчика."
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, kde-format
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
 msgstr "После перезагрузки компьютера будет выбран вариант загрузки «%1»."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "&Спящий режим"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "&Спящий режим"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, kde-format
 msgid "&Hibernate"
 msgstr "&Гибернация"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, kde-format
 msgid "&Hibernate Now"
 msgstr "&Гибернация"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr "Установить обновления и перезагрузить"
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, kde-format
 msgid "&Restart"
 msgstr "П&ерезагрузить"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, kde-format
 msgid "&Restart Now"
 msgstr "Перезагрузить сейчас"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr "Установить обновления и выключить"
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, kde-format
 msgid "&Shut Down"
 msgstr "&Выключить"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, kde-format
 msgid "&Shut Down Now"
 msgstr "&Выключить"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, kde-format
 msgid "&Log Out"
 msgstr "&Завершить сеанс"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, kde-format
 msgid "&Log Out Now"
 msgstr "&Завершить сеанс"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, kde-format
 msgid "&Cancel"
 msgstr "О&тмена"

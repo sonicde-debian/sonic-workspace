@@ -3,13 +3,13 @@
 #
 # Martin Schlander <mschlander@opensuse.org>, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 # scootergrisen, 2019.
-# SPDX-FileCopyrightText: 2024, 2025 rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>
+# SPDX-FileCopyrightText: 2024-2026 rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
-"PO-Revision-Date: 2025-10-31 23:19+0100\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
+"PO-Revision-Date: 2026-05-07 22:59+0200\n"
 "Last-Translator: Rasmus Rosendahl-Kaa <rasmus@rosendahl-kaa.name>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
 "Language: da\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: contents/logout/Logout.qml:152
 #, kde-format
@@ -69,89 +69,95 @@ msgstr[1] ""
 "%1 andre brugere er i øjeblikket logget ind. Hvis computeren lukkes ned "
 "eller genstartes, så kan brugerne miste deres arbejde."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, kde-format
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr ""
+"Når den er blevet genstartet, går computeren ind i UEFI-"
+"firmwareindstillinger."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr ""
 "Når den er blevet genstartet går computeren ind i firmwareopsætningsskærmen."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, kde-format
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr "Når den er blevet genstartet, går computeren ind i boot loader-menuen."
 
-#: contents/logout/Logout.qml:215
-#, fuzzy, kde-format
-#| msgid "When restarted, the computer will enter the boot loader menu."
+#: contents/logout/Logout.qml:221
+#, kde-format
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
-msgstr "Når den er blevet genstartet, går computeren ind i boot loader-menuen."
+msgstr "Når den er blevet genstartet, går computeren ind i %1."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "Slu&mre"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, kde-format
 msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "Slu&mre nu"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, kde-format
 msgid "&Hibernate"
 msgstr "&Dvale"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, kde-format
 msgid "&Hibernate Now"
 msgstr "&Gå i dvale nu"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr "Installér opdateringer og genstart"
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, kde-format
 msgid "&Restart"
 msgstr "&Genstart"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, kde-format
 msgid "&Restart Now"
 msgstr "&Genstart nu"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr "Installér opdateringer og luk ned"
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, kde-format
 msgid "&Shut Down"
 msgstr "&Luk ned"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, kde-format
 msgid "&Shut Down Now"
 msgstr "&Luk ned nu"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, kde-format
 msgid "&Log Out"
 msgstr "&Log ud"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, kde-format
 msgid "&Log Out Now"
 msgstr "&Log ud nu"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, kde-format
 msgid "&Cancel"
 msgstr "&Annullér"

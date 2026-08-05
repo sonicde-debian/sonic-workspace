@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: klipper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-12 02:38+0000\n"
+"POT-Creation-Date: 2026-06-16 02:41+0000\n"
 "PO-Revision-Date: 2025-10-16 12:38-0500\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -228,72 +228,41 @@ msgstr "ਸ਼ਾਰਟਕੱਟ"
 msgid "Shortcuts Configuration"
 msgstr "ਸ਼ਾਰਟਕੱਟ ਸੰਰਚਨਾ"
 
-#: declarative/qml/BarcodePage.qml:32
-#, kde-format
-msgid "QR Code"
-msgstr "QR ਕੋਡ"
-
-#: declarative/qml/BarcodePage.qml:33
-#, kde-format
-msgid "Data Matrix"
-msgstr "ਡਾਟਾ ਮੈਟਰ੍ਕਿਸ"
-
-#: declarative/qml/BarcodePage.qml:34
-#, kde-format
-msgctxt "Aztec barcode"
-msgid "Aztec"
-msgstr ""
-
-#: declarative/qml/BarcodePage.qml:35
-#, kde-format
-msgid "Code 39"
-msgstr "ਕੋਡ 39"
-
-#: declarative/qml/BarcodePage.qml:36
-#, kde-format
-msgid "Code 93"
-msgstr "ਕੋਡ 93"
-
-#: declarative/qml/BarcodePage.qml:37
-#, kde-format
-msgid "Code 128"
-msgstr "ਕੋਡ 128"
-
-#: declarative/qml/BarcodePage.qml:53
+#: declarative/qml/BarcodePage.qml:48
 #, kde-format
 msgid "Return to Clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਉੱਤੇ ਵਾਪਸ"
 
-#: declarative/qml/BarcodePage.qml:89
+#: declarative/qml/BarcodePage.qml:69
 #, kde-format
 msgctxt "@action:button Copy to clipboard"
 msgid "Copy"
 msgstr "ਕਾਪੀ ਕਰੋ"
 
-#: declarative/qml/BarcodePage.qml:95
+#: declarative/qml/BarcodePage.qml:75
 #, kde-format
 msgctxt "@info:status"
 msgid "An image of the QR code has been copied to clipboard"
 msgstr ""
 
-#: declarative/qml/BarcodePage.qml:101
+#: declarative/qml/BarcodePage.qml:78
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy QR code image to clipboard"
 msgstr "QR ਕੋਡ ਚਿੱਤਰ ਨੂੰ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕਰੋ"
 
-#: declarative/qml/BarcodePage.qml:112
+#: declarative/qml/BarcodePage.qml:113
 #, kde-format
-msgid "Change the QR code type"
-msgstr "QR ਕੋਡ ਦੀ ਕਿਸਮ ਨੂੰ ਬਦਲੋ"
+msgid "QR Code"
+msgstr "QR ਕੋਡ"
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid ""
 "There is not enough space to display the QR code. Try resizing this applet."
 msgstr "QR ਕੋਡ ਦਿਖਾਉਣ ਲਈ ਲੋੜੀਦੀ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਹੈ। ਇਸ ਐਪਲਿਟ ਦਾ ਆਕਾਰ ਬਦਲਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-#: declarative/qml/BarcodePage.qml:197
+#: declarative/qml/BarcodePage.qml:162
 #, kde-format
 msgid "Creating QR code failed"
 msgstr "QR ਕੋਡ ਬਣਾਉਣਾ ਫੇਲ੍ਹ ਹੈ"
@@ -310,27 +279,27 @@ msgctxt "@action:button"
 msgid "Expand"
 msgstr "ਫੈਲਾਓ"
 
-#: declarative/qml/ClipboardMenu.qml:275
+#: declarative/qml/ClipboardMenu.qml:285
 #, kde-format
 msgid "Clear History"
 msgstr "ਅਤੀਤ ਨੂੰ ਮਿਟਾਓ"
 
-#: declarative/qml/ClipboardMenu.qml:329
+#: declarative/qml/ClipboardMenu.qml:339
 #, kde-format
 msgid "All History"
 msgstr "ਸਾਰਾ ਅਤੀਤ"
 
-#: declarative/qml/ClipboardMenu.qml:334
+#: declarative/qml/ClipboardMenu.qml:344
 #, kde-format
 msgid "Starred Only"
 msgstr "ਤਾਰਾ ਲੱਗੇ ਹੀ"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "No matches"
 msgstr "ਕੋਈ ਮੇਲ ਨਹੀਂ"
 
-#: declarative/qml/ClipboardMenu.qml:441
+#: declarative/qml/ClipboardMenu.qml:451
 #, kde-format
 msgid "Clipboard is empty"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਖਾਲੀ ਹੈ"
@@ -566,111 +535,96 @@ msgstr ""
 msgid "Icon:"
 msgstr "ਆਈਕਾਨ:"
 
-#: historymodel.cpp:283
-#, kde-format
-msgid "The clipboard history contains starred items. Clear them too?"
-msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਵਿੱਚ ਤਾਰਾ ਲੱਗੀਆਂ ਚੀਜ਼ਾਂ ਹਨ। ਕੀ ਉਹਨਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?"
-
-#: historymodel.cpp:284 historymodel.cpp:304
-#, kde-format
-msgid "Clear Clipboard History"
-msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਨੂੰ ਮਿਟਾਓ"
-
-#: historymodel.cpp:285
-#, kde-format
-msgid "Clear Everything"
-msgstr "ਹਰ ਚੀਜ਼ ਨੂੰ ਮਿਟਾਓ"
-
-#: historymodel.cpp:286
-#, kde-format
-msgid "Keep Starred Items"
-msgstr "ਤਾਰਾ ਲੱਗੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਰੱਖੋ"
-
-#: historymodel.cpp:303
+#: historymodel.cpp:281
 #, kde-format
 msgid "Do you really want to clear and delete the entire clipboard history?"
 msgstr "ਕੀ ਤੁਸੀਂ ਪੂਰੇ ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਨੂੰ ਮਿਟਾਉਣਾ ਅਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: historymodel.cpp:387
+#: historymodel.cpp:282
+#, kde-format
+msgid "Clear Clipboard History"
+msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਨੂੰ ਮਿਟਾਓ"
+
+#: historymodel.cpp:363
 #, kde-format
 msgctxt "@info:tooltip width x height"
 msgid "%1x%2"
 msgstr "%1x%2"
 
-#: historymodel.cpp:567
+#: historymodel.cpp:543
 #, kde-format
 msgid "This item is starred. Do you really want to remove it from history?"
 msgstr "ਇਹ ਚੀਜ਼ ਤਾਰਾ ਲਗਾਈ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਤੀਤ ਵਿੱਚੋਂ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: historymodel.cpp:568
+#: historymodel.cpp:544
 #, kde-format
 msgid "Remove Starred Item"
 msgstr "ਤਾਰਾ ਲੱਗੀ ਚੀਜ਼ ਨੂੰ ਹਟਾਓ"
 
-#: klipper.cpp:78
+#: klipper.cpp:77
 #, kde-format
 msgctxt "@action:inmenu Toggle automatic action"
 msgid "Automatic Action Popup Menu"
 msgstr "ਆਟੋਮੈਟਿਕ ਕਾਰਵਾਈ ਪੌਪਅੱਪ ਮੇਨੂ"
 
-#: klipper.cpp:96
+#: klipper.cpp:95
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "C&lear Clipboard History"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਨੂੰ ਮਿਟਾਓ(&l)"
 
-#: klipper.cpp:101
+#: klipper.cpp:100
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Manually Invoke Action on Current Clipboard"
 msgstr "ਮੌਜੂਦਾ ਕਲਿੱਪਬੋਰਡ ਉੱਤੇ ਕਾਰਵਾਈ ਦਸਤੀ ਸ਼ਾਮਿਲ ਕਰੋ"
 
-#: klipper.cpp:109
+#: klipper.cpp:108
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Edit Contents…"
 msgstr "…ਸਮੱਗਰੀ ਨੂੰ ਸੋਧੋ(&E)"
 
-#: klipper.cpp:115
+#: klipper.cpp:114
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Show Barcode…"
 msgstr "…ਬਾਰਕੋਡ ਵੇਖੋ(&S)"
 
-#: klipper.cpp:122
+#: klipper.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Next History Item"
 msgstr "ਅਗਲੀ ਅਤੀਤ ਆਈਟਮ"
 
-#: klipper.cpp:127
+#: klipper.cpp:126
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Previous History Item"
 msgstr "ਪਿਛਲੀ ਅਤੀਤ ਆਈਟਮ"
 
-#: klipper.cpp:134
+#: klipper.cpp:133
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Clipboard Items at Mouse Position"
 msgstr "ਮਾਊਸ ਸਥਿਤੀ ਉੱਤੇ ਕਲਿੱਪਬੋਰਡ ਆਈਟਮਾਂ ਵੇਖਾਓ"
 
-#: klipper.cpp:402 klipper.cpp:411
+#: klipper.cpp:404 klipper.cpp:413
 #, kde-format
 msgid "Clipboard history"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ"
 
-#: klipper.cpp:428
+#: klipper.cpp:430
 #, kde-format
 msgid "up"
 msgstr "ਉੱਤੇ"
 
-#: klipper.cpp:435
+#: klipper.cpp:437
 #, kde-format
 msgid "current"
 msgstr "ਮੌਜੂਦਾ"
 
-#: klipper.cpp:442
+#: klipper.cpp:444
 #, kde-format
 msgid "down"
 msgstr "ਹੇਠਾਂ"
@@ -766,63 +720,57 @@ msgid ""
 "Do not store images in the clipboard history, even if explicitly copied."
 msgstr "ਚਿੱਤਰਾਂ ਨੂੰ ਕਦੇ ਵੀ ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਵਿੱਚ ਕਦੇ ਨਾ ਸੰਭਾਲੋ ਸਪਸ਼ਟ ਤੌਰ ਉੱਤੇ ਕਾਪੀ ਕੀਤੇ ਹੋਣ।"
 
-#. i18n: ectx: label, entry (UseGUIRegExpEditor), group (General)
-#: klipper.kcfg:47
-#, kde-format
-msgid "Use graphical regexp editor"
-msgstr "ਗਰਾਫਿਕਲ regexp ਐਡੀਟਰ ਵਰਤੋਂ"
-
 #. i18n: ectx: label, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:51
+#: klipper.kcfg:47
 #, kde-format
 msgid "Immediately on selection"
 msgstr "ਚੋਣ ਉੱਤੇ ਫ਼ੌਰਨ"
 
 #. i18n: ectx: tooltip, entry (URLGrabberEnabled), group (General)
-#: klipper.kcfg:52
+#: klipper.kcfg:48
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions as soon as a selection is made."
 msgstr ""
 
 #. i18n: ectx: label, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:56
+#: klipper.kcfg:52
 #, kde-format
 msgid "Automatic action menu time:"
 msgstr "ਆਟੋਮੈਟਿਕ ਕਾਰਵਾਈ ਮੇਨੂ ਸਮਾਂ:"
 
 #. i18n: ectx: tooltip, entry (TimeoutForActionPopups), group (General)
-#: klipper.kcfg:60
+#: klipper.kcfg:56
 #, kde-format
 msgid "Display the automatic action popup menu for this time."
 msgstr "ਇਸ ਸਮੇਂ ਲਈ ਆਪਣੇ-ਆਪ ਕਾਰਵਾਈ ਪੌਪ-ਅੱਪ ਮੇਨੂ ਦਿਖਾਉ।"
 
 #. i18n: ectx: label, entry (MaxClipItems), group (General)
-#: klipper.kcfg:63
+#: klipper.kcfg:59
 #, kde-format
 msgid "History size:"
 msgstr "ਅਤੀਤ ਦਾ ਆਕਾਰ:"
 
 #. i18n: ectx: tooltip, entry (MaxClipItems), group (General)
-#: klipper.kcfg:67
+#: klipper.kcfg:63
 #, kde-format
 msgid "The clipboard history will store up to this many items."
 msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਐਨੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਸੰਭਾਲੇਗਾ।"
 
 #. i18n: ectx: label, entry (ActionList), group (General)
-#: klipper.kcfg:70
+#: klipper.kcfg:66
 #, kde-format
 msgid "Dummy entry for indicating changes in an action's tree widget"
 msgstr ""
 
 #. i18n: ectx: label, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:80
+#: klipper.kcfg:76
 #, kde-format
 msgid "Trim whitespace from selection"
 msgstr "ਚੋਣ ਵਿੱਚੋਂ ਖਾਲੀ ਥਾਂ ਹਟਾਓ"
 
 #. i18n: ectx: whatsthis, entry (StripWhiteSpace), group (Actions)
-#: klipper.kcfg:82
+#: klipper.kcfg:78
 #, kde-format
 msgid ""
 "Remove any whitespace from the start and end of selected text, before "
@@ -832,13 +780,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:85
+#: klipper.kcfg:81
 #, kde-format
 msgid "For an item chosen from history"
 msgstr "ਅਤੀਤ ਤੋਂ ਚੁਣੀ ਆਈਟਮ ਲਈ"
 
 #. i18n: ectx: tooltip, entry (ReplayActionInHistory), group (Actions)
-#: klipper.kcfg:87
+#: klipper.kcfg:83
 #, kde-format
 msgid ""
 "Show the popup menu of applicable actions if an entry is chosen from the "
@@ -847,20 +795,20 @@ msgstr ""
 "ਜੇ ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਵਿੱਚੋਂ ਐਂਟਰੀ ਚੁਣੀ ਜਾਂਦੀ ਹੈ ਤਾਂ ਲਾਗੂ ਹੋਣ ਵਾਲੀਆਂ ਕਾਰਵਾਈਆਂ ਲਈ ਪੌਪ-ਅੱਪ ਮੇਨੂ ਵੇਖਾਓ।"
 
 #. i18n: ectx: label, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:90
+#: klipper.kcfg:86
 #, kde-format
 msgid "Include MIME actions"
 msgstr "MIME ਕਾਰਵਾਈਆਂ ਸਮੇਤ"
 
 #. i18n: ectx: whatsthis, entry (EnableMagicMimeActions), group (Actions)
-#: klipper.kcfg:92
+#: klipper.kcfg:88
 #, kde-format
 msgid ""
 "If a file name or URL is selected, include applications that can accept its "
 "MIME type in the popup menu."
 msgstr ""
 
-#: klipperpopup.cpp:37
+#: klipperpopup.cpp:40
 #, kde-format
 msgid "Clipboard Popup"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਪੌਪਅੱਪ"
@@ -869,6 +817,33 @@ msgstr "ਕਲਿੱਪਬੋਰਡ ਪੌਪਅੱਪ"
 #, kde-format
 msgid "&Cancel"
 msgstr "ਰੱਦ ਕਰੋ(&C)"
+
+#~ msgid "The clipboard history contains starred items. Clear them too?"
+#~ msgstr "ਕਲਿੱਪਬੋਰਡ ਅਤੀਤ ਵਿੱਚ ਤਾਰਾ ਲੱਗੀਆਂ ਚੀਜ਼ਾਂ ਹਨ। ਕੀ ਉਹਨਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?"
+
+#~ msgid "Clear Everything"
+#~ msgstr "ਹਰ ਚੀਜ਼ ਨੂੰ ਮਿਟਾਓ"
+
+#~ msgid "Keep Starred Items"
+#~ msgstr "ਤਾਰਾ ਲੱਗੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਰੱਖੋ"
+
+#~ msgid "Use graphical regexp editor"
+#~ msgstr "ਗਰਾਫਿਕਲ regexp ਐਡੀਟਰ ਵਰਤੋਂ"
+
+#~ msgid "Data Matrix"
+#~ msgstr "ਡਾਟਾ ਮੈਟਰ੍ਕਿਸ"
+
+#~ msgid "Code 39"
+#~ msgstr "ਕੋਡ 39"
+
+#~ msgid "Code 93"
+#~ msgstr "ਕੋਡ 93"
+
+#~ msgid "Code 128"
+#~ msgstr "ਕੋਡ 128"
+
+#~ msgid "Change the QR code type"
+#~ msgstr "QR ਕੋਡ ਦੀ ਕਿਸਮ ਨੂੰ ਬਦਲੋ"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

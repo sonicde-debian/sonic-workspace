@@ -68,7 +68,10 @@ Item {
             level: 3
             elide: Text.ElideRight
             // keep this consistent with toolTipMainText in analog-clock
-            property var mainText: clocks.visible ? Qt.formatDate(clock.dateTime, Qt.locale(), Locale.LongFormat) : Qt.locale().toString(clock.dateTime, "dddd")
+            property var mainText: {
+                const text = clocks.visible ? Qt.formatDate(clock.dateTime, Qt.locale(), Locale.LongFormat) : Qt.locale().toString(clock.dateTime, "dddd");
+                return text.charAt(0).toUpperCase() + text.slice(1);
+            }
             property bool anyTimezoneSet: !!mainText
             text: anyTimezoneSet ? mainText : i18nc("@label main text shown in digital clock's tooltip when timezone is missing", "Time zone is not set")
             textFormat: Text.PlainText
@@ -95,6 +98,7 @@ Item {
             opacity: 0.75
             visible: !clocks.visible
             font.features: { "tnum": 1 }
+            textFormat: Text.PlainText
         }
 
         PlasmaComponents.Label {
@@ -133,15 +137,22 @@ Item {
                     required property int index
                     required property string modelData
 
-                    // Layout.fillWidth is buggy here
-                    Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
-                    text: {
-                        if (index % 2 === 0) {
-                            return i18nc("@label %1 is a city or time zone name", "%1:", Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone));
-                        } else {
-                            return formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds > 0);
+                    readonly property string tzLabel: {
+                        switch (Plasmoid.configuration.displayTimezoneFormat) {
+                        case 0: // Code
+                            return tzClock.timeZoneCode;
+                        case 1: // City
+                            return TimeZonesI18n.i18nCity(tzClock.timeZone);
+                        case 2: // Offset from UTC time
+                            return tzClock.timeZoneOffset;
                         }
                     }
+
+                    // Layout.fillWidth is buggy here
+                    Layout.alignment: index % 2 === 0 ? Qt.AlignRight : Qt.AlignLeft
+                    text: index % 2 === 0
+                        ? i18nc("@label %1 is a city or time zone name", "%1:", tzLabel)
+                        : formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds > 0) + formatOffset(tzClock.dateTime)
                     Clock {
                         id: tzClock
                         timeZone: label.modelData
@@ -162,6 +173,15 @@ Item {
                     elide: Text.ElideNone
                 }
             }
+        }
+
+        PlasmaComponents.Label {
+            Layout.minimumWidth: Math.min(implicitWidth, toolTipContentItem.preferredTextWidth)
+            Layout.maximumWidth: toolTipContentItem.preferredTextWidth
+            visible: ApplicationIntegration.calendarInstalled
+            text: i18nc("@info:tooltip %1 is the name of a calendar application", "Middle-click to open %1", ApplicationIntegration.calendarApplicationName)
+            textFormat: Text.PlainText
+            opacity: 0.75
         }
     }
 }

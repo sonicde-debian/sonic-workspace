@@ -728,7 +728,7 @@ QtObject {
             // cannot use QModelIndex here as the model row is already gone
             globals.popupNotificationsModel.startTimeout(notificationId);
 
-            globals.positionPopups();
+            globals.repositionTimer.start();
         }
     }
 
@@ -801,5 +801,6 @@ QtObject {
 
     property Notifications.GlobalShortcuts shortcuts: Notifications.GlobalShortcuts {
         onToggleDoNotDisturbTriggered: globals.toggleDoNotDisturbMode()
+        onClearHistoryTriggered: plasmoidItem.clearNotificationHistoryAndShowOsd()
     }
 }

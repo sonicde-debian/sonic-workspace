@@ -16,6 +16,7 @@
 #include <KRunner/RunnerManager>
 #include <chrono>
 #include <optional>
+#include <qtmetamacros.h>
 
 using namespace std::chrono_literals;
 
@@ -41,6 +42,11 @@ RunnerModel::RunnerModel(QObject *parent)
     m_configWatcher = KConfigWatcher::create(m_krunnerConfig);
     connect(m_configWatcher.data(), &KConfigWatcher::configChanged, this, readFavorites);
     readFavorites();
+    connect(m_configWatcher.data(), &KConfigWatcher::configChanged, this, [this](const KConfigGroup &group) {
+        if (group.name() == QLatin1String("Plugins")) {
+            updateEnabledRunners();
+        }
+    });
 }
 
 RunnerModel::~RunnerModel() = default;
@@ -68,6 +74,7 @@ void RunnerModel::setFavoritesModel(AbstractModel *model)
 
         if (!m_query.isEmpty()) {
             m_queryTimer.start();
+            Q_EMIT queryingChanged();
         }
 
         Q_EMIT favoritesModelChanged();
@@ -88,6 +95,7 @@ void RunnerModel::setAppletInterface(QObject *appletInterface)
 
         if (!m_query.isEmpty()) {
             m_queryTimer.start();
+            Q_EMIT queryingChanged();
         }
 
         Q_EMIT appletInterfaceChanged();
@@ -147,6 +155,29 @@ RunnerMatchesModel *RunnerModel::modelForRow(int row)
     return m_models.at(row);
 }
 
+bool RunnerModel::resultsPresent() const
+{
+    return m_resultsPresent;
+}
+
+void RunnerModel::checkResultsPresent()
+{
+    for (auto model : m_models) {
+        if (model->count()) {
+            if (m_resultsPresent) {
+                return;
+            }
+            m_resultsPresent = true;
+            Q_EMIT resultsPresentChanged();
+            return;
+        }
+    }
+    if (m_resultsPresent) {
+        m_resultsPresent = false;
+        Q_EMIT resultsPresentChanged();
+    }
+}
+
 QStringList RunnerModel::runners() const
 {
     return m_runners;
@@ -159,7 +190,20 @@ void RunnerModel::setRunners(const QStringList &runners)
     }
 
     m_runners = runners;
+    // Delay checking enabled runners until needed
+    if (!m_models.isEmpty()) {
+        updateEnabledRunners();
+    }
     Q_EMIT runnersChanged();
+}
+
+void RunnerModel::setEnabledRunners(const QStringList &runners)
+{
+    if (runners == m_enabledRunners) {
+        return;
+    }
+
+    m_enabledRunners = runners;
 
     // Update the existing models only, if we have initialized the models
     if (!m_models.isEmpty()) {
@@ -175,6 +219,26 @@ void RunnerModel::setRunners(const QStringList &runners)
     }
 }
 
+void RunnerModel::updateEnabledRunners()
+{
+    if (m_runners.isEmpty()) {
+        setEnabledRunners(m_runners);
+    } else {
+        const static auto availableRunners = KRunner::RunnerManager::runnerMetaDataList();
+        const auto configGroup = m_krunnerConfig->group(QStringLiteral("Plugins"));
+        QStringList newEnabledRunners;
+        for (const QString &runnerId : std::as_const(m_runners)) {
+            for (const KPluginMetaData &runner : availableRunners) {
+                if (runner.pluginId() == runnerId && runner.isEnabled(configGroup)) {
+                    newEnabledRunners << runnerId;
+                    break;
+                }
+            }
+        }
+        setEnabledRunners(newEnabledRunners);
+    }
+}
+
 QString RunnerModel::query() const
 {
     return m_query;
@@ -182,7 +246,7 @@ QString RunnerModel::query() const
 
 bool RunnerModel::querying() const
 {
-    return m_queryingModels > 0;
+    return m_queryingModels > 0 || m_queryTimer.isActive();
 }
 
 void RunnerModel::setQuery(const QString &query)
@@ -196,19 +260,31 @@ void RunnerModel::setQuery(const QString &query)
     m_query = query;
     m_queryTimer.start();
     Q_EMIT queryChanged();
+    Q_EMIT queryingChanged();
 }
 
 void RunnerModel::startQuery()
 {
     if (m_query.isEmpty()) {
         clear();
+        if (m_resultsPresent) {
+            m_resultsPresent = false;
+            Q_EMIT resultsPresentChanged();
+        }
         QTimer::singleShot(0, this, &RunnerModel::queryFinished);
     } else {
+        const bool wasQuerying = querying();
         m_queryingModels += m_models.size();
+        if (m_resultsPresent) {
+            // don't always set to false - we want to keep showing old results while in flight
+            checkResultsPresent();
+        }
         for (KRunner::ResultsModel *model : std::as_const(m_models)) {
             model->setQueryString(m_query);
         }
-        Q_EMIT queryingChanged();
+        if (!wasQuerying) {
+            Q_EMIT queryingChanged();
+        }
     }
 }
 
@@ -221,15 +297,16 @@ void RunnerModel::clear()
 
 void RunnerModel::initializeModels()
 {
+    updateEnabledRunners();
     beginResetModel();
     if (m_mergeResults) {
         auto model = new RunnerMatchesModel(QString(), i18n("Search results"), this);
-        model->runnerManager()->setAllowedRunners(m_runners);
+        model->runnerManager()->setAllowedRunners(m_enabledRunners);
         model->setFavoritesModel(m_favoritesModel);
         model->setFavoriteIds(m_favoritePluginIds);
         m_models.append(model);
     } else {
-        for (const QString &runnerId : std::as_const(m_runners)) {
+        for (const QString &runnerId : std::as_const(m_enabledRunners)) {
             auto *model = new RunnerMatchesModel(runnerId, std::nullopt, this);
             model->setFavoritesModel(m_favoritesModel);
             m_models.append(model);
@@ -238,7 +315,11 @@ void RunnerModel::initializeModels()
     for (auto model : std::as_const(m_models)) {
         connect(model->runnerManager(), &KRunner::RunnerManager::queryFinished, this, [this]() {
             Q_EMIT anyRunnerFinished();
+            if (!m_resultsPresent) {
+                checkResultsPresent();
+            }
             if (--m_queryingModels == 0) {
+                checkResultsPresent(); // final check in case we go from matches to no matches
                 Q_EMIT queryFinished();
                 Q_EMIT queryingChanged();
             }

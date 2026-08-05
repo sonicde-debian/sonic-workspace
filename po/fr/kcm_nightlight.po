@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcm_nightcolor\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2026-01-06 16:15+0100\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
+"PO-Revision-Date: 2026-03-26 12:25+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -59,8 +59,8 @@ msgstr "Toujours désactivé"
 #: ui/main.qml:59
 #, kde-format
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "Toujours en couleur de nuit"
+msgid "Always on"
+msgstr "Toujours activé"
 
 #: ui/main.qml:60
 #, kde-format
@@ -77,7 +77,7 @@ msgstr "Configurer…"
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
+msgid "%1 K"
 msgstr "%1 K"
 
 #: ui/main.qml:123
@@ -103,6 +103,14 @@ msgstr "Chaud"
 msgctxt "@label:slider"
 msgid "Night light temperature:"
 msgstr "Température de couleur de nuit :"
+
+#~ msgctxt "@item:inlistbox switching times"
+#~ msgid "Always on night light"
+#~ msgstr "Toujours en couleur de nuit"
+
+#~ msgctxt "Color temperature in Kelvin"
+#~ msgid "%1K"
+#~ msgstr "%1 K"
 
 #~ msgctxt ""
 #~ "@label:chooser Tap should be translated to mean touching using a "

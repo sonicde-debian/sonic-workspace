@@ -77,7 +77,13 @@ void MediaProxy::setSource(const QString &url)
 
     m_isDefaultSource = false;
 
-    const QUrl sanitizedUrl = QUrl::fromUserInput(url);
+    QUrl sanitizedUrl(url, QUrl::TolerantMode);
+
+    // Using QUrl::fromUserInput() can alter the URL or lose the fragment for
+    // file:// URLs that have one, so first try parsing it directly.
+    if (!sanitizedUrl.isValid() || sanitizedUrl.scheme().isEmpty()) {
+        sanitizedUrl = QUrl::fromUserInput(url);
+    }
     if (m_source == sanitizedUrl) {
         return;
     }
@@ -290,11 +296,11 @@ void MediaProxy::determineBackgroundType(KPackage::Package *package)
         // Don't use QMovie::supportedFormats() as it loads all available image plugins
         const bool isAnimated = QImageReader(&dummyBuffer, QFileInfo(filePath).suffix().toLower().toLatin1()).supportsOption(QImageIOHandler::Animation);
 
-        if (isAnimated) {
+        if (type.startsWith(QLatin1String("image/svg"))) {
+            m_backgroundType = BackgroundType::Type::VectorImage;
+        } else if (isAnimated) {
             // Derived from the suffix
             m_backgroundType = BackgroundType::Type::AnimatedImage;
-        } else if (type.startsWith(QLatin1String("image/svg"))) {
-            m_backgroundType = BackgroundType::Type::VectorImage;
         } else if (type.startsWith(QLatin1String("image/"))) {
             m_backgroundType = BackgroundType::Type::Image;
         } else {
@@ -413,10 +419,13 @@ void MediaProxy::updateModelImage(KPackage::Package *package, bool doesBlockSign
 
         QUrlQuery urlQuery(composedUrl);
         urlQuery.addQueryItem(QStringLiteral("dir"), m_source.toLocalFile());
-        // To make modelImageChaged work
+        // To make modelImageChanged work
         urlQuery.addQueryItem(QStringLiteral("targetWidth"), QString::number(m_targetSize.width()));
         urlQuery.addQueryItem(QStringLiteral("targetHeight"), QString::number(m_targetSize.height()));
-        urlQuery.addQueryItem(QStringLiteral("darkMode"), QString::number(m_isDarkColorScheme ? 1 : 0));
+
+        const bool useDarkColorScheme =
+            m_source.fragment().contains(QLatin1StringView("dark")) || (m_isDarkColorScheme && !m_source.fragment().contains(QLatin1StringView("light")));
+        urlQuery.addQueryItem(QStringLiteral("darkMode"), QString::number(useDarkColorScheme ? 1 : 0));
 
         composedUrl.setQuery(urlQuery);
         newRealSource = composedUrl;

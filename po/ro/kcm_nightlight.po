@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma-desktop\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
-"PO-Revision-Date: 2026-02-19 18:58+0000\n"
+"POT-Creation-Date: 2026-03-25 00:46+0000\n"
+"PO-Revision-Date: 2026-03-31 13:56+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -57,8 +57,8 @@ msgstr "Mereu oprită"
 #: ui/main.qml:59
 #, kde-format
 msgctxt "@item:inlistbox switching times"
-msgid "Always on night light"
-msgstr "Mereu în lumină nocturnă"
+msgid "Always on"
+msgstr "Pornită mereu"
 
 #: ui/main.qml:60
 #, kde-format
@@ -75,7 +75,7 @@ msgstr "Configurează…"
 #: ui/main.qml:115 ui/main.qml:166 ui/main.qml:230
 #, kde-format
 msgctxt "Color temperature in Kelvin"
-msgid "%1K"
+msgid "%1 K"
 msgstr "%1 K"
 
 #: ui/main.qml:123
@@ -101,6 +101,14 @@ msgstr "Caldă"
 msgctxt "@label:slider"
 msgid "Night light temperature:"
 msgstr "Temperatura luminii nocturne:"
+
+#~ msgctxt "@item:inlistbox switching times"
+#~ msgid "Always on night light"
+#~ msgstr "Mereu în lumină nocturnă"
+
+#~ msgctxt "Color temperature in Kelvin"
+#~ msgid "%1K"
+#~ msgstr "%1K"
 
 #~ msgctxt ""
 #~ "@label:chooser Tap should be translated to mean touching using a "

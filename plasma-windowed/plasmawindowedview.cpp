@@ -30,13 +30,12 @@ PlasmaWindowedView::PlasmaWindowedView(QWindow *parent)
 {
     engine()->rootContext()->setContextProperty(QStringLiteral("root"), contentItem());
     // access appletInterface.Layout.minimumWidth, to create the Layout attached object for appletInterface as a sideeffect
-    auto *expr = new QQmlExpression(
-        engine()->rootContext(),
-        contentItem(),
-        QStringLiteral("Qt.createQmlObject('import QtQuick; import QtQuick.Layouts; import org.kde.kirigami as Kirigami; "
-                       "Rectangle {color: Kirigami.Theme.backgroundColor; anchors.fill:parent; "
-                       "property Item appletInterface; onAppletInterfaceChanged: print(appletInterface?.Layout.minimumWidth)}', root, \"\");"));
-    m_rootObject = expr->evaluate().value<QQuickItem *>();
+    QQmlExpression expr(engine()->rootContext(),
+                        contentItem(),
+                        QStringLiteral("Qt.createQmlObject('import QtQuick; import QtQuick.Layouts; import org.kde.kirigami as Kirigami; "
+                                       "Rectangle {color: Kirigami.Theme.backgroundColor; anchors.fill:parent; "
+                                       "property Item appletInterface; onAppletInterfaceChanged: print(appletInterface?.Layout.minimumWidth)}', root, \"\");"));
+    m_rootObject = expr.evaluate().value<QQuickItem *>();
 }
 
 PlasmaWindowedView::~PlasmaWindowedView() = default;
@@ -210,7 +209,9 @@ void PlasmaWindowedView::mouseReleaseEvent(QMouseEvent *ev)
 void PlasmaWindowedView::keyPressEvent(QKeyEvent *ev)
 {
     if (ev->matches(QKeySequence::Quit)) {
-        m_statusNotifier->deleteLater();
+        if (m_statusNotifier) {
+            m_statusNotifier->deleteLater();
+        }
         close();
     }
     QQuickView::keyReleaseEvent(ev);

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-  - 'on': [ '@all' ]
+  - 'on': ['@all']
     'require':
       'frameworks/attica': '@latest-kf6'
       'frameworks/baloo': '@latest-kf6'
@@ -29,7 +29,6 @@ Dependencies:
       'frameworks/kjobwidgets': '@latest-kf6'
       'frameworks/knewstuff': '@latest-kf6'
       'frameworks/knotifications': '@latest-kf6'
-      'frameworks/knotifyconfig': '@latest-kf6'
       'frameworks/kpackage': '@latest-kf6'
       'frameworks/kparts': '@latest-kf6'
       'frameworks/krunner': '@latest-kf6'
@@ -50,7 +49,6 @@ Dependencies:
       'frameworks/kuserfeedback': '@latest-kf6'
       'frameworks/kcolorscheme': '@latest-kf6'
       'plasma/libplasma': '@same'
-      'plasma/layer-shell-qt': '@same'
       'plasma/kglobalacceld': '@same'
       'plasma/kscreenlocker': '@same'
       'plasma/libkscreen': '@same'
@@ -60,30 +58,32 @@ Dependencies:
       'plasma/plasma-activities-stats': '@same'
       'plasma/knighttime': '@same'
       'plasma/kwin': '@same'
-      'libraries/phonon': '@latest-kf6'
+      'libraries/plasma-wayland-protocols': '@latest-kf6'
       'libraries/kirigami-addons': '@latest-kf6'
       'graphics/libkexiv2': '@latest-kf6'
       'third-party/appstream': '@latest'
       'third-party/qcoro': '@latest'
 
-  - 'on': [ 'Linux' ]
+  - 'on': ['Linux']
     'require':
+      'frameworks/networkmanager-qt': '@latest-kf6'
       'libraries/polkit-qt-1': '@latest-kf6'
+      'third-party/packagekit-qt': '@latest'
 
 RuntimeDependencies:
-  - 'on': [ 'Linux' ]
+  - 'on': ['Linux']
     'require':
       'network/kio-extras': '@latest-kf6'
       'plasma/kactivitymanagerd': '@same'
       'sdk/selenium-webdriver-at-spi': '@same'
-  - 'on': [ 'Linux', 'FreeBSD' ]
+  - 'on': ['Linux', 'FreeBSD']
     'require':
       'frameworks/qqc2-desktop-style': '@latest-kf6'
       'plasma/milou': '@same'
 
 Options:
-  ctest-arguments: '--repeat until-pass:5'
   use-ccache: True
-  require-passing-tests-on: [ '@all' ]
-  clang-format-versions: [ 14, 18 ]
+  require-passing-tests-on: ['@all']
+  clang-format-versions: [14, 18]
   run-qmllint: True
+  gcovr-arguments: '--merge-mode-functions=separate'

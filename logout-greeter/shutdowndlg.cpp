@@ -30,6 +30,8 @@
 #include <KWindowSystem>
 #include <KX11Extras>
 
+#include <Plasma/Plasma>
+
 #include <cstdio>
 #include <netwm.h>
 
@@ -63,9 +65,10 @@ static const QString s_login1RebootToFirmwareSetup = QStringLiteral("RebootToFir
 static const QString s_login1RebootToBootLoaderMenu = QStringLiteral("RebootToBootLoaderMenu");
 static const QString s_login1RebootToBootLoaderEntry = QStringLiteral("RebootToBootLoaderEntry");
 
-KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype, QScreen *screen)
+KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype, bool windowed, QScreen *screen)
     : QuickViewSharedEngine(parent)
     , m_result(false)
+    , m_windowed(windowed)
 // this is a WType_Popup on purpose. Do not change that! Not
 // having a popup here has severe side effects.
 {
@@ -121,6 +124,7 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
 
     // Trying to access a non-existent context property throws an error, always create the property and then update it later
     context->setContextProperty(u"rebootToFirmwareSetup"_s, false);
+    context->setContextProperty(u"isUefi"_s, false);
     context->setContextProperty(u"rebootToBootLoaderMenu"_s, false);
     context->setContextProperty(u"rebootToBootLoaderEntry"_s, u""_s);
 
@@ -132,6 +136,11 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
         connect(callWatcher, &QDBusPendingCallWatcher::finished, context, [context](QDBusPendingCallWatcher *watcher) {
             QDBusPendingReply<QVariant> reply = *watcher;
             watcher->deleteLater();
+
+            // check whether we're UEFI to provide a more descriptive button label
+            if (QFileInfo(QStringLiteral("/sys/firmware/efi")).isDir()) {
+                context->setContextProperty(u"isUefi"_s, true);
+            }
 
             if (reply.value().toBool()) {
                 context->setContextProperty(u"rebootToFirmwareSetup"_s, true);
@@ -221,7 +230,7 @@ KSMShutdownDlg::KSMShutdownDlg(QWindow *parent, KWorkSpace::ShutdownType sdtype,
 
     // engine stuff
     engine()->rootContext()->setContextObject(new KLocalizedContext(engine().get()));
-    engine()->setProperty("_kirigamiTheme", QStringLiteral("KirigamiPlasmaStyle"));
+    Plasma::setupPlasmaStyle(engine().get());
 }
 
 void KSMShutdownDlg::init(const KPackage::Package &package)
@@ -262,7 +271,6 @@ void KSMShutdownDlg::init(const KPackage::Package &package)
     });
 
     KWindowEffects::enableBlurBehind(this, true);
-    KWindowEffects::enableBackgroundContrast(this, true, 1.0, 1.0, 1.5);
     if (m_windowed) {
         show();
     } else {
@@ -272,18 +280,6 @@ void KSMShutdownDlg::init(const KPackage::Package &package)
     requestActivate();
 
     setKeyboardGrabEnabled(true);
-}
-
-void KSMShutdownDlg::resizeEvent(QResizeEvent *e)
-{
-    QuickViewSharedEngine::resizeEvent(e);
-
-    if (KX11Extras::compositingActive()) {
-        // TODO: reenable window mask when we are without composite?
-        //        clearMask();
-    } else {
-        //        setMask(m_view->mask());
-    }
 }
 
 void KSMShutdownDlg::slotLogout()

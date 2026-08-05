@@ -10,6 +10,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2 // For StackView
+import QtQuick.Templates as T
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.ksvg as KSvg
@@ -39,6 +40,13 @@ PlasmoidItem {
         (fullRepresentationItem.clipboardMenu as Private.ClipboardMenu).clearHistory()
     }
 
+    // BUG 520144
+    // QTBUG-146886
+    readonly property var backAction: Kirigami.Action {
+        enabled: (fullRepresentationItem?.clipboardMenu as Private.ClipboardMenu)?.T.StackView.view.depth === 2
+        onTriggered: (fullRepresentationItem?.clipboardMenu as Private.ClipboardMenu).closeBarcode()
+    }
+
     property bool inEmbeddedContainment: Plasmoid.containment.containmentType === PlasmaCore.Containment.CustomEmbedded
 
     onIsClipboardEmptyChanged: {
@@ -60,8 +68,19 @@ PlasmoidItem {
             id: clearAction
             text: i18n("Clear History")
             icon.name: "edit-clear-history"
-            visible: !main.isClipboardEmpty && !(main.fullRepresentationItem?.clipboardMenu as Private.ClipboardMenu)?.editing
+            visible: !main.isClipboardEmpty && !(main.fullRepresentationItem?.clipboardMenu as Private.ClipboardMenu)?.editing && !copyClipboardAction.visible
             onTriggered: (main.fullRepresentationItem.clipboardMenu as Private.ClipboardMenu).clearHistory()
+        },
+        PlasmaCore.Action {
+            id: copyClipboardAction
+
+            readonly property var page: (fullRepresentationItem?.clipboardMenu as Private.ClipboardMenu)?.T.StackView.view.currentItem
+
+            icon.name: page?.copyAction?.icon.name ?? ""
+            text: page?.copyAction?.tooltip ?? ""
+            onTriggered: page.copyAction.triggered()
+            enabled: page?.copyAction?.enabled ?? ""
+            visible: Plasmoid.containment.pluginName === "org.kde.plasma.systemtray" && page instanceof Private.BarcodePage
         }
     ]
 
@@ -107,6 +126,8 @@ PlasmoidItem {
                 if (expanded) {
                     ((stack.initialItem as Private.ClipboardMenu).view as ListView).currentIndex = -1;
                     ((stack.initialItem as Private.ClipboardMenu).view as ListView).positionViewAtBeginning();
+                } else {
+                    clipboardMenu.clearFilter();
                 }
             }
         }
@@ -115,11 +136,13 @@ PlasmoidItem {
             id: stack
             anchors.fill: parent
             initialItem: Private.ClipboardMenu {
+                id: clipboardMenu
                 expanded: main.expanded
                 dialogItem: dialogItem
                 model: historyModel
                 showsClearHistoryButton: !(Plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading) && clearAction.visible
                 barcodeType: Plasmoid.configuration.barcodeType
+                showHeader: Plasmoid.containment.pluginName !== "org.kde.plasma.systemtray"
 
                 onItemSelected: if (main.hideOnWindowDeactivate) {
                     main.expanded = false;

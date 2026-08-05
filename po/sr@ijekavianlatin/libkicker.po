@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_org.kde.plasma.kicker\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 02:41+0000\n"
+"POT-Creation-Date: 2026-06-23 02:42+0000\n"
 "PO-Revision-Date: 2017-09-25 19:53+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -43,7 +43,7 @@ msgstr "Prikači na menadžer zadataka"
 msgid "Add to Panel (Widget)"
 msgstr "Dodaj na panel (vidžet)"
 
-#: actionlist.cpp:316 rootmodel.cpp:538
+#: actionlist.cpp:316 rootmodel.cpp:587
 #, fuzzy, kde-format
 #| msgid "Recent Documents"
 msgid "Recent Files"
@@ -69,12 +69,12 @@ msgctxt "@action opens a software center with the application"
 msgid "Uninstall or Manage Add-Ons…"
 msgstr ""
 
-#: appentry.cpp:361
+#: appentry.cpp:400
 #, kde-format
 msgid "Hide Application"
 msgstr "Sakrij program"
 
-#: appentry.cpp:423
+#: appentry.cpp:462
 #, fuzzy, kde-format
 #| msgctxt "App name (Generic name)"
 #| msgid "%1 (%2)"
@@ -82,14 +82,14 @@ msgctxt "App name (Comment or Generic name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appentry.cpp:425
+#: appentry.cpp:464
 #, kde-format
 msgctxt "Generic name (App name)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:219
-#: recentusagemodel.cpp:156 recentusagemodel.cpp:225
+#: appsmodel.cpp:38 appsmodel.cpp:74 computermodel.cpp:93 computermodel.cpp:220
+#: recentusagemodel.cpp:158 recentusagemodel.cpp:229
 #, kde-format
 msgid "Applications"
 msgstr "Programi"
@@ -120,54 +120,71 @@ msgid "Computer"
 msgstr "Računar"
 
 #. i18n.
-#: kastatsfavoritesmodel.cpp:548 rootmodel.cpp:531 simplefavoritesmodel.cpp:33
+#: kastatsfavoritesmodel.cpp:538 rootmodel.cpp:571 simplefavoritesmodel.cpp:33
 #, kde-format
 msgid "Favorites"
 msgstr "Omiljeno"
 
 # Није неоходно „... коришћено“.
-#: recentusagemodel.cpp:154
+#: recentusagemodel.cpp:156
 #, kde-format
 msgid "Recently Used"
 msgstr "Nedavno"
 
-#: recentusagemodel.cpp:159 recentusagemodel.cpp:326
+#: recentusagemodel.cpp:160
+#, kde-format
+msgid "Places"
+msgstr ""
+
+#: recentusagemodel.cpp:163 recentusagemodel.cpp:330
 #, kde-format
 msgid "Files"
 msgstr ""
 
-#: recentusagemodel.cpp:259
+#: recentusagemodel.cpp:263
 #, kde-format
 msgid "Forget Application"
 msgstr "Zaboravi program"
 
-#: recentusagemodel.cpp:324
+#: recentusagemodel.cpp:328
 #, kde-format
 msgid "Folders"
 msgstr ""
 
-#: recentusagemodel.cpp:371
+#: recentusagemodel.cpp:375
 #, kde-format
 msgid "Open Containing Folder"
 msgstr ""
 
-#: recentusagemodel.cpp:374
+#: recentusagemodel.cpp:380
+#, fuzzy, kde-format
+#| msgid "Forget All"
+msgid "Forget Folder"
+msgstr "Zaboravi sve"
+
+#: recentusagemodel.cpp:380
 #, fuzzy, kde-format
 #| msgid "Forget All"
 msgid "Forget File"
 msgstr "Zaboravi sve"
 
-#: recentusagemodel.cpp:518
+#: recentusagemodel.cpp:526
 #, kde-format
 msgid "Forget All"
 msgstr "Zaboravi sve"
 
-#: recentusagemodel.cpp:520
+#: recentusagemodel.cpp:528
 #, kde-format
 msgid "Forget All Applications"
 msgstr "Zaboravi sve programe"
 
-#: recentusagemodel.cpp:523
+#: recentusagemodel.cpp:530
+#, fuzzy, kde-format
+#| msgid "Forget All"
+msgid "Forget All Folders"
+msgstr "Zaboravi sve"
+
+#: recentusagemodel.cpp:533
 #, fuzzy, kde-format
 #| msgid "Forget All"
 msgid "Forget All Files"
@@ -178,17 +195,33 @@ msgstr "Zaboravi sve"
 msgid "All Applications"
 msgstr "Svi programi"
 
-#: rootmodel.cpp:131
+#: rootmodel.cpp:134
 #, kde-format
 msgid "Hide %1"
 msgstr "Sakrij %1|/|Sakrij $[aku %1]"
 
-#: rootmodel.cpp:525
+#: rootmodel.cpp:565
 #, kde-format
 msgid "This shouldn't be visible! Use KICKER_FAVORITES_MODEL"
 msgstr ""
 
-#: rootmodel.cpp:538
+#: rootmodel.cpp:578
+#, fuzzy, kde-format
+#| msgid "Recent Documents"
+msgid "Recent Places"
+msgstr ""
+"Nedavni dokumenti|/|$[svojstva gen 'nedavnih dokumenata' aku 'nedavne "
+"dokumente']"
+
+#: rootmodel.cpp:578
+#, fuzzy, kde-format
+#| msgid "Often Used Documents"
+msgid "Often Used Places"
+msgstr ""
+"Često korišćeni dokumenti|/|$[svojstva gen 'često korišćenih dokumenata' aku "
+"'često korišćene dokumente']"
+
+#: rootmodel.cpp:587
 #, fuzzy, kde-format
 #| msgid "Often Used Documents"
 msgid "Often Used Files"
@@ -196,25 +229,25 @@ msgstr ""
 "Često korišćeni dokumenti|/|$[svojstva gen 'često korišćenih dokumenata' aku "
 "'često korišćene dokumente']"
 
-#: rootmodel.cpp:547
+#: rootmodel.cpp:596
 #, kde-format
 msgid "Recent Applications"
 msgstr ""
 "Nedavni programi|/|$[svojstva gen 'nedavnih programa' aku 'nedavne programe']"
 
-#: rootmodel.cpp:547
+#: rootmodel.cpp:596
 #, kde-format
 msgid "Often Used Applications"
 msgstr ""
 "Često korišćeni programi|/|$[svojstva gen 'često korišćenih programa' aku "
 "'često korišćene programe']"
 
-#: rootmodel.cpp:562
+#: rootmodel.cpp:611
 #, kde-format
 msgid "Power / Session"
 msgstr "Napajanje/sesija"
 
-#: runnermodel.cpp:226
+#: runnermodel.cpp:303
 #, kde-format
 msgid "Search results"
 msgstr "Rezultati pretrage"

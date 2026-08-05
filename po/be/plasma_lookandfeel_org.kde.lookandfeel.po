@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:42+0000\n"
+"POT-Creation-Date: 2026-02-24 00:47+0000\n"
 "PO-Revision-Date: 2024-11-06 22:00\n"
 "Last-Translator: Antikruk <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -96,25 +96,31 @@ msgstr[3] ""
 "Зараз працуюць яшчэ %1 карыстальнікі. Калі выключыць або перазапусціць "
 "камп'ютар, гэтыя карыстальнікі можа страціць даныя."
 
-#: contents/logout/Logout.qml:189
+#: contents/logout/Logout.qml:191
+#, fuzzy, kde-format
+#| msgid "When restarted, the computer will enter the firmware setup screen."
+msgid "When restarted, the computer will enter UEFI firmware settings."
+msgstr "Пасля перазапуску камп'ютара адкрыецца праграма кіравання прашыўкай."
+
+#: contents/logout/Logout.qml:193
 #, kde-format
 msgid "When restarted, the computer will enter the firmware setup screen."
 msgstr "Пасля перазапуску камп'ютара адкрыецца праграма кіравання прашыўкай."
 
-#: contents/logout/Logout.qml:202
+#: contents/logout/Logout.qml:208
 #, fuzzy, kde-format
 #| msgid "When restarted, the computer will enter the firmware setup screen."
 msgid "When restarted, the computer will enter the boot loader menu."
 msgstr "Пасля перазапуску камп'ютара адкрыецца праграма кіравання прашыўкай."
 
-#: contents/logout/Logout.qml:215
+#: contents/logout/Logout.qml:221
 #, fuzzy, kde-format
 #| msgid "When restarted, the computer will enter the firmware setup screen."
 msgctxt "%1 is a boot loader entry"
 msgid "When restarted, the computer will switch to %1."
 msgstr "Пасля перазапуску камп'ютара адкрыецца праграма кіравання прашыўкай."
 
-#: contents/logout/Logout.qml:237
+#: contents/logout/Logout.qml:243
 #, fuzzy, kde-format
 #| msgctxt "Suspend to RAM"
 #| msgid "Sleep"
@@ -122,7 +128,7 @@ msgctxt "Suspend to RAM"
 msgid "Slee&p"
 msgstr "Прыпыніць у RAM"
 
-#: contents/logout/Logout.qml:238
+#: contents/logout/Logout.qml:244
 #, fuzzy, kde-format
 #| msgctxt "Suspend to RAM"
 #| msgid "Sleep Now"
@@ -130,67 +136,67 @@ msgctxt "Suspend to RAM"
 msgid "Slee&p Now"
 msgstr "Прыпыніць у RAM"
 
-#: contents/logout/Logout.qml:247
+#: contents/logout/Logout.qml:253
 #, fuzzy, kde-format
 #| msgid "Hibernate"
 msgid "&Hibernate"
 msgstr "Перавесці ў рэжым сну"
 
-#: contents/logout/Logout.qml:248
+#: contents/logout/Logout.qml:254
 #, fuzzy, kde-format
 #| msgid "Hibernate Now"
 msgid "&Hibernate Now"
 msgstr "Перавесці ў рэжым сну"
 
-#: contents/logout/Logout.qml:259
+#: contents/logout/Logout.qml:265
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Restart"
 msgstr "Усталяваць абнаўленні і перазапусціць"
 
-#: contents/logout/Logout.qml:261 contents/logout/Logout.qml:280
+#: contents/logout/Logout.qml:267 contents/logout/Logout.qml:286
 #, fuzzy, kde-format
 #| msgid "Restart"
 msgid "&Restart"
 msgstr "Перазапусціць"
 
-#: contents/logout/Logout.qml:262 contents/logout/Logout.qml:281
+#: contents/logout/Logout.qml:268 contents/logout/Logout.qml:287
 #, fuzzy, kde-format
 #| msgid "Restart Now"
 msgid "&Restart Now"
 msgstr "Перазапусціць"
 
-#: contents/logout/Logout.qml:294
+#: contents/logout/Logout.qml:300
 #, kde-format
 msgctxt "@action:button Keep short"
 msgid "Install Updates and Shut Down"
 msgstr "Усталяваць абнаўленні і выключыць"
 
-#: contents/logout/Logout.qml:296 contents/logout/Logout.qml:315
+#: contents/logout/Logout.qml:302 contents/logout/Logout.qml:321
 #, fuzzy, kde-format
 #| msgid "Shut Down"
 msgid "&Shut Down"
 msgstr "Выключыць"
 
-#: contents/logout/Logout.qml:297 contents/logout/Logout.qml:316
+#: contents/logout/Logout.qml:303 contents/logout/Logout.qml:322
 #, fuzzy, kde-format
 #| msgid "Shut Down Now"
 msgid "&Shut Down Now"
 msgstr "Выключыць"
 
-#: contents/logout/Logout.qml:328
+#: contents/logout/Logout.qml:334
 #, fuzzy, kde-format
 #| msgid "Log Out"
 msgid "&Log Out"
 msgstr "Выхад"
 
-#: contents/logout/Logout.qml:329
+#: contents/logout/Logout.qml:335
 #, fuzzy, kde-format
 #| msgid "Log Out Now"
 msgid "&Log Out Now"
 msgstr "Выйсці зараз"
 
-#: contents/logout/Logout.qml:339
+#: contents/logout/Logout.qml:345
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgid "&Cancel"

@@ -134,7 +134,6 @@ PlasmaExtras.Representation {
                     spacing: Kirigami.Units.smallSpacing
 
                     Layout.alignment: Qt.AlignBottom
-                    Layout.bottomMargin: Kirigami.Units.mediumSpacing
 
                     // Heading text
                     Kirigami.Heading {
@@ -467,6 +466,11 @@ PlasmaExtras.Representation {
 
             ListView {
                 id: clocksList
+
+                // We need some imperative bookkeeping here because there's no way to bind to
+                // this information across a set of dynamically-created delegates in a ListView.
+                property int longestTimeStringWidth: 1
+
                 activeFocusOnTab: true
 
                 highlight: null
@@ -496,6 +500,16 @@ PlasmaExtras.Representation {
                     required property string modelData
 
                     readonly property bool isCurrentTimeZone: tzClock.timeZone == root.currentTimeZone
+                    readonly property string tzLabel: {
+                        switch (Plasmoid.configuration.displayTimezoneFormat) {
+                        case 0: // Code
+                            return tzClock.timeZoneCode;
+                        case 1: // City
+                            return TimeZonesI18n.i18nCity(tzClock.timeZone);
+                        case 2: // Offset from UTC time
+                            return tzClock.timeZoneOffset;
+                        }
+                    }
 
                     width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
 
@@ -503,7 +517,7 @@ PlasmaExtras.Representation {
                     rightPadding: calendar.paddings
 
                     highlighted: ListView.isCurrentItem
-                    Accessible.name: Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone);
+                    Accessible.name: tzLabel
                     Accessible.description: root.formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds === 2)
 
                     // Only highlight with keyboard
@@ -521,20 +535,48 @@ PlasmaExtras.Representation {
 
                         PlasmaComponents.Label {
                             Layout.fillWidth: true
-                            text: Plasmoid.configuration.displayTimezoneAsCode ? tzClock.timeZoneCode : TimeZonesI18n.i18nCity(tzClock.timeZone);
+                            text: listItem.tzLabel
                             textFormat: Text.PlainText
                             font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
                             maximumLineCount: 1
                             elide: Text.ElideRight
                         }
 
-                        PlasmaComponents.Label {
-                            horizontalAlignment: Qt.AlignRight
-                            text: root.formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds === 2)
-                            textFormat: Text.PlainText
-                            font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
-                            elide: Text.ElideRight
-                            maximumLineCount: 1
+                        Row {
+                            id: timeAndOffsetRow
+                            Layout.preferredWidth: clocksList.longestTimeStringWidth
+
+                            spacing: 0
+
+                            function recalculateLongestTimeString() {
+                                if (Math.ceil(implicitWidth) > clocksList.longestTimeStringWidth) {
+                                    clocksList.longestTimeStringWidth = Math.ceil(implicitWidth);
+                                }
+                            }
+                            Component.onCompleted: recalculateLongestTimeString();
+
+                            PlasmaComponents.Label {
+                                id: timeString
+
+                                text: root.formatTime(tzClock.dateTime, Plasmoid.configuration.showSeconds === 2)
+                                textFormat: Text.PlainText
+                                font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
+
+                                onTextChanged: timeAndOffsetRow.recalculateLongestTimeString();
+                            }
+
+                            PlasmaComponents.Label {
+                                visible: !listItem.isCurrentTimeZone
+
+                                anchors.baseline: timeString.baseline
+                                anchors.baselineOffset: Math.floor((Kirigami.Theme.smallFont.pointSize - Kirigami.Theme.defaultFont.pointSize) / 2)
+
+                                text: root.formatOffset(tzClock.dateTime)
+                                textFormat: Text.PlainText
+                                font.pointSize: Kirigami.Theme.smallFont.pointSize
+                                font.family: Kirigami.Theme.smallFont.family
+                                opacity: 0.75
+                            }
                         }
                     }
                 }
