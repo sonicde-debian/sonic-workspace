@@ -45,6 +45,7 @@ usr/lib/*/libexec/plasma-dbus-run-session-if-needed
 usr/lib/*/libexec/plasma-fallback-session-restore
 usr/lib/*/libexec/plasma-fallback-session-save
 usr/lib/*/libexec/plasma-sourceenv.sh
+usr/lib/*/libexec/plasma-startup-sound
 usr/lib/*/libkrdb.so
 usr/lib/*/qt6/plugins/
 usr/lib/*/qt6/qml/org/kde/breeze/components/
